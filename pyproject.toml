@@ -1,0 +1,61 @@
+[project]
+name = "python-project-template"
+version = "0.1.0"
+description = "Python project template"
+authors = [
+    {name = "Cliff Wulfman", email = "cwulfman@princeton.edu"},
+]
+dependencies = []
+requires-python = ">=3.12"
+readme = "README.md"
+license = {text = "MIT"}
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+
+[tool.pdm]
+distribution = true
+package-dir = "src"
+
+
+[tool.pdm.scripts]
+start = "python -m my_python_project.main"
+test = "pytest"
+test_verbose = "pytest -v"
+cov = "pytest --cov=my_python_project --cov-report=html"
+cov_report = {shell = "python -m http.server -d htmlcov"}
+lint = "ruff check"
+typecheck = "mypy src"
+
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_functions = "test_*"
+addopts = "--cov=my_python_project --cov-report=term-missing"
+
+[tool.coverage.run]
+source = ["src"]
+omit = ["tests/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "pass",
+    "raise ImportError",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+    "pytest-cov>=6.1.0",
+    "pytest-mock>=3.14.0",
+    "ruff>=0.11.3",
+    "mypy>=1.15.0",
+]
