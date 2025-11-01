@@ -1,0 +1,13 @@
+((python-mode
+  . ((indent-tabs-mode . nil)
+     (tab-width . 4)
+     (fill-column . 88)
+     (eglot-workspace-configuration
+      . ((:basedpyright . (:typeCheckingMode "basic"
+                         :reportMissingImports t
+                         :reportMissingTypeStubs nil
+                         :pythonVersion "3.10"
+                         :useLibraryCodeForTypes t))))))
+ (org-mode
+  . ((org-clock-persist . t)
+     (eval . (org-clock-persistence-insinuate)))))
