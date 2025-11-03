@@ -1,0 +1,37 @@
+@prefix stg:  <https://aa.perseus.org/staging#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+stg:Object       a rdfs:Class ; rdfs:label "Staging Object"@en .
+stg:Period       a rdfs:Class ; rdfs:label "Staging Period"@en .
+stg:Place        a rdfs:Class ; rdfs:label "Staging Place"@en .
+stg:Technique    a rdfs:Class ; rdfs:label "Staging Technique"@en .
+stg:Material     a rdfs:Class ; rdfs:label "Staging Material"@en .
+stg:Appellation  a rdfs:Class ; rdfs:label "Staging Appellation"@en .
+stg:WebResource  a rdfs:Class ; rdfs:label "Staging Web Resource"@en .
+
+stg:source       a rdfs:Property ; rdfs:label "Source code"@en .
+stg:objectid     a rdfs:Property ; rdfs:label "Object id (source)"@en ; rdfs:range xsd:integer .
+
+stg:title        a rdfs:Property ; rdfs:label "Title literal"@en .
+stg:altTitle     a rdfs:Property ; rdfs:label "Alternative title literal"@en .
+stg:creditline   a rdfs:Property ; rdfs:label "Credit line"@en .
+stg:provenance   a rdfs:Property ; rdfs:label "Provenance"@en .
+stg:lang         a rdfs:Property ; rdfs:label "Language tag"@en .
+stg:displayOrder a rdfs:Property ; rdfs:label "Display order"@en ; rdfs:range xsd:integer .
+
+stg:aatType      a rdfs:Property ; rdfs:label "AAT Type IRI"@en .
+stg:cultureAAT   a rdfs:Property ; rdfs:label "AAT Culture IRI"@en .
+
+stg:materialAAT  a rdfs:Property ; rdfs:label "AAT Material IRI"@en .
+stg:techniqueAAT a rdfs:Property ; rdfs:label "AAT Technique IRI"@en .
+
+stg:periodId     a rdfs:Property ; rdfs:label "HAM period id"@en ; rdfs:range xsd:integer .
+stg:periodLabel  a rdfs:Property ; rdfs:label "Period label"@en .
+stg:placeId      a rdfs:Property ; rdfs:label "HAM place id"@en ; rdfs:range xsd:integer .
+stg:placeLabel   a rdfs:Property ; rdfs:label "Place label"@en .
+
+stg:iiifManifest a rdfs:Property ; rdfs:label "IIIF Manifest IRI"@en .
+stg:primaryImage a rdfs:Property ; rdfs:label "Primary image IRI"@en .
+
+stg:catalogPage  a rdfs:Property ; rdfs:label "Catalog page IRI"@en .

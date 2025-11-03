@@ -1,0 +1,44 @@
+PREFIX stg:  <https://aa.perseus.org/staging#>
+PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT {
+  ?prod a crm:E12_Production ;
+        crm:P108_has_produced ?obj ;
+        crm:P10_falls_within ?period ;
+        crm:P7_took_place_at ?place .
+
+  ?obj a crm:E22_Human-Made_Object .
+
+  ?period a crm:E4_Period ;
+          rdfs:label ?periodLabel .
+
+  ?place a crm:E53_Place ;
+         rdfs:label ?placeLabel .
+}
+WHERE {
+  ?s a stg:Object ; stg:source ?src ; stg:objectid ?oid .
+  BIND( SHA256(CONCAT(?src, ":", STR(?oid))) AS ?h )
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/thing/", ?h)) AS ?obj )
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/event/", SHA256(CONCAT("prod|", ?src, ":", STR(?oid))))) AS ?prod )
+
+  OPTIONAL {
+    { ?s stg:periodId ?pid .
+      BIND( IRI(CONCAT("https://api.harvardartmuseums.org/period/", STR(?pid))) AS ?period )
+    }
+    UNION
+    { ?s stg:periodLabel ?periodLabel .
+      BIND( IRI(CONCAT("https://aa.perseus.org/id/period/", SHA256(CONCAT("label|", LCASE(STR(?periodLabel)))))) AS ?period )
+    }
+  }
+
+  OPTIONAL {
+    { ?s stg:placeId ?placeid .
+      BIND( IRI(CONCAT("https://api.harvardartmuseums.org/place/", STR(?placeid))) AS ?place )
+    }
+    UNION
+    { ?s stg:placeLabel ?placeLabel .
+      BIND( IRI(CONCAT("https://aa.perseus.org/id/place/", SHA256(CONCAT("label|", LCASE(STR(?placeLabel)))))) AS ?place )
+    }
+  }
+}

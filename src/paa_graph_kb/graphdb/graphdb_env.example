@@ -1,0 +1,5 @@
+# Copy to graphdb_env and fill in values
+GRAPHDB_BASE=http://localhost:7200
+REPOSITORY=demo
+STAGING_GRAPH=http://aa.perseus.org/graph/staging/HAM
+LINKEDART_GRAPH=http://aa.perseus.org/graph/linkedart/HAM

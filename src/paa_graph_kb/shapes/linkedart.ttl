@@ -1,0 +1,54 @@
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix crm:  <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix la:   <https://linked.art/ns/terms/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# E22 must have an incoming P108 from an E12
+[] a sh:NodeShape ;
+   sh:targetClass crm:E22_Human-Made_Object ;
+   sh:property [
+     sh:path [ sh:inversePath crm:P108_has_produced ] ;
+     sh:minCount 1 ;
+     sh:message "Every E22 must be produced by at least one E12 (P108i)."@en ;
+   ] .
+
+# E12 must P108_has_produced an E22 and be typed
+[] a sh:NodeShape ;
+   sh:targetClass crm:E12_Production ;
+   sh:property [
+     sh:path crm:P108_has_produced ;
+     sh:minCount 1 ;
+     sh:message "E12 must link to an E22 via P108_has_produced."@en ;
+   ] ;
+   sh:property [
+     sh:path rdf:type ;
+     sh:hasValue crm:E12_Production ;
+     sh:message "E12 must be typed crm:E12_Production."@en ;
+   ] .
+
+# If P10_falls_within is present, target must be an E4_Period
+[] a sh:NodeShape ;
+   sh:targetClass crm:E12_Production ;
+   sh:property [
+     sh:path crm:P10_falls_within ;
+     sh:class crm:E4_Period ;
+     sh:message "P10 target must be a crm:E4_Period."@en ;
+   ] .
+
+# If P7_took_place_at is present, target must be an E53_Place
+[] a sh:NodeShape ;
+   sh:targetClass crm:E12_Production ;
+   sh:property [
+     sh:path crm:P7_took_place_at ;
+     sh:class crm:E53_Place ;
+     sh:message "P7 target must be a crm:E53_Place."@en ;
+   ] .
+
+# Titles must be E33_E41 and have P190 content
+[] a sh:NodeShape ;
+   sh:targetClass crm:E33_E41_Linguistic_Appellation ;
+   sh:property [
+     sh:path crm:P190_has_symbolic_content ;
+     sh:minCount 1 ;
+     sh:message "Appellation must carry P190 content."@en ;
+   ] .

@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+import os
 import re
 from datetime import date, datetime
 from typing import Any, Dict, Iterator, List, Optional, Type, TypeVar
 
 import requests
+from dotenv import load_dotenv
 from pydantic import (
     AnyUrl,
     BaseModel,
@@ -15,13 +17,15 @@ from pydantic import (
     field_validator,
 )
 
-from paa.models.ham_models import (
+from paa_graph_kb.models.ham.models import (
     HAMObject,
     HAMPeriod,
     HAMPerson,
     HAMPlace,
     HAMPublication,
 )
+
+load_dotenv()
 
 # ======================================================
 # Unified client for objects + vocab
@@ -30,14 +34,23 @@ from paa.models.ham_models import (
 T = TypeVar("T", bound=BaseModel)
 
 
-class HAMClient:
+class Client:
+    def __init__(self, api_base: str, api_key: str) -> None:
+        self.apikey = api_key
+        self.base = api_base.rstrip("/")
+
+
+class HAMClient(Client):
     """Unified client for Harvard Art Museums API.
     Provides iterators over objects, periods, places, people, and publications.
     """
 
-    def __init__(self, apikey: str, base: str = "https://api.harvardartmuseums.org"):
-        self.apikey = apikey
-        self.base = base.rstrip("/")
+    def __init__(self) -> None:
+        super().__init__(os.getenv("HAM_API_BASE"), os.getenv("HAM_APIKEY"))
+
+    # def __init__(self, apikey: str, base: str = "https://api.harvardartmuseums.org"):
+    #     self.apikey = apikey
+    #     self.base = base.rstrip("/")
 
     # ---------- Generic iterator over any paginated endpoint ----------
     def _iter_model(
@@ -68,6 +81,7 @@ class HAMClient:
                     return
 
                 for raw in records:
+                    breakpoint()
                     yield model.model_validate(raw)
                     count += 1
                     if limit is not None and count >= limit:

@@ -1,0 +1,28 @@
+PREFIX stg:  <https://aa.perseus.org/staging#>
+PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT {
+  ?obj a crm:E22_Human-Made_Object ;
+       crm:P2_has_type ?aat ;
+       crm:P1_is_identified_by ?titleNode ;
+       crm:P2_has_type ?culture .
+
+  ?titleNode a crm:E33_E41_Linguistic_Appellation ;
+             rdfs:label "Title"@en ;
+             crm:P190_has_symbolic_content ?title .
+}
+WHERE {
+  ?s a stg:Object ; stg:source ?src ; stg:objectid ?oid .
+
+  BIND( SHA256(CONCAT(?src, ":", STR(?oid))) AS ?h )
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/thing/", ?h)) AS ?obj )
+
+  OPTIONAL { ?s stg:aatType ?aat }
+  OPTIONAL { ?s stg:cultureAAT ?culture }
+
+  OPTIONAL {
+    ?s stg:title ?title .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/name/", SHA256(CONCAT("title|", LCASE(STR(?title)))))) AS ?titleNode )
+  }
+}

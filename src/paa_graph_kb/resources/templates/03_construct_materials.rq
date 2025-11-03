@@ -1,0 +1,11 @@
+PREFIX stg:  <https://aa.perseus.org/staging#>
+PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
+
+CONSTRUCT {
+  ?obj a crm:E22_Human-Made_Object ;
+       crm:P45_consists_of ?mat .
+}
+WHERE {
+  ?s a stg:Object ; stg:source ?src ; stg:objectid ?oid ; stg:materialAAT ?mat .
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/thing/", SHA256(CONCAT(?src, ":", STR(?oid))))) AS ?obj )
+}

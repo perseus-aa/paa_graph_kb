@@ -1,0 +1,31 @@
+PREFIX stg:  <https://aa.perseus.org/staging#>
+PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT {
+  ?obj a crm:E22_Human-Made_Object ;
+       crm:P67i_is_referred_to_by ?noteC ;
+       crm:P67i_is_referred_to_by ?noteP .
+
+  ?noteC a crm:E33_Linguistic_Object ;
+         rdfs:label "Credit line"@en ;
+         crm:P190_has_symbolic_content ?credit .
+
+  ?noteP a crm:E33_Linguistic_Object ;
+         rdfs:label "Provenance"@en ;
+         crm:P190_has_symbolic_content ?prov .
+}
+WHERE {
+  ?s a stg:Object ; stg:source ?src ; stg:objectid ?oid .
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/thing/", SHA256(CONCAT(?src, ":", STR(?oid))))) AS ?obj )
+
+  OPTIONAL {
+    ?s stg:creditline ?credit .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/text/", SHA256(CONCAT("credit|", LCASE(STR(?credit)))))) AS ?noteC )
+  }
+
+  OPTIONAL {
+    ?s stg:provenance ?prov .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/text/", SHA256(CONCAT("prov|", LCASE(STR(?prov)))))) AS ?noteP )
+  }
+}
