@@ -175,3 +175,4 @@ cython_debug/
 
 # Emacs
 *.*~
+.DS_Store
