@@ -1,0 +1,37 @@
+PREFIX stg:  <https://aa.perseus.org/staging#>
+PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?obj a crm:E22_Human-Made_Object ;
+       crm:P24i_changed_ownership_through ?acq .
+
+  ?acq a crm:E8_Acquisition ;
+       crm:P4_has_time-span ?acqTime ;
+       crm:P2_has_type ?acqMethod .
+
+  ?acqTime a crm:E52_Time-Span ;
+           crm:P82_at_some_time_within ?year .
+
+  ?acqMethod a crm:E55_Type ;
+             rdfs:label ?methodLabel .
+}
+WHERE {
+  ?s a stg:Object ; stg:source ?src ; stg:objectid ?oid .
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/thing/", SHA256(CONCAT(?src, ":", STR(?oid))))) AS ?obj )
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/event/", SHA256(CONCAT("acq|", ?src, ":", STR(?oid))))) AS ?acq )
+
+  OPTIONAL {
+    ?s stg:accessionyear ?accYear .
+    BIND(IRI(CONCAT("https://aa.perseus.org/id/timespan/", SHA256(CONCAT("acq|", STR(?accYear))))) AS ?acqTime)
+    BIND(STRDT(STR(?accYear), xsd:gYear) AS ?year)
+  }
+
+  OPTIONAL {
+    ?s stg:accessionmethod ?methodLabel .
+    BIND(IRI(CONCAT("https://aa.perseus.org/id/type/", SHA256(CONCAT("acqmethod|", LCASE(STR(?methodLabel)))))) AS ?acqMethod)
+  }
+
+  FILTER(BOUND(?accYear) || BOUND(?methodLabel))
+}

@@ -175,3 +175,8 @@ cython_debug/
 
 # Emacs
 *.*~
+.DS_Store
+# Generated test data
+linkedart.ttl
+staging.ttl
+linkedart_new.ttl

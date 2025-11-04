@@ -80,6 +80,65 @@ def object_to_staging(g: Graph, obj: HAMObject, source: str = "ham") -> None:
     if obj.provenance:
         g.add((s, STG.provenance, Literal(obj.provenance)))
 
+    # Dimensions
+    if obj.dimensions:
+        g.add((s, STG.dimensions, Literal(obj.dimensions)))
+
+    # Additional textual descriptions
+    if obj.description:
+        g.add((s, STG.description, Literal(obj.description)))
+    if obj.commentary:
+        g.add((s, STG.commentary, Literal(obj.commentary)))
+    if obj.labeltext:
+        g.add((s, STG.labeltext, Literal(obj.labeltext)))
+
+    # Identifiers
+    if obj.objectnumber:
+        g.add((s, STG.objectnumber, Literal(obj.objectnumber)))
+    if obj.standardreferencenumber:
+        g.add((s, STG.standardreferencenumber, Literal(obj.standardreferencenumber)))
+
+    # Dating information
+    if obj.datebegin is not None:
+        g.add((s, STG.datebegin, Literal(obj.datebegin, datatype=XSD.integer)))
+    if obj.dateend is not None:
+        g.add((s, STG.dateend, Literal(obj.dateend, datatype=XSD.integer)))
+    if obj.dated:
+        g.add((s, STG.dated, Literal(obj.dated)))
+    if obj.century:
+        g.add((s, STG.century, Literal(obj.century)))
+
+    # Classification
+    if obj.classification:
+        g.add((s, STG.classification, Literal(obj.classification)))
+    if obj.style:
+        g.add((s, STG.style, Literal(obj.style)))
+
+    # Department/Division
+    if obj.department:
+        g.add((s, STG.department, Literal(obj.department)))
+    if obj.division:
+        g.add((s, STG.division, Literal(obj.division)))
+
+    # Colors
+    if obj.colors:
+        for color in obj.colors:
+            if color.color:
+                g.add((s, STG.colorName, Literal(color.color)))
+                if color.spectrum:
+                    # Store hex value as additional property
+                    color_bn = URIRef(
+                        f"https://aa.perseus.org/staging/color/{obj.objectid}/{color.color}"
+                    )
+                    g.add((color_bn, STG.hexValue, Literal(color.spectrum)))
+                    g.add((s, STG.hasColor, color_bn))
+
+    # Accession information
+    if obj.accessionyear is not None:
+        g.add((s, STG.accessionyear, Literal(obj.accessionyear, datatype=XSD.integer)))
+    if obj.accessionmethod:
+        g.add((s, STG.accessionmethod, Literal(obj.accessionmethod)))
+
 
 def main() -> None:
     ap = argparse.ArgumentParser(
@@ -107,7 +166,14 @@ def main() -> None:
         else:
             param_dict[p] = "1"
 
-    client = HAMClient(apikey=args.apikey, base=args.base)
+    # HAMClient reads from env vars, so set them temporarily if provided via args
+    import os
+    if args.apikey:
+        os.environ['HAM_APIKEY'] = args.apikey
+    if args.base:
+        os.environ['HAM_API_BASE'] = args.base
+
+    client = HAMClient()
     g = Graph()
     g.bind("stg", STG)
     g.bind("exs", EXS)

@@ -1,0 +1,41 @@
+PREFIX stg:  <https://aa.perseus.org/staging#>
+PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT {
+  ?obj a crm:E22_Human-Made_Object ;
+       crm:P67i_is_referred_to_by ?noteDesc ;
+       crm:P67i_is_referred_to_by ?noteComm ;
+       crm:P67i_is_referred_to_by ?noteLabel .
+
+  ?noteDesc a crm:E33_Linguistic_Object ;
+            rdfs:label "Description"@en ;
+            crm:P190_has_symbolic_content ?desc .
+
+  ?noteComm a crm:E33_Linguistic_Object ;
+            rdfs:label "Commentary"@en ;
+            crm:P190_has_symbolic_content ?comm .
+
+  ?noteLabel a crm:E33_Linguistic_Object ;
+             rdfs:label "Label text"@en ;
+             crm:P190_has_symbolic_content ?label .
+}
+WHERE {
+  ?s a stg:Object ; stg:source ?src ; stg:objectid ?oid .
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/thing/", SHA256(CONCAT(?src, ":", STR(?oid))))) AS ?obj )
+
+  OPTIONAL {
+    ?s stg:description ?desc .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/text/", SHA256(CONCAT("desc|", LCASE(STR(?desc)))))) AS ?noteDesc )
+  }
+
+  OPTIONAL {
+    ?s stg:commentary ?comm .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/text/", SHA256(CONCAT("comm|", LCASE(STR(?comm)))))) AS ?noteComm )
+  }
+
+  OPTIONAL {
+    ?s stg:labeltext ?label .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/text/", SHA256(CONCAT("label|", LCASE(STR(?label)))))) AS ?noteLabel )
+  }
+}

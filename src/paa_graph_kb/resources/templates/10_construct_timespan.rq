@@ -1,0 +1,40 @@
+PREFIX stg:  <https://aa.perseus.org/staging#>
+PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?prod a crm:E12_Production ;
+        crm:P108_has_produced ?obj ;
+        crm:P4_has_time-span ?timespan .
+
+  ?timespan a crm:E52_Time-Span ;
+            crm:P82a_begin_of_the_begin ?begin ;
+            crm:P82b_end_of_the_end ?end ;
+            rdfs:label ?dated .
+}
+WHERE {
+  ?s a stg:Object ; stg:source ?src ; stg:objectid ?oid .
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/thing/", SHA256(CONCAT(?src, ":", STR(?oid))))) AS ?obj )
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/event/", SHA256(CONCAT("prod|", ?src, ":", STR(?oid))))) AS ?prod )
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/timespan/", SHA256(CONCAT(?src, ":", STR(?oid))))) AS ?timespan )
+
+  OPTIONAL {
+    ?s stg:datebegin ?beginRaw .
+    # Convert integer years to xsd:gYear (handle BCE as negative years)
+    BIND(IF(?beginRaw < 0,
+           STRDT(CONCAT("-", STR(xsd:integer(ABS(?beginRaw)))), xsd:gYear),
+           STRDT(STR(?beginRaw), xsd:gYear)) AS ?begin)
+  }
+
+  OPTIONAL {
+    ?s stg:dateend ?endRaw .
+    BIND(IF(?endRaw < 0,
+           STRDT(CONCAT("-", STR(xsd:integer(ABS(?endRaw)))), xsd:gYear),
+           STRDT(STR(?endRaw), xsd:gYear)) AS ?end)
+  }
+
+  OPTIONAL { ?s stg:dated ?dated }
+
+  FILTER(BOUND(?begin) || BOUND(?end) || BOUND(?dated))
+}
