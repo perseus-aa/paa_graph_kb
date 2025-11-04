@@ -1,171 +1,312 @@
 from __future__ import annotations
 
+import argparse
 import os
-import re
-from datetime import date, datetime
-from typing import Any, Dict, Iterator, List, Optional, Type, TypeVar
+import time
+from typing import Any, Dict, Iterator, Optional, Type, TypeVar
+from urllib.parse import parse_qsl, urlencode, urlparse, urlunparse
 
 import requests
 from dotenv import load_dotenv
-from pydantic import (
-    AnyUrl,
-    BaseModel,
-    ConfigDict,
-    Field,
-    HttpUrl,
-    confloat,
-    field_validator,
-)
+from pydantic import BaseModel, ValidationError
 
 from paa_graph_kb.models.ham.models import (
     HAMObject,
+    HAMPage,
     HAMPeriod,
     HAMPerson,
     HAMPlace,
     HAMPublication,
+    PeriodPage,
+    PersonPage,
+    PlacePage,
+    PublicationPage,
 )
+
+ModelT = TypeVar("ModelT", bound=BaseModel)
+PageT = TypeVar("PageT", bound=BaseModel)
 
 load_dotenv()
 
-# ======================================================
-# Unified client for objects + vocab
-# ======================================================
-
-T = TypeVar("T", bound=BaseModel)
-
 
 class Client:
-    def __init__(self, api_base: str, api_key: str) -> None:
-        self.apikey = api_key
-        self.base = api_base.rstrip("/")
+    """Reusable HTTP client with retries, backoff, and paging helpers."""
+
+    def __init__(self, base_url: str, apikey: str) -> None:
+        self.apikey = apikey
+        self.base = base_url.rstrip("/")
+
+        self.timeout: float = 30.0
+        self.max_retries: int = 5
+        self.backoff_initial: float = 0.5
+        self.backoff_max: float = 10.0
+        self.user_agent = "paa-graph-kb/0.1"
+        self.session = requests.Session()
+
+        self.env_prefix: str = ""
+        self.session.headers.update({"User-Agent": self.user_agent})
+
+    # ---------- URL / HTTP helpers ----------
+
+    @staticmethod
+    def _merge_query(url: str, **extra: Any) -> str:
+        parts = list(urlparse(url))
+        q = dict(parse_qsl(parts[4], keep_blank_values=True))
+        q.update({k: v for k, v in extra.items() if v is not None})
+        parts[4] = urlencode(q, doseq=True)
+        return urlunparse(parts)
+
+    def _request(
+        self, url: str, params: Optional[Dict[str, Any]] = None
+    ) -> Dict[str, Any]:
+        params = dict(params or {})
+        params.setdefault("apikey", self.apikey)
+
+        final_url = url
+        if params:
+            qs = urlencode(params, doseq=True)
+            sep = "&" if "?" in final_url else "?"
+            final_url = f"{final_url}{sep}{qs}"
+
+        attempt = 0
+        delay = self.backoff_initial
+        while True:
+            try:
+                resp = self.session.get(final_url, timeout=self.timeout)
+                if resp.status_code in (429, 500, 502, 503, 504):
+                    ra = resp.headers.get("Retry-After")
+                    if ra:
+                        try:
+                            time.sleep(min(float(ra), self.backoff_max))
+                        except Exception:
+                            pass
+                    raise requests.HTTPError(
+                        f"Retryable status: {resp.status_code}", response=resp
+                    )
+                resp.raise_for_status()
+                return resp.json()
+            except requests.HTTPError:
+                attempt += 1
+                if attempt > self.max_retries:
+                    raise
+                time.sleep(min(delay, self.backoff_max))
+                delay *= 2.0
+            except requests.RequestException:
+                attempt += 1
+                if attempt > self.max_retries:
+                    raise
+                time.sleep(min(delay, self.backoff_max))
+                delay *= 2.0
+
+    def _endpoint(self, path: str) -> str:
+        return f"{self.base}/{path.lstrip('/')}"
+
+    # ---------- Paging ----------
+
+    def _iter_pages(
+        self, path: str, params: Optional[Dict[str, Any]] = None, *, size: int = 100
+    ) -> Iterator[Dict[str, Any]]:
+        q = dict(params or {})
+        q.setdefault("size", size)
+
+        first_url = self._endpoint(path)
+        data = self._request(first_url, params=q)
+        yield data
+
+        info = (data or {}).get("info") or {}
+        next_url = info.get("next")
+        page = info.get("page")
+        pages = info.get("pages")
+
+        if not next_url and page and pages and page < pages:
+            next_url = self._merge_query(first_url, **q, page=page + 1)
+
+        while next_url:
+            data = self._request(next_url, params={})
+            yield data
+            info = (data or {}).get("info") or {}
+            next_url = info.get("next")
+            page = info.get("page")
+            pages = info.get("pages")
+            if not next_url and page and pages and page < pages:
+                next_url = self._merge_query(first_url, **q, page=page + 1)
+
+    # ---------- Model iteration ----------
+
+    def _iter_model(
+        self,
+        path: str,
+        page_model: Type[PageT],
+        record_model: Type[ModelT],
+        params: Optional[Dict[str, Any]] = None,
+        *,
+        size: int = 100,
+        limit: Optional[int] = None,
+        strict: bool = False,
+    ) -> Iterator[ModelT]:
+        yielded = 0
+        for raw in self._iter_pages(path, params=params, size=size):
+            page = page_model.model_validate(raw)
+            for rec in page.records:
+                if isinstance(rec, dict):
+                    try:
+                        item = record_model.model_validate(rec)
+                    except ValidationError:
+                        if strict:
+                            raise
+                        continue
+                else:
+                    item = rec
+                yield item
+                yielded += 1
+                if limit is not None and yielded >= limit:
+                    return
 
 
 class HAMClient(Client):
-    """Unified client for Harvard Art Museums API.
-    Provides iterators over objects, periods, places, people, and publications.
-    """
+    """Harvard Art Museums API client."""
 
     def __init__(self) -> None:
         super().__init__(os.getenv("HAM_API_BASE"), os.getenv("HAM_APIKEY"))
 
-    # def __init__(self, apikey: str, base: str = "https://api.harvardartmuseums.org"):
-    #     self.apikey = apikey
-    #     self.base = base.rstrip("/")
-
-    # ---------- Generic iterator over any paginated endpoint ----------
-    def _iter_model(
-        self,
-        endpoint: str,
-        model: Type[T],
-        params: Optional[Dict[str, Any]] = None,
-        size: int = 100,
-        limit: Optional[int] = None,
-    ) -> Iterator[T]:
-        base_url = f"{self.base}/{endpoint}"
-        q = {"apikey": self.apikey, "size": size}
-        if params:
-            q.update(params)
-
-        count = 0
-        with requests.Session() as s:
-            url = base_url
-            while url:
-                resp = s.get(url, params=q if url == base_url else None, timeout=30)
-                resp.raise_for_status()
-                data = resp.json() or {}
-
-                # If records missing, try single-object shape
-                records = data.get("records")
-                if records is None:
-                    yield model.model_validate(data)
-                    return
-
-                for raw in records:
-                    breakpoint()
-                    yield model.model_validate(raw)
-                    count += 1
-                    if limit is not None and count >= limit:
-                        return
-
-                info = data.get("info") or {}
-                next_url = info.get("next")
-                url = str(next_url) if next_url else None
-
-    # ---------- Objects ----------
     def iter_objects(
         self,
         params: Optional[Dict[str, Any]] = None,
+        *,
         size: int = 100,
         limit: Optional[int] = None,
+        strict: bool = False,
     ) -> Iterator[HAMObject]:
         return self._iter_model(
-            "object", HAMObject, params=params, size=size, limit=limit
+            "object", HAMPage, HAMObject, params, size=size, limit=limit, strict=strict
         )
 
-    # ---------- Periods ----------
     def iter_periods(
         self,
         params: Optional[Dict[str, Any]] = None,
+        *,
         size: int = 100,
         limit: Optional[int] = None,
+        strict: bool = False,
     ) -> Iterator[HAMPeriod]:
         return self._iter_model(
-            "period", HAMPeriod, params=params, size=size, limit=limit
+            "period",
+            PeriodPage,
+            HAMPeriod,
+            params,
+            size=size,
+            limit=limit,
+            strict=strict,
         )
 
-    def get_period(self, period_id: int) -> HAMPeriod:
-        url = f"{self.base}/period/{period_id}?apikey={self.apikey}"
-        resp = requests.get(url, timeout=30)
-        resp.raise_for_status()
-        return HAMPeriod.model_validate(resp.json() or {})
-
-    # ---------- Places ----------
     def iter_places(
         self,
         params: Optional[Dict[str, Any]] = None,
+        *,
         size: int = 100,
         limit: Optional[int] = None,
+        strict: bool = False,
     ) -> Iterator[HAMPlace]:
         return self._iter_model(
-            "place", HAMPlace, params=params, size=size, limit=limit
+            "place", PlacePage, HAMPlace, params, size=size, limit=limit, strict=strict
         )
 
-    def get_place(self, place_id: int) -> HAMPlace:
-        url = f"{self.base}/place/{place_id}?apikey={self.apikey}"
-        resp = requests.get(url, timeout=30)
-        resp.raise_for_status()
-        return HAMPlace.model_validate(resp.json() or {})
-
-    # ---------- People ----------
     def iter_people(
         self,
         params: Optional[Dict[str, Any]] = None,
+        *,
         size: int = 100,
         limit: Optional[int] = None,
+        strict: bool = False,
     ) -> Iterator[HAMPerson]:
         return self._iter_model(
-            "person", HAMPerson, params=params, size=size, limit=limit
+            "person",
+            PersonPage,
+            HAMPerson,
+            params,
+            size=size,
+            limit=limit,
+            strict=strict,
         )
 
-    def get_person(self, person_id: int) -> HAMPerson:
-        url = f"{self.base}/person/{person_id}?apikey={self.apikey}"
-        resp = requests.get(url, timeout=30)
-        resp.raise_for_status()
-        return HAMPerson.model_validate(resp.json() or {})
-
-    # ---------- Publications ----------
     def iter_publications(
         self,
         params: Optional[Dict[str, Any]] = None,
+        *,
         size: int = 100,
         limit: Optional[int] = None,
+        strict: bool = False,
     ) -> Iterator[HAMPublication]:
         return self._iter_model(
-            "publication", HAMPublication, params=params, size=size, limit=limit
+            "publication",
+            PublicationPage,
+            HAMPublication,
+            params,
+            size=size,
+            limit=limit,
+            strict=strict,
         )
 
-    def get_publication(self, publication_id: int) -> HAMPublication:
-        url = f"{self.base}/publication/{publication_id}?apikey={self.apikey}"
-        resp = requests.get(url, timeout=30)
-        resp.raise_for_status()
-        return HAMPublication.model_validate(resp.json() or {})
+
+# -------- optional self-check harness --------
+
+
+def _parse_params(pairs):
+    out: Dict[str, Any] = {}
+    for p in pairs or []:
+        if "=" in p:
+            k, v = p.split("=", 1)
+            out[k] = v
+        else:
+            out[p] = "1"
+    return out
+
+
+def _main():
+    ap = argparse.ArgumentParser(description="Quick sanity test for HAMClient.")
+    ap.add_argument(
+        "--test",
+        choices=["objects", "periods", "places", "people", "publications"],
+        default="objects",
+    )
+    ap.add_argument(
+        "--env-prefix",
+        default="HAM_",
+        help="Environment variable prefix for BASE/APIKEY (default: HAM_)",
+    )
+    ap.add_argument("--apikey", help="Override API key explicitly")
+    ap.add_argument("--base", help="Override base URL explicitly")
+    ap.add_argument(
+        "--params",
+        nargs="*",
+        help="Query params as key=value (e.g., culture=Greek hasimage=1)",
+    )
+    ap.add_argument("--size", type=int, default=100)
+    ap.add_argument("--limit", type=int, default=5)
+    ap.add_argument("--strict", action="store_true")
+    args = ap.parse_args()
+
+    client = HAMClient(
+        base_url=args.base, apikey=args.apikey, env_prefix=args.env_prefix
+    )
+    params = _parse_params(args.params)
+
+    iters = {
+        "objects": client.iter_objects,
+        "periods": client.iter_periods,
+        "places": client.iter_places,
+        "people": client.iter_people,
+        "publications": client.iter_publications,
+    }
+
+    it = iters[args.test](
+        params=params, size=args.size, limit=args.limit, strict=args.strict
+    )
+    rows = list(it)
+    print(
+        f"Fetched {len(rows)} {args.test}. Sample:\n{rows[0] if rows else '<<empty>>'}"
+    )
+
+
+if __name__ == "__main__":
+    _main()
