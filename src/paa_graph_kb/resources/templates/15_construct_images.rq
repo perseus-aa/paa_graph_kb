@@ -1,0 +1,142 @@
+PREFIX stg:  <https://aa.perseus.org/staging#>
+PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX la:   <https://linked.art/ns/terms/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+# Construct digital image representations
+# Maps HAM Image objects to D1_Digital_Object entities with full metadata
+
+CONSTRUCT {
+  # Link object to its digital representation
+  ?obj a crm:E22_Human-Made_Object ;
+       la:digitally_shown_by ?digitalObj .
+
+  # Digital object (image file)
+  ?digitalObj a la:DigitalObject ;
+              rdfs:label ?imageLabel ;
+              crm:P2_has_type ?formatType ;
+              la:access_point ?accessURL ;
+              crm:P43_has_dimension ?widthDim , ?heightDim ;
+              crm:P67i_is_referred_to_by ?caption , ?altTextNote , ?description ;
+              crm:P104_is_subject_to ?copyright .
+
+  # Format type
+  ?formatType a crm:E55_Type ;
+              rdfs:label ?format .
+
+  # Dimensions
+  ?widthDim a crm:E54_Dimension ;
+            crm:P2_has_type <http://vocab.getty.edu/aat/300055647> ;  # width
+            rdfs:label "Width"@en ;
+            crm:P90_has_value ?width ;
+            crm:P91_has_unit <http://vocab.getty.edu/aat/300266190> .  # pixels
+
+  ?heightDim a crm:E54_Dimension ;
+             crm:P2_has_type <http://vocab.getty.edu/aat/300055644> ;  # height
+             rdfs:label "Height"@en ;
+             crm:P90_has_value ?height ;
+             crm:P91_has_unit <http://vocab.getty.edu/aat/300266190> .  # pixels
+
+  # Caption (public caption)
+  ?caption a crm:E33_Linguistic_Object ;
+           crm:P2_has_type <http://vocab.getty.edu/aat/300435416> ;  # caption
+           rdfs:label "Caption"@en ;
+           crm:P190_has_symbolic_content ?publiccaption .
+
+  # Alt text (for accessibility)
+  ?altTextNote a crm:E33_Linguistic_Object ;
+               crm:P2_has_type <http://vocab.getty.edu/aat/300418049> ;  # alt text
+               rdfs:label "Alt Text"@en ;
+               crm:P190_has_symbolic_content ?alttext .
+
+  # Image description
+  ?description a crm:E33_Linguistic_Object ;
+               crm:P2_has_type <http://vocab.getty.edu/aat/300080091> ;  # description
+               rdfs:label "Image Description"@en ;
+               crm:P190_has_symbolic_content ?imgDesc .
+
+  # Copyright/rights statement
+  ?copyright a crm:E30_Right ;
+             rdfs:label "Copyright"@en ;
+             crm:P190_has_symbolic_content ?copyrightText .
+
+  # IIIF image API endpoint
+  ?digitalObj la:digitally_available_via ?iiifService .
+
+  ?iiifService a la:DigitalService ;
+               la:conforms_to <http://iiif.io/api/image> ;
+               la:access_point ?iiifURI .
+}
+WHERE {
+  # Find staging objects with images
+  ?s a stg:Object ;
+     stg:source ?src ;
+     stg:objectid ?oid ;
+     stg:hasImage ?imageNode .
+
+  # Base object URI
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/thing/", SHA256(CONCAT(?src, ":", STR(?oid))))) AS ?obj )
+
+  # Image metadata
+  ?imageNode stg:imageid ?imageid .
+
+  # Digital object URI (based on imageid)
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/digital/", SHA256(CONCAT(?src, ":img:", STR(?imageid))))) AS ?digitalObj )
+
+  # Image label
+  OPTIONAL { ?imageNode stg:imageDescription ?imgDesc }
+  BIND( COALESCE(?imgDesc, CONCAT("Image ", STR(?imageid))) AS ?imageLabel )
+
+  # Format
+  OPTIONAL {
+    ?imageNode stg:imageFormat ?format .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/type/format/", SHA256(LCASE(?format)))) AS ?formatType )
+  }
+
+  # Access URL (base image URL)
+  OPTIONAL {
+    ?imageNode stg:baseImageURL ?accessURL .
+  }
+
+  # Dimensions
+  OPTIONAL {
+    ?imageNode stg:imageWidth ?width .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/dimension/", SHA256(CONCAT("imgw|", STR(?imageid))))) AS ?widthDim )
+  }
+
+  OPTIONAL {
+    ?imageNode stg:imageHeight ?height .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/dimension/", SHA256(CONCAT("imgh|", STR(?imageid))))) AS ?heightDim )
+  }
+
+  # Public caption
+  OPTIONAL {
+    ?imageNode stg:publicCaption ?publiccaption .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/text/", SHA256(CONCAT("caption|", STR(?imageid))))) AS ?caption )
+  }
+
+  # Alt text
+  OPTIONAL {
+    ?imageNode stg:altText ?alttext .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/text/", SHA256(CONCAT("alt|", STR(?imageid))))) AS ?altTextNote )
+  }
+
+  # Image description
+  OPTIONAL {
+    ?imageNode stg:imageDescription ?imgDesc .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/text/", SHA256(CONCAT("imgdesc|", STR(?imageid))))) AS ?description )
+  }
+
+  # Copyright
+  OPTIONAL {
+    ?imageNode stg:copyright ?copyrightText .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/right/", SHA256(CONCAT("copyright|", STR(?imageid))))) AS ?copyright )
+  }
+
+  # IIIF endpoint
+  OPTIONAL {
+    ?imageNode stg:iiifBaseURI ?iiifURI .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/service/iiif/", SHA256(STR(?iiifURI)))) AS ?iiifService )
+  }
+}
