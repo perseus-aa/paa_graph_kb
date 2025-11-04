@@ -59,14 +59,24 @@ class Client:
     def _request(
         self, url: str, params: Optional[Dict[str, Any]] = None
     ) -> Dict[str, Any]:
-        params = dict(params or {})
-        params.setdefault("apikey", self.apikey)
+        """Build the final URL by *merging* existing query and params (de-duping apikey)."""
+        parts = list(urlparse(url))
+        q = dict(parse_qsl(parts[4], keep_blank_values=True))  # existing query on URL
 
-        final_url = url
+        # Merge in caller params
         if params:
-            qs = urlencode(params, doseq=True)
-            sep = "&" if "?" in final_url else "?"
-            final_url = f"{final_url}{sep}{qs}"
+            # don't mutate caller
+            for k, v in params.items():
+                if v is not None:
+                    q[k] = v
+
+        # Ensure apikey present exactly once
+        if "apikey" not in q:
+            q["apikey"] = self.apikey
+
+        # Recompose final URL
+        parts[4] = urlencode(q, doseq=True)
+        final_url = urlunparse(parts)
 
         attempt = 0
         delay = self.backoff_initial
