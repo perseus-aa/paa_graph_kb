@@ -68,3 +68,30 @@ stg:hexValue     a rdfs:Property ; rdfs:label "Hex color value"@en .
 # Accession properties
 stg:accessionyear   a rdfs:Property ; rdfs:label "Accession year"@en ; rdfs:range xsd:integer .
 stg:accessionmethod a rdfs:Property ; rdfs:label "Accession method"@en .
+
+# Image properties
+stg:hasImage        a rdfs:Property ; rdfs:label "Has image"@en ;
+                      rdfs:comment "Links an object to an image node"@en .
+stg:imageid         a rdfs:Property ; rdfs:label "Image ID"@en ; rdfs:range xsd:integer .
+stg:baseImageURL    a rdfs:Property ; rdfs:label "Base image URL"@en ;
+                      rdfs:comment "URL to the base/full resolution image"@en .
+stg:iiifBaseURI     a rdfs:Property ; rdfs:label "IIIF base URI"@en ;
+                      rdfs:comment "IIIF Image API base URI"@en .
+stg:imageWidth      a rdfs:Property ; rdfs:label "Image width (pixels)"@en ; rdfs:range xsd:integer .
+stg:imageHeight     a rdfs:Property ; rdfs:label "Image height (pixels)"@en ; rdfs:range xsd:integer .
+stg:imageFormat     a rdfs:Property ; rdfs:label "Image format"@en ;
+                      rdfs:comment "File format (e.g., 'image/jpeg')"@en .
+stg:imageDescription a rdfs:Property ; rdfs:label "Image description"@en ;
+                      rdfs:comment "Textual description of the image content"@en .
+stg:altText         a rdfs:Property ; rdfs:label "Alt text"@en ;
+                      rdfs:comment "Alternative text for accessibility"@en .
+stg:publicCaption   a rdfs:Property ; rdfs:label "Public caption"@en ;
+                      rdfs:comment "Public-facing caption text"@en .
+stg:copyright       a rdfs:Property ; rdfs:label "Copyright"@en ;
+                      rdfs:comment "Copyright statement or rights holder"@en .
+stg:imageTechnique  a rdfs:Property ; rdfs:label "Image technique"@en ;
+                      rdfs:comment "Imaging technique used"@en .
+stg:renditionNumber a rdfs:Property ; rdfs:label "Rendition number"@en ;
+                      rdfs:comment "Rendition/version identifier"@en .
+stg:imageDate       a rdfs:Property ; rdfs:label "Image date"@en ; rdfs:range xsd:date ;
+                      rdfs:comment "Date when the image was created"@en .

@@ -139,6 +139,83 @@ def object_to_staging(g: Graph, obj: HAMObject, source: str = "ham") -> None:
     if obj.accessionmethod:
         g.add((s, STG.accessionmethod, Literal(obj.accessionmethod)))
 
+    # Image metadata
+    if obj.images:
+        for img in obj.images:
+            if img.imageid:
+                # Create image node
+                img_node = URIRef(
+                    f"https://aa.perseus.org/staging/image/{obj.objectid}/{img.imageid}"
+                )
+                g.add((s, STG.hasImage, img_node))
+                g.add(
+                    (img_node, STG.imageid, Literal(img.imageid, datatype=XSD.integer))
+                )
+
+                # Image URLs
+                if img.baseimageurl:
+                    g.add((img_node, STG.baseImageURL, URIRef(str(img.baseimageurl))))
+                if img.iiifbaseuri:
+                    g.add((img_node, STG.iiifBaseURI, URIRef(str(img.iiifbaseuri))))
+
+                # Image dimensions
+                if img.width:
+                    g.add(
+                        (
+                            img_node,
+                            STG.imageWidth,
+                            Literal(img.width, datatype=XSD.integer),
+                        )
+                    )
+                if img.height:
+                    g.add(
+                        (
+                            img_node,
+                            STG.imageHeight,
+                            Literal(img.height, datatype=XSD.integer),
+                        )
+                    )
+
+                # Image format
+                if img.format:
+                    g.add((img_node, STG.imageFormat, Literal(img.format)))
+
+                # Textual metadata
+                if img.description:
+                    g.add((img_node, STG.imageDescription, Literal(img.description)))
+                if img.alttext:
+                    g.add((img_node, STG.altText, Literal(img.alttext)))
+                if img.publiccaption:
+                    g.add((img_node, STG.publicCaption, Literal(img.publiccaption)))
+
+                # Copyright
+                if img.copyright:
+                    g.add((img_node, STG.copyright, Literal(img.copyright)))
+
+                # Additional metadata
+                if img.technique:
+                    g.add((img_node, STG.imageTechnique, Literal(img.technique)))
+                if img.renditionnumber:
+                    g.add((img_node, STG.renditionNumber, Literal(img.renditionnumber)))
+                if img.displayorder is not None:
+                    g.add(
+                        (
+                            img_node,
+                            STG.displayOrder,
+                            Literal(img.displayorder, datatype=XSD.integer),
+                        )
+                    )
+
+                # Image date (when the image was created)
+                if img.image_date:
+                    g.add(
+                        (
+                            img_node,
+                            STG.imageDate,
+                            Literal(img.image_date, datatype=XSD.date),
+                        )
+                    )
+
 
 def main() -> None:
     ap = argparse.ArgumentParser(
@@ -168,10 +245,11 @@ def main() -> None:
 
     # HAMClient reads from env vars, so set them temporarily if provided via args
     import os
+
     if args.apikey:
-        os.environ['HAM_APIKEY'] = args.apikey
+        os.environ["HAM_APIKEY"] = args.apikey
     if args.base:
-        os.environ['HAM_API_BASE'] = args.base
+        os.environ["HAM_API_BASE"] = args.base
 
     client = HAMClient()
     g = Graph()
