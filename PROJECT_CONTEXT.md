@@ -105,28 +105,73 @@ Allow scalable query and reasoning in a triplestore.
 ## Directory Summary
 
 ```
-construct_kit/
-│
-├── stg_vocab.ttl
-├── staging_sample.ttl
-├── staging_loader.py
-│
-├── 01_construct_object_core.rq
-├── 02_construct_production_period_place.rq
-├── 03_construct_materials.rq
-├── 04_construct_techniques.rq
-├── 05_construct_representations.rq
-├── 06_construct_notes.rq
-│
-├── run_constructs.py
-├── shapes_linkedart.ttl
-├── validate_shacl.py
-│
-└── graphdb/
-    ├── graphdb_env.example
-    ├── load_staging.sh
-    ├── run_constructs.sh
-    └── README.md
+.
+├── LICENSE
+├── PROJECT_CONTEXT.md
+├── README.md
+├── data
+│   └── staging
+├── pdm.lock
+├── pyproject.toml
+├── pytest.ini
+├── src
+│   └── paa_graph_kb
+│       ├── __init__.py
+│       ├── __init__.py~
+│       ├── __pycache__
+│       │   └── __init__.cpython-312.pyc
+│       ├── cli
+│       │   ├── __init__.py
+│       │   ├── run_constructs.py
+│       │   ├── staging_loader.py
+│       │   ├── staging_loader.py~
+│       │   └── validate_shacl.py
+│       ├── clients
+│       │   ├── __init__.py
+│       │   ├── __pycache__
+│       │   │   ├── __init__.cpython-312.pyc
+│       │   │   └── ham_client.cpython-312.pyc
+│       │   ├── ham_client.py
+│       │   ├── ham_client.py~
+│       │   └── ham_client_patched.py~
+│       ├── graphdb
+│       │   ├── README.md
+│       │   ├── graphdb_env.example
+│       │   ├── load_staging.sh
+│       │   └── run_constructs.sh
+│       ├── harvesters
+│       │   ├── __init__.py
+│       │   ├── __init__.py~
+│       │   ├── ham_harvester.py
+│       │   └── ham_harvester.py~
+│       ├── models
+│       │   ├── __init__.py
+│       │   ├── __pycache__
+│       │   │   └── __init__.cpython-312.pyc
+│       │   └── ham
+│       │       ├── __init__.py
+│       │       ├── __pycache__
+│       │       │   ├── __init__.cpython-312.pyc
+│       │       │   └── models.cpython-312.pyc
+│       │       └── models.py
+│       ├── resources
+│       │   └── templates
+│       │       ├── 01_construct_object_core.rq
+│       │       ├── 02_construct_production_period_place.rq
+│       │       ├── 03_construct_materials.rq
+│       │       ├── 04_construct_techniques.rq
+│       │       ├── 05_construct_representations.rq
+│       │       └── 06_construct_notes.rq
+│       ├── run_constructs.py
+│       ├── shapes
+│       │   ├── __init__.py
+│       │   └── linkedart.ttl
+│       └── vocabularies
+│           └── stg_vocab.ttl
+└── tests
+    ├── __init__.py
+    └── conftest.py
+
 ```
 
 ---
