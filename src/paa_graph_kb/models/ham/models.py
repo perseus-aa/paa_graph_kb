@@ -1,12 +1,22 @@
-from typing import List, Optional, Dict, Any, Iterator, Type, TypeVar
-from datetime import date, datetime
+import datetime as dt
 import re
+from datetime import date, datetime
+from typing import Any, Dict, Iterator, List, Optional, Type, TypeVar
 
-from pydantic import BaseModel, Field, HttpUrl, AnyUrl, ConfigDict, field_validator, confloat
+from pydantic import (
+    AnyUrl,
+    BaseModel,
+    ConfigDict,
+    Field,
+    HttpUrl,
+    confloat,
+    field_validator,
+)
 
 # ======================================================
 # Common page envelope
 # ======================================================
+
 
 class PageInfo(BaseModel):
     page: Optional[int] = None
@@ -15,9 +25,11 @@ class PageInfo(BaseModel):
     next: Optional[AnyUrl] = None
     prev: Optional[AnyUrl] = None
 
+
 # ======================================================
 # Object endpoint models
 # ======================================================
+
 
 class Color(BaseModel):
     color: str
@@ -26,8 +38,9 @@ class Color(BaseModel):
     percent: Optional[confloat(ge=0.0, le=1.0)] = None
     css3: Optional[str] = None
 
+
 class Image(BaseModel):
-    date: Optional[date] = None
+    image_date: Optional[dt.date] = Field(default=None, alias="date")
     copyright: Optional[str] = None
     imageid: Optional[int] = None
     idsid: Optional[int] = None
@@ -43,15 +56,41 @@ class Image(BaseModel):
     iiifbaseuri: Optional[HttpUrl] = None
     height: Optional[int] = None
 
+    model_config = ConfigDict(populate_by_name=True, extra="ignore")
+
+    @field_validator("image_date", mode="before")
+    @classmethod
+    def _parse_date(cls, v):
+        if v in (None, "", "null"):
+            return None
+        if isinstance(v, dt.date) and not isinstance(v, dt.datetime):
+            return v
+        if isinstance(v, dt.datetime):
+            return v.date()
+        if isinstance(v, str):
+            # Try ISO first
+            try:
+                return dt.datetime.fromisoformat(v.replace("Z", "+00:00")).date()
+            except Exception:
+                # Then just YYYY-MM-DD
+                try:
+                    return dt.date.fromisoformat(v[:10])
+                except Exception:
+                    return None
+        return None
+
+
 class TermItem(BaseModel):
     name: str
     id: Optional[int] = None
+
 
 class Terms(BaseModel):
     culture: Optional[List[TermItem]] = None
     medium: Optional[List[TermItem]] = None
     technique: Optional[List[TermItem]] = None
-    model_config = ConfigDict(extra='ignore')
+    model_config = ConfigDict(extra="ignore")
+
 
 class TitleItem(BaseModel):
     titletype: Optional[str] = None
@@ -59,15 +98,18 @@ class TitleItem(BaseModel):
     displayorder: Optional[int] = None
     title: str
 
+
 class WorkType(BaseModel):
     worktypeid: Optional[int] = None
     worktype: str
+
 
 class SeeAlsoItem(BaseModel):
     id: Optional[AnyUrl] = None
     type: Optional[str] = None
     format: Optional[str] = None
     profile: Optional[AnyUrl] = None
+
 
 class HAMObject(BaseModel):
     # Identifiers
@@ -142,7 +184,7 @@ class HAMObject(BaseModel):
 
     # Color & media
     colors: Optional[List[Color]] = None
-    images: Optional[List[Image]] = None
+    images: Optional[list[Image]] = None
     primaryimageurl: Optional[HttpUrl] = None
 
     # Terms & titles
@@ -151,31 +193,43 @@ class HAMObject(BaseModel):
     title: Optional[str] = None
 
     # See also (e.g., IIIF manifest)
-    seeAlso: Optional[List[SeeAlsoItem]] = Field(default=None, alias='seeAlso')
+    seeAlso: Optional[List[SeeAlsoItem]] = Field(default=None, alias="seeAlso")
 
-    model_config = ConfigDict(populate_by_name=True, extra='ignore')
+    model_config = ConfigDict(populate_by_name=True, extra="ignore")
 
     @field_validator(
-        'description', 'commentary', 'labeltext', 'provenance', 'creditline',
-        'signed', 'state', 'edition', 'dimensions', 'title', mode='before'
+        "description",
+        "commentary",
+        "labeltext",
+        "provenance",
+        "creditline",
+        "signed",
+        "state",
+        "edition",
+        "dimensions",
+        "title",
+        mode="before",
     )
     @classmethod
     def _normalize_crlf(cls, v: Any) -> Any:
         """Normalize CRLF and stray ^M characters; trim excessive interior whitespace."""
         if not isinstance(v, str):
             return v
-        v = v.replace('\r\n', '\n').replace('\r', '\n')
-        v = v.replace('\x0d', '\n')
-        v = re.sub(r'\n{3,}', '\n\n', v)
+        v = v.replace("\r\n", "\n").replace("\r", "\n")
+        v = v.replace("\x0d", "\n")
+        v = re.sub(r"\n{3,}", "\n\n", v)
         return v.strip()
+
 
 class HAMPage(BaseModel):
     info: Optional[PageInfo] = None
     records: List[HAMObject]
 
+
 # ======================================================
 # Vocabulary endpoint models
 # ======================================================
+
 
 class HAMPeriod(BaseModel):
     id: int
@@ -189,26 +243,29 @@ class HAMPeriod(BaseModel):
     provenance: Optional[str] = None
     createdate: Optional[datetime] = None
     lastupdate: Optional[datetime] = None
-    model_config = ConfigDict(extra='ignore')
+    model_config = ConfigDict(extra="ignore")
 
-    @field_validator('description', 'provenance', 'dated', mode='before')
+    @field_validator("description", "provenance", "dated", mode="before")
     @classmethod
     def _normalize_text(cls, v: Any) -> Any:
         if not isinstance(v, str):
             return v
-        v = v.replace('\r\n', '\n').replace('\r', '\n').replace('\x0d', '\n')
-        v = re.sub(r'\n{3,}', '\n\n', v)
+        v = v.replace("\r\n", "\n").replace("\r", "\n").replace("\x0d", "\n")
+        v = re.sub(r"\n{3,}", "\n\n", v)
         return v.strip()
+
 
 class PeriodPage(BaseModel):
     info: Optional[PageInfo] = None
     records: List[HAMPeriod]
 
+
 class Geometry(BaseModel):
     latitude: Optional[float] = None
     longitude: Optional[float] = None
     wkt: Optional[str] = None
-    model_config = ConfigDict(extra='ignore')
+    model_config = ConfigDict(extra="ignore")
+
 
 class HAMPlace(BaseModel):
     id: int
@@ -224,11 +281,13 @@ class HAMPlace(BaseModel):
     longitude: Optional[float] = None
     createdate: Optional[datetime] = None
     lastupdate: Optional[datetime] = None
-    model_config = ConfigDict(extra='ignore')
+    model_config = ConfigDict(extra="ignore")
+
 
 class PlacePage(BaseModel):
     info: Optional[PageInfo] = None
     records: List[HAMPlace]
+
 
 class HAMPerson(BaseModel):
     id: int
@@ -246,18 +305,20 @@ class HAMPerson(BaseModel):
     url: Optional[HttpUrl] = None
     createdate: Optional[datetime] = None
     lastupdate: Optional[datetime] = None
-    model_config = ConfigDict(extra='ignore')
+    model_config = ConfigDict(extra="ignore")
 
-    @field_validator('born', 'died', mode='before')
+    @field_validator("born", "died", mode="before")
     @classmethod
     def _norm_dates(cls, v: Any) -> Any:
         if not isinstance(v, str):
             return v
-        return v.replace('\r\n', '\n').replace('\r', '\n').strip()
+        return v.replace("\r\n", "\n").replace("\r", "\n").strip()
+
 
 class PersonPage(BaseModel):
     info: Optional[PageInfo] = None
     records: List[HAMPerson]
+
 
 class HAMPublication(BaseModel):
     id: int
@@ -273,18 +334,18 @@ class HAMPublication(BaseModel):
     url: Optional[AnyUrl] = None
     createdate: Optional[datetime] = None
     lastupdate: Optional[datetime] = None
-    model_config = ConfigDict(extra='ignore')
+    model_config = ConfigDict(extra="ignore")
 
-    @field_validator('title', 'subtitle', 'citation', 'publisher', mode='before')
+    @field_validator("title", "subtitle", "citation", "publisher", mode="before")
     @classmethod
     def _normalize_text(cls, v: Any) -> Any:
         if not isinstance(v, str):
             return v
-        v = v.replace('\r\n', '\n').replace('\r', '\n').replace('\x0d', '\n')
-        v = re.sub(r'\n{3,}', '\n\n', v)
+        v = v.replace("\r\n", "\n").replace("\r", "\n").replace("\x0d", "\n")
+        v = re.sub(r"\n{3,}", "\n\n", v)
         return v.strip()
+
 
 class PublicationPage(BaseModel):
     info: Optional[PageInfo] = None
     records: List[HAMPublication]
-
