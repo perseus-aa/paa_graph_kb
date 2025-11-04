@@ -1,0 +1,148 @@
+PREFIX stg:  <https://aa.perseus.org/staging#>
+PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl:  <http://www.w3.org/2002/07/owl#>
+
+# Construct E21_Person entities with names, dates, places, and authority links
+# Maps HAM person records to CIDOC-CRM persons with rich biographical data
+
+CONSTRUCT {
+  # Person entity
+  ?person a crm:E21_Person ;
+          crm:P1_is_identified_by ?nameNode ;
+          crm:P92i_was_brought_into_existence_by ?birth ;
+          crm:P93i_was_taken_out_of_existence_by ?death ;
+          crm:P2_has_type ?genderType ;
+          owl:sameAs ?viafUri , ?ulanUri , ?wikidataUri , ?wikipediaUri , ?lcnafUri .
+
+  # Primary name appellation
+  ?nameNode a crm:E33_E41_Linguistic_Appellation ;
+            rdfs:label "Primary name"@en ;
+            crm:P190_has_symbolic_content ?displayName .
+
+  # Sortable name appellation
+  ?sortNameNode a crm:E33_E41_Linguistic_Appellation ;
+                rdfs:label "Sort name"@en ;
+                crm:P190_has_symbolic_content ?alphaSort .
+
+  # Birth event
+  ?birth a crm:E67_Birth ;
+         rdfs:label "Birth"@en ;
+         crm:P98_brought_into_life ?person ;
+         crm:P4_has_time-span ?birthTimespan ;
+         crm:P7_took_place_at ?birthPlaceNode .
+
+  # Birth timespan
+  ?birthTimespan a crm:E52_Time-Span ;
+                 rdfs:label ?birthLabel ;
+                 crm:P82a_begin_of_the_begin ?birthYear ;
+                 crm:P82b_end_of_the_end ?birthYear .
+
+  # Birth place
+  ?birthPlaceNode a crm:E53_Place ;
+                  rdfs:label ?birthPlace .
+
+  # Death event
+  ?death a crm:E69_Death ;
+         rdfs:label "Death"@en ;
+         crm:P100_was_death_of ?person ;
+         crm:P4_has_time-span ?deathTimespan ;
+         crm:P7_took_place_at ?deathPlaceNode .
+
+  # Death timespan
+  ?deathTimespan a crm:E52_Time-Span ;
+                 rdfs:label ?deathLabel ;
+                 crm:P82a_begin_of_the_begin ?deathYear ;
+                 crm:P82b_end_of_the_end ?deathYear .
+
+  # Death place
+  ?deathPlaceNode a crm:E53_Place ;
+                  rdfs:label ?deathPlace .
+
+  # Gender type
+  ?genderType a crm:E55_Type ;
+              rdfs:label ?gender .
+
+  # Cultural affiliation
+  ?person crm:P2_has_type ?cultureType .
+
+  ?cultureType a crm:E55_Type ;
+               rdfs:label ?culture .
+}
+WHERE {
+  # Find person nodes in staging graph
+  ?personStaging a stg:Person ;
+                 stg:personid ?personid .
+
+  # Person URI based on personid
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/person/", STR(?personid))) AS ?person )
+
+  # Primary name
+  OPTIONAL {
+    ?personStaging stg:personDisplayName ?displayName .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/name/", SHA256(CONCAT("person|", STR(?personid), "|", LCASE(?displayName))))) AS ?nameNode )
+  }
+
+  # Sortable name
+  OPTIONAL {
+    ?personStaging stg:personAlphaSort ?alphaSort .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/name/", SHA256(CONCAT("sort|", STR(?personid), "|", LCASE(?alphaSort))))) AS ?sortNameNode )
+  }
+
+  # Birth information
+  OPTIONAL {
+    ?personStaging stg:personBirthYear ?birthYearRaw .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/event/", SHA256(CONCAT("birth|", STR(?personid))))) AS ?birth )
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/timespan/", SHA256(CONCAT("birth|", STR(?personid))))) AS ?birthTimespan )
+    BIND(IF(?birthYearRaw < 0,
+           STRDT(CONCAT("-", STR(xsd:integer(ABS(?birthYearRaw)))), xsd:gYear),
+           STRDT(STR(?birthYearRaw), xsd:gYear)) AS ?birthYear)
+    BIND(CONCAT("Birth year: ", STR(?birthYearRaw)) AS ?birthLabel)
+  }
+
+  OPTIONAL {
+    ?personStaging stg:personBirthPlace ?birthPlace .
+    FILTER(BOUND(?birth))
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/place/", SHA256(CONCAT("birthplace|", LCASE(?birthPlace))))) AS ?birthPlaceNode )
+  }
+
+  # Death information
+  OPTIONAL {
+    ?personStaging stg:personDeathYear ?deathYearRaw .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/event/", SHA256(CONCAT("death|", STR(?personid))))) AS ?death )
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/timespan/", SHA256(CONCAT("death|", STR(?personid))))) AS ?deathTimespan )
+    BIND(IF(?deathYearRaw < 0,
+           STRDT(CONCAT("-", STR(xsd:integer(ABS(?deathYearRaw)))), xsd:gYear),
+           STRDT(STR(?deathYearRaw), xsd:gYear)) AS ?deathYear)
+    BIND(CONCAT("Death year: ", STR(?deathYearRaw)) AS ?deathLabel)
+  }
+
+  OPTIONAL {
+    ?personStaging stg:personDeathPlace ?deathPlace .
+    FILTER(BOUND(?death))
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/place/", SHA256(CONCAT("deathplace|", LCASE(?deathPlace))))) AS ?deathPlaceNode )
+  }
+
+  # Gender
+  OPTIONAL {
+    ?personStaging stg:personGender ?gender .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/type/gender/", SHA256(LCASE(?gender)))) AS ?genderType )
+  }
+
+  # Culture
+  OPTIONAL {
+    ?personStaging stg:personCulture ?culture .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/type/culture/", SHA256(LCASE(?culture)))) AS ?cultureType )
+  }
+
+  # Authority identifiers (owl:sameAs links)
+  OPTIONAL { ?personStaging stg:viafId ?viafUri }
+  OPTIONAL { ?personStaging stg:ulanId ?ulanUri }
+  OPTIONAL { ?personStaging stg:wikidataId ?wikidataUri }
+  OPTIONAL { ?personStaging stg:wikipediaId ?wikipediaUri }
+  OPTIONAL { ?personStaging stg:lcnafId ?lcnafUri }
+
+  # Require at least a display name to create the person
+  FILTER(BOUND(?displayName))
+}

@@ -1,0 +1,132 @@
+PREFIX stg:  <https://aa.perseus.org/staging#>
+PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX bibo: <http://purl.org/ontology/bibo/>
+
+# Construct bibliographic publication records
+# Maps HAM publications to CIDOC-CRM E33_Linguistic_Object with bibliographic metadata
+
+CONSTRUCT {
+  # Publication as linguistic object (bibliographic work)
+  ?publication a crm:E33_Linguistic_Object ;
+               a bibo:Document ;
+               crm:P1_is_identified_by ?titleNode ;
+               crm:P2_has_type ?publicationType ;
+               crm:P94i_was_created_by ?creationEvent ;
+               dcterms:identifier ?isbn , ?issn , ?doi ;
+               bibo:doi ?doi ;
+               bibo:isbn ?isbn ;
+               bibo:issn ?issn ;
+               dcterms:bibliographicCitation ?citation .
+
+  # Title appellation
+  ?titleNode a crm:E33_E41_Linguistic_Appellation ;
+             rdfs:label "Title"@en ;
+             crm:P190_has_symbolic_content ?title .
+
+  # Subtitle
+  ?subtitleNode a crm:E33_E41_Linguistic_Appellation ;
+                rdfs:label "Subtitle"@en ;
+                crm:P190_has_symbolic_content ?subtitle .
+
+  # Creation event (publication activity)
+  ?creationEvent a crm:E65_Creation ;
+                 rdfs:label "Publication"@en ;
+                 crm:P94_has_created ?publication ;
+                 crm:P4_has_time-span ?pubTimespan ;
+                 crm:P14_carried_out_by ?authorPerson .
+
+  # Publication timespan
+  ?pubTimespan a crm:E52_Time-Span ;
+               rdfs:label ?yearLabel ;
+               crm:P82a_begin_of_the_begin ?pubYear ;
+               crm:P82b_end_of_the_end ?pubYear .
+
+  # Publisher (as E74_Group)
+  ?creationEvent crm:P01_has_domain ?publisherAssignment .
+
+  ?publisherAssignment a crm:PC14_carried_out_by ;
+                       crm:P02_has_range ?publisherGroup ;
+                       crm:P14.1_in_the_role_of ?publisherRole .
+
+  ?publisherGroup a crm:E74_Group ;
+                  rdfs:label ?publisherName .
+
+  ?publisherRole a crm:E55_Type ;
+                 rdfs:label "Publisher"@en .
+
+  # Author (as E21_Person or E39_Actor)
+  ?authorPerson a crm:E21_Person ;
+                rdfs:label ?authorName .
+
+  # Publication type
+  ?publicationType a crm:E55_Type ;
+                   rdfs:label "Publication"@en .
+
+  # Link to publication URL
+  ?publication dcterms:isReferencedBy ?url .
+}
+WHERE {
+  # Find publication nodes in staging graph
+  ?pubStaging a stg:Publication ;
+              stg:publicationid ?pubid .
+
+  # Publication URI
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/publication/", STR(?pubid))) AS ?publication )
+
+  # Title
+  OPTIONAL {
+    ?pubStaging stg:publicationTitle ?title .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/name/", SHA256(CONCAT("pubtitle|", STR(?pubid), "|", LCASE(?title))))) AS ?titleNode )
+  }
+
+  # Subtitle
+  OPTIONAL {
+    ?pubStaging stg:publicationSubtitle ?subtitle .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/name/", SHA256(CONCAT("pubsubtitle|", STR(?pubid), "|", LCASE(?subtitle))))) AS ?subtitleNode )
+  }
+
+  # Citation
+  OPTIONAL {
+    ?pubStaging stg:publicationCitation ?citation .
+  }
+
+  # Publication year
+  OPTIONAL {
+    ?pubStaging stg:publicationYear ?pubYearInt .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/event/", SHA256(CONCAT("pubcreation|", STR(?pubid))))) AS ?creationEvent )
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/timespan/", SHA256(CONCAT("pubyear|", STR(?pubid))))) AS ?pubTimespan )
+    BIND( STRDT(STR(?pubYearInt), xsd:gYear) AS ?pubYear )
+    BIND( CONCAT("Published: ", STR(?pubYearInt)) AS ?yearLabel )
+  }
+
+  # Authors
+  OPTIONAL {
+    ?pubStaging stg:publicationAuthor ?authorName .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/person/", SHA256(LCASE(?authorName)))) AS ?authorPerson )
+  }
+
+  # Publisher
+  OPTIONAL {
+    ?pubStaging stg:publisher ?publisherName .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/group/", SHA256(LCASE(?publisherName)))) AS ?publisherGroup )
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/assignment/", SHA256(CONCAT("pub|", STR(?pubid), "|publisher:", LCASE(?publisherName))))) AS ?publisherAssignment )
+    BIND( IRI("https://aa.perseus.org/id/type/role/publisher") AS ?publisherRole )
+  }
+
+  # Identifiers
+  OPTIONAL { ?pubStaging stg:isbn ?isbn }
+  OPTIONAL { ?pubStaging stg:issn ?issn }
+  OPTIONAL { ?pubStaging stg:doi ?doi }
+
+  # URL
+  OPTIONAL { ?pubStaging stg:publicationURL ?url }
+
+  # Publication type
+  BIND( IRI("https://aa.perseus.org/id/type/publication") AS ?publicationType )
+
+  # Require at least a title to create the publication
+  FILTER(BOUND(?title))
+}

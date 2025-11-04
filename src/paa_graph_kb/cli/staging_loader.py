@@ -2,13 +2,15 @@ from __future__ import annotations
 
 import argparse
 from pathlib import Path
+from typing import Optional
 from urllib.parse import urlparse
 
 from rdflib import Graph, Literal, Namespace, URIRef
 from rdflib.namespace import RDF, XSD
 
 from paa_graph_kb.clients.ham_client import HAMClient
-from paa_graph_kb.models.ham.models import HAMObject
+from paa_graph_kb.models.ham.models import HAMObject, HAMPerson, HAMPublication
+from paa_graph_kb.vocabularies import aat_mappings, geonames_mappings
 
 STG = Namespace("https://aa.perseus.org/staging#")
 EXS = Namespace("https://aa.perseus.org/staging/")
@@ -37,24 +39,37 @@ def object_to_staging(g: Graph, obj: HAMObject, source: str = "ham") -> None:
             if t.title:
                 g.add((s, STG.title, _safe_lang_literal(t.title)))
 
-    # Culture (demo)
-    if obj.culture and obj.culture.lower() == "greek":
-        g.add((s, STG.cultureAAT, URIRef(AAT + "300386130")))
+    # Culture (with AAT mapping)
+    if obj.culture:
+        culture_uri = aat_mappings.get_aat_uri(obj.culture, category="cultures")
+        if culture_uri:
+            g.add((s, STG.cultureAAT, URIRef(culture_uri)))
 
-    # Worktypes (demo)
+    # Worktypes (with AAT mapping)
     if obj.worktypes:
         for wt in obj.worktypes:
-            low = (wt.worktype or "").lower()
-            if "kylix" in low:
-                g.add((s, STG.aatType, URIRef(AAT + "300198842")))
-            elif "vessel" in low:
-                g.add((s, STG.aatType, URIRef(AAT + "300193015")))
+            if wt.worktype:
+                type_uri = aat_mappings.get_aat_uri(wt.worktype, category="object_types")
+                if type_uri:
+                    g.add((s, STG.aatType, URIRef(type_uri)))
 
-    # Materials / techniques (demo)
-    if obj.medium and "terracotta" in (obj.medium or "").lower():
-        g.add((s, STG.materialAAT, URIRef(AAT + "300265960")))
-    if obj.technique and "black glaze" in (obj.technique or "").lower():
-        g.add((s, STG.techniqueAAT, URIRef(AAT + "300404385")))
+    # Classification (with AAT mapping)
+    if obj.classification:
+        class_uri = aat_mappings.get_aat_uri(obj.classification, category="classifications")
+        if class_uri:
+            g.add((s, STG.aatType, URIRef(class_uri)))
+
+    # Materials (with AAT mapping)
+    if obj.medium:
+        material_uri = aat_mappings.get_aat_uri(obj.medium, category="materials")
+        if material_uri:
+            g.add((s, STG.materialAAT, URIRef(material_uri)))
+
+    # Techniques (with AAT mapping)
+    if obj.technique:
+        technique_uri = aat_mappings.get_aat_uri(obj.technique, category="techniques")
+        if technique_uri:
+            g.add((s, STG.techniqueAAT, URIRef(technique_uri)))
 
     # Period
     if obj.periodid is not None:
@@ -216,6 +231,186 @@ def object_to_staging(g: Graph, obj: HAMObject, source: str = "ham") -> None:
                         )
                     )
 
+    # People/Agents (artists, makers, etc.)
+    if obj.people:
+        for person in obj.people:
+            if person.personid:
+                # Create person node
+                person_node = URIRef(
+                    f"https://aa.perseus.org/staging/person/{person.personid}"
+                )
+                g.add((s, STG.hasPerson, person_node))
+                g.add((person_node, RDF.type, STG.Person))
+                g.add(
+                    (person_node, STG.personid, Literal(person.personid, datatype=XSD.integer))
+                )
+
+                # Person identity
+                if person.name:
+                    g.add((person_node, STG.personName, Literal(person.name)))
+                if person.displayname:
+                    g.add((person_node, STG.personDisplayName, Literal(person.displayname)))
+                if person.role:
+                    g.add((person_node, STG.personRole, Literal(person.role)))
+                if person.culture:
+                    g.add((person_node, STG.personCulture, Literal(person.culture)))
+                if person.displaydate:
+                    g.add((person_node, STG.personDisplayDate, Literal(person.displaydate)))
+
+                # Person places
+                if person.birthplace:
+                    g.add((person_node, STG.personBirthPlace, Literal(person.birthplace)))
+                if person.deathplace:
+                    g.add((person_node, STG.personDeathPlace, Literal(person.deathplace)))
+
+
+def enrich_persons_with_authorities(g: Graph, client: HAMClient, limit: Optional[int] = None) -> int:
+    """
+    Fetch full person records from HAM /person endpoint and add authority IDs to existing person nodes.
+
+    Args:
+        g: The RDF graph containing person nodes
+        client: HAMClient instance
+        limit: Optional limit on number of persons to enrich
+
+    Returns:
+        Number of persons enriched with authority data
+    """
+    # Collect all person IDs from the graph
+    person_ids = set()
+    for s, p, o in g.triples((None, STG.personid, None)):
+        person_ids.add(int(o))
+
+    if not person_ids:
+        print(f"No person nodes found in graph to enrich")
+        return 0
+
+    enriched = 0
+    print(f"Found {len(person_ids)} unique persons in graph, fetching full records...")
+
+    # Fetch full person records for each personid
+    for personid in person_ids:
+        if limit and enriched >= limit:
+            break
+
+        try:
+            # Fetch person by ID using the API
+            # We'll iterate with a filter on the exact ID
+            persons = list(client.iter_people(params={"id": personid}, limit=1))
+
+            if not persons:
+                continue
+
+            person = persons[0]
+            person_node = URIRef(f"https://aa.perseus.org/staging/person/{personid}")
+
+            # Add additional fields from full person record
+            if person.alphasort:
+                g.add((person_node, STG.personAlphaSort, Literal(person.alphasort)))
+            if person.gender:
+                g.add((person_node, STG.personGender, Literal(person.gender)))
+
+            # Add detailed date information
+            if person.datebegin is not None:
+                g.add((person_node, STG.personDateBegin, Literal(person.datebegin, datatype=XSD.integer)))
+            if person.dateend is not None:
+                g.add((person_node, STG.personDateEnd, Literal(person.dateend, datatype=XSD.integer)))
+            if person.birthyear is not None:
+                g.add((person_node, STG.personBirthYear, Literal(person.birthyear, datatype=XSD.integer)))
+            if person.deathyear is not None:
+                g.add((person_node, STG.personDeathYear, Literal(person.deathyear, datatype=XSD.integer)))
+
+            # Add authority identifiers - these are the key enrichments!
+            if person.lcnaf_id:
+                # LCNAF URIs: http://id.loc.gov/authorities/names/{id}
+                lcnaf_uri = URIRef(f"http://id.loc.gov/authorities/names/{person.lcnaf_id}")
+                g.add((person_node, STG.lcnafId, lcnaf_uri))
+
+            if person.ulan_id:
+                # ULAN URIs: http://vocab.getty.edu/ulan/{id}
+                ulan_uri = URIRef(f"http://vocab.getty.edu/ulan/{person.ulan_id}")
+                g.add((person_node, STG.ulanId, ulan_uri))
+
+            if person.viaf_id:
+                # VIAF URIs: http://viaf.org/viaf/{id}
+                viaf_uri = URIRef(f"http://viaf.org/viaf/{person.viaf_id}")
+                g.add((person_node, STG.viafId, viaf_uri))
+
+            if person.wikidata_id:
+                # Wikidata URIs: http://www.wikidata.org/entity/{id}
+                wikidata_uri = URIRef(f"http://www.wikidata.org/entity/{person.wikidata_id}")
+                g.add((person_node, STG.wikidataId, wikidata_uri))
+
+            if person.wikipedia_id:
+                # Wikipedia URLs are stored as-is or constructed
+                # HAM stores the page title, construct full URL
+                # Note: This is a simplification, real Wikipedia IDs might need more careful handling
+                wikipedia_uri = URIRef(f"https://en.wikipedia.org/wiki/{person.wikipedia_id.replace(' ', '_')}")
+                g.add((person_node, STG.wikipediaId, wikipedia_uri))
+
+            enriched += 1
+            if enriched % 10 == 0:
+                print(f"  Enriched {enriched}/{len(person_ids)} persons...")
+
+        except Exception as e:
+            print(f"Warning: Could not enrich person {personid}: {e}")
+            continue
+
+    print(f"✅ Enriched {enriched} persons with authority identifiers")
+    return enriched
+
+
+def publication_to_staging(g: Graph, pub: HAMPublication, source: str = "ham") -> None:
+    """
+    Convert a HAM publication record to staging graph triples.
+
+    Args:
+        g: RDF graph to add triples to
+        pub: HAMPublication instance
+        source: Source identifier (default: "ham")
+    """
+    # Publication node URI
+    pub_node = URIRef(f"https://aa.perseus.org/staging/publication/{pub.id}")
+
+    # Type and identifier
+    g.add((pub_node, RDF.type, STG.Publication))
+    g.add((pub_node, STG.publicationid, Literal(pub.id, datatype=XSD.integer)))
+    g.add((pub_node, STG.source, Literal(source)))
+
+    # Title information
+    if pub.title:
+        g.add((pub_node, STG.publicationTitle, Literal(pub.title)))
+    if pub.subtitle:
+        g.add((pub_node, STG.publicationSubtitle, Literal(pub.subtitle)))
+    if pub.citation:
+        g.add((pub_node, STG.publicationCitation, Literal(pub.citation)))
+
+    # Authors
+    if pub.authors:
+        for author in pub.authors:
+            if author:
+                g.add((pub_node, STG.publicationAuthor, Literal(author)))
+
+    # Publication details
+    if pub.publishyear is not None:
+        g.add((pub_node, STG.publicationYear, Literal(pub.publishyear, datatype=XSD.integer)))
+    if pub.publisher:
+        g.add((pub_node, STG.publisher, Literal(pub.publisher)))
+
+    # Identifiers (ISBN, ISSN, DOI)
+    if pub.isbn:
+        g.add((pub_node, STG.isbn, Literal(pub.isbn)))
+    if pub.issn:
+        g.add((pub_node, STG.issn, Literal(pub.issn)))
+    if pub.doi:
+        # DOI as URI
+        doi_uri = URIRef(f"https://doi.org/{pub.doi}")
+        g.add((pub_node, STG.doi, doi_uri))
+
+    # URL
+    if pub.url:
+        g.add((pub_node, STG.publicationURL, URIRef(str(pub.url))))
+
 
 def main() -> None:
     ap = argparse.ArgumentParser(
@@ -232,6 +427,11 @@ def main() -> None:
     ap.add_argument("--size", type=int, default=100)
     ap.add_argument("--limit", type=int, default=100)
     ap.add_argument("--out", type=Path, required=True)
+    ap.add_argument(
+        "--enrich-persons",
+        action="store_true",
+        help="Fetch full person records and add authority IDs (VIAF, ULAN, Wikidata, etc.)",
+    )
     args = ap.parse_args()
 
     # Parse params
@@ -260,6 +460,11 @@ def main() -> None:
     for rec in client.iter_objects(params=param_dict, size=args.size, limit=args.limit):
         object_to_staging(g, rec, source="ham")
         count += 1
+
+    # Optionally enrich person records with authority identifiers
+    if args.enrich_persons:
+        enriched = enrich_persons_with_authorities(g, client)
+        print(f"✅ Added authority links for {enriched} persons")
 
     g.serialize(destination=args.out, format="turtle")
     print(f"✅ Wrote {count} objects and {len(g)} staging triples to {args.out}")
