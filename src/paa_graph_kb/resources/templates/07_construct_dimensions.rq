@@ -1,0 +1,17 @@
+PREFIX stg:  <https://aa.perseus.org/staging#>
+PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT {
+  ?obj a crm:E22_Human-Made_Object ;
+       crm:P43_has_dimension ?dimNode .
+
+  ?dimNode a crm:E54_Dimension ;
+           rdfs:label "Dimensions"@en ;
+           crm:P190_has_symbolic_content ?dims .
+}
+WHERE {
+  ?s a stg:Object ; stg:source ?src ; stg:objectid ?oid ; stg:dimensions ?dims .
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/thing/", SHA256(CONCAT(?src, ":", STR(?oid))))) AS ?obj )
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/dimension/", SHA256(CONCAT("dims|", LCASE(STR(?dims)))))) AS ?dimNode )
+}

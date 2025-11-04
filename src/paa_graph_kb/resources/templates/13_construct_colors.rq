@@ -1,0 +1,21 @@
+PREFIX stg:  <https://aa.perseus.org/staging#>
+PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT {
+  ?obj a crm:E22_Human-Made_Object ;
+       crm:P56_bears_feature ?colorNode .
+
+  ?colorNode a crm:E26_Physical_Feature ;
+             rdfs:label ?colorLabel ;
+             crm:P2_has_type ?colorType .
+
+  ?colorType a crm:E55_Type ;
+             rdfs:label "Color"@en .
+}
+WHERE {
+  ?s a stg:Object ; stg:source ?src ; stg:objectid ?oid ; stg:colorName ?colorLabel .
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/thing/", SHA256(CONCAT(?src, ":", STR(?oid))))) AS ?obj )
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/feature/", SHA256(CONCAT("color|", ?src, ":", STR(?oid), "|", LCASE(STR(?colorLabel)))))) AS ?colorNode )
+  BIND( IRI("https://aa.perseus.org/id/type/color") AS ?colorType )
+}

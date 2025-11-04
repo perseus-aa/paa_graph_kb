@@ -35,3 +35,36 @@ stg:iiifManifest a rdfs:Property ; rdfs:label "IIIF Manifest IRI"@en .
 stg:primaryImage a rdfs:Property ; rdfs:label "Primary image IRI"@en .
 
 stg:catalogPage  a rdfs:Property ; rdfs:label "Catalog page IRI"@en .
+
+# Additional textual properties
+stg:dimensions   a rdfs:Property ; rdfs:label "Dimensions description"@en .
+stg:description  a rdfs:Property ; rdfs:label "Object description"@en .
+stg:commentary   a rdfs:Property ; rdfs:label "Commentary text"@en .
+stg:labeltext    a rdfs:Property ; rdfs:label "Label text"@en .
+
+# Identifier properties
+stg:objectnumber         a rdfs:Property ; rdfs:label "Object number"@en .
+stg:standardreferencenumber a rdfs:Property ; rdfs:label "Standard reference number"@en .
+
+# Dating properties
+stg:datebegin    a rdfs:Property ; rdfs:label "Date begin (integer year)"@en ; rdfs:range xsd:integer .
+stg:dateend      a rdfs:Property ; rdfs:label "Date end (integer year)"@en ; rdfs:range xsd:integer .
+stg:dated        a rdfs:Property ; rdfs:label "Dated (literal description)"@en .
+stg:century      a rdfs:Property ; rdfs:label "Century"@en .
+
+# Classification properties
+stg:classification a rdfs:Property ; rdfs:label "Classification"@en .
+stg:style        a rdfs:Property ; rdfs:label "Style"@en .
+
+# Institutional properties
+stg:department   a rdfs:Property ; rdfs:label "Department"@en .
+stg:division     a rdfs:Property ; rdfs:label "Division"@en .
+
+# Color properties
+stg:colorName    a rdfs:Property ; rdfs:label "Color name"@en .
+stg:hasColor     a rdfs:Property ; rdfs:label "Has color"@en .
+stg:hexValue     a rdfs:Property ; rdfs:label "Hex color value"@en .
+
+# Accession properties
+stg:accessionyear   a rdfs:Property ; rdfs:label "Accession year"@en ; rdfs:range xsd:integer .
+stg:accessionmethod a rdfs:Property ; rdfs:label "Accession method"@en .

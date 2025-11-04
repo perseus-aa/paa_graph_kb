@@ -1,0 +1,31 @@
+PREFIX stg:  <https://aa.perseus.org/staging#>
+PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT {
+  ?obj a crm:E22_Human-Made_Object ;
+       crm:P1_is_identified_by ?objNumNode ;
+       crm:P1_is_identified_by ?refNumNode .
+
+  ?objNumNode a crm:E42_Identifier ;
+              rdfs:label "Object number"@en ;
+              crm:P190_has_symbolic_content ?objNum .
+
+  ?refNumNode a crm:E42_Identifier ;
+              rdfs:label "Standard reference number"@en ;
+              crm:P190_has_symbolic_content ?refNum .
+}
+WHERE {
+  ?s a stg:Object ; stg:source ?src ; stg:objectid ?oid .
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/thing/", SHA256(CONCAT(?src, ":", STR(?oid))))) AS ?obj )
+
+  OPTIONAL {
+    ?s stg:objectnumber ?objNum .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/identifier/", SHA256(CONCAT("objnum|", LCASE(STR(?objNum)))))) AS ?objNumNode )
+  }
+
+  OPTIONAL {
+    ?s stg:standardreferencenumber ?refNum .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/identifier/", SHA256(CONCAT("refnum|", LCASE(STR(?refNum)))))) AS ?refNumNode )
+  }
+}

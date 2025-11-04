@@ -1,0 +1,29 @@
+PREFIX stg:  <https://aa.perseus.org/staging#>
+PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT {
+  ?obj a crm:E22_Human-Made_Object ;
+       crm:P49_has_former_or_current_keeper ?dept ;
+       crm:P49_has_former_or_current_keeper ?div .
+
+  ?dept a crm:E74_Group ;
+        rdfs:label ?deptLabel .
+
+  ?div a crm:E74_Group ;
+       rdfs:label ?divLabel .
+}
+WHERE {
+  ?s a stg:Object ; stg:source ?src ; stg:objectid ?oid .
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/thing/", SHA256(CONCAT(?src, ":", STR(?oid))))) AS ?obj )
+
+  OPTIONAL {
+    ?s stg:department ?deptLabel .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/group/", SHA256(CONCAT("dept|", LCASE(STR(?deptLabel)))))) AS ?dept )
+  }
+
+  OPTIONAL {
+    ?s stg:division ?divLabel .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/group/", SHA256(CONCAT("div|", LCASE(STR(?divLabel)))))) AS ?div )
+  }
+}
