@@ -7,11 +7,15 @@ Transforms Harvard Art Museums (HAM) data into Linked Art using SPARQL CONSTRUCT
 The easiest way to use this project is via the Makefile:
 
 ```bash
+# First time setup - configure your API key
+make setup-env
+# Edit .env to add your HAM_APIKEY
+
 # See all available commands
 make help
 
 # Complete local workflow (using rdflib)
-make local-all HAM_APIKEY=your_key
+make local-all
 
 # Complete GraphDB workflow
 make setup-graphdb  # First time only - edit graphdb_env after
@@ -24,18 +28,37 @@ make graphdb-all
 
 **Using Makefile (recommended):**
 ```bash
-# Run complete workflow
-make local-all HAM_APIKEY=your_key
+# First time: setup .env file
+make setup-env
+# Edit .env to add your HAM_APIKEY
+
+# Run complete workflow (uses .env automatically)
+make local-all
 
 # Or run individual steps
-make staging HAM_APIKEY=your_key HAM_LIMIT=100
+make staging                    # Uses .env
+make staging HAM_LIMIT=200     # Override default limit
 make linkedart-local
 make validate
+
+# Override .env settings on command line
+make staging HAM_APIKEY=different_key HAM_LIMIT=100
 ```
 
 **Manual commands:**
-1) Generate staging from HAM:
+1) Generate staging from HAM (reads HAM_APIKEY from .env):
 ```bash
+# First time: copy dotenv to .env and edit
+cp dotenv .env
+# Edit .env to set HAM_APIKEY
+
+# Run staging loader (automatically loads from .env)
+python -m paa_graph_kb.cli.staging_loader \
+  --params culture=Greek hasimage=1 \
+  --limit 50 \
+  --out staging.ttl
+
+# Or override .env with command-line argument
 python -m paa_graph_kb.cli.staging_loader \
   --apikey YOUR_KEY \
   --params culture=Greek hasimage=1 \

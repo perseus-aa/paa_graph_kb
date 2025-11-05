@@ -2,7 +2,11 @@
 # Consolidates all workflow steps for staging data generation, Linked Art transformation,
 # and GraphDB loading.
 
-.PHONY: help setup-graphdb staging linkedart-local validate \
+# Load environment variables from .env file if it exists
+-include .env
+export
+
+.PHONY: help setup-env setup-graphdb staging linkedart-local validate \
 	graphdb-load-staging graphdb-run-constructs graphdb-all local-all clean
 
 # Configuration
@@ -13,8 +17,8 @@ TEMPLATES_DIR := src/paa_graph_kb/resources/templates
 SHAPES_FILE := src/paa_graph_kb/shapes/linkedart.ttl
 GRAPHDB_ENV := src/paa_graph_kb/graphdb/graphdb_env
 
-# HAM API parameters (override with make staging HAM_APIKEY=your_key HAM_PARAMS="culture=Greek" HAM_LIMIT=50)
-HAM_APIKEY ?=
+# HAM API parameters (loaded from .env, or override with make staging HAM_APIKEY=your_key)
+# If not set in .env or command line, staging target will show an error
 HAM_PARAMS ?= culture=Greek hasimage=1
 HAM_LIMIT ?= 50
 
@@ -24,10 +28,11 @@ help:
 	@echo "=================================================="
 	@echo ""
 	@echo "Setup:"
+	@echo "  make setup-env           - Copy dotenv template to .env (edit with your HAM API key)"
 	@echo "  make setup-graphdb       - Copy graphdb_env.example to graphdb_env (edit manually after)"
 	@echo ""
 	@echo "Local Workflow (using rdflib):"
-	@echo "  make staging             - Generate staging.ttl from HAM API"
+	@echo "  make staging             - Generate staging.ttl from HAM API (uses HAM_APIKEY from .env)"
 	@echo "  make linkedart-local     - Build linkedart.ttl using local rdflib"
 	@echo "  make validate            - Validate linkedart.ttl with SHACL shapes"
 	@echo "  make local-all           - Run complete local workflow (staging → linkedart → validate)"
@@ -42,10 +47,26 @@ help:
 	@echo "  make help                - Show this help message"
 	@echo ""
 	@echo "Examples:"
-	@echo "  make staging HAM_APIKEY=your_key HAM_LIMIT=100"
-	@echo "  make local-all HAM_APIKEY=your_key"
-	@echo "  make graphdb-all"
+	@echo "  # First time setup"
+	@echo "  make setup-env                              # Creates .env from template"
+	@echo "  # Edit .env to add your HAM_APIKEY"
 	@echo ""
+	@echo "  # Run workflows (uses .env automatically)"
+	@echo "  make local-all                              # Complete local workflow"
+	@echo "  make staging HAM_LIMIT=200                  # Override default limit"
+	@echo "  make staging HAM_APIKEY=key HAM_LIMIT=100   # Override .env settings"
+	@echo ""
+
+# Setup .env file from template
+setup-env:
+	@echo "Setting up .env file..."
+	@if [ -f ".env" ]; then \
+		echo "⚠️  .env already exists. Skipping."; \
+	else \
+		cp dotenv .env; \
+		echo "✅ Created .env from dotenv template"; \
+		echo "⚠️  Please edit .env to set your HAM_APIKEY and other configuration."; \
+	fi
 
 # Setup GraphDB configuration
 setup-graphdb:
@@ -59,15 +80,17 @@ setup-graphdb:
 	fi
 
 # Generate staging.ttl from HAM API
+# Reads HAM_APIKEY from .env by default, or override with HAM_APIKEY=key on command line
 staging:
 	@echo "Generating staging data from HAM API..."
-	@if [ -z "$(HAM_APIKEY)" ]; then \
-		echo "❌ Error: HAM_APIKEY is required."; \
-		echo "Usage: make staging HAM_APIKEY=your_key"; \
-		exit 1; \
+	@if [ ! -f ".env" ] && [ -z "$(HAM_APIKEY)" ]; then \
+		echo "⚠️  No .env file found and HAM_APIKEY not provided."; \
+		echo "   Run: make setup-env"; \
+		echo "   Then edit .env to add your HAM_APIKEY"; \
+		echo "   Or provide HAM_APIKEY on command line: make staging HAM_APIKEY=your_key"; \
 	fi
 	$(PYTHON) -m paa_graph_kb.cli.staging_loader \
-		--apikey $(HAM_APIKEY) \
+		$(if $(HAM_APIKEY),--apikey $(HAM_APIKEY),) \
 		--params $(HAM_PARAMS) \
 		--limit $(HAM_LIMIT) \
 		--out $(STAGING_FILE)
