@@ -1,7 +1,58 @@
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
 @prefix la: <https://linked.art/ns/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://aa.perseus.org/id/assignment/2c5e64a711df53b39e9e5d4e3baeaf582257e2b63e400bf444309ffd08ece1ae> a crm:PC14_carried_out_by ;
+    crm:P01_has_domain <https://aa.perseus.org/id/event/3ddac1aae34260235226e49b70da2831c8b2aba1f056be8178de27dd6bcab260> ;
+    crm:P02_has_range <https://aa.perseus.org/id/person/27335> ;
+    crm:P14.1_in_the_role_of <https://aa.perseus.org/id/type/role/70b1e8e06785cae451496104850781f33faf6cc8e0777ecd3a9ccaaefb154b2d> .
+
+<https://aa.perseus.org/id/assignment/46c33e3b752456c4a3b8bdc5fee0dac6de0f9f96712caef6729f4c63d805699d> a crm:PC14_carried_out_by ;
+    crm:P01_has_domain <https://aa.perseus.org/id/event/89393232e07fb42baeccdf9044ea9db8c7167ed0ab943f5e414e501423458532> ;
+    crm:P02_has_range <https://aa.perseus.org/id/person/18219> ;
+    crm:P14.1_in_the_role_of <https://aa.perseus.org/id/type/role/70b1e8e06785cae451496104850781f33faf6cc8e0777ecd3a9ccaaefb154b2d> .
+
+<https://aa.perseus.org/id/assignment/5c4fb778afae03c54e2d42cefeae129b9a84add5c54fb61c3ae0dd8d1b8406fe> a crm:PC14_carried_out_by ;
+    crm:P01_has_domain <https://aa.perseus.org/id/event/2cbc4125a9f09191ec476557b914d41c35378d32bbc2c48ddb182c2b6b556926> ;
+    crm:P02_has_range <https://aa.perseus.org/id/person/35329> ;
+    crm:P14.1_in_the_role_of <https://aa.perseus.org/id/type/role/70b1e8e06785cae451496104850781f33faf6cc8e0777ecd3a9ccaaefb154b2d> .
+
+<https://aa.perseus.org/id/assignment/6dd68d6f3dedb49a2f34b2f04c6a56c0e6ed072a4dfc40fb5373cfef312f3047> a crm:PC14_carried_out_by ;
+    crm:P01_has_domain <https://aa.perseus.org/id/event/36ab4669cd60fba963b9b9969315c88b1313c2390429049653fdf59dd07b9576> ;
+    crm:P02_has_range <https://aa.perseus.org/id/person/35330> ;
+    crm:P14.1_in_the_role_of <https://aa.perseus.org/id/type/role/70b1e8e06785cae451496104850781f33faf6cc8e0777ecd3a9ccaaefb154b2d> .
+
+<https://aa.perseus.org/id/assignment/86ac6eec8258511b26f984d45d59a0a873deda5e24a531b16a8d1cb47811b776> a crm:PC14_carried_out_by ;
+    crm:P01_has_domain <https://aa.perseus.org/id/event/ad6f8c830e11b905c677bb320f36d9ea504939b6f14dc5fc67177516db843385> ;
+    crm:P02_has_range <https://aa.perseus.org/id/person/28999> ;
+    crm:P14.1_in_the_role_of <https://aa.perseus.org/id/type/role/70b1e8e06785cae451496104850781f33faf6cc8e0777ecd3a9ccaaefb154b2d> .
+
+<https://aa.perseus.org/id/assignment/8f8a2e63b10b5e0d87f068adb29ae7ad62e5014c7141e77f331da0b53caa91f6> a crm:PC14_carried_out_by ;
+    crm:P01_has_domain <https://aa.perseus.org/id/event/32e80bb953b87906fed72a5b11ad8217c574921f6dbf519f82d44612daec67d7> ;
+    crm:P02_has_range <https://aa.perseus.org/id/person/20953> ;
+    crm:P14.1_in_the_role_of <https://aa.perseus.org/id/type/role/afae5092b081d5526963f84dc6dcfc836629b7349912bc1e2d61ffa9e3dfad89> .
+
+<https://aa.perseus.org/id/assignment/bba47ba46ebaab2bb91934a550e6f38c31d50e9764d042190a71eccbbbe873e5> a crm:PC14_carried_out_by ;
+    crm:P01_has_domain <https://aa.perseus.org/id/event/e4fd811cf3882d1c2b00369345779909af9a08022b3272e7cd4e3646de67193c> ;
+    crm:P02_has_range <https://aa.perseus.org/id/person/29006> ;
+    crm:P14.1_in_the_role_of <https://aa.perseus.org/id/type/role/70b1e8e06785cae451496104850781f33faf6cc8e0777ecd3a9ccaaefb154b2d> .
+
+<https://aa.perseus.org/id/assignment/c6a565485bcaaa0386cb881c98ffd9819a1824543a20ccbac2eb0d55d8c84cec> a crm:PC14_carried_out_by ;
+    crm:P01_has_domain <https://aa.perseus.org/id/event/7e0b784dc2dcd4ce6561147d1b740e0ed84efb947d3667ede4984d8f5eca7dca> ;
+    crm:P02_has_range <https://aa.perseus.org/id/person/35316> ;
+    crm:P14.1_in_the_role_of <https://aa.perseus.org/id/type/role/70b1e8e06785cae451496104850781f33faf6cc8e0777ecd3a9ccaaefb154b2d> .
+
+<https://aa.perseus.org/id/assignment/ee2c6910d2711776c335db012e3b3c1f3ad3b1a54e74f96715089191f974f486> a crm:PC14_carried_out_by ;
+    crm:P01_has_domain <https://aa.perseus.org/id/event/3454492cb7dc92cc7bc10edb024b0e59f336d58aae52ecc4595a2197dd20b4ab> ;
+    crm:P02_has_range <https://aa.perseus.org/id/person/34782> ;
+    crm:P14.1_in_the_role_of <https://aa.perseus.org/id/type/role/70b1e8e06785cae451496104850781f33faf6cc8e0777ecd3a9ccaaefb154b2d> .
+
+<https://aa.perseus.org/id/assignment/fa5b1a5fe93d845de25d58366d00894dc23bd5d3263c19f5b41269436770c8c6> a crm:PC14_carried_out_by ;
+    crm:P01_has_domain <https://aa.perseus.org/id/event/1c88e5c59cfdfa3e64067fe9e4e5dcc6fc0c1df1f15a80a58afeccd71d5dc0cf> ;
+    crm:P02_has_range <https://aa.perseus.org/id/person/20540> ;
+    crm:P14.1_in_the_role_of <https://aa.perseus.org/id/type/role/afae5092b081d5526963f84dc6dcfc836629b7349912bc1e2d61ffa9e3dfad89> .
 
 <https://aa.perseus.org/id/event/03defb4ae88c06037b568888355f498f192231d155421eb58428aa1e88937c9e> a crm:E12_Production ;
     crm:P108_has_produced <https://aa.perseus.org/id/thing/b091f044d6dfadee9739e956792a45cc57be51293ed7f5c92e5bafadcfa8082c> ;
@@ -31,31 +82,11 @@
         <https://api.harvardartmuseums.org/period/928> ;
     crm:P4_has_time-span <https://aa.perseus.org/id/timespan/adbf1144abcbd01b18eab3a2861317e74836ae8f0013160c757a07e99a5c0d10> .
 
-<https://aa.perseus.org/id/event/1c88e5c59cfdfa3e64067fe9e4e5dcc6fc0c1df1f15a80a58afeccd71d5dc0cf> a crm:E12_Production ;
-    crm:P108_has_produced <https://aa.perseus.org/id/thing/29ec9956f09fea7381d77ca7de0a5419825a160544a73c87117e3817e9451ed6> ;
-    crm:P10_falls_within <https://aa.perseus.org/id/period/155d949d240fdd0c271223128ce914cd34495bf27f1bf096a5df196e27cc53ea>,
-        <https://api.harvardartmuseums.org/period/906> ;
-    crm:P4_has_time-span <https://aa.perseus.org/id/timespan/29ec9956f09fea7381d77ca7de0a5419825a160544a73c87117e3817e9451ed6> .
-
 <https://aa.perseus.org/id/event/2a51aec5525fc56202f389138012b814ad36afb37750ec61cdda8c17beed2ad4> a crm:E12_Production ;
     crm:P108_has_produced <https://aa.perseus.org/id/thing/f9ee9fe042328c4eb9699692904d1714b2b45aedf67f7104657035665702e00b> ;
     crm:P10_falls_within <https://aa.perseus.org/id/period/155d949d240fdd0c271223128ce914cd34495bf27f1bf096a5df196e27cc53ea>,
         <https://api.harvardartmuseums.org/period/906> ;
     crm:P4_has_time-span <https://aa.perseus.org/id/timespan/f9ee9fe042328c4eb9699692904d1714b2b45aedf67f7104657035665702e00b> .
-
-<https://aa.perseus.org/id/event/2cbc4125a9f09191ec476557b914d41c35378d32bbc2c48ddb182c2b6b556926> a crm:E12_Production ;
-    crm:P108_has_produced <https://aa.perseus.org/id/thing/7ebaa51a1a496c5ada949b353f6ebee9ef9aa7f78f3d24b2188ed6577cabc431> ;
-    crm:P10_falls_within <https://aa.perseus.org/id/period/155d949d240fdd0c271223128ce914cd34495bf27f1bf096a5df196e27cc53ea>,
-        <https://api.harvardartmuseums.org/period/906> ;
-    crm:P4_has_time-span <https://aa.perseus.org/id/timespan/7ebaa51a1a496c5ada949b353f6ebee9ef9aa7f78f3d24b2188ed6577cabc431> .
-
-<https://aa.perseus.org/id/event/32e80bb953b87906fed72a5b11ad8217c574921f6dbf519f82d44612daec67d7> a crm:E12_Production ;
-    crm:P108_has_produced <https://aa.perseus.org/id/thing/79b667ea76cc2d61bb79eaccd56b76c341272d488923a8ae17d2da0eaa45ee4e> ;
-    crm:P4_has_time-span <https://aa.perseus.org/id/timespan/79b667ea76cc2d61bb79eaccd56b76c341272d488923a8ae17d2da0eaa45ee4e> .
-
-<https://aa.perseus.org/id/event/3454492cb7dc92cc7bc10edb024b0e59f336d58aae52ecc4595a2197dd20b4ab> a crm:E12_Production ;
-    crm:P108_has_produced <https://aa.perseus.org/id/thing/cb6e8c9bced4e5322c3c5a1f9d8388013948f864cec10eec11e68fc13f7dbd63> ;
-    crm:P4_has_time-span <https://aa.perseus.org/id/timespan/cb6e8c9bced4e5322c3c5a1f9d8388013948f864cec10eec11e68fc13f7dbd63> .
 
 <https://aa.perseus.org/id/event/364f91e3ecd874616a2c7bb0b1a97497822051aa026c25ad17ca7c5de646aa27> a crm:E12_Production ;
     crm:P108_has_produced <https://aa.perseus.org/id/thing/770c5ca00affbe3645f3d637e2971745687a56b0cade8d042e5636850583b23d> ;
@@ -63,23 +94,11 @@
         <https://api.harvardartmuseums.org/period/1419> ;
     crm:P4_has_time-span <https://aa.perseus.org/id/timespan/770c5ca00affbe3645f3d637e2971745687a56b0cade8d042e5636850583b23d> .
 
-<https://aa.perseus.org/id/event/36ab4669cd60fba963b9b9969315c88b1313c2390429049653fdf59dd07b9576> a crm:E12_Production ;
-    crm:P108_has_produced <https://aa.perseus.org/id/thing/86cb5ee159fd1a74dc8e0b5b88f03e9b0174c38716916f680f56c7d8065765c9> ;
-    crm:P10_falls_within <https://aa.perseus.org/id/period/155d949d240fdd0c271223128ce914cd34495bf27f1bf096a5df196e27cc53ea>,
-        <https://api.harvardartmuseums.org/period/906> ;
-    crm:P4_has_time-span <https://aa.perseus.org/id/timespan/86cb5ee159fd1a74dc8e0b5b88f03e9b0174c38716916f680f56c7d8065765c9> .
-
 <https://aa.perseus.org/id/event/37270481a2481e1c7a02969c76bd099553dbf35ec7224108d8fc3fe6ebbc4c38> a crm:E12_Production ;
     crm:P108_has_produced <https://aa.perseus.org/id/thing/1ee5a12158e988d36305f6d7ff7b1b74f9032108db7d968e1dc1be7ae9d24186> ;
     crm:P10_falls_within <https://aa.perseus.org/id/period/a2f2838e18f513892b490e8320890748989654d6ec6a6ce3d01df3176dcc7165>,
         <https://api.harvardartmuseums.org/period/928> ;
     crm:P4_has_time-span <https://aa.perseus.org/id/timespan/1ee5a12158e988d36305f6d7ff7b1b74f9032108db7d968e1dc1be7ae9d24186> .
-
-<https://aa.perseus.org/id/event/3ddac1aae34260235226e49b70da2831c8b2aba1f056be8178de27dd6bcab260> a crm:E12_Production ;
-    crm:P108_has_produced <https://aa.perseus.org/id/thing/4772495d033c0cb2f1384fa6d9d1226e0945d8937cf20195b31b8237d358def2> ;
-    crm:P10_falls_within <https://aa.perseus.org/id/period/155d949d240fdd0c271223128ce914cd34495bf27f1bf096a5df196e27cc53ea>,
-        <https://api.harvardartmuseums.org/period/906> ;
-    crm:P4_has_time-span <https://aa.perseus.org/id/timespan/4772495d033c0cb2f1384fa6d9d1226e0945d8937cf20195b31b8237d358def2> .
 
 <https://aa.perseus.org/id/event/3f25be6b7e3a5796ef13bb55d252142b000c1e6351c0096f847a4419a1f912bf> a crm:E12_Production ;
     crm:P108_has_produced <https://aa.perseus.org/id/thing/1eac03dcdd17cc37c2ca01697ffd25e2886212ce4335eeffde2d3a0c523cbc4f> ;
@@ -139,12 +158,6 @@
     crm:P108_has_produced <https://aa.perseus.org/id/thing/598ed352f3ca43007133acb78a30269135929a3d2ebdb735c0bf5618315a08cf> ;
     crm:P4_has_time-span <https://aa.perseus.org/id/timespan/598ed352f3ca43007133acb78a30269135929a3d2ebdb735c0bf5618315a08cf> .
 
-<https://aa.perseus.org/id/event/7e0b784dc2dcd4ce6561147d1b740e0ed84efb947d3667ede4984d8f5eca7dca> a crm:E12_Production ;
-    crm:P108_has_produced <https://aa.perseus.org/id/thing/a10dbb810854dcdd7ea7aaa63899c52befd503cf4b4e7915a0225a42fe2ff3ee> ;
-    crm:P10_falls_within <https://aa.perseus.org/id/period/155d949d240fdd0c271223128ce914cd34495bf27f1bf096a5df196e27cc53ea>,
-        <https://api.harvardartmuseums.org/period/906> ;
-    crm:P4_has_time-span <https://aa.perseus.org/id/timespan/a10dbb810854dcdd7ea7aaa63899c52befd503cf4b4e7915a0225a42fe2ff3ee> .
-
 <https://aa.perseus.org/id/event/839a0b9fc20bdddd5cfcc30dfdcca3caa0637417f1ae3bb76da79dfce9bbbe24> a crm:E12_Production ;
     crm:P108_has_produced <https://aa.perseus.org/id/thing/731ff3b238b8441a298a738d600aeef11bc76807491a076201fc424b0d2a844b> ;
     crm:P4_has_time-span <https://aa.perseus.org/id/timespan/731ff3b238b8441a298a738d600aeef11bc76807491a076201fc424b0d2a844b> .
@@ -166,12 +179,6 @@
     crm:P10_falls_within <https://aa.perseus.org/id/period/85661510fbaa8f3962539992f8bc299bc5290a0b8eaf121c70e64ae5d25837bb>,
         <https://api.harvardartmuseums.org/period/7373> ;
     crm:P4_has_time-span <https://aa.perseus.org/id/timespan/6e5a34929893f533f5b0ca1abd1fc1e93a7eef3df670d3816bd80d43506ac26b> .
-
-<https://aa.perseus.org/id/event/89393232e07fb42baeccdf9044ea9db8c7167ed0ab943f5e414e501423458532> a crm:E12_Production ;
-    crm:P108_has_produced <https://aa.perseus.org/id/thing/6d9f498d19c9dd87eb3e75c0697e90ba6875ce78451f94432c90df2aa4d0c428> ;
-    crm:P10_falls_within <https://aa.perseus.org/id/period/083f1a1495effa437b41a65005194208e35e3dc712d302f8e47f69d77b736430>,
-        <https://api.harvardartmuseums.org/period/2040> ;
-    crm:P4_has_time-span <https://aa.perseus.org/id/timespan/6d9f498d19c9dd87eb3e75c0697e90ba6875ce78451f94432c90df2aa4d0c428> .
 
 <https://aa.perseus.org/id/event/8d2052387189266672790b7f67d4f28ac090538e4efaac5c66db86ded839a04e> a crm:E12_Production ;
     crm:P108_has_produced <https://aa.perseus.org/id/thing/36c609de8fc9e71d227533e19ad33d17c7354cb6cfc430217cd5bef3e1217a2c> ;
@@ -196,12 +203,6 @@
 <https://aa.perseus.org/id/event/a42ce2e471209e95218475a22b202f9eea8b9830bde628a353475027c02eb968> a crm:E12_Production ;
     crm:P108_has_produced <https://aa.perseus.org/id/thing/1eb2de2bf6b16b564f1d45ab295b69fbc2437f61bd1fac3e210384f81f778d5c> ;
     crm:P4_has_time-span <https://aa.perseus.org/id/timespan/1eb2de2bf6b16b564f1d45ab295b69fbc2437f61bd1fac3e210384f81f778d5c> .
-
-<https://aa.perseus.org/id/event/ad6f8c830e11b905c677bb320f36d9ea504939b6f14dc5fc67177516db843385> a crm:E12_Production ;
-    crm:P108_has_produced <https://aa.perseus.org/id/thing/b076c3d39b8387579f1e8ad0daa5e6e546b281bf2e3342af6f09a29e92f795ac> ;
-    crm:P10_falls_within <https://aa.perseus.org/id/period/8bdaa64863dbdfdbb1c5148f0192d0afc1d729047a717d6a35ed3ec3355ed1ec>,
-        <https://api.harvardartmuseums.org/period/416> ;
-    crm:P4_has_time-span <https://aa.perseus.org/id/timespan/b076c3d39b8387579f1e8ad0daa5e6e546b281bf2e3342af6f09a29e92f795ac> .
 
 <https://aa.perseus.org/id/event/aec2394eabbdcc7bcf9495e5fd9db0eeaa47485c9f3a10a3f03198b2d37659f6> a crm:E12_Production ;
     crm:P108_has_produced <https://aa.perseus.org/id/thing/56c98dbefc8bdb0cfa091e541bb46f732a5523a490a7c7779ff27617c928617e> ;
@@ -254,12 +255,6 @@
     crm:P108_has_produced <https://aa.perseus.org/id/thing/d835fbc6b304282d96039d0764ae3ee327e08c818b53716f4842a072eab309e8> ;
     crm:P4_has_time-span <https://aa.perseus.org/id/timespan/d835fbc6b304282d96039d0764ae3ee327e08c818b53716f4842a072eab309e8> .
 
-<https://aa.perseus.org/id/event/e4fd811cf3882d1c2b00369345779909af9a08022b3272e7cd4e3646de67193c> a crm:E12_Production ;
-    crm:P108_has_produced <https://aa.perseus.org/id/thing/683e4b2b181edc2cf5fac870958d5c5dee4ff75aad2d129a25bbef54bb1c4046> ;
-    crm:P10_falls_within <https://aa.perseus.org/id/period/155d949d240fdd0c271223128ce914cd34495bf27f1bf096a5df196e27cc53ea>,
-        <https://api.harvardartmuseums.org/period/906> ;
-    crm:P4_has_time-span <https://aa.perseus.org/id/timespan/683e4b2b181edc2cf5fac870958d5c5dee4ff75aad2d129a25bbef54bb1c4046> .
-
 <https://aa.perseus.org/id/event/e6b4105e213ba064c0ceb40c4447ff4c472a87d3d65579943b986923211a1277> a crm:E12_Production ;
     crm:P108_has_produced <https://aa.perseus.org/id/thing/4f0bdc808b850858de4d2b13e4e16e3ee59cc5602857ef3ec86ab84d26cb09e2> ;
     crm:P10_falls_within <https://aa.perseus.org/id/period/a2f2838e18f513892b490e8320890748989654d6ec6a6ce3d01df3176dcc7165>,
@@ -271,6 +266,540 @@
     crm:P10_falls_within <https://aa.perseus.org/id/period/f3f417a231e2cdd8bee06b44b5733b63d9dd83e84af002966174ce8ddfe2d7a0>,
         <https://api.harvardartmuseums.org/period/352> ;
     crm:P4_has_time-span <https://aa.perseus.org/id/timespan/60b2e08690c5fb978944689e6af9048e2cec5a5ef36c0d213b005dc8355b6361> .
+
+<https://aa.perseus.org/id/digital/03fdec149daa8dc4ef691a2bd36c84dfd1a6652940381fd5d363d8d33e1e3e6f> a la:DigitalObject ;
+    rdfs:label "The vessel has a tall neck, shallow rim, two horizontal handles and one long handle which connects to the rim.  In red, black, and white there is a scene in two tiers.  The lower tier is bordered in ivy and depicts a man with a lion-shaped headdress holding a complicated object while three figures look on.  One figure wears a helmet and holds a long stick, while the other two characters wear robes.  The upper tier has 6 men in helmets and armor who run while carrying shields and spears.  The rest of the vessel is painted black." ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:DDC252725_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/4e431a6640b0eeb6c670ef290fbaf1e0ef086937cc240b324370020f4b98ce1a> .
+
+<https://aa.perseus.org/id/digital/04a25e970cb6df05579410bb602036a4e71fa600d4114c3a3844351e044e9f6a> a la:DigitalObject ;
+    rdfs:label "Image 161616" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:LEG24134_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/1f0224d42740fc4e8f83e83e7fff79fa40ca2719b090bdde6bfca30c43d97df1> .
+
+<https://aa.perseus.org/id/digital/06967edf100c2f8c869ea13ede70a2dbd8d1638c3db519c8be902430ff946679> a la:DigitalObject ;
+    rdfs:label "Image 1424" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS11283_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/d6ef2d2067571076fd5476dc246c7316544f6d4e9b5e6e8f1fcc5b72a7d6b5dc> .
+
+<https://aa.perseus.org/id/digital/06e02ee7666b95354083be5b7011781667bb6b931bc48f400bf723c0292591e5> a la:DigitalObject ;
+    rdfs:label "Image 98795" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:CARP12072_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/a9dcc258eb2187a5adc72c60549c7ba9c0f1234db20c7ac2c639311681e0607c> .
+
+<https://aa.perseus.org/id/digital/083edc2711ee00f6580c5b05fc2bb063a6da3f544ca446fcb4d518b8ce0c8d0c> a la:DigitalObject ;
+    rdfs:label "Image 87517" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:78937_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/0190ee3fd9ae948a7ed989589577940bbe0662129c53b6884ddf2d4b254c764b> .
+
+<https://aa.perseus.org/id/digital/0af5b10d99f3678496d607b2557fbde50ef200f4f01c436f56f1a0850482397e> a la:DigitalObject ;
+    rdfs:label "Image 144611" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:huam:COIN14255_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/9eb199429d57ae57bb7521fef4d4e16354211dc46bc7157896cd513db13b4475> .
+
+<https://aa.perseus.org/id/digital/0d3c4a2455903002cf3df75fc655a6f2164a6ef8556415c0809df54ea153878f> a la:DigitalObject ;
+    rdfs:label "Image 1262" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS10541_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/85e33103cceca680a4a929a53109e4dde5c4492a3ade68dca5db4b279ea5e595> .
+
+<https://aa.perseus.org/id/digital/101e36f851e28b0f2fc21e02ea061645e644480484d800eeee5a0fc23a33f292> a la:DigitalObject ;
+    rdfs:label "Image 152" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS10594_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/e544e62e1d2008a82983a7b2106eeb4f7a00dad537f09bf70683aa3bf501697d> .
+
+<https://aa.perseus.org/id/digital/136fbf04ee2bfb6a7d77e54a2f26af2cf13e96616b209bc288c6ca1a6b549734> a la:DigitalObject ;
+    rdfs:label "Image 175705" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:INV044195_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/eb5d60d4b083cf0576f45cff4c19094de3cf383e3a63582d7a0e386ea495b391> .
+
+<https://aa.perseus.org/id/digital/169d818fa04d19bd03ae2f4b6f40e50ac450f036e72e16e0af377605b467daea> a la:DigitalObject ;
+    rdfs:label "Image 196075" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:INV108366_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/f4851839d61ba45a7ef41f23405582cda51eaf1eb0903d31291d82d0765a0cab> .
+
+<https://aa.perseus.org/id/digital/188e7caf6ef60e4fbb6d6df01611936b79e98dd9ac8cbf66dac0b5e28f070ce6> a la:DigitalObject ;
+    rdfs:label "Image 193598" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:INV107139_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/e3d64507e810e276924fa15014b71a425eb38f96d806347b228f26211769e57a> .
+
+<https://aa.perseus.org/id/digital/1aaa18d8e4a0f386aa89c5b2565910dca1def8463c0c4d9d307ccbcd43e2deea> a la:DigitalObject ;
+    rdfs:label "Image 127533" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS34479_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/405895f7b5daeb7d2fd523b14f1ccf7c50abd120a1c446146339d5a7cd6c05fd> .
+
+<https://aa.perseus.org/id/digital/1b646b816e5cd2ee03fdbbef6e09200e15f9e9cc07e4c1a9eb0c9b8801508ef3> a la:DigitalObject ;
+    rdfs:label "Image 40005" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS86769_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/989da18468e069bc69e213317016295876ec524769b789a204fe59c6b86cba9b> .
+
+<https://aa.perseus.org/id/digital/1e518a5ca1adcc65c0691c7f3cbf686ac7a951c9e97f2c5b982172c252f4bfc9> a la:DigitalObject ;
+    rdfs:label "Image 526506" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:779615> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/9bc80034707181ca382cb5534e2deeb5948ce4f3277d6abfdd67c313dfc6d15e> .
+
+<https://aa.perseus.org/id/digital/1e53309ac111539aec552d79b550ca28395d14a13ace8087b74aedd1e8496585> a la:DigitalObject ;
+    rdfs:label "Image 196682" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:INV108924_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/523bb2cd4f6bc1e0b75faf1cf18b9bfebbf3b5b128194256a69271bf01dc9e24> .
+
+<https://aa.perseus.org/id/digital/1faea30793d476999b587ee88a31578216db6cf1ed1c80d9d243c77cf4cb9128> a la:DigitalObject ;
+    rdfs:label "Image 131543" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:53511_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/6f4c23fd2dc889e62ca5c55f99e4309e557d4febc0be611c8b00f9f85f46e274> .
+
+<https://aa.perseus.org/id/digital/20a0b510aedbad7a8de6f783735425bff51c917943a221d3a12073d9c048051d> a la:DigitalObject ;
+    rdfs:label "Image 105176" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:huam:COIN14253_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/2434cab7a360d863f094467c28156665646130b3b8be320e66d4352d0ad695fb> .
+
+<https://aa.perseus.org/id/digital/20f89ef2fc72810f31fdfb0f900043cfce76c4bfbedce50f55e5a9864f377d6d> a la:DigitalObject ;
+    rdfs:label "Image 433474" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:DDC253403_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/ed294b109ead4a6abfa76d80f2d448575c4fbebc0f55c85e5277dfb970dc0cef> .
+
+<https://aa.perseus.org/id/digital/222e114f81c473abc958fc5c84a1aaa53fdbcace32c2013b2c1c60f17b25bd3f> a la:DigitalObject ;
+    rdfs:label "Image 1248" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS10470_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/855708de4afaa985eae97e9f9945986e1d0ea8c99d878934c92ed1a795e3be48> .
+
+<https://aa.perseus.org/id/digital/2734e6e6d3eb71694400207ba6f251bb358a7c1d41baba7e250c7685ec9370df> a la:DigitalObject ;
+    rdfs:label "Image 441670" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:STR017723> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/e6295fed815db7032e3992877710679af3da2d2ae4a82ca21834a5d0621350f4> .
+
+<https://aa.perseus.org/id/digital/2acd84f24bdfdae10022165a011065c48ac36d3a0c37627867f62ecbd6b2c32c> a la:DigitalObject ;
+    rdfs:label "Image 40964" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS89266_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/8a0f8407151e405e9a746a767aa8e18e2c6a4bc42bc70007a48d129fad879e0f> .
+
+<https://aa.perseus.org/id/digital/3162c0258fc23de977bdf7b5c50c93da6e42bb802bbe9c1af40dd8e6bb7b50ae> a la:DigitalObject ;
+    rdfs:label "Image 24658" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:78940_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/8d2c410080b2da9e7705ac38480463fa9c34c3f39adb27c3fae28b5310731e18> .
+
+<https://aa.perseus.org/id/digital/3219310357e95f83f81522c958f35c80d7990d1b11a47ec31ec35384296af969> a la:DigitalObject ;
+    rdfs:label "Image 125987" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS17907_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/899330350d5ed064814d2646740a749920dbb12d8347f1d1e74400229fc18d87> .
+
+<https://aa.perseus.org/id/digital/321b85c75c7a73ed0331b8180b6bacf103704e224c170530f5ac6b4e0e481d5f> a la:DigitalObject ;
+    rdfs:label "Image 85394" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:74123_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/02abefb58071cc7de1f8753437470982c592b766a79ddf5d8f3f636f735191c6> .
+
+<https://aa.perseus.org/id/digital/325e022a397a44ca6674ab327ab7496b616d6d3f959602887f7f2baa35e04708> a la:DigitalObject ;
+    rdfs:label "Image 157558" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:INV033053_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/cdfcff185b86e0e543603db0032621f0a4a973e5abecb9d668cd240813b8b680> .
+
+<https://aa.perseus.org/id/digital/3322d3752a5e3d50d7cef337367373021a648a9ea33c47dd4b8575b6d15e43a3> a la:DigitalObject ;
+    rdfs:label "Image 126341" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS19385_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/78c3dabbf79008d5205acd99b563bd4bf121289cf36459ae4df11b8bc7730fc2> .
+
+<https://aa.perseus.org/id/digital/332816304e2b2823cedde5027fb14d24139f2d47b6249f6a7939294d414b603b> a la:DigitalObject ;
+    rdfs:label "Image 196540" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:INV108782_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/22e7d49ae1cf976545425daa60d2fcdb7ef5098527fd2166554d924e1a49ac07> .
+
+<https://aa.perseus.org/id/digital/36d5aff3bfe77226aa3529a97ab38d1047ca54110ac79a4986b1f899bb4430d2> a la:DigitalObject ;
+    rdfs:label "Image 443329" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:LEG253117> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/738c34cbbf7217bc23b4412f981c27c676c60c6e09f23df7f549c94e015f4a47> .
+
+<https://aa.perseus.org/id/digital/44001ab097eaffd81a154c93755e75675bd53be2cf20b9aba48b97f9c45f0838> a la:DigitalObject ;
+    rdfs:label "Image 195856" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:INV108193_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/cfe620ed7ab67a1e597f18cd0342ea0b374f92c499ed7fb8ec0b65b74ce09458> .
+
+<https://aa.perseus.org/id/digital/4f1f7b52e233c94b80dfa7b2a892b4b55f26b64eb64ed83291b53a95ee6cf256> a la:DigitalObject ;
+    rdfs:label "Image 133553" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:72515_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/af75a2a86ff9d9f0e0606bef9146b387bda371549f2dba52014c87bf8bfc6c35> .
+
+<https://aa.perseus.org/id/digital/4fe997a026637832cb4fd774b64c229ddfc0bbf19e05e77f3c50d1607935c0e9> a la:DigitalObject ;
+    rdfs:label "Image 40003" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS86766_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/bb2f57a43e981244ef6823fee3182077d0f0f2fbe82713b9bd7d7f63e46ca2b4> .
+
+<https://aa.perseus.org/id/digital/527016d757c793150acc0ecf04ca49c868f701053f7c1d905e15ef3c6554fe37> a la:DigitalObject ;
+    rdfs:label "Image 34972" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:74122_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/95d2901dee58812fe68351c393a96bd5543747081659ac80f35066372fb0afd8> .
+
+<https://aa.perseus.org/id/digital/57a0fbc548186b596c89a735e1188d1f9634670efe69620f13d3288364fc0cea> a la:DigitalObject ;
+    rdfs:label "Image 126339" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS19376_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/f89c834c1baf34163d162d24656ae8a2f02499d34404b2a4264c88e84b4d4b1a> .
+
+<https://aa.perseus.org/id/digital/59bd342699f6208c90d6e707ac824af41db2285ffd98ef79ca17b32ad3888aa3> a la:DigitalObject ;
+    rdfs:label "Image 1094" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS11280_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/2ba66008623fdf25170b98aea5eacc368b5e48e46c279f31379d7a8125bf1b1a> .
+
+<https://aa.perseus.org/id/digital/5acfe6ad0fb952615689fbfcaba561770dab6ef88b58785da00098af3bd861a5> a la:DigitalObject ;
+    rdfs:label "Image 24657" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:78939_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/556b01043abcec3fe5ea3cc0c3905135e945942b4751d05d8362069ebc3f5d60> .
+
+<https://aa.perseus.org/id/digital/5c478281cb9a6430a459672cdc5a94474efbc0d46b70bbe5c304528008cf0c65> a la:DigitalObject ;
+    rdfs:label "Image 35300" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:CARP12070_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/67d0c24b6fbc372bfb3a755b7478d22c0149f0a8aa5708ab68c9211720bb9abc> .
+
+<https://aa.perseus.org/id/digital/5d93b6bfffa397d449234264ecb268a3edd6d0ad8bd813373bbc17c187c3293a> a la:DigitalObject ;
+    rdfs:label "Image 348798" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:DDC107959_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/1089c0afa606fa9dbf1cf23baef710b3004017393f7683e8c20d905e7d680f06> .
+
+<https://aa.perseus.org/id/digital/640d6ac6eb1bae9f12ea99ce5f2c35ae216d556939d1b4bbdfe73f5dedff655e> a la:DigitalObject ;
+    rdfs:label "Image 35299" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:CARP12069_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/5ab4c58cdccde4690786afea5c9f90896c5c8f8cbad6d146212ca1a645fd6e63> .
+
+<https://aa.perseus.org/id/digital/65f6c8458364c08fe857434f6c710213a6d62e408c31eedee829530e8c1ed930> a la:DigitalObject ;
+    rdfs:label "Image 131594" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:53733_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/44c8022221aeaba4ec7fcc23c3cf310a0d44ad2b6b4d09b0de9eb7589f6beafa> .
+
+<https://aa.perseus.org/id/digital/68298c09a5178a772079b9e11d367519e69daaac43fa5046ee755310ee6868d3> a la:DigitalObject ;
+    rdfs:label "Image 526503" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:779612> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/8bdcef0da4a65ddd9fb681ae60600e399df5b19ef63b9ed5f83901bb8c54b4c1> .
+
+<https://aa.perseus.org/id/digital/6dee2cd0ef4e7fa31395419955c0a822fb96da6eb0f1872a141de06d1c720d82> a la:DigitalObject ;
+    rdfs:label "Image 196434" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:INV108699_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/6505abcbc0da789690c3ec9723d6ff2eee7463b36673ebb751f56aa83aeb179e> .
+
+<https://aa.perseus.org/id/digital/6fecbf5a8d9f2bd28c91550a0d033a0b29e97000dca5aaab79c1a1db316d84ba> a la:DigitalObject ;
+    rdfs:label "Image 17459" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:53731_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/91e679326f886697bdc7ac857efaf21227b161bad542ba48b207a376cd1c3380> .
+
+<https://aa.perseus.org/id/digital/75a38cb5cd79952f934b6a7379c8e20314b373e6afd2546ce68acc71e971e82b> a la:DigitalObject ;
+    rdfs:label "Image 188" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS10696_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/3a9473c7e8d700b8f1974f6cfd89bd89da160cb137c60df9b5bec855729c694b> .
+
+<https://aa.perseus.org/id/digital/75c6b67dd1270df861572fd12eaf62281b0be44c40ff37b57fa620842e68882a> a la:DigitalObject ;
+    rdfs:label "Image 125986" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS17906_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/7661e6773ebb8b5fe03014b3cc6549231d6e9b5d63eba71439784cd84be18892> .
+
+<https://aa.perseus.org/id/digital/7722ed0722b211d6a1a68361f6ec2a659c9201dbd93540f4db80ccf40632b0df> a la:DigitalObject ;
+    rdfs:label "Image 140547" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:CARP12535_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/14e7a8ef0b2057411575baacc179784a8cf154063ed9c026eb3c262c1bcdfe36> .
+
+<https://aa.perseus.org/id/digital/77a4e56f22cbc3d6e17d672bafd8530202651308eaa57fab3004221b326b3d33> a la:DigitalObject ;
+    rdfs:label "Image 25584" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS20709_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/7d5929c0e431537f10347a5a28d9e93c6079ec13a103039ab1d3d38a5c08d524> .
+
+<https://aa.perseus.org/id/digital/77f62f5c88c87c07115415907902f3a7ff6470692b6f91044cf28fbbce68fda1> a la:DigitalObject ;
+    rdfs:label "Image 196489" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:INV108731_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/eb504547d6c08f3168032c11897d76c83f2c00f5fcffebc4d31a20626c0432cc> .
+
+<https://aa.perseus.org/id/digital/80c1ec0ceac1a0d312006bd9b27b11ed3635f8bb3ebb354c6548f4f8146ad437> a la:DigitalObject ;
+    rdfs:label "Image 418112" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:DDC248231_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/f9ef1949b106dea0edc0d38f4e7cb5fc2a3295a23990f178a8f3adc6ea28c20f> .
+
+<https://aa.perseus.org/id/digital/8216786a60dbbb667e0d9702ddd89d72afbfb8a21b106d3030f41894b9941422> a la:DigitalObject ;
+    rdfs:label "Image 193891" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:INV107231_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/126f8fab709697cfe06cfd726af85667204e9bd60e37384a5ca1e66b64be77a6> .
+
+<https://aa.perseus.org/id/digital/8d4f5a9a52d7386c31cfacebde7086e77653b35a9013a50503dcc7b86de6bad6> a la:DigitalObject ;
+    rdfs:label "Image 196536" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:INV108778_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/f69e3bf264d7bc086a642e843cbe2fba6488ac05186f7c97ae24e7dd4784a2ec> .
+
+<https://aa.perseus.org/id/digital/8eb4719f93b8fcfcf8926856269d41a884ac2aa78426df4ec9eaeb68e8c96c15> a la:DigitalObject ;
+    rdfs:label "Image 427706" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:DDC251042_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/f80abc27258cc1a40f48ea557a2f790b94c9f7e7dcfbd43aca13e27184298ff5> .
+
+<https://aa.perseus.org/id/digital/8efbd2f4d21e074ad502f99274135808d9b2d3de94d8ac1d58d650606bb1c2f9> a la:DigitalObject ;
+    rdfs:label "Image 40002" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS86765_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/7bb4da81fd9381ad10193c3ff3ecec2c8b157669137832a72f62a57faed231e9> .
+
+<https://aa.perseus.org/id/digital/909672434d4a07fdb482b35c060e901cf54fcc4625bf73b8a3dab63667132953> a la:DigitalObject ;
+    rdfs:label "Image 526504" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:779613> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/cbf37e546daab51777d016673f26e2602f862836197a0775fe6745525db398b1> .
+
+<https://aa.perseus.org/id/digital/923116f5f8b57586444b090abad16eabbcd58d1b10612bb02f4cbf373ae8dc65> a la:DigitalObject ;
+    rdfs:label "Image 140197" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:CARP11247_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/552baad6f5ceec604091ad97d48b7ded969863cc245f075fe71ddd9dd26ac9b2> .
+
+<https://aa.perseus.org/id/digital/9441f2618b75282823ad59f1649741c21c93da13836185303966d442f325c1ad> a la:DigitalObject ;
+    rdfs:label "Image 53683" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS60039_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/42408e3878e9d0ebb3239c0e8cc33ceb0bf28a33d0ff9e5310edc4f4af36cd32> .
+
+<https://aa.perseus.org/id/digital/96debbc48f2fbf106350a0f218457aa86a844bfa6b23d7df7714f10de356155e> a la:DigitalObject ;
+    rdfs:label "Image 126340" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS19377_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/b3fc1d1b2cb2e854194c2b63842b1a977fc8a984aa0b16f1bc02d439b3ae8ce4> .
+
+<https://aa.perseus.org/id/digital/9d7a8f84e7d53137dd1b65aa6dffc7ac9a0d7a3de8cf03c6ef3f172495faec6f> a la:DigitalObject ;
+    rdfs:label "Image 6658" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS19386_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/a27b843d43223c25e18c774626cbd0c63dee35c9f1a3ff9d7c2c25862419164e> .
+
+<https://aa.perseus.org/id/digital/9e049feda43cff4d2c1b1ad4bc3e73bec44506ef45672134a4d8e1a1a5701ed0> a la:DigitalObject ;
+    rdfs:label "Image 9383" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS34478_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/3e7322449443ce7f6eec2194f27551436ac51c9f1927e5238faf5e39a6886b82> .
+
+<https://aa.perseus.org/id/digital/9e495d9ebb83672caa1470cef4924360ec94cf85686964968d61d814b554e074> a la:DigitalObject ;
+    rdfs:label "Image 44491" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:huam:COIN14254_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/5cf15241cdabf0a374adfa8e050f95922b419aeaea7b42f3f5a8c3b841337878> .
+
+<https://aa.perseus.org/id/digital/a08fef06c93441e6771c4c5f60a73b023830adb0f356d65e3ec91ae59eadcee0> a la:DigitalObject ;
+    rdfs:label "Image 131438" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:52050_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/89b3a59680ef7ad67683c402f123f3532ba6461d5332f34b2ebec1cda89fb95f> .
+
+<https://aa.perseus.org/id/digital/a21c0b137e735c7a353d7089900ab9caeaf1b7d426eb77143947c50da2bd0cb6> a la:DigitalObject ;
+    rdfs:label "Image 126582" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS20712_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/bd5f00da8e9a8850d03fcfa7732f7ca6466f609032679f0ad982e652194b6c65> .
+
+<https://aa.perseus.org/id/digital/a5dfd1b95204caa620120a64a6867fb1ec063012bface48b5a689c80297716a0> a la:DigitalObject ;
+    rdfs:label "Image 1090" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS11266_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/e7fcee8322550923a5a2d4bf700045c0247eefd4cd0878b63549c17ce99234d7> .
+
+<https://aa.perseus.org/id/digital/a6301a04458f486d493af420e56b4043c9de42d9d3946a9cfa2883b5b9688362> a la:DigitalObject ;
+    rdfs:label "Image 127532" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS34477_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/67e64a7454af33f75d117a3f98c79fdc2502b64950c54b107be254f4f40b2499> .
+
+<https://aa.perseus.org/id/digital/a6f29df41aa12136f5de083afad88357ca4e41c8f3632e830e7154222832b9c2> a la:DigitalObject ;
+    rdfs:label "Image 526502" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:779611> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/01b2ee7f3bcb978d6ed0198df9211d11cc90984c5ef44c3f15d77631618fae48> .
+
+<https://aa.perseus.org/id/digital/aba04903257e6e1e6b1815d31b82be5a8cccd6e18fed6b1cd6cc2640bdbf334f> a la:DigitalObject ;
+    rdfs:label "Image 331" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS11279_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/ea8d5bda43b3f7a8223a23a3fc4eda639de26f4599ccadf6a07846e88e5bb708> .
+
+<https://aa.perseus.org/id/digital/b29e6003d47c765c121abe769ef339cfefb5cc545bf629ee6b8186ee2e30ce96> a la:DigitalObject ;
+    rdfs:label "Image 83985" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:INV024246_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/e9c66dfb616de6434748d402fabc7118fb767791f38bc15bcce624d87ba84b3a> .
+
+<https://aa.perseus.org/id/digital/b64b2a2d8128e6a9065cf7eb2d129732fca6d6949d97e5b1eaac4b33cf172cea> a la:DigitalObject ;
+    rdfs:label "Image 136565" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS86770_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/1515c282db316909f2a5f862471014fe0233b35afd6f54e7a07060b2182bd38d> .
+
+<https://aa.perseus.org/id/digital/c57b70175456b6300312dd176b95ebae79ddc95be46d655d159d651fee1a5288> a la:DigitalObject ;
+    rdfs:label "Image 15678" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS42384_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/b84c6dde6063dc4473ecb8f5f3c4ef986b9f182376adf648573a6a106b875922> .
+
+<https://aa.perseus.org/id/digital/c5e451f378003e020d3e088adc6b05c8377c5399802876696db9663d95442a72> a la:DigitalObject ;
+    rdfs:label "Image 1095" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS11285_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/8a8ed243aad7de26141d1624ce937e8926a1f6172d30a6f8265f6eb31e855b63> .
+
+<https://aa.perseus.org/id/digital/ca676beee2b8b9475c26e971dca1682eb85e865ee07905b9f66e0482fb2492ea> a la:DigitalObject ;
+    rdfs:label "Image 167563" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:INV051336_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/92e1de9e0755d2b53d7df483bd39675d335682b3f965b5b65dc6af823ff6702f> .
+
+<https://aa.perseus.org/id/digital/cbb106aa5133d3088e93c4592759bb5fa3863fb1b3b72b40c1ab3a31ec016dfb> a la:DigitalObject ;
+    rdfs:label "Image 40004" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS86767_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/7f1365f85d1df2a81eb4efdaa3bfc37adc0bcd9c00924c00dcf30d507bb92c60> .
+
+<https://aa.perseus.org/id/digital/cc8288cdb4bc8c543d28edf44729412675dd170f278b6e29b9ff58d9a1aa8aa8> a la:DigitalObject ;
+    rdfs:label "Image 5828" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS11278_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/f933d4e95fe8bab0763c614714877c34059bfd55982eb56dfea3feb8903a0078> .
+
+<https://aa.perseus.org/id/digital/cde421f653e183f09fe5e898e5eebdc743976cf964f058b26656380efc86406a> a la:DigitalObject ;
+    rdfs:label "Image 441530" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:STR017811> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/85c220b3a8464eef59af5640a912939576410ed4ff5043d7654ee8ee1205ffbf> .
+
+<https://aa.perseus.org/id/digital/d095ef0d891937db8fe0ee6b347dcee688049ded7faccb820a83f94b30d1d585> a la:DigitalObject ;
+    rdfs:label "Image 6809" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS20711_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/dc76ab5abf974df566a500e1ad4566162af284565fbf272a2a73ac5b256f21cb> .
+
+<https://aa.perseus.org/id/digital/d412ed83d244421e4f6a1f2cb2cc6df4c0f089abb5478c1e790d4f2f44ee37fb> a la:DigitalObject ;
+    rdfs:label "Image 5963" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS17905_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/700a7ff80c072c04d59e8c0c92162e896d87bdbfbb4b2daa9a99aa0ede52f62f> .
+
+<https://aa.perseus.org/id/digital/d7a19f8461add81795e65411de020ae9e516af2c86ca637a3c61a41b53ee082d> a la:DigitalObject ;
+    rdfs:label "Image 526505" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:779614> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/39dcdb8694bf720a0da55a5e638671c01dfbf6bdb3f0c693775374b32e1a4eaa> .
+
+<https://aa.perseus.org/id/digital/d7ff06f5e68e3e5afe7a12b3394d3b0012d0a587b7c1b10c8ec67863441e47d0> a la:DigitalObject ;
+    rdfs:label "Image 40965" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS89267_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/79ab1115f14b02b1d09728f7d3a1e16aa5244c869a06c3035cfc586ec5ed701f> .
+
+<https://aa.perseus.org/id/digital/daab95e22e1a742859f4fb14471bf512938c5ee4c20144ebab6fb6318ab3ed8f> a la:DigitalObject ;
+    rdfs:label "Image 98633" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:CARP11338_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/9355c233a7b3bdb304b24a5ae00f6ada4cffc2f67e5157c2044eff1aa8d81d33> .
+
+<https://aa.perseus.org/id/digital/dccdf2af47136aaaee241c8f999aa2e81e3ae540121fd947ce6bac314948bedc> a la:DigitalObject ;
+    rdfs:label "Image 77906" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:LEG23505_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/326e7960b8b75ec99275eb77fee631ba0a8753fb29e56c2cd924f691ac55a1ae> .
+
+<https://aa.perseus.org/id/digital/e122d567d56be683d3bd35e0e896743886cc06e35a47a61f93244f5482bcccc8> a la:DigitalObject ;
+    rdfs:label "Image 36922" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:78938_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/92204f9f637574cc311bdd661b61740396fb43e2c423cf20adde1c5200ea98e6> .
+
+<https://aa.perseus.org/id/digital/e31fd37ea126155cbca818c40cb5eb910d00f3e6dbe1fd821d6a056599780f37> a la:DigitalObject ;
+    rdfs:label "Image 67354" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:INV027785_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/0258f56f94c08064b3fb901c1356f911d579569f166aeed37e8af338e3b41329> .
+
+<https://aa.perseus.org/id/digital/e5b539d11b806268e6cb5ea795e643b98f5841c1ba9cc0dd9fc3d61e8a25a999> a la:DigitalObject ;
+    rdfs:label "Image 298659" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS95602_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/88dca320a02a50622825fa5b6633c5dd270ac9f1faffe3061a3b23c79bd24add> .
+
+<https://aa.perseus.org/id/digital/ec36e35a98fe3e09a6a89b0f2642af38895f1445000dfb979de7093c1fa2f661> a la:DigitalObject ;
+    rdfs:label "Image 27109" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS86764_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/1e3ca0f913ff83034a9bdf5d1f7ee8bf96e23dae5f42c4ebf1beec0f6a19545b> .
+
+<https://aa.perseus.org/id/digital/eecaddc2c640663e678c0d2aa0e8ac5325d5ed63556dd9e61462d2a4f0656c8c> a la:DigitalObject ;
+    rdfs:label "Image 6278" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS19384_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/835307d6941e7a9573fcdfe33cc657b48361bb823056f57f6b226d631100f0ab> .
+
+<https://aa.perseus.org/id/digital/eef9b0ea6a26afd754858ec530b49bb1e609542356ddf2c848c37277394eb37c> a la:DigitalObject ;
+    rdfs:label "Image 96541" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:LEG21059_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/5fe706b337ad0f15d624e9e08ef296b25d9cc306e67a2eea06e28d5f3481930b> .
+
+<https://aa.perseus.org/id/digital/f9c95379903c2d63c4ff12e555cc704364829ddbd811aab42be902db10dcb579> a la:DigitalObject ;
+    rdfs:label "Image 917" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS10551_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/71819cedc8166e55ce510acffb09f3c9592874d45e873ad0a230e4b81cfbde7c> .
+
+<https://aa.perseus.org/id/digital/fa963259bcf28038f1620916ef67526331ad2f0caffc277ca467979d8a7d37fc> a la:DigitalObject ;
+    rdfs:label "Image 24243" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS17908_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/2e73170e10acd98b4315dd8fd52fc80e20d5a7238f97032bf40a78a95d63e718> .
+
+<https://aa.perseus.org/id/digital/faffabf19a875322b1879c3eeb1d64a52ee434404365353713f8158a71b89d97> a la:DigitalObject ;
+    rdfs:label "Image 98794" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:CARP12071_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/2545eff13841279e6d82ed33a5fbe50914dede8551322baec027f86f47721f44> .
+
+<https://aa.perseus.org/id/digital/fbaab107cf33856a79dcade1e12709500cfc0ebe2a507ef7d43d9cc74d759cc0> a la:DigitalObject ;
+    rdfs:label "Image 5688" ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> ;
+    la:access_point <https://nrs.harvard.edu/urn-3:HUAM:VRS10760_dynmc> ;
+    la:digitally_available_via <https://aa.perseus.org/id/service/iiif/a07f4a2e547dd3c81fa61342d9c583e3b5303b2c06528e421e202237bf7f04a9> .
 
 <https://aa.perseus.org/id/dimension/0754e2f2220795020dff66df2fd9b42cd519d54bc244a4d8502da8e996d07a4b> a crm:E54_Dimension ;
     rdfs:label "Dimensions"@en ;
@@ -432,6 +961,13 @@
     crm:P2_has_type <https://aa.perseus.org/id/type/e5cdcf0bd138b8f0a5c2ac4e4c835d3884570fb9bd050758273fa134670d98fc> ;
     crm:P4_has_time-span <https://aa.perseus.org/id/timespan/f445f4694ac5adc0f5733f9711582704958c25384103183f870912b29b20e777> .
 
+<https://aa.perseus.org/id/event/1c88e5c59cfdfa3e64067fe9e4e5dcc6fc0c1df1f15a80a58afeccd71d5dc0cf> a crm:E12_Production ;
+    crm:P108_has_produced <https://aa.perseus.org/id/thing/29ec9956f09fea7381d77ca7de0a5419825a160544a73c87117e3817e9451ed6> ;
+    crm:P10_falls_within <https://aa.perseus.org/id/period/155d949d240fdd0c271223128ce914cd34495bf27f1bf096a5df196e27cc53ea>,
+        <https://api.harvardartmuseums.org/period/906> ;
+    crm:P14_carried_out_by <https://aa.perseus.org/id/person/20540> ;
+    crm:P4_has_time-span <https://aa.perseus.org/id/timespan/29ec9956f09fea7381d77ca7de0a5419825a160544a73c87117e3817e9451ed6> .
+
 <https://aa.perseus.org/id/event/20fc13e129235071bd45b6825f0ffa6fc4fb70a038000c2450c47f337244af7e> a crm:E8_Acquisition ;
     crm:P2_has_type <https://aa.perseus.org/id/type/e5cdcf0bd138b8f0a5c2ac4e4c835d3884570fb9bd050758273fa134670d98fc> ;
     crm:P4_has_time-span <https://aa.perseus.org/id/timespan/cba30ed989045a79641386388e5406ca2f21676c94bc4c3c184f94ed244144a7> .
@@ -448,13 +984,44 @@
     crm:P2_has_type <https://aa.perseus.org/id/type/d5f2c9fb384fa907bc85e979005b9199459eb6f921f232bf562bf791dfd9422d> ;
     crm:P4_has_time-span <https://aa.perseus.org/id/timespan/13494e7200b6eeb1e44725eb0d2e72cfa86c67a6457d3d7ca15f12d687a8e20c> .
 
+<https://aa.perseus.org/id/event/2cbc4125a9f09191ec476557b914d41c35378d32bbc2c48ddb182c2b6b556926> a crm:E12_Production ;
+    crm:P108_has_produced <https://aa.perseus.org/id/thing/7ebaa51a1a496c5ada949b353f6ebee9ef9aa7f78f3d24b2188ed6577cabc431> ;
+    crm:P10_falls_within <https://aa.perseus.org/id/period/155d949d240fdd0c271223128ce914cd34495bf27f1bf096a5df196e27cc53ea>,
+        <https://api.harvardartmuseums.org/period/906> ;
+    crm:P14_carried_out_by <https://aa.perseus.org/id/person/35329> ;
+    crm:P4_has_time-span <https://aa.perseus.org/id/timespan/7ebaa51a1a496c5ada949b353f6ebee9ef9aa7f78f3d24b2188ed6577cabc431> .
+
 <https://aa.perseus.org/id/event/2ff5fcb1ce1f47b26cb39b9d66f9202dde764d7b5f77f26b0312783b1fc15dc4> a crm:E8_Acquisition ;
     crm:P2_has_type <https://aa.perseus.org/id/type/d5f2c9fb384fa907bc85e979005b9199459eb6f921f232bf562bf791dfd9422d> ;
     crm:P4_has_time-span <https://aa.perseus.org/id/timespan/65cb78c0bafd5cdfc65a04085e524470a88ffdc2b75796166d068ce1b89d5373> .
 
+<https://aa.perseus.org/id/event/32e80bb953b87906fed72a5b11ad8217c574921f6dbf519f82d44612daec67d7> a crm:E12_Production ;
+    crm:P108_has_produced <https://aa.perseus.org/id/thing/79b667ea76cc2d61bb79eaccd56b76c341272d488923a8ae17d2da0eaa45ee4e> ;
+    crm:P14_carried_out_by <https://aa.perseus.org/id/person/20953> ;
+    crm:P4_has_time-span <https://aa.perseus.org/id/timespan/79b667ea76cc2d61bb79eaccd56b76c341272d488923a8ae17d2da0eaa45ee4e> .
+
+<https://aa.perseus.org/id/event/3454492cb7dc92cc7bc10edb024b0e59f336d58aae52ecc4595a2197dd20b4ab> a crm:E12_Production ;
+    crm:P108_has_produced <https://aa.perseus.org/id/thing/cb6e8c9bced4e5322c3c5a1f9d8388013948f864cec10eec11e68fc13f7dbd63> ;
+    crm:P14_carried_out_by <https://aa.perseus.org/id/person/34782> ;
+    crm:P4_has_time-span <https://aa.perseus.org/id/timespan/cb6e8c9bced4e5322c3c5a1f9d8388013948f864cec10eec11e68fc13f7dbd63> .
+
 <https://aa.perseus.org/id/event/36aa1603e2ee9c0c6c56bbaeffa282265ddf09b2f61e0465f24b59a68b9937c1> a crm:E8_Acquisition ;
     crm:P2_has_type <https://aa.perseus.org/id/type/d53d04203c6c95c3fa8c838fdcfb618b49fb3eeeeb949bd1feb635fe50d54adc> ;
     crm:P4_has_time-span <https://aa.perseus.org/id/timespan/cba30ed989045a79641386388e5406ca2f21676c94bc4c3c184f94ed244144a7> .
+
+<https://aa.perseus.org/id/event/36ab4669cd60fba963b9b9969315c88b1313c2390429049653fdf59dd07b9576> a crm:E12_Production ;
+    crm:P108_has_produced <https://aa.perseus.org/id/thing/86cb5ee159fd1a74dc8e0b5b88f03e9b0174c38716916f680f56c7d8065765c9> ;
+    crm:P10_falls_within <https://aa.perseus.org/id/period/155d949d240fdd0c271223128ce914cd34495bf27f1bf096a5df196e27cc53ea>,
+        <https://api.harvardartmuseums.org/period/906> ;
+    crm:P14_carried_out_by <https://aa.perseus.org/id/person/35330> ;
+    crm:P4_has_time-span <https://aa.perseus.org/id/timespan/86cb5ee159fd1a74dc8e0b5b88f03e9b0174c38716916f680f56c7d8065765c9> .
+
+<https://aa.perseus.org/id/event/3ddac1aae34260235226e49b70da2831c8b2aba1f056be8178de27dd6bcab260> a crm:E12_Production ;
+    crm:P108_has_produced <https://aa.perseus.org/id/thing/4772495d033c0cb2f1384fa6d9d1226e0945d8937cf20195b31b8237d358def2> ;
+    crm:P10_falls_within <https://aa.perseus.org/id/period/155d949d240fdd0c271223128ce914cd34495bf27f1bf096a5df196e27cc53ea>,
+        <https://api.harvardartmuseums.org/period/906> ;
+    crm:P14_carried_out_by <https://aa.perseus.org/id/person/27335> ;
+    crm:P4_has_time-span <https://aa.perseus.org/id/timespan/4772495d033c0cb2f1384fa6d9d1226e0945d8937cf20195b31b8237d358def2> .
 
 <https://aa.perseus.org/id/event/400eaea2c702f93480e808aab6a743487e9107795f9268d1e36336f9b84f37a0> a crm:E8_Acquisition ;
     crm:P2_has_type <https://aa.perseus.org/id/type/d5f2c9fb384fa907bc85e979005b9199459eb6f921f232bf562bf791dfd9422d> ;
@@ -512,6 +1079,13 @@
     crm:P2_has_type <https://aa.perseus.org/id/type/d53d04203c6c95c3fa8c838fdcfb618b49fb3eeeeb949bd1feb635fe50d54adc> ;
     crm:P4_has_time-span <https://aa.perseus.org/id/timespan/cba30ed989045a79641386388e5406ca2f21676c94bc4c3c184f94ed244144a7> .
 
+<https://aa.perseus.org/id/event/7e0b784dc2dcd4ce6561147d1b740e0ed84efb947d3667ede4984d8f5eca7dca> a crm:E12_Production ;
+    crm:P108_has_produced <https://aa.perseus.org/id/thing/a10dbb810854dcdd7ea7aaa63899c52befd503cf4b4e7915a0225a42fe2ff3ee> ;
+    crm:P10_falls_within <https://aa.perseus.org/id/period/155d949d240fdd0c271223128ce914cd34495bf27f1bf096a5df196e27cc53ea>,
+        <https://api.harvardartmuseums.org/period/906> ;
+    crm:P14_carried_out_by <https://aa.perseus.org/id/person/35316> ;
+    crm:P4_has_time-span <https://aa.perseus.org/id/timespan/a10dbb810854dcdd7ea7aaa63899c52befd503cf4b4e7915a0225a42fe2ff3ee> .
+
 <https://aa.perseus.org/id/event/84abd2afc204d10e355729ccd6b6cc7119eaf09698c30d36dd8fe87456a57161> a crm:E8_Acquisition ;
     crm:P2_has_type <https://aa.perseus.org/id/type/707ad890db35229d1e0c1d19d61d1ea79814b3fbfafa98a8e5a22ed1fa79c9be> ;
     crm:P4_has_time-span <https://aa.perseus.org/id/timespan/550a6976b683f4acfe3b9da5dd21bc8de356c5a9954c34b9172b10823f59a15f> .
@@ -519,6 +1093,13 @@
 <https://aa.perseus.org/id/event/8723467025686b18cdb0050266b9224347abf3aede8e7921605f2458fa00adac> a crm:E8_Acquisition ;
     crm:P2_has_type <https://aa.perseus.org/id/type/707ad890db35229d1e0c1d19d61d1ea79814b3fbfafa98a8e5a22ed1fa79c9be> ;
     crm:P4_has_time-span <https://aa.perseus.org/id/timespan/550a6976b683f4acfe3b9da5dd21bc8de356c5a9954c34b9172b10823f59a15f> .
+
+<https://aa.perseus.org/id/event/89393232e07fb42baeccdf9044ea9db8c7167ed0ab943f5e414e501423458532> a crm:E12_Production ;
+    crm:P108_has_produced <https://aa.perseus.org/id/thing/6d9f498d19c9dd87eb3e75c0697e90ba6875ce78451f94432c90df2aa4d0c428> ;
+    crm:P10_falls_within <https://aa.perseus.org/id/period/083f1a1495effa437b41a65005194208e35e3dc712d302f8e47f69d77b736430>,
+        <https://api.harvardartmuseums.org/period/2040> ;
+    crm:P14_carried_out_by <https://aa.perseus.org/id/person/18219> ;
+    crm:P4_has_time-span <https://aa.perseus.org/id/timespan/6d9f498d19c9dd87eb3e75c0697e90ba6875ce78451f94432c90df2aa4d0c428> .
 
 <https://aa.perseus.org/id/event/8edc459acab00aa94ee1b0cc2573eb6bc2d1033c7f94c9bd44148e15cf328e80> a crm:E8_Acquisition ;
     crm:P2_has_type <https://aa.perseus.org/id/type/d53d04203c6c95c3fa8c838fdcfb618b49fb3eeeeb949bd1feb635fe50d54adc> ;
@@ -535,6 +1116,13 @@
 <https://aa.perseus.org/id/event/aab67f49ed998d0a253e745d9727f0a4443ce7041d5735c143e73e0106838119> a crm:E8_Acquisition ;
     crm:P2_has_type <https://aa.perseus.org/id/type/e5cdcf0bd138b8f0a5c2ac4e4c835d3884570fb9bd050758273fa134670d98fc> ;
     crm:P4_has_time-span <https://aa.perseus.org/id/timespan/89ad86747a65eca067da73012f7bb240e5d709890de062b645fb06831ad659ae> .
+
+<https://aa.perseus.org/id/event/ad6f8c830e11b905c677bb320f36d9ea504939b6f14dc5fc67177516db843385> a crm:E12_Production ;
+    crm:P108_has_produced <https://aa.perseus.org/id/thing/b076c3d39b8387579f1e8ad0daa5e6e546b281bf2e3342af6f09a29e92f795ac> ;
+    crm:P10_falls_within <https://aa.perseus.org/id/period/8bdaa64863dbdfdbb1c5148f0192d0afc1d729047a717d6a35ed3ec3355ed1ec>,
+        <https://api.harvardartmuseums.org/period/416> ;
+    crm:P14_carried_out_by <https://aa.perseus.org/id/person/28999> ;
+    crm:P4_has_time-span <https://aa.perseus.org/id/timespan/b076c3d39b8387579f1e8ad0daa5e6e546b281bf2e3342af6f09a29e92f795ac> .
 
 <https://aa.perseus.org/id/event/b69ce16e585921fbfbb64c99067938e300a826d29ab583c3b0d3b0056c08c77e> a crm:E8_Acquisition ;
     crm:P2_has_type <https://aa.perseus.org/id/type/d5f2c9fb384fa907bc85e979005b9199459eb6f921f232bf562bf791dfd9422d> ;
@@ -579,6 +1167,13 @@
 <https://aa.perseus.org/id/event/e1e871b1e141cbd54ab1b9ad0871010bc2bc44d5c45392295eec3a0efb4a546e> a crm:E8_Acquisition ;
     crm:P2_has_type <https://aa.perseus.org/id/type/707ad890db35229d1e0c1d19d61d1ea79814b3fbfafa98a8e5a22ed1fa79c9be> ;
     crm:P4_has_time-span <https://aa.perseus.org/id/timespan/550a6976b683f4acfe3b9da5dd21bc8de356c5a9954c34b9172b10823f59a15f> .
+
+<https://aa.perseus.org/id/event/e4fd811cf3882d1c2b00369345779909af9a08022b3272e7cd4e3646de67193c> a crm:E12_Production ;
+    crm:P108_has_produced <https://aa.perseus.org/id/thing/683e4b2b181edc2cf5fac870958d5c5dee4ff75aad2d129a25bbef54bb1c4046> ;
+    crm:P10_falls_within <https://aa.perseus.org/id/period/155d949d240fdd0c271223128ce914cd34495bf27f1bf096a5df196e27cc53ea>,
+        <https://api.harvardartmuseums.org/period/906> ;
+    crm:P14_carried_out_by <https://aa.perseus.org/id/person/29006> ;
+    crm:P4_has_time-span <https://aa.perseus.org/id/timespan/683e4b2b181edc2cf5fac870958d5c5dee4ff75aad2d129a25bbef54bb1c4046> .
 
 <https://aa.perseus.org/id/event/ee2123b696acb72f34d9d11e029f18605c2f6dc8386f4857c3c790e0521a0e3f> a crm:E8_Acquisition ;
     crm:P2_has_type <https://aa.perseus.org/id/type/707ad890db35229d1e0c1d19d61d1ea79814b3fbfafa98a8e5a22ed1fa79c9be> ;
@@ -2718,6 +3313,362 @@
 <https://aa.perseus.org/id/period/f3f417a231e2cdd8bee06b44b5733b63d9dd83e84af002966174ce8ddfe2d7a0> a crm:E4_Period ;
     rdfs:label "Hellenistic period, Early"@en .
 
+<https://aa.perseus.org/id/service/iiif/0190ee3fd9ae948a7ed989589577940bbe0662129c53b6884ddf2d4b254c764b> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/18205154> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/01b2ee7f3bcb978d6ed0198df9211d11cc90984c5ef44c3f15d77631618fae48> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/494466779> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/0258f56f94c08064b3fb901c1356f911d579569f166aeed37e8af338e3b41329> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/18793110> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/02abefb58071cc7de1f8753437470982c592b766a79ddf5d8f3f636f735191c6> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/17817651> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/1089c0afa606fa9dbf1cf23baef710b3004017393f7683e8c20d905e7d680f06> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/13738241> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/126f8fab709697cfe06cfd726af85667204e9bd60e37384a5ca1e66b64be77a6> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20230399> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/14e7a8ef0b2057411575baacc179784a8cf154063ed9c026eb3c262c1bcdfe36> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/18726276> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/1515c282db316909f2a5f862471014fe0233b35afd6f54e7a07060b2182bd38d> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20685517> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/1e3ca0f913ff83034a9bdf5d1f7ee8bf96e23dae5f42c4ebf1beec0f6a19545b> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20685512> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/1f0224d42740fc4e8f83e83e7fff79fa40ca2719b090bdde6bfca30c43d97df1> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/43159558> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/22e7d49ae1cf976545425daa60d2fcdb7ef5098527fd2166554d924e1a49ac07> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20231944> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/2434cab7a360d863f094467c28156665646130b3b8be320e66d4352d0ad695fb> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/2629877> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/2545eff13841279e6d82ed33a5fbe50914dede8551322baec027f86f47721f44> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/18725824> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/2ba66008623fdf25170b98aea5eacc368b5e48e46c279f31379d7a8125bf1b1a> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20669004> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/2e73170e10acd98b4315dd8fd52fc80e20d5a7238f97032bf40a78a95d63e718> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20672324> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/326e7960b8b75ec99275eb77fee631ba0a8753fb29e56c2cd924f691ac55a1ae> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/43159492> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/39dcdb8694bf720a0da55a5e638671c01dfbf6bdb3f0c693775374b32e1a4eaa> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/494466763> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/3a9473c7e8d700b8f1974f6cfd89bd89da160cb137c60df9b5bec855729c694b> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20668751> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/3e7322449443ce7f6eec2194f27551436ac51c9f1927e5238faf5e39a6886b82> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20675375> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/405895f7b5daeb7d2fd523b14f1ccf7c50abd120a1c446146339d5a7cd6c05fd> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20675376> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/42408e3878e9d0ebb3239c0e8cc33ceb0bf28a33d0ff9e5310edc4f4af36cd32> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20683095> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/44c8022221aeaba4ec7fcc23c3cf310a0d44ad2b6b4d09b0de9eb7589f6beafa> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/17388792> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/4e431a6640b0eeb6c670ef290fbaf1e0ef086937cc240b324370020f4b98ce1a> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/48448743> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/523bb2cd4f6bc1e0b75faf1cf18b9bfebbf3b5b128194256a69271bf01dc9e24> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20232086> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/552baad6f5ceec604091ad97d48b7ded969863cc245f075fe71ddd9dd26ac9b2> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/18725015> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/556b01043abcec3fe5ea3cc0c3905135e945942b4751d05d8362069ebc3f5d60> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/12354182> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/5ab4c58cdccde4690786afea5c9f90896c5c8f8cbad6d146212ca1a645fd6e63> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/18725822> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/5cf15241cdabf0a374adfa8e050f95922b419aeaea7b42f3f5a8c3b841337878> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/2629885> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/5fe706b337ad0f15d624e9e08ef296b25d9cc306e67a2eea06e28d5f3481930b> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/43159233> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/6505abcbc0da789690c3ec9723d6ff2eee7463b36673ebb751f56aa83aeb179e> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20231861> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/67d0c24b6fbc372bfb3a755b7478d22c0149f0a8aa5708ab68c9211720bb9abc> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/18725823> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/67e64a7454af33f75d117a3f98c79fdc2502b64950c54b107be254f4f40b2499> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20675374> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/6f4c23fd2dc889e62ca5c55f99e4309e557d4febc0be611c8b00f9f85f46e274> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/17388655> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/700a7ff80c072c04d59e8c0c92162e896d87bdbfbb4b2daa9a99aa0ede52f62f> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20672321> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/71819cedc8166e55ce510acffb09f3c9592874d45e873ad0a230e4b81cfbde7c> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20668708> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/738c34cbbf7217bc23b4412f981c27c676c60c6e09f23df7f549c94e015f4a47> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/400126112> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/7661e6773ebb8b5fe03014b3cc6549231d6e9b5d63eba71439784cd84be18892> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20672322> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/78c3dabbf79008d5205acd99b563bd4bf121289cf36459ae4df11b8bc7730fc2> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20673168> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/79ab1115f14b02b1d09728f7d3a1e16aa5244c869a06c3035cfc586ec5ed701f> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20686461> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/7bb4da81fd9381ad10193c3ff3ecec2c8b157669137832a72f62a57faed231e9> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20685513> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/7d5929c0e431537f10347a5a28d9e93c6079ec13a103039ab1d3d38a5c08d524> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20673507> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/7f1365f85d1df2a81eb4efdaa3bfc37adc0bcd9c00924c00dcf30d507bb92c60> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20685515> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/835307d6941e7a9573fcdfe33cc657b48361bb823056f57f6b226d631100f0ab> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20673167> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/855708de4afaa985eae97e9f9945986e1d0ea8c99d878934c92ed1a795e3be48> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20668682> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/85c220b3a8464eef59af5640a912939576410ed4ff5043d7654ee8ee1205ffbf> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/400099164> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/85e33103cceca680a4a929a53109e4dde5c4492a3ade68dca5db4b279ea5e595> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20668704> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/88dca320a02a50622825fa5b6633c5dd270ac9f1faffe3061a3b23c79bd24add> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20686813> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/899330350d5ed064814d2646740a749920dbb12d8347f1d1e74400229fc18d87> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20672323> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/89b3a59680ef7ad67683c402f123f3532ba6461d5332f34b2ebec1cda89fb95f> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/43183507> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/8a0f8407151e405e9a746a767aa8e18e2c6a4bc42bc70007a48d129fad879e0f> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20686460> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/8a8ed243aad7de26141d1624ce937e8926a1f6172d30a6f8265f6eb31e855b63> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20669008> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/8bdcef0da4a65ddd9fb681ae60600e399df5b19ef63b9ed5f83901bb8c54b4c1> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/494466767> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/8d2c410080b2da9e7705ac38480463fa9c34c3f39adb27c3fae28b5310731e18> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/18205156> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/91e679326f886697bdc7ac857efaf21227b161bad542ba48b207a376cd1c3380> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/17388790> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/92204f9f637574cc311bdd661b61740396fb43e2c423cf20adde1c5200ea98e6> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/18205155> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/92e1de9e0755d2b53d7df483bd39675d335682b3f965b5b65dc6af823ff6702f> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20221493> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/9355c233a7b3bdb304b24a5ae00f6ada4cffc2f67e5157c2044eff1aa8d81d33> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/18725103> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/95d2901dee58812fe68351c393a96bd5543747081659ac80f35066372fb0afd8> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/17817650> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/989da18468e069bc69e213317016295876ec524769b789a204fe59c6b86cba9b> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20685516> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/9bc80034707181ca382cb5534e2deeb5948ce4f3277d6abfdd67c313dfc6d15e> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/494466775> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/9eb199429d57ae57bb7521fef4d4e16354211dc46bc7157896cd513db13b4475> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/2629893> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/a07f4a2e547dd3c81fa61342d9c583e3b5303b2c06528e421e202237bf7f04a9> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20668765> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/a27b843d43223c25e18c774626cbd0c63dee35c9f1a3ff9d7c2c25862419164e> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20673169> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/a9dcc258eb2187a5adc72c60549c7ba9c0f1234db20c7ac2c639311681e0607c> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/18725825> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/af75a2a86ff9d9f0e0606bef9146b387bda371549f2dba52014c87bf8bfc6c35> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/18481647> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/b3fc1d1b2cb2e854194c2b63842b1a977fc8a984aa0b16f1bc02d439b3ae8ce4> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20673164> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/b84c6dde6063dc4473ecb8f5f3c4ef986b9f182376adf648573a6a106b875922> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20679758> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/bb2f57a43e981244ef6823fee3182077d0f0f2fbe82713b9bd7d7f63e46ca2b4> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20685514> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/bd5f00da8e9a8850d03fcfa7732f7ca6466f609032679f0ad982e652194b6c65> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20673510> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/cbf37e546daab51777d016673f26e2602f862836197a0775fe6745525db398b1> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/494466771> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/cdfcff185b86e0e543603db0032621f0a4a973e5abecb9d668cd240813b8b680> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/18815718> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/cfe620ed7ab67a1e597f18cd0342ea0b374f92c499ed7fb8ec0b65b74ce09458> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20231356> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/d6ef2d2067571076fd5476dc246c7316544f6d4e9b5e6e8f1fcc5b72a7d6b5dc> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20669007> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/dc76ab5abf974df566a500e1ad4566162af284565fbf272a2a73ac5b256f21cb> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20673509> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/e3d64507e810e276924fa15014b71a425eb38f96d806347b228f26211769e57a> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20230308> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/e544e62e1d2008a82983a7b2106eeb4f7a00dad537f09bf70683aa3bf501697d> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20668717> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/e6295fed815db7032e3992877710679af3da2d2ae4a82ca21834a5d0621350f4> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/400099916> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/e7fcee8322550923a5a2d4bf700045c0247eefd4cd0878b63549c17ce99234d7> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20668993> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/e9c66dfb616de6434748d402fabc7118fb767791f38bc15bcce624d87ba84b3a> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/18789580> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/ea8d5bda43b3f7a8223a23a3fc4eda639de26f4599ccadf6a07846e88e5bb708> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20669003> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/eb504547d6c08f3168032c11897d76c83f2c00f5fcffebc4d31a20626c0432cc> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20231893> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/eb5d60d4b083cf0576f45cff4c19094de3cf383e3a63582d7a0e386ea495b391> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/18821763> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/ed294b109ead4a6abfa76d80f2d448575c4fbebc0f55c85e5277dfb970dc0cef> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/48448757> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/f4851839d61ba45a7ef41f23405582cda51eaf1eb0903d31291d82d0765a0cab> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20231528> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/f69e3bf264d7bc086a642e843cbe2fba6488ac05186f7c97ae24e7dd4784a2ec> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20231940> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/f80abc27258cc1a40f48ea557a2f790b94c9f7e7dcfbd43aca13e27184298ff5> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/47334810> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/f89c834c1baf34163d162d24656ae8a2f02499d34404b2a4264c88e84b4d4b1a> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20673163> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/f933d4e95fe8bab0763c614714877c34059bfd55982eb56dfea3feb8903a0078> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/20669002> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
+<https://aa.perseus.org/id/service/iiif/f9ef1949b106dea0edc0d38f4e7cb5fc2a3295a23990f178a8f3adc6ea28c20f> a la:DigitalService ;
+    la:access_point <https://ids.lib.harvard.edu/ids/iiif/47324717> ;
+    la:conforms_to <http://iiif.io/api/image> .
+
 <https://aa.perseus.org/id/text/031d7033b75af3cd9d23b99c39416158db42e9b14afab669eedca87e3c443cca> a crm:E33_Linguistic_Object ;
     rdfs:label "Description"@en ;
     crm:P190_has_symbolic_content "Offerings at a tomb; in center, a garlanded stele with pediment on two steps; at r. a woman in a chiton with a cloak thrown over her l. shoulder, on the l. a draped youth leaning on a staff)" .
@@ -2974,7 +3925,7 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
     crm:P24i_changed_ownership_through <https://aa.perseus.org/id/event/6c8376049599b628b5edc3ae251f6df68950385a4fc2d25dac48925137b2326b> ;
     crm:P2_has_type <http://vocab.getty.edu/aat/300386130>,
         <https://aa.perseus.org/id/type/8e9b896de667fe355ae72739e135aee9a5eac8a469fa4de673531325fe5d8c4d> ;
-    crm:P45_consists_of <http://vocab.getty.edu/aat/300265960> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010669> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/183acae193698490d2e54180977abbbb4d4a2b675aed334e81325c5482a2ea1e>,
@@ -2986,7 +3937,8 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/c9e746f2be219a6b42b8fef8e336dce6ca4a5090a398bbe9c507a5b315421b1f>,
         <https://aa.perseus.org/id/feature/ca0d699034c5bb29cc48ce17acd730499d6737ff41130e7c9212c4cc7b02061b> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/b1dfb36df8d8b130165a4b5441b631d5537cd18ff3042fcbb20bb8b131717ebf> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287002>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/d7ff06f5e68e3e5afe7a12b3394d3b0012d0a587b7c1b10c8ec67863441e47d0>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287002>,
         <https://nrs.harvard.edu/urn-3:HUAM:VRS89267_dynmc> .
 
 <https://aa.perseus.org/id/thing/024f57a4fcb0e96b00e73c848bafa59b90164e8b1635f3f5971fa96a40505943> a crm:E22_Human-Made_Object ;
@@ -2997,7 +3949,7 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <http://vocab.getty.edu/aat/300386130>,
         <https://aa.perseus.org/id/type/6dec0cedcfd9710ed05ee2a9733269a29d0e191e621a045d128bdf9aa5106731> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/b1d6f1be3217d227d55061fdd1a673971b505283043522668e82ebc8ff1a0c95> ;
-    crm:P45_consists_of <http://vocab.getty.edu/aat/300265960> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010669> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/0b72db15843423d071f17556e0c0b8eb9178ae1c45577fa1b88fea6ead3d3091>,
@@ -3007,7 +3959,8 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/ada49faf1f0ec830e9fe016f93ac47acdd0325d5d3044a17fbe1d9a4e7368e0c>,
         <https://aa.perseus.org/id/feature/d1c5e50322326a5dfddfa9eda7b72baa07d75d6355b54b2ad4b5776295deac51> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/62440cadbef64b0b53ee195bd487e400affab8a494dd990f1160477e3616d155> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/286331>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/d095ef0d891937db8fe0ee6b347dcee688049ded7faccb820a83f94b30d1d585>,
+        <https://iiif.harvardartmuseums.org/manifests/object/286331>,
         <https://nrs.harvard.edu/urn-3:HUAM:VRS20711_dynmc> .
 
 <https://aa.perseus.org/id/thing/0265659dd89b900ccfbedb75e5b8baae0e4c0a85b7f51f2852e06df3427f75d3> a crm:E22_Human-Made_Object ;
@@ -3017,7 +3970,7 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
     crm:P2_has_type <http://vocab.getty.edu/aat/300193015>,
         <http://vocab.getty.edu/aat/300386130>,
         <https://aa.perseus.org/id/type/6dec0cedcfd9710ed05ee2a9733269a29d0e191e621a045d128bdf9aa5106731> ;
-    crm:P45_consists_of <http://vocab.getty.edu/aat/300265960> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010669> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/5aa84c4fdb6c1c5d2506a79c0357b6a43c5007186c6cc2a6d98a88ef0ce1a648>,
@@ -3028,7 +3981,8 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/971e8c4084eeaff23ec82487f2fa67f8a6e594f95ec92538bb3c80f807f562b5>,
         <https://aa.perseus.org/id/feature/fd3b02814f04c86689c16fabc5aadec2374adfc1f9e57eb9a229186a6fc31806> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/62440cadbef64b0b53ee195bd487e400affab8a494dd990f1160477e3616d155> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287249>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/1e53309ac111539aec552d79b550ca28395d14a13ace8087b74aedd1e8496585>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287249>,
         <https://nrs.harvard.edu/urn-3:HUAM:INV108924_dynmc> .
 
 <https://aa.perseus.org/id/thing/070c9bee6b24a4b774acc39ced4138cf1546ea79e8048e711bfe609040365de8> a crm:E22_Human-Made_Object ;
@@ -3039,7 +3993,7 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/type/1152e957d2e4596eabdadc83981ddf7b2a59a8e71d95692c84845c4b9bf1936f>,
         <https://aa.perseus.org/id/type/8e9b896de667fe355ae72739e135aee9a5eac8a469fa4de673531325fe5d8c4d> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/8ce52b3aad2583006b9d1d33ba86842fe1db987bdf83d313238a2d4c057e42bd> ;
-    crm:P45_consists_of <http://vocab.getty.edu/aat/300265960> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010669> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/31ed09073ee337c4a39a102d4d2bcf5f85c40a8decf69b829b6572ff99015117>,
@@ -3052,7 +4006,10 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/7929cfcfea79bdf81d3cf491561f645b1aedc172bc37ee048ab5c1a92e2c6c9e>,
         <https://aa.perseus.org/id/text/9d7fcf3a2e4d236366aca2c08b1902d7631442679801ac2e940ff6fb10a4e473>,
         <https://aa.perseus.org/id/text/fd5470b596fec7009260a3234058b53a460cf14741586ed8d74f94edcd9a40ed> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/286254>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/59bd342699f6208c90d6e707ac824af41db2285ffd98ef79ca17b32ad3888aa3>,
+        <https://aa.perseus.org/id/digital/aba04903257e6e1e6b1815d31b82be5a8cccd6e18fed6b1cd6cc2640bdbf334f>,
+        <https://aa.perseus.org/id/digital/cc8288cdb4bc8c543d28edf44729412675dd170f278b6e29b9ff58d9a1aa8aa8>,
+        <https://iiif.harvardartmuseums.org/manifests/object/286254>,
         <https://nrs.harvard.edu/urn-3:HUAM:VRS11279_dynmc> .
 
 <https://aa.perseus.org/id/thing/071d8f72e953bf6c036e9e3a3df7ba56a3466027a513a30ff87ed16a903ea8e2> a crm:E22_Human-Made_Object ;
@@ -3074,7 +4031,8 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/c8006cd7371763658ca78feb917e1c5d88fd12e6b015135ab3349ffb79b5c9ed>,
         <https://aa.perseus.org/id/feature/d9864e3e7d52071e021f7c3013702df97188723828888ad63b6483bee41035a4> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/62440cadbef64b0b53ee195bd487e400affab8a494dd990f1160477e3616d155> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287253>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/332816304e2b2823cedde5027fb14d24139f2d47b6249f6a7939294d414b603b>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287253>,
         <https://nrs.harvard.edu/urn-3:HUAM:INV108782_dynmc> .
 
 <https://aa.perseus.org/id/thing/1023cb224d430318a0e63f730f4cc887bbe3a1c5f14294b3c1b31173718441ac> a crm:E22_Human-Made_Object ;
@@ -3082,9 +4040,11 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/identifier/9beaae3ae86610d71a6e0917505b21014aceffb9e118cb764bea52a1be2685e0>,
         <https://aa.perseus.org/id/name/62e31429cfdcd5c8882f89a37aa6411ab6fadcf5422678a046f7933d849afc9b> ;
     crm:P24i_changed_ownership_through <https://aa.perseus.org/id/event/458c3831e078b32bc86a6ee2a2aedf1c47d841f44ec51451db9bd9c1e7d64845> ;
-    crm:P2_has_type <http://vocab.getty.edu/aat/300386130>,
+    crm:P2_has_type <http://vocab.getty.edu/aat/300037222>,
+        <http://vocab.getty.edu/aat/300386130>,
         <https://aa.perseus.org/id/type/d909de4764afdd67b9e24c9b6f271d69a88cb7ee73f5e59970adc46fe75fe82c> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/f9627f430fc9151cb622206da2e8a6258e7eca090546f50ce51cbb75dc23fd79> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300011029> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/1ef84310ca916174a5bcc9765105973df222cd0d9a123ef08b91bdf5fd0c9f36>,
@@ -3095,7 +4055,8 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/dc2868004ad5c39ece3eb2cea6c9e77d1bbfccc5904d20b93d13c4e061135591> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/10ae432a9ff74c4abdae9baf34858e34a51d37a1a62f2a5fce261bbe409707ad>,
         <https://aa.perseus.org/id/text/649452e095f169d095fa1290ac1bb6c1b22a3185ab4e2f29b68e72fdd0b99b00> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287285>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/9e495d9ebb83672caa1470cef4924360ec94cf85686964968d61d814b554e074>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287285>,
         <https://nrs.harvard.edu/urn-3:huam:COIN14254_dynmc> .
 
 <https://aa.perseus.org/id/thing/145df198418efc7e67a036411600cd2b57291ca0a5b4fbae1444303041998385> a crm:E22_Human-Made_Object ;
@@ -3106,14 +4067,16 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/type/8e9b896de667fe355ae72739e135aee9a5eac8a469fa4de673531325fe5d8c4d>,
         <https://aa.perseus.org/id/type/b1fad8595623b51b22ac8f52142cec9d53b3dd41786f3aba2d7c1c94a4ca4676> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/4a88ca9b39ad1e636b483ed070baa2d22c85f5ec2a19de6ec97b69b0bc5014ab> ;
-    crm:P45_consists_of <http://vocab.getty.edu/aat/300265960> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010669> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/bdf3f9a3ca057474dba6c5030e7a441f7937e3c3a4995c97293fcf809af9d906>,
         <https://aa.perseus.org/id/feature/e5fa1f5bcd14b8f6987b693ab7cd1483022938d5ff6d98ac4072cfb482e3e407> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/67a227d2fdf015a763e4c49167b8be1013090c84587ff41724882e6fd691281d>,
         <https://aa.perseus.org/id/text/e7f2546e086d501b58af2f000e46cfb27ab0c2c6bda6cb3701696fe15835761d> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287242>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/e5b539d11b806268e6cb5ea795e643b98f5841c1ba9cc0dd9fc3d61e8a25a999>,
+        <https://aa.perseus.org/id/digital/fbaab107cf33856a79dcade1e12709500cfc0ebe2a507ef7d43d9cc74d759cc0>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287242>,
         <https://nrs.harvard.edu/urn-3:HUAM:VRS10760_dynmc> .
 
 <https://aa.perseus.org/id/thing/16f18d955d3b06f4718651eb7872e45d68387fae0bfc24362ab2a186bbed714f> a crm:E22_Human-Made_Object ;
@@ -3135,7 +4098,8 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/ae6aa1095a6f1df3d5391effdea27d502b18c527a4adefe13350b72a21a6891a>,
         <https://aa.perseus.org/id/feature/c76c057c3c8d8f5a1885419785c158056da81d394a94644976b7571af73e4ee4> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/b17cfa7963b76092411aca10f6ae0ac8804f708497d2786c43efbb43070379c5> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287150>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/169d818fa04d19bd03ae2f4b6f40e50ac450f036e72e16e0af377605b467daea>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287150>,
         <https://nrs.harvard.edu/urn-3:HUAM:INV108366_dynmc> .
 
 <https://aa.perseus.org/id/thing/1dd70003127f8840062f5441f5d8eeca4873b15e949b30a041f1fd27841d6f93> a crm:E22_Human-Made_Object ;
@@ -3146,7 +4110,7 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/type/8e9b896de667fe355ae72739e135aee9a5eac8a469fa4de673531325fe5d8c4d>,
         <https://aa.perseus.org/id/type/b1fad8595623b51b22ac8f52142cec9d53b3dd41786f3aba2d7c1c94a4ca4676> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/cc8efd8b8f206153e65b95ebd48a6fb6b62b0254214c116b4e880775ec6d02eb> ;
-    crm:P45_consists_of <http://vocab.getty.edu/aat/300265960> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010669> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/097d2c9cbf5137768c43f8aada80690f88d064ea7264a07622681a08717ffa8a>,
@@ -3154,7 +4118,8 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/a38e0d3f74d16588e80319af5c13f50baf45f4f9e2f2b9cb403959a3359a73b1> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/1fa3ee69f19688e20e901a0f4d5c815ce135b301d6c209fc7dee692a39c85458>,
         <https://aa.perseus.org/id/text/46b4d0d44e6f2308152bdb87db0d32274fcbd7ae99e6de515eb9c10792f17c34> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/286987>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/75a38cb5cd79952f934b6a7379c8e20314b373e6afd2546ce68acc71e971e82b>,
+        <https://iiif.harvardartmuseums.org/manifests/object/286987>,
         <https://nrs.harvard.edu/urn-3:HUAM:VRS10696_dynmc> .
 
 <https://aa.perseus.org/id/thing/1eac03dcdd17cc37c2ca01697ffd25e2886212ce4335eeffde2d3a0c523cbc4f> a crm:E22_Human-Made_Object ;
@@ -3165,7 +4130,7 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <http://vocab.getty.edu/aat/300386130>,
         <https://aa.perseus.org/id/type/6dec0cedcfd9710ed05ee2a9733269a29d0e191e621a045d128bdf9aa5106731> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/b7756397515f0b7de75770282c56a0bbe749e8419c134f1a584dc4277f7f0704> ;
-    crm:P45_consists_of <http://vocab.getty.edu/aat/300265960> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010669> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/0f16e4d438d6866cde500cbf22d55f0846dc8532f618bb99261420cd301097f2>,
@@ -3178,7 +4143,8 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/c744d2a649124154257a91911e5ac045b29c4a9c17c7e902d4b8eb5d827aaf92>,
         <https://aa.perseus.org/id/feature/f011a8391aa2550774c349b53f6c5f7cd9539cb1c0741bb80718e87eb2233fa9> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/1b2fb46261bee89e3ff56eb8801e1b15c38275474952f1c764e33bade14870d9> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287128>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/9441f2618b75282823ad59f1649741c21c93da13836185303966d442f325c1ad>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287128>,
         <https://nrs.harvard.edu/urn-3:HUAM:VRS60039_dynmc> .
 
 <https://aa.perseus.org/id/thing/1eb2de2bf6b16b564f1d45ab295b69fbc2437f61bd1fac3e210384f81f778d5c> a crm:E22_Human-Made_Object ;
@@ -3199,7 +4165,8 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/a203429e7076bcd0372b013c9ed804f33bb670c162a9df99cbcf1a9e6f449df3>,
         <https://aa.perseus.org/id/feature/b2ed74e9fd0fbe58f62d473048d6b51143b871171722379dc478f259cbe1d5fe> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/b17cfa7963b76092411aca10f6ae0ac8804f708497d2786c43efbb43070379c5> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287132>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/8216786a60dbbb667e0d9702ddd89d72afbfb8a21b106d3030f41894b9941422>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287132>,
         <https://nrs.harvard.edu/urn-3:HUAM:INV107231_dynmc> .
 
 <https://aa.perseus.org/id/thing/1ee5a12158e988d36305f6d7ff7b1b74f9032108db7d968e1dc1be7ae9d24186> a crm:E22_Human-Made_Object ;
@@ -3211,6 +4178,7 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/type/6dec0cedcfd9710ed05ee2a9733269a29d0e191e621a045d128bdf9aa5106731>,
         <https://aa.perseus.org/id/type/6f98d36d9593ebfcba8f1f65357d5f9982808855b1ee6523ad9ac64a629c2303> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/1de39fff44a89ef61d880c148f6022d42d567afdd52cd857fdc1e3eaffd2eb76> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010698> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/15156398050224f8d535d2b8899ce304be40473faeb09cfe2da0e45f75d8a996>,
@@ -3223,7 +4191,12 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/fb22cadee3a0472405173f35eaa04576fce24c5a1c55d686781ebf65a8964676> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/b9b1ad7ca9d858671a05d2d18ae65e5d5f9058e1c560378b714e1ed916735851>,
         <https://aa.perseus.org/id/text/baea62ea2b6d249f5a0d043cd10a8107176ddab42ed63a077d5d296393df1c26> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/262056>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/1e518a5ca1adcc65c0691c7f3cbf686ac7a951c9e97f2c5b982172c252f4bfc9>,
+        <https://aa.perseus.org/id/digital/68298c09a5178a772079b9e11d367519e69daaac43fa5046ee755310ee6868d3>,
+        <https://aa.perseus.org/id/digital/909672434d4a07fdb482b35c060e901cf54fcc4625bf73b8a3dab63667132953>,
+        <https://aa.perseus.org/id/digital/a6f29df41aa12136f5de083afad88357ca4e41c8f3632e830e7154222832b9c2>,
+        <https://aa.perseus.org/id/digital/d7a19f8461add81795e65411de020ae9e516af2c86ca637a3c61a41b53ee082d>,
+        <https://iiif.harvardartmuseums.org/manifests/object/262056>,
         <https://nrs.harvard.edu/urn-3:HUAM:779611> .
 
 <https://aa.perseus.org/id/thing/29ec9956f09fea7381d77ca7de0a5419825a160544a73c87117e3817e9451ed6> a crm:E22_Human-Made_Object ;
@@ -3231,9 +4204,11 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/identifier/4a2beed1af51472a267edeb8459938053a5bae4b3fba5976261c24734e943dec>,
         <https://aa.perseus.org/id/name/7d1be34f3bda546c41ccc974d0ac13a5c3511f22f2dc89dfbad00c730b3d8075> ;
     crm:P24i_changed_ownership_through <https://aa.perseus.org/id/event/7350fe65924b6624b717a46256ae18da107d0a231226ed9bf0e7bf25cb2fcf8a> ;
-    crm:P2_has_type <http://vocab.getty.edu/aat/300386130>,
+    crm:P2_has_type <http://vocab.getty.edu/aat/300037222>,
+        <http://vocab.getty.edu/aat/300386130>,
         <https://aa.perseus.org/id/type/d909de4764afdd67b9e24c9b6f271d69a88cb7ee73f5e59970adc46fe75fe82c> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/676d5680cd30303d867f19c52b6c81eff6ac68d66859a12d890f4f214ff808b0> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300011029> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/1428134dad985cb56c49e2e3523e900e4681e91e2bf2e4e15b2f9b552cb4978c>,
@@ -3244,7 +4219,8 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/d11aa716b584aceabda8945a182a5ff0fd2f27fc1850b9c24cdbfef134bfe4ad>,
         <https://aa.perseus.org/id/feature/efc2f090db489bb6290da5b9a10ba20774946a7d21d6f7be4383432a56bb3feb> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/1fa3ee69f19688e20e901a0f4d5c815ce135b301d6c209fc7dee692a39c85458> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/281925>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/20a0b510aedbad7a8de6f783735425bff51c917943a221d3a12073d9c048051d>,
+        <https://iiif.harvardartmuseums.org/manifests/object/281925>,
         <https://nrs.harvard.edu/urn-3:huam:COIN14253_dynmc> .
 
 <https://aa.perseus.org/id/thing/2b3880ab8434547168ba050f8d4473601631f2d493d6817ae4b88c050ef49b5b> a crm:E22_Human-Made_Object ;
@@ -3255,7 +4231,7 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <http://vocab.getty.edu/aat/300386130>,
         <https://aa.perseus.org/id/type/1152e957d2e4596eabdadc83981ddf7b2a59a8e71d95692c84845c4b9bf1936f>,
         <https://aa.perseus.org/id/type/6dec0cedcfd9710ed05ee2a9733269a29d0e191e621a045d128bdf9aa5106731> ;
-    crm:P45_consists_of <http://vocab.getty.edu/aat/300265960> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010669> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/0c8c9dcf129d54c415ba22f2575c46eac69667e1e6ab56f2fbf12f646795d87d>,
@@ -3266,7 +4242,8 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/e949749fa607f96d59eb03f86b13547156924266953a904bba9873eb06aa2c6e>,
         <https://aa.perseus.org/id/feature/fc73f2908fdd9f3e5c8a3b629108974aa8845667fba91aa6ce52a7b56a4f6672> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/2c7744f8484d5c627e4c857151a86d3efa6daefdef561e1ef2c9e5b5072f2312> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287346>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/c57b70175456b6300312dd176b95ebae79ddc95be46d655d159d651fee1a5288>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287346>,
         <https://nrs.harvard.edu/urn-3:HUAM:VRS42384_dynmc> .
 
 <https://aa.perseus.org/id/thing/36c609de8fc9e71d227533e19ad33d17c7354cb6cfc430217cd5bef3e1217a2c> a crm:E22_Human-Made_Object ;
@@ -3289,7 +4266,8 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/f37956db7452fbfda17f68d66e9738ddaad135a4f07c0155aea37efed2744938>,
         <https://aa.perseus.org/id/feature/f6f8f92e535991286e1acf79df831d9790a66f810c94dda9904125eabca00353> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/62440cadbef64b0b53ee195bd487e400affab8a494dd990f1160477e3616d155> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287233>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/8d4f5a9a52d7386c31cfacebde7086e77653b35a9013a50503dcc7b86de6bad6>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287233>,
         <https://nrs.harvard.edu/urn-3:HUAM:INV108778_dynmc> .
 
 <https://aa.perseus.org/id/thing/3f802c019b7c21253417fe4a447e28460682afe73b60b1171e20932be984aeef> a crm:E22_Human-Made_Object ;
@@ -3312,7 +4290,8 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/eefeff00b34833e285ae4b8c017d5a9a4d3e659875681cccd40195ba0bb448a6>,
         <https://aa.perseus.org/id/feature/f754a2fa8c9fb588731a133382affe59477da6b67f1b59b69090d4f5d86123f7> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/62440cadbef64b0b53ee195bd487e400affab8a494dd990f1160477e3616d155> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287235>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/daab95e22e1a742859f4fb14471bf512938c5ee4c20144ebab6fb6318ab3ed8f>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287235>,
         <https://nrs.harvard.edu/urn-3:HUAM:CARP11338_dynmc> .
 
 <https://aa.perseus.org/id/thing/4772495d033c0cb2f1384fa6d9d1226e0945d8937cf20195b31b8237d358def2> a crm:E22_Human-Made_Object ;
@@ -3324,7 +4303,7 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <http://vocab.getty.edu/aat/300386130>,
         <https://aa.perseus.org/id/type/6dec0cedcfd9710ed05ee2a9733269a29d0e191e621a045d128bdf9aa5106731> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/fbea490ddb11fbfd510eb43adde7abcc6ada9764d969e55c61ed88794ab720fc> ;
-    crm:P45_consists_of <http://vocab.getty.edu/aat/300265960> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010669> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/0a63095444db634aa9cda3fc4024e08716597996981f9e5979703a9c2668f2f0>,
@@ -3341,7 +4320,17 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/text/393303563b6f6c4af53613169ea324fc8a3409c40ba2bb7741eaa72ab6f1689d>,
         <https://aa.perseus.org/id/text/abecdd8b3ce76382686392b7b65027f2674bfdb694f678e5c5965a06465096b9>,
         <https://aa.perseus.org/id/text/f904361fcfccb37dcc07d2b5d1953b1f9685e6a7f7794e055731198f515e2981> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287349>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/083edc2711ee00f6580c5b05fc2bb063a6da3f544ca446fcb4d518b8ce0c8d0c>,
+        <https://aa.perseus.org/id/digital/1b646b816e5cd2ee03fdbbef6e09200e15f9e9cc07e4c1a9eb0c9b8801508ef3>,
+        <https://aa.perseus.org/id/digital/3162c0258fc23de977bdf7b5c50c93da6e42bb802bbe9c1af40dd8e6bb7b50ae>,
+        <https://aa.perseus.org/id/digital/4fe997a026637832cb4fd774b64c229ddfc0bbf19e05e77f3c50d1607935c0e9>,
+        <https://aa.perseus.org/id/digital/5acfe6ad0fb952615689fbfcaba561770dab6ef88b58785da00098af3bd861a5>,
+        <https://aa.perseus.org/id/digital/8efbd2f4d21e074ad502f99274135808d9b2d3de94d8ac1d58d650606bb1c2f9>,
+        <https://aa.perseus.org/id/digital/b64b2a2d8128e6a9065cf7eb2d129732fca6d6949d97e5b1eaac4b33cf172cea>,
+        <https://aa.perseus.org/id/digital/cbb106aa5133d3088e93c4592759bb5fa3863fb1b3b72b40c1ab3a31ec016dfb>,
+        <https://aa.perseus.org/id/digital/e122d567d56be683d3bd35e0e896743886cc06e35a47a61f93244f5482bcccc8>,
+        <https://aa.perseus.org/id/digital/ec36e35a98fe3e09a6a89b0f2642af38895f1445000dfb979de7093c1fa2f661>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287349>,
         <https://nrs.harvard.edu/urn-3:HUAM:78939_dynmc> .
 
 <https://aa.perseus.org/id/thing/4db0167cce5b9fa177ff9dbcb91e89ec3ccb328c8189b81016fe66a3ca0d4359> a crm:E22_Human-Made_Object ;
@@ -3353,7 +4342,7 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/type/1152e957d2e4596eabdadc83981ddf7b2a59a8e71d95692c84845c4b9bf1936f>,
         <https://aa.perseus.org/id/type/8e9b896de667fe355ae72739e135aee9a5eac8a469fa4de673531325fe5d8c4d> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/e67f5967784157299907eb2248be5ff528f0324e422edb9d1bfbc51ef74e0177> ;
-    crm:P45_consists_of <http://vocab.getty.edu/aat/300265960> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010669> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/0cd63bef9f219741cbd14e64bc177ab728513863996a408fbf764ecd961b5678>,
@@ -3364,17 +4353,20 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/440cb48db601cef23066b3fb520d982a4cadb30375e3d8739d4cb2d46039f89d>,
         <https://aa.perseus.org/id/text/9d7fcf3a2e4d236366aca2c08b1902d7631442679801ac2e940ff6fb10a4e473>,
         <https://aa.perseus.org/id/text/fd5470b596fec7009260a3234058b53a460cf14741586ed8d74f94edcd9a40ed> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287265>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/a5dfd1b95204caa620120a64a6867fb1ec063012bface48b5a689c80297716a0>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287265>,
         <https://nrs.harvard.edu/urn-3:HUAM:VRS11266_dynmc> .
 
 <https://aa.perseus.org/id/thing/4f0bdc808b850858de4d2b13e4e16e3ee59cc5602857ef3ec86ab84d26cb09e2> a crm:E22_Human-Made_Object ;
     crm:P1_is_identified_by <https://aa.perseus.org/id/identifier/73fba7ba8f565ee0de9fb3ec7d492db34610a78f199d64032c64fadf8716a1c4>,
         <https://aa.perseus.org/id/name/c3a541d9e745e59603b6373901c19d2022c07b10ff78387540b91b0eafc96441> ;
     crm:P24i_changed_ownership_through <https://aa.perseus.org/id/event/5c32faab0ed60239a13a96e7488ed6f2c9fa3ceda2b4c3dc48b371a0b739457e> ;
-    crm:P2_has_type <http://vocab.getty.edu/aat/300386130>,
+    crm:P2_has_type <http://vocab.getty.edu/aat/300047090>,
+        <http://vocab.getty.edu/aat/300189808>,
+        <http://vocab.getty.edu/aat/300386130>,
         <https://aa.perseus.org/id/type/c1e3bf7a48dcd3940d1ff86769107c3503db4e40a6645798f656b1860d72b3c2> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/6c616c8749bf62f989ae16779666b2bfc70603067c8ba3d68db841f7ac8530e6> ;
-    crm:P45_consists_of <http://vocab.getty.edu/aat/300265960> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010669> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/26f5147bf4f736c8c72ac01d8caf47e393dda56629dceca4fc15e1dd97530f0b>,
@@ -3382,16 +4374,19 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/9fc00a607f3b7290e2e980239f4006af0aca2071fd1b0c55bc55f38ec7ef6822> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/2b449224663704e0564e76db1cff27bb2e092efb6f9f2f4469dd6d17a344461a>,
         <https://aa.perseus.org/id/text/6840abb934879d700dd598922a5424238fbfbd2e2b94473e7f99d800c1df2ee1> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/286994>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/f9c95379903c2d63c4ff12e555cc704364829ddbd811aab42be902db10dcb579>,
+        <https://iiif.harvardartmuseums.org/manifests/object/286994>,
         <https://nrs.harvard.edu/urn-3:HUAM:VRS10551_dynmc> .
 
 <https://aa.perseus.org/id/thing/537c163d924efe759e989caaaf2e10494bd384203325d0c407c2c59e784a10f8> a crm:E22_Human-Made_Object ;
     crm:P1_is_identified_by <https://aa.perseus.org/id/identifier/9a0d57350d94a036d7d6b52835b454e3cdd58a21a6e93e489f962639bde0f711>,
         <https://aa.perseus.org/id/name/8cfe5b8eb0c79426db16909830d95572697d57f05de9ee70b3f131593521177f> ;
     crm:P24i_changed_ownership_through <https://aa.perseus.org/id/event/2ff5fcb1ce1f47b26cb39b9d66f9202dde764d7b5f77f26b0312783b1fc15dc4> ;
-    crm:P2_has_type <http://vocab.getty.edu/aat/300386130>,
+    crm:P2_has_type <http://vocab.getty.edu/aat/300047090>,
+        <http://vocab.getty.edu/aat/300386130>,
         <https://aa.perseus.org/id/type/c1e3bf7a48dcd3940d1ff86769107c3503db4e40a6645798f656b1860d72b3c2> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/d8369dafb3ce97bd4e1c6ccbd26ae6eecb1cf1b1e44ba577ae6d8ac15c4cf625> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300011443> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/135b8dea778e2fa154a39834a2f18ff2254d4e3ae89b67967101d02cc88522dd>,
@@ -3405,7 +4400,8 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/e68058df9158a81c7cda6252350e44b083eafb234033833b1787ec4218dc082c>,
         <https://aa.perseus.org/id/feature/ec08c2ed5b30b7266789fc827c94eb536b4cb2b4913ba146c877b7290524888b> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/ed1b84afcb1ce03c1cd36f23bc012a0478261a4b76c4077924076329f04178cd> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287258>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/a08fef06c93441e6771c4c5f60a73b023830adb0f356d65e3ec91ae59eadcee0>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287258>,
         <https://nrs.harvard.edu/urn-3:HUAM:52050_dynmc> .
 
 <https://aa.perseus.org/id/thing/54a3d8cc5a6273b11c4e21333193e8eb77b826cbb82f3bd6c0eed32630ee9419> a crm:E22_Human-Made_Object ;
@@ -3415,6 +4411,7 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
     crm:P2_has_type <http://vocab.getty.edu/aat/300386130>,
         <https://aa.perseus.org/id/type/a92549e7a0c91acaea44ac51cdda199e910106978255d3ebcbe17f9d64f6d63d> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/b312975cb3330c344d32b334a349fb1643b44a7f5934b49b423b3c047e6e9496> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300011020> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/1f509dfa379467d0cf295b718da53b288b35892360e8e3d286ea6cbdbf699542>,
@@ -3427,17 +4424,23 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/bf9df6de5d634047ccccbc1b632dda634d53b4549e012ce8737f640b64645c21>,
         <https://aa.perseus.org/id/feature/c0f66e41187e8dcc1f769770bff99eb276c445192e62b46a715b463b8f75582e> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/644f887adb51c69357ed0e29aa8b0d95e1431d725442af70ee67685bc355eba3> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287275>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/2734e6e6d3eb71694400207ba6f251bb358a7c1d41baba7e250c7685ec9370df>,
+        <https://aa.perseus.org/id/digital/325e022a397a44ca6674ab327ab7496b616d6d3f959602887f7f2baa35e04708>,
+        <https://aa.perseus.org/id/digital/e31fd37ea126155cbca818c40cb5eb910d00f3e6dbe1fd821d6a056599780f37>,
+        <https://aa.perseus.org/id/digital/eef9b0ea6a26afd754858ec530b49bb1e609542356ddf2c848c37277394eb37c>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287275>,
         <https://nrs.harvard.edu/urn-3:HUAM:INV033053_dynmc> .
 
 <https://aa.perseus.org/id/thing/56c98dbefc8bdb0cfa091e541bb46f732a5523a490a7c7779ff27617c928617e> a crm:E22_Human-Made_Object ;
     crm:P1_is_identified_by <https://aa.perseus.org/id/identifier/231bad0ca3493ef4a18196ca2ba554cbe9043c0ffbab7192d163441b3c364b0e>,
         <https://aa.perseus.org/id/name/6f226ee5924c51f8168a7ef536f4ea326079a2dedc6a36b38b7b66a6bd89a24b> ;
     crm:P24i_changed_ownership_through <https://aa.perseus.org/id/event/ff58ad89f7b09a6f1cc8456b3da9eaf692bfc95ba1835056f28c9de5db44759c> ;
-    crm:P2_has_type <http://vocab.getty.edu/aat/300386130>,
+    crm:P2_has_type <http://vocab.getty.edu/aat/300047090>,
+        <http://vocab.getty.edu/aat/300047625>,
+        <http://vocab.getty.edu/aat/300386130>,
         <https://aa.perseus.org/id/type/c1e3bf7a48dcd3940d1ff86769107c3503db4e40a6645798f656b1860d72b3c2> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/4a367823436359a40b561f1dff80b5a9cc60520f953506e23ed9bac33a6e6597> ;
-    crm:P45_consists_of <http://vocab.getty.edu/aat/300265960> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010669> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/18206ab1e16deae0f3a50d4b0e60340811b775472e99c107cda72f15de787afc>,
@@ -3452,14 +4455,16 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/2b449224663704e0564e76db1cff27bb2e092efb6f9f2f4469dd6d17a344461a>,
         <https://aa.perseus.org/id/text/6840abb934879d700dd598922a5424238fbfbd2e2b94473e7f99d800c1df2ee1>,
         <https://aa.perseus.org/id/text/d2ce4b18907e18c13bf03a0aa74370db3dc43419fcee2b6cc03e229545141d90> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287332>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/101e36f851e28b0f2fc21e02ea061645e644480484d800eeee5a0fc23a33f292>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287332>,
         <https://nrs.harvard.edu/urn-3:HUAM:VRS10594_dynmc> .
 
 <https://aa.perseus.org/id/thing/598ed352f3ca43007133acb78a30269135929a3d2ebdb735c0bf5618315a08cf> a crm:E22_Human-Made_Object ;
     crm:P1_is_identified_by <https://aa.perseus.org/id/identifier/d6de225d67800bf9a900b3dec3d4a61938855cc47032f0cca0bc6fb0ae94258f>,
         <https://aa.perseus.org/id/name/bf035c291e5457fc4e202bf33a81b64e398225fb2934d98f227d0ecd464ea8b4> ;
     crm:P24i_changed_ownership_through <https://aa.perseus.org/id/event/2276204e9a8e25841d1b833a3c12fc701e5db7c3c1e2934721216fbc434db72c> ;
-    crm:P2_has_type <http://vocab.getty.edu/aat/300386130>,
+    crm:P2_has_type <http://vocab.getty.edu/aat/300193015>,
+        <http://vocab.getty.edu/aat/300386130>,
         <https://aa.perseus.org/id/type/6dec0cedcfd9710ed05ee2a9733269a29d0e191e621a045d128bdf9aa5106731> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
@@ -3473,7 +4478,8 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/ed4475fed991d990c8175e62f254f12085e9bdb2e7c721bc2b2f7b7dbed1b135>,
         <https://aa.perseus.org/id/feature/f8569fb0540432a35bff44d5b14cb7b85ba5ac483872093d2f51d853781d843f> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/62440cadbef64b0b53ee195bd487e400affab8a494dd990f1160477e3616d155> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287172>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/77f62f5c88c87c07115415907902f3a7ff6470692b6f91044cf28fbbce68fda1>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287172>,
         <https://nrs.harvard.edu/urn-3:HUAM:INV108731_dynmc> .
 
 <https://aa.perseus.org/id/thing/60b2e08690c5fb978944689e6af9048e2cec5a5ef36c0d213b005dc8355b6361> a crm:E22_Human-Made_Object ;
@@ -3483,6 +4489,7 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
     crm:P2_has_type <http://vocab.getty.edu/aat/300386130>,
         <https://aa.perseus.org/id/type/41dbe5087c9c1bdb0ccb748bd4b0069483031a372f355d36afc287153f891fa6> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/f5ee93c6324fb86c5049ed04a1aa22e978685e82465f80fac46c1b315bdfc799> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010957> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/05a8c2d9b616aecf20a053bbe41c246abff74a9edec0313841a2cdf509710868>,
@@ -3496,7 +4503,10 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/eb30180dabde62abd91a142fd73038d2eda9c9c293374d0194b9a1fc0b4096fb> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/b61f721900e098c456833bac3b3160c8a8d4900e379886a816088f439dfaee48>,
         <https://aa.perseus.org/id/text/f575968dc8f34bd4e31f538da3dcede9e88b5e706c9050ef3061af523b0deece> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287282>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/7722ed0722b211d6a1a68361f6ec2a659c9201dbd93540f4db80ccf40632b0df>,
+        <https://aa.perseus.org/id/digital/80c1ec0ceac1a0d312006bd9b27b11ed3635f8bb3ebb354c6548f4f8146ad437>,
+        <https://aa.perseus.org/id/digital/dccdf2af47136aaaee241c8f999aa2e81e3ae540121fd947ce6bac314948bedc>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287282>,
         <https://nrs.harvard.edu/urn-3:HUAM:DDC248231_dynmc> .
 
 <https://aa.perseus.org/id/thing/683e4b2b181edc2cf5fac870958d5c5dee4ff75aad2d129a25bbef54bb1c4046> a crm:E22_Human-Made_Object ;
@@ -3509,7 +4519,7 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/type/6dec0cedcfd9710ed05ee2a9733269a29d0e191e621a045d128bdf9aa5106731>,
         <https://aa.perseus.org/id/type/b1fad8595623b51b22ac8f52142cec9d53b3dd41786f3aba2d7c1c94a4ca4676> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/35174d499ca05a25165747b7838a187949d153ad1abb194112af3a3b31487d29> ;
-    crm:P45_consists_of <http://vocab.getty.edu/aat/300265960> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010669> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/1a8df1c10181df645061c7641d562f1367562705cce1f021f54b8d605bcc9b3b>,
@@ -3526,7 +4536,12 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/text/393303563b6f6c4af53613169ea324fc8a3409c40ba2bb7741eaa72ab6f1689d>,
         <https://aa.perseus.org/id/text/d8281702d49cd9d72b7f5977ca49614e288f621a1b6482e96e0d840da883be54>,
         <https://aa.perseus.org/id/text/dc9378afdb69a540e8ce554dc9a1e7bc3f90421eb648744b2b64abc34f591adf> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287008>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/321b85c75c7a73ed0331b8180b6bacf103704e224c170530f5ac6b4e0e481d5f>,
+        <https://aa.perseus.org/id/digital/3322d3752a5e3d50d7cef337367373021a648a9ea33c47dd4b8575b6d15e43a3>,
+        <https://aa.perseus.org/id/digital/527016d757c793150acc0ecf04ca49c868f701053f7c1d905e15ef3c6554fe37>,
+        <https://aa.perseus.org/id/digital/9d7a8f84e7d53137dd1b65aa6dffc7ac9a0d7a3de8cf03c6ef3f172495faec6f>,
+        <https://aa.perseus.org/id/digital/eecaddc2c640663e678c0d2aa0e8ac5325d5ed63556dd9e61462d2a4f0656c8c>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287008>,
         <https://nrs.harvard.edu/urn-3:HUAM:74122_dynmc> .
 
 <https://aa.perseus.org/id/thing/6a711ff1e027d10ff2e5b23a7d30d58ec884f73486e0d3b8ab058845316b0e2f> a crm:E22_Human-Made_Object ;
@@ -3548,7 +4563,8 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/b899973e930cadd3ee428132a05a813c668016418db3336df386c4609e657cd9>,
         <https://aa.perseus.org/id/feature/c59753320c39f42a9456c41bc1d44543a3f5d4f3f250d5cd7b8cfdee3074e889> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/b17cfa7963b76092411aca10f6ae0ac8804f708497d2786c43efbb43070379c5> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287133>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/188e7caf6ef60e4fbb6d6df01611936b79e98dd9ac8cbf66dac0b5e28f070ce6>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287133>,
         <https://nrs.harvard.edu/urn-3:HUAM:INV107139_dynmc> .
 
 <https://aa.perseus.org/id/thing/6c86c308124fde743ecfd828fcd63d56c4c2a7a14c407f80a04b7d8d3da103b5> a crm:E22_Human-Made_Object ;
@@ -3557,7 +4573,7 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
     crm:P24i_changed_ownership_through <https://aa.perseus.org/id/event/e1e871b1e141cbd54ab1b9ad0871010bc2bc44d5c45392295eec3a0efb4a546e> ;
     crm:P2_has_type <http://vocab.getty.edu/aat/300386130>,
         <https://aa.perseus.org/id/type/8e9b896de667fe355ae72739e135aee9a5eac8a469fa4de673531325fe5d8c4d> ;
-    crm:P45_consists_of <http://vocab.getty.edu/aat/300265960> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010669> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/037bc27ce36103e7002ade0509bd50c48f6fbe6cf2c54f7226f9b81561383e19>,
@@ -3570,7 +4586,11 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/d734191ddc9b9bbdd7dd4987e2b39bdeead2216cde0b235c0dbbe85ed846b72b>,
         <https://aa.perseus.org/id/feature/e377cc960f203e90df388616ea3bc7d5b6a8366bcccc3252ea1fe831e880eb20> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/782697664e9e945fa9d55151d612fa93f1e61c619446338936e493306b6dc7ec> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/286820>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/06e02ee7666b95354083be5b7011781667bb6b931bc48f400bf723c0292591e5>,
+        <https://aa.perseus.org/id/digital/5c478281cb9a6430a459672cdc5a94474efbc0d46b70bbe5c304528008cf0c65>,
+        <https://aa.perseus.org/id/digital/640d6ac6eb1bae9f12ea99ce5f2c35ae216d556939d1b4bbdfe73f5dedff655e>,
+        <https://aa.perseus.org/id/digital/faffabf19a875322b1879c3eeb1d64a52ee434404365353713f8158a71b89d97>,
+        <https://iiif.harvardartmuseums.org/manifests/object/286820>,
         <https://nrs.harvard.edu/urn-3:HUAM:CARP12069_dynmc> .
 
 <https://aa.perseus.org/id/thing/6d9f498d19c9dd87eb3e75c0697e90ba6875ce78451f94432c90df2aa4d0c428> a crm:E22_Human-Made_Object ;
@@ -3580,7 +4600,7 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
     crm:P2_has_type <http://vocab.getty.edu/aat/300386130>,
         <https://aa.perseus.org/id/type/8e9b896de667fe355ae72739e135aee9a5eac8a469fa4de673531325fe5d8c4d> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/6583fc340ff88209d53dc0133ef307a603de3d651f5cd0ef65908ccc4b10f4e2> ;
-    crm:P45_consists_of <http://vocab.getty.edu/aat/300265960> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010669> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/43c982742780f60547fbdb8a82aff3689fc973b33a5a582fc9d76589df1c2502>,
@@ -3589,7 +4609,8 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/b924f71f620384967c64288ad4a948e19185ac44686b728afe76600abfd87cac>,
         <https://aa.perseus.org/id/feature/bcc6c59ffdf721c14a90899345af0f094bb9069e03f157ddb0a1e4afcc3dda02> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/df4663bb363d76dade08777c9e7afa6d3dc80f054cd555c6bceada6b964e5745> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287340>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/fa963259bcf28038f1620916ef67526331ad2f0caffc277ca467979d8a7d37fc>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287340>,
         <https://nrs.harvard.edu/urn-3:HUAM:VRS17908_dynmc> .
 
 <https://aa.perseus.org/id/thing/6e5a34929893f533f5b0ca1abd1fc1e93a7eef3df670d3816bd80d43506ac26b> a crm:E22_Human-Made_Object ;
@@ -3599,6 +4620,7 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
     crm:P2_has_type <http://vocab.getty.edu/aat/300386130>,
         <https://aa.perseus.org/id/type/41dbe5087c9c1bdb0ccb748bd4b0069483031a372f355d36afc287153f891fa6> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/ed59734aae95149bd13d9e2e2761190d21c029c9067b28f22e73076e32236709> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010957> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/0ce529b8ab70aba3c2e73304ea1ac2d5169cf3ab9eb8ffa3036b5457c95f95df>,
@@ -3612,7 +4634,9 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/ec26b6976d993fe002806ce470af2cb7c767a0f6f58a5751797cfb210ef973a1>,
         <https://aa.perseus.org/id/feature/fdffc8d5c9dd57dee084d04707477be43364372d88b13dec05b036fa74748ebb> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/d1695c6881a5f8726ed34b6ada2fde4ff33caeed61c829d9843cb52ed9c22102> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/286803>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/36d5aff3bfe77226aa3529a97ab38d1047ca54110ac79a4986b1f899bb4430d2>,
+        <https://aa.perseus.org/id/digital/8eb4719f93b8fcfcf8926856269d41a884ac2aa78426df4ec9eaeb68e8c96c15>,
+        <https://iiif.harvardartmuseums.org/manifests/object/286803>,
         <https://nrs.harvard.edu/urn-3:HUAM:DDC251042_dynmc> .
 
 <https://aa.perseus.org/id/thing/731ff3b238b8441a298a738d600aeef11bc76807491a076201fc424b0d2a844b> a crm:E22_Human-Made_Object ;
@@ -3633,17 +4657,20 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/bb5cbf2102659065f81e9b39ce2b4709d972629167a9a106bddf5f0614752e46>,
         <https://aa.perseus.org/id/feature/c0849ecbb86e1ef0cea1cee5bec140db975d1afd0afec71f0211b7df40a7a376> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/b17cfa7963b76092411aca10f6ae0ac8804f708497d2786c43efbb43070379c5> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/286831>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/ca676beee2b8b9475c26e971dca1682eb85e865ee07905b9f66e0482fb2492ea>,
+        <https://iiif.harvardartmuseums.org/manifests/object/286831>,
         <https://nrs.harvard.edu/urn-3:HUAM:INV051336_dynmc> .
 
 <https://aa.perseus.org/id/thing/770c5ca00affbe3645f3d637e2971745687a56b0cade8d042e5636850583b23d> a crm:E22_Human-Made_Object ;
     crm:P1_is_identified_by <https://aa.perseus.org/id/identifier/a57a8eab9a2381e03c995c31d076b1dba58a415973082449f8a07b02944b27fe>,
         <https://aa.perseus.org/id/name/05fd571aaa795ad1575ed4ac1f7f441f9ab457c82fb17d779923d65a3524caa8> ;
     crm:P24i_changed_ownership_through <https://aa.perseus.org/id/event/dc87ea5283b2c3adcf584fe95dcc0abb0e7a31654fd3adbd7882fe8cf9db664f> ;
-    crm:P2_has_type <http://vocab.getty.edu/aat/300386130>,
+    crm:P2_has_type <http://vocab.getty.edu/aat/300047090>,
+        <http://vocab.getty.edu/aat/300189808>,
+        <http://vocab.getty.edu/aat/300386130>,
         <https://aa.perseus.org/id/type/c1e3bf7a48dcd3940d1ff86769107c3503db4e40a6645798f656b1860d72b3c2> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/0754e2f2220795020dff66df2fd9b42cd519d54bc244a4d8502da8e996d07a4b> ;
-    crm:P45_consists_of <http://vocab.getty.edu/aat/300265960> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010669> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/02346ee1a0337d29b960a83366d8efe1ce297e32f3f18407d15cd5a081b79d0e>,
@@ -3658,16 +4685,19 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/0bcf388c738fdae04b967fc66ed14c9b0c63a55462e4528446457ac10e7734da>,
         <https://aa.perseus.org/id/text/35bff1ad419652ac0bf1c9cd105a26bb58d213f74040493e66573a381def4fd3>,
         <https://aa.perseus.org/id/text/e083682bc28521395485359ad757cdb4cfa1c44d9ed2e83106006e58c5fec50c> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/286945>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/136fbf04ee2bfb6a7d77e54a2f26af2cf13e96616b209bc288c6ca1a6b549734>,
+        <https://iiif.harvardartmuseums.org/manifests/object/286945>,
         <https://nrs.harvard.edu/urn-3:HUAM:INV044195_dynmc> .
 
 <https://aa.perseus.org/id/thing/79b667ea76cc2d61bb79eaccd56b76c341272d488923a8ae17d2da0eaa45ee4e> a crm:E22_Human-Made_Object ;
     crm:P1_is_identified_by <https://aa.perseus.org/id/identifier/272256963f63de82cecda0bcdf4e5e9c0a882a3953419414eb730a0292e5201a>,
         <https://aa.perseus.org/id/name/d824f4e09b83bb819612029760611621a3063d3b79b74364f47766f37ceecb14> ;
     crm:P24i_changed_ownership_through <https://aa.perseus.org/id/event/d49c98ddf1d6891ba7a19e1a4514d2d9b5800cfbbcfb109bb8d3eb67768c9883> ;
-    crm:P2_has_type <http://vocab.getty.edu/aat/300386130>,
+    crm:P2_has_type <http://vocab.getty.edu/aat/300037222>,
+        <http://vocab.getty.edu/aat/300386130>,
         <https://aa.perseus.org/id/type/d909de4764afdd67b9e24c9b6f271d69a88cb7ee73f5e59970adc46fe75fe82c> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/ed6694d58a65dd96cc61c898b28327111c65d71664f30d1d7eb8268a439b467c> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300011029> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/233c193d9e0baa4986d692435d2a21e1cc026ae22ec8e73ad13c4375b6eb3be4>,
@@ -3676,7 +4706,8 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/7f822ccfa055a47bb8a3068b8c4145c9a06699929369cac245e1c7e052e810ef>,
         <https://aa.perseus.org/id/feature/d51b2c88ceb8c567e94cb7feee8e43ec9ee7143845fc24bd2f1bc439ccf8c5d5> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/649452e095f169d095fa1290ac1bb6c1b22a3185ab4e2f29b68e72fdd0b99b00> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287320>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/0af5b10d99f3678496d607b2557fbde50ef200f4f01c436f56f1a0850482397e>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287320>,
         <https://nrs.harvard.edu/urn-3:huam:COIN14255_dynmc> .
 
 <https://aa.perseus.org/id/thing/7ebaa51a1a496c5ada949b353f6ebee9ef9aa7f78f3d24b2188ed6577cabc431> a crm:E22_Human-Made_Object ;
@@ -3688,7 +4719,7 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/type/8e9b896de667fe355ae72739e135aee9a5eac8a469fa4de673531325fe5d8c4d>,
         <https://aa.perseus.org/id/type/b1fad8595623b51b22ac8f52142cec9d53b3dd41786f3aba2d7c1c94a4ca4676> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/2c597f6e575e005d0d3d597c3207dec80b758d0c2c2a1fe550ca86005b5b24bb> ;
-    crm:P45_consists_of <http://vocab.getty.edu/aat/300265960> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010669> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/0d93f994bc586d4f2991d73afb35c9f3e8a1d9cc8b633f30ad8aa51b80080061>,
@@ -3704,7 +4735,8 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/89b87c83e6fa40de5b54f0fbbe83c2864af74442eed7cc7c4fc5bc7a08afd850>,
         <https://aa.perseus.org/id/text/9d7fcf3a2e4d236366aca2c08b1902d7631442679801ac2e940ff6fb10a4e473>,
         <https://aa.perseus.org/id/text/fd5470b596fec7009260a3234058b53a460cf14741586ed8d74f94edcd9a40ed> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/286248>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/06967edf100c2f8c869ea13ede70a2dbd8d1638c3db519c8be902430ff946679>,
+        <https://iiif.harvardartmuseums.org/manifests/object/286248>,
         <https://nrs.harvard.edu/urn-3:HUAM:VRS11283_dynmc> .
 
 <https://aa.perseus.org/id/thing/7f64cb7123a5f043ee22cd46d6599b5dd05fb59afb76e88e682e9dc3f087f923> a crm:E22_Human-Made_Object ;
@@ -3714,7 +4746,7 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
     crm:P2_has_type <http://vocab.getty.edu/aat/300386130>,
         <https://aa.perseus.org/id/type/8e9b896de667fe355ae72739e135aee9a5eac8a469fa4de673531325fe5d8c4d> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/f845869ee2a18f90aa4d6b6200603f29404bff00f3774541017a8b71a43a6e1a> ;
-    crm:P45_consists_of <http://vocab.getty.edu/aat/300265960> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010669> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/0cad55c92b9bb498b4072328913ffae76b2158f45f3e26750b227c7edbff7391>,
@@ -3730,7 +4762,8 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/2b449224663704e0564e76db1cff27bb2e092efb6f9f2f4469dd6d17a344461a>,
         <https://aa.perseus.org/id/text/31eea9be8118c50baae9bcdd04acfa989cf12d4d5e485348bd8457c345263305>,
         <https://aa.perseus.org/id/text/6840abb934879d700dd598922a5424238fbfbd2e2b94473e7f99d800c1df2ee1> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287245>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/0d3c4a2455903002cf3df75fc655a6f2164a6ef8556415c0809df54ea153878f>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287245>,
         <https://nrs.harvard.edu/urn-3:HUAM:VRS10541_dynmc> .
 
 <https://aa.perseus.org/id/thing/86cb5ee159fd1a74dc8e0b5b88f03e9b0174c38716916f680f56c7d8065765c9> a crm:E22_Human-Made_Object ;
@@ -3742,7 +4775,7 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/type/8e9b896de667fe355ae72739e135aee9a5eac8a469fa4de673531325fe5d8c4d>,
         <https://aa.perseus.org/id/type/b1fad8595623b51b22ac8f52142cec9d53b3dd41786f3aba2d7c1c94a4ca4676> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/1db33b453580906fbcb1410b5b60d3db023155818a89e2b0a7222befe6297e46> ;
-    crm:P45_consists_of <http://vocab.getty.edu/aat/300265960> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010669> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/0d3b1a9502c0caf561d284c7a24a4f8b97f17a9f3da612e993e903217027f0cc>,
@@ -3757,7 +4790,8 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/fabf039f6c7d46666092840ec215a07c987f6320093e143d04a61ffee8287bc6> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/9d7fcf3a2e4d236366aca2c08b1902d7631442679801ac2e940ff6fb10a4e473>,
         <https://aa.perseus.org/id/text/fd5470b596fec7009260a3234058b53a460cf14741586ed8d74f94edcd9a40ed> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/286249>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/c5e451f378003e020d3e088adc6b05c8377c5399802876696db9663d95442a72>,
+        <https://iiif.harvardartmuseums.org/manifests/object/286249>,
         <https://nrs.harvard.edu/urn-3:HUAM:VRS11285_dynmc> .
 
 <https://aa.perseus.org/id/thing/a10dbb810854dcdd7ea7aaa63899c52befd503cf4b4e7915a0225a42fe2ff3ee> a crm:E22_Human-Made_Object ;
@@ -3770,7 +4804,7 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/type/6dec0cedcfd9710ed05ee2a9733269a29d0e191e621a045d128bdf9aa5106731>,
         <https://aa.perseus.org/id/type/b1fad8595623b51b22ac8f52142cec9d53b3dd41786f3aba2d7c1c94a4ca4676> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/ea9885d9b3accadb5ccb0ed60f56dc914c7d9b495488ded642d0b8274fc415bc> ;
-    crm:P45_consists_of <http://vocab.getty.edu/aat/300265960> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010669> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/01340b92afe2b4ebb30d91ddefeaf2ae5e6d7cc7f3a6196ee27a77a2a7ce9be9>,
@@ -3785,7 +4819,9 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/d74ca57a14c3cc6694babb8cf4e76221de606c8acbdb2e82eaa8f2209f115c58> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/3a4c765ea8902c7d32406447de278b4283529bf57566951aeb28a54cfa6994cb>,
         <https://aa.perseus.org/id/text/3bce42c41f21a11a58e322d4f5124c303ff927305f0c0118017c7866a7cfc874> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287256>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/65f6c8458364c08fe857434f6c710213a6d62e408c31eedee829530e8c1ed930>,
+        <https://aa.perseus.org/id/digital/6fecbf5a8d9f2bd28c91550a0d033a0b29e97000dca5aaab79c1a1db316d84ba>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287256>,
         <https://nrs.harvard.edu/urn-3:HUAM:53731_dynmc> .
 
 <https://aa.perseus.org/id/thing/a6d0c134549def488b6b7b879861fe25843ab945c17d54b3fd63da5e894505b1> a crm:E22_Human-Made_Object ;
@@ -3798,7 +4834,7 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/type/1152e957d2e4596eabdadc83981ddf7b2a59a8e71d95692c84845c4b9bf1936f>,
         <https://aa.perseus.org/id/type/6dec0cedcfd9710ed05ee2a9733269a29d0e191e621a045d128bdf9aa5106731> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/e6cf2964a6c53f07bd34d8393ee7aeabda340f9d709b16f82911a9fd79ac5820> ;
-    crm:P45_consists_of <http://vocab.getty.edu/aat/300265960> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010669> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/0edbdca998dce5ab3f6147a3acbe676f2a80d63f56fec6aeab235b2f8d0e96d9>,
@@ -3814,17 +4850,20 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/40fb0472c886cfb8173283d5e7102fc4a206b920af9d8e92f7c7c597ac23155a>,
         <https://aa.perseus.org/id/text/62440cadbef64b0b53ee195bd487e400affab8a494dd990f1160477e3616d155>,
         <https://aa.perseus.org/id/text/7dfb312b30539b23465506578737d75f9510505ac5c83f84193cd44d475331b9> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287119>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/2acd84f24bdfdae10022165a011065c48ac36d3a0c37627867f62ecbd6b2c32c>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287119>,
         <https://nrs.harvard.edu/urn-3:HUAM:VRS89266_dynmc> .
 
 <https://aa.perseus.org/id/thing/adbf1144abcbd01b18eab3a2861317e74836ae8f0013160c757a07e99a5c0d10> a crm:E22_Human-Made_Object ;
     crm:P1_is_identified_by <https://aa.perseus.org/id/identifier/a6febb88804069828491f7ac0b4cf31c87a56f627f98c1d7a4439194a9fd84b8>,
         <https://aa.perseus.org/id/name/5620bbbb4598a842ba28d78eb55982c6447224235a4a28daa7b30bb25a5529b9> ;
     crm:P24i_changed_ownership_through <https://aa.perseus.org/id/event/20fc13e129235071bd45b6825f0ffa6fc4fb70a038000c2450c47f337244af7e> ;
-    crm:P2_has_type <http://vocab.getty.edu/aat/300386130>,
+    crm:P2_has_type <http://vocab.getty.edu/aat/300047090>,
+        <http://vocab.getty.edu/aat/300189808>,
+        <http://vocab.getty.edu/aat/300386130>,
         <https://aa.perseus.org/id/type/c1e3bf7a48dcd3940d1ff86769107c3503db4e40a6645798f656b1860d72b3c2> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/d2ede92d31df02ace05f35ae8337218c88604a2c33d9f5dd529d02aafc7bed3d> ;
-    crm:P45_consists_of <http://vocab.getty.edu/aat/300265960> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010669> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/199680d85e8670d2a2845330efdc617a81d93eabc1ca4543abef59161561710f>,
@@ -3839,7 +4878,8 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/2b449224663704e0564e76db1cff27bb2e092efb6f9f2f4469dd6d17a344461a>,
         <https://aa.perseus.org/id/text/6840abb934879d700dd598922a5424238fbfbd2e2b94473e7f99d800c1df2ee1>,
         <https://aa.perseus.org/id/text/9552bc8ea21f2f497538c547d76ded7015e2c904a3ca45c475e21d06b5f25b1a> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287333>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/222e114f81c473abc958fc5c84a1aaa53fdbcace32c2013b2c1c60f17b25bd3f>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287333>,
         <https://nrs.harvard.edu/urn-3:HUAM:VRS10470_dynmc> .
 
 <https://aa.perseus.org/id/thing/b076c3d39b8387579f1e8ad0daa5e6e546b281bf2e3342af6f09a29e92f795ac> a crm:E22_Human-Made_Object ;
@@ -3852,7 +4892,7 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/type/6dec0cedcfd9710ed05ee2a9733269a29d0e191e621a045d128bdf9aa5106731>,
         <https://aa.perseus.org/id/type/b094d2ee33dc2c28e5aee35b912fa2154c19afa4399dcc08bde205f956f433f5> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/b4f5f93150cb9c19d30b10c141522e7b676ee9be12884aa7deb4f031d3e88e92> ;
-    crm:P45_consists_of <http://vocab.getty.edu/aat/300265960> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010669> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/64597edcd8895f82327a896770fe8803aac642a4df36d266883cf59d422db831>,
@@ -3862,7 +4902,9 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/eb5ba37d3a317bf94bfbfb163a6305966421c5269215000f86e19ff582a91091> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/0e2218b1f33af3b6438482f2281b1a4a7cdb1f0fbf190a9fc9ec13ab084bf2ae>,
         <https://aa.perseus.org/id/text/393303563b6f6c4af53613169ea324fc8a3409c40ba2bb7741eaa72ab6f1689d> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287006>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/57a0fbc548186b596c89a735e1188d1f9634670efe69620f13d3288364fc0cea>,
+        <https://aa.perseus.org/id/digital/96debbc48f2fbf106350a0f218457aa86a844bfa6b23d7df7714f10de356155e>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287006>,
         <https://nrs.harvard.edu/urn-3:HUAM:VRS19376_dynmc> .
 
 <https://aa.perseus.org/id/thing/b091f044d6dfadee9739e956792a45cc57be51293ed7f5c92e5bafadcfa8082c> a crm:E22_Human-Made_Object ;
@@ -3875,7 +4917,7 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/type/1152e957d2e4596eabdadc83981ddf7b2a59a8e71d95692c84845c4b9bf1936f>,
         <https://aa.perseus.org/id/type/6dec0cedcfd9710ed05ee2a9733269a29d0e191e621a045d128bdf9aa5106731> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/cf2657994fa1600a126cb8e99e8f8a023a55fdee962ffd8da728e2c80215fe6d> ;
-    crm:P45_consists_of <http://vocab.getty.edu/aat/300265960> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010669> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/1259e3feb592df1e51e8ad2929d1bd366ce17901e49b58e7d83e3e874b7397d8>,
@@ -3892,16 +4934,21 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/text/d1ae266d4e1753b8f07527f916a12b99d678230fcfa871b9bdabe9f558814af7>,
         <https://aa.perseus.org/id/text/f45947b8afe37a325a7bcc8b02e54714d5f0bb9f468bb2350c881a083869ed76>,
         <https://aa.perseus.org/id/text/f6b43a808650e88155dad97db33d3df44735d990627a567e93c1f5f8394adc5e> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/286802>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/03fdec149daa8dc4ef691a2bd36c84dfd1a6652940381fd5d363d8d33e1e3e6f>,
+        <https://aa.perseus.org/id/digital/20f89ef2fc72810f31fdfb0f900043cfce76c4bfbedce50f55e5a9864f377d6d>,
+        <https://aa.perseus.org/id/digital/5d93b6bfffa397d449234264ecb268a3edd6d0ad8bd813373bbc17c187c3293a>,
+        <https://iiif.harvardartmuseums.org/manifests/object/286802>,
         <https://nrs.harvard.edu/urn-3:HUAM:DDC252725_dynmc> .
 
 <https://aa.perseus.org/id/thing/b6f6b33397d66637818a6c9b06e08a783e83b71e92a46559a3f02fbba9027bb3> a crm:E22_Human-Made_Object ;
     crm:P1_is_identified_by <https://aa.perseus.org/id/identifier/61d9f5aa8cebe79070ef0f627d7edbfc174dedeb418a085dbea6b5e44982ffaa>,
         <https://aa.perseus.org/id/name/d2b9742b0c10b951b507b04d57dd6f5422eee4905f44e24fae22349d1cf329e7> ;
     crm:P24i_changed_ownership_through <https://aa.perseus.org/id/event/5f740171951a0bd6f04a549d7e863f4940659f343de8febaa97c3158d474a5f1> ;
-    crm:P2_has_type <http://vocab.getty.edu/aat/300386130>,
+    crm:P2_has_type <http://vocab.getty.edu/aat/300209286>,
+        <http://vocab.getty.edu/aat/300386130>,
         <https://aa.perseus.org/id/type/fbb30e8dbda650a22a241026812d981d897035bb5c865d2bdfb6ea09ddc2e108> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/6142ab1a8bbd04cdf0b95adb5e0673f7c43bdae746b2a1d797dc5d3e205cf3e4> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010957> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/04b547f73105502fedb3839f2dbc1e81c5ffff2f70c52dff9821aab7ea1137d2>,
@@ -3914,7 +4961,10 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/5b6e2d123722a3ad124d513dd565efdf42617a8962097bca93276a0e81ef0f3c>,
         <https://aa.perseus.org/id/text/c8714dfa6c5f2e8b76579edc634fa8fb3b3387c662e1d01aff3a7e7b50213761>,
         <https://aa.perseus.org/id/text/c956da87bc44a0ab30ff18ff14c4f2c217c3cd2efc899eb6b7adc205f5f96e1c> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287221>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/04a25e970cb6df05579410bb602036a4e71fa600d4114c3a3844351e044e9f6a>,
+        <https://aa.perseus.org/id/digital/4f1f7b52e233c94b80dfa7b2a892b4b55f26b64eb64ed83291b53a95ee6cf256>,
+        <https://aa.perseus.org/id/digital/cde421f653e183f09fe5e898e5eebdc743976cf964f058b26656380efc86406a>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287221>,
         <https://nrs.harvard.edu/urn-3:HUAM:72515_dynmc> .
 
 <https://aa.perseus.org/id/thing/b7bb63a00805c0d8fcb908130237561611257ddd720959d033ef8bdfb05716eb> a crm:E22_Human-Made_Object ;
@@ -3925,7 +4975,7 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <http://vocab.getty.edu/aat/300386130>,
         <https://aa.perseus.org/id/type/6dec0cedcfd9710ed05ee2a9733269a29d0e191e621a045d128bdf9aa5106731> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/2e6e26a0b6986c3b0cc42869542fbdd85f43567801c82abb06a8d0ee6b2ffc04> ;
-    crm:P45_consists_of <http://vocab.getty.edu/aat/300265960> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010669> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/48e1339ea2df25dd4b39ae34a58fed7c33f8e50f601283ab4554bc3d57832913>,
@@ -3935,7 +4985,8 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/ca7508955205ca5828af603ba9d7644bd020bdb7328f921c47c14c931c346187>,
         <https://aa.perseus.org/id/feature/e06ffb99acb70a63675b748165af1f691f984f00f0d10db45fdb243979b4a8ad> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/62440cadbef64b0b53ee195bd487e400affab8a494dd990f1160477e3616d155> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/286255>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/a21c0b137e735c7a353d7089900ab9caeaf1b7d426eb77143947c50da2bd0cb6>,
+        <https://iiif.harvardartmuseums.org/manifests/object/286255>,
         <https://nrs.harvard.edu/urn-3:HUAM:VRS20712_dynmc> .
 
 <https://aa.perseus.org/id/thing/c35a457f932b1cd46fda3fb9b0e93c7d807e40e1efba6639102205f2e8f3483e> a crm:E22_Human-Made_Object ;
@@ -3947,7 +4998,7 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <http://vocab.getty.edu/aat/300386130>,
         <https://aa.perseus.org/id/type/6dec0cedcfd9710ed05ee2a9733269a29d0e191e621a045d128bdf9aa5106731> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/1348f63020ca2a50a5de62d2a440bdd0108a7da4bd936d51c12f28c6a78bf480> ;
-    crm:P45_consists_of <http://vocab.getty.edu/aat/300265960> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010669> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/1c5b221a7f6762dcb3b1dab76ebf0de20943c5aa45ec26fdd08c34eeb87d8489>,
@@ -3963,16 +5014,19 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/7a9868f99ee385d99690158a03864a996fe21b96ed33c8f5bbf82c2ba5e4cbad>,
         <https://aa.perseus.org/id/text/9cf790996497ab31d4ac3c8e457b1c78b813abe58daa84d7b6eb7847c51ca784>,
         <https://aa.perseus.org/id/text/f4c6aa82f80df5ad0796d67211fa4f6a969a150101a55bf90dea78f622db6719> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287257>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/1faea30793d476999b587ee88a31578216db6cf1ed1c80d9d243c77cf4cb9128>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287257>,
         <https://nrs.harvard.edu/urn-3:HUAM:53511_dynmc> .
 
 <https://aa.perseus.org/id/thing/cb6e8c9bced4e5322c3c5a1f9d8388013948f864cec10eec11e68fc13f7dbd63> a crm:E22_Human-Made_Object ;
     crm:P1_is_identified_by <https://aa.perseus.org/id/identifier/7c6c1d29ef4b5e635a56558f3c2a9c909d198ba43f005a4565d9bb87fcbb19a2>,
         <https://aa.perseus.org/id/name/48cb01fda4537fb5f909c6fa8eff0c6e64ec5d664a164285e4ae347d4f2e7116> ;
     crm:P24i_changed_ownership_through <https://aa.perseus.org/id/event/f98d5bf5001be58542016bf743b2ce029b8e271f7413acca75d0aecca1afd0a1> ;
-    crm:P2_has_type <http://vocab.getty.edu/aat/300386130>,
+    crm:P2_has_type <http://vocab.getty.edu/aat/300046300>,
+        <http://vocab.getty.edu/aat/300386130>,
         <https://aa.perseus.org/id/type/dd33c14cf9a288350d9bde6d3f52a993cd0c7297f8d66ee40b64085e8a7b33f2> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/f2cbd1fe84dfc0e507333a0a1be64c027db8748005917fe4f416367e775ffc95> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300011018> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/5a5fb4ee580143b51eb78736a45947c217ebb26df9c3ecc0d869178a5e2b8dfb>,
         <https://aa.perseus.org/id/group/deebb7664bdba22f45c0bc6d478b52f65466c49579501fe5ae1e6c2265933e71> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/0f9cc6ccafc45553603749a9a88e9b7e5a609e7bb085b8f96ca2f83bc82c0a58>,
@@ -3986,7 +5040,8 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/fc115af5b7f45d4f790e3df73d294c138e7104e9878da0b8b3df8ca2af7fd43e> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/4f77c2903f79705641b9d70894457e5a28e39ab6493532e021e7f801874c955b>,
         <https://aa.perseus.org/id/text/c07250ec4e78c67ab3b03315a9a36197f79959466e488560309107f9d73c54bd> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/283830>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/b29e6003d47c765c121abe769ef339cfefb5cc545bf629ee6b8186ee2e30ce96>,
+        <https://iiif.harvardartmuseums.org/manifests/object/283830>,
         <https://nrs.harvard.edu/urn-3:HUAM:INV024246_dynmc> .
 
 <https://aa.perseus.org/id/thing/d835fbc6b304282d96039d0764ae3ee327e08c818b53716f4842a072eab309e8> a crm:E22_Human-Made_Object ;
@@ -3996,7 +5051,7 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
     crm:P2_has_type <http://vocab.getty.edu/aat/300193015>,
         <http://vocab.getty.edu/aat/300386130>,
         <https://aa.perseus.org/id/type/6dec0cedcfd9710ed05ee2a9733269a29d0e191e621a045d128bdf9aa5106731> ;
-    crm:P45_consists_of <http://vocab.getty.edu/aat/300265960> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010669> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/03432117b7e5ee9298424a9cd82e41a0269e66d4f8a6d1504168d6825d8eb5e4>,
@@ -4010,7 +5065,8 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/ae94f6b7ef4ab366791683d7ed1892b7b4a3ed6537636533f203e103b4d28da6>,
         <https://aa.perseus.org/id/feature/de7155cb653357481eb80368ecc6160ec31ca429b8f0fa27241e907646fadff1> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/62440cadbef64b0b53ee195bd487e400affab8a494dd990f1160477e3616d155> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287252>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/6dee2cd0ef4e7fa31395419955c0a822fb96da6eb0f1872a141de06d1c720d82>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287252>,
         <https://nrs.harvard.edu/urn-3:HUAM:INV108699_dynmc> .
 
 <https://aa.perseus.org/id/thing/e846129a5cfd05fcf0677f54ef2bebacccc2c462bc668e5efb360b21a8d5d1c1> a crm:E22_Human-Made_Object ;
@@ -4023,7 +5079,7 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/type/1152e957d2e4596eabdadc83981ddf7b2a59a8e71d95692c84845c4b9bf1936f>,
         <https://aa.perseus.org/id/type/6dec0cedcfd9710ed05ee2a9733269a29d0e191e621a045d128bdf9aa5106731> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/52f9193185b59aafd211fbc231d47cf3adbbdca02ae57f4230c45d96d59d520c> ;
-    crm:P45_consists_of <http://vocab.getty.edu/aat/300265960> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010669> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/13b43571312be8018737b0b4cc27465ef4c4a5dc62a4369d5a437b9118464153>,
@@ -4037,7 +5093,10 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/cf2b271bb9187c420b4a98da5ae2b02d5eef0f632ff456741ea3cbebb35ae9c8>,
         <https://aa.perseus.org/id/feature/f85a76175a75a349579c061fa144171b464c782fed7081c33bc3d5569dc06e7c> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/b1dfb36df8d8b130165a4b5441b631d5537cd18ff3042fcbb20bb8b131717ebf> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287338>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/3219310357e95f83f81522c958f35c80d7990d1b11a47ec31ec35384296af969>,
+        <https://aa.perseus.org/id/digital/75c6b67dd1270df861572fd12eaf62281b0be44c40ff37b57fa620842e68882a>,
+        <https://aa.perseus.org/id/digital/d412ed83d244421e4f6a1f2cb2cc6df4c0f089abb5478c1e790d4f2f44ee37fb>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287338>,
         <https://nrs.harvard.edu/urn-3:HUAM:VRS17905_dynmc> .
 
 <https://aa.perseus.org/id/thing/f23079d7d6b07d42c1a54407d8319ef11f7529de0ece985a21ef9d8fbfcd9242> a crm:E22_Human-Made_Object ;
@@ -4048,7 +5107,7 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <http://vocab.getty.edu/aat/300386130>,
         <https://aa.perseus.org/id/type/6dec0cedcfd9710ed05ee2a9733269a29d0e191e621a045d128bdf9aa5106731> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/1881200c42e1158356ef7a63ccedda6ddc1b50f31375454523bac2e238834f00> ;
-    crm:P45_consists_of <http://vocab.getty.edu/aat/300265960> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010669> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/0a778fe3aad5fce6b6ea6bfa8669fc1defa61aa9cbca7a6d7e925c2d0cf80795>,
@@ -4059,7 +5118,8 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/dd8b754d2947039aa831ef4891af5d8fe827a1abf99972f19e3b9c3240121c11>,
         <https://aa.perseus.org/id/feature/de9205d74b3f4eaeecfa6921a9c0d6a5d0d4550d5528baede23e6a8b85132a47> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/62440cadbef64b0b53ee195bd487e400affab8a494dd990f1160477e3616d155> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/286330>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/77a4e56f22cbc3d6e17d672bafd8530202651308eaa57fab3004221b326b3d33>,
+        <https://iiif.harvardartmuseums.org/manifests/object/286330>,
         <https://nrs.harvard.edu/urn-3:HUAM:VRS20709_dynmc> .
 
 <https://aa.perseus.org/id/thing/f6a40518ac3990cdea2994547a55451c441fde5023b874607cbb0e11e3613dbf> a crm:E22_Human-Made_Object ;
@@ -4071,7 +5131,7 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <http://vocab.getty.edu/aat/300386130>,
         <https://aa.perseus.org/id/type/6dec0cedcfd9710ed05ee2a9733269a29d0e191e621a045d128bdf9aa5106731> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/8ce7b516dcdaf09292bdbb767ec717ac6f9541baaa21b306c520a78e89bc18d1> ;
-    crm:P45_consists_of <http://vocab.getty.edu/aat/300265960> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010669> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/1f62469e83353a166d32c8cd12691ca3a310ece3c8aa8e8b856d14b8d969bded>,
@@ -4087,7 +5147,10 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/031d7033b75af3cd9d23b99c39416158db42e9b14afab669eedca87e3c443cca>,
         <https://aa.perseus.org/id/text/2040abb6db306db1e85cb7cd46a76b22904411f81b76759dbc509b03e53611e6>,
         <https://aa.perseus.org/id/text/f1a0b6579e0fd151f916a0c24932c43ead27f220796e7c9c5b544ce8ad00dbd2> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/286329>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/1aaa18d8e4a0f386aa89c5b2565910dca1def8463c0c4d9d307ccbcd43e2deea>,
+        <https://aa.perseus.org/id/digital/9e049feda43cff4d2c1b1ad4bc3e73bec44506ef45672134a4d8e1a1a5701ed0>,
+        <https://aa.perseus.org/id/digital/a6301a04458f486d493af420e56b4043c9de42d9d3946a9cfa2883b5b9688362>,
+        <https://iiif.harvardartmuseums.org/manifests/object/286329>,
         <https://nrs.harvard.edu/urn-3:HUAM:VRS34478_dynmc> .
 
 <https://aa.perseus.org/id/thing/f9ee9fe042328c4eb9699692904d1714b2b45aedf67f7104657035665702e00b> a crm:E22_Human-Made_Object ;
@@ -4099,7 +5162,7 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <http://vocab.getty.edu/aat/300386130>,
         <https://aa.perseus.org/id/type/6dec0cedcfd9710ed05ee2a9733269a29d0e191e621a045d128bdf9aa5106731> ;
     crm:P43_has_dimension <https://aa.perseus.org/id/dimension/56a750b84031edf87e1e4e6e8d9853271b3732273063aa54a6f1c86cbe7ac9e7> ;
-    crm:P45_consists_of <http://vocab.getty.edu/aat/300265960> ;
+    crm:P45_consists_of <http://vocab.getty.edu/aat/300010669> ;
     crm:P49_has_former_or_current_keeper <https://aa.perseus.org/id/group/3688b47ebe17b25f7a7664f8c8bc50ce27ab4625a54d47b328ed5e4fc2541f2f>,
         <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> ;
     crm:P56_bears_feature <https://aa.perseus.org/id/feature/062c46131a337c801a45e52ccf428af7f15bacd79352a45e962bf5750a251832>,
@@ -4114,7 +5177,8 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/fe61230ba2839aeb8adc9e87edc29ec34b2729aa378a5e82b0f37fa747ae69a2> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/62440cadbef64b0b53ee195bd487e400affab8a494dd990f1160477e3616d155>,
         <https://aa.perseus.org/id/text/e1a9c47e1c01c11c8f001271f3257750bda3491faafe3d0639d26fc2b698264e> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287231>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/923116f5f8b57586444b090abad16eabbcd58d1b10612bb02f4cbf373ae8dc65>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287231>,
         <https://nrs.harvard.edu/urn-3:HUAM:CARP11247_dynmc> .
 
 <https://aa.perseus.org/id/thing/fe9095898680c3ba32b6c2a97ddeff4f4dbcbf14ce55736949ad0b21e9df0673> a crm:E22_Human-Made_Object ;
@@ -4134,7 +5198,8 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
         <https://aa.perseus.org/id/feature/d30927550d8db9c8f7a37fee6371820440e63ebd2e2cbf2fc76f2afaaf0ceacb>,
         <https://aa.perseus.org/id/feature/ed2725af57b3e8fa94b1af8ccdc6146a5aca3183385d1bc6aad1579861263ac7> ;
     crm:P67i_is_referred_to_by <https://aa.perseus.org/id/text/b17cfa7963b76092411aca10f6ae0ac8804f708497d2786c43efbb43070379c5> ;
-    la:digitally_shown_by <https://iiif.harvardartmuseums.org/manifests/object/287072>,
+    la:digitally_shown_by <https://aa.perseus.org/id/digital/44001ab097eaffd81a154c93755e75675bd53be2cf20b9aba48b97f9c45f0838>,
+        <https://iiif.harvardartmuseums.org/manifests/object/287072>,
         <https://nrs.harvard.edu/urn-3:HUAM:INV108193_dynmc> .
 
 <https://aa.perseus.org/id/timespan/019a087ae94057de60d912592fa471fa9d346cb832c84e821a31c7ae32c3a114> a crm:E52_Time-Span ;
@@ -4417,11 +5482,17 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
 <https://aa.perseus.org/id/type/b094d2ee33dc2c28e5aee35b912fa2154c19afa4399dcc08bde205f956f433f5> a crm:E55_Type ;
     rdfs:label "White-ground" .
 
+<https://aa.perseus.org/id/type/culture/17b07ac33e172bfe3ff6b69e8dba76cdb97413cf84c9eb900674a8e7cf5495c4> a crm:E55_Type ;
+    rdfs:label "Lycian" .
+
 <https://aa.perseus.org/id/type/dd33c14cf9a288350d9bde6d3f52a993cd0c7297f8d66ee40b64085e8a7b33f2> a crm:E55_Type ;
     rdfs:label "Photographs" .
 
 <https://aa.perseus.org/id/type/fbb30e8dbda650a22a241026812d981d897035bb5c865d2bdfb6ea09ddc2e108> a crm:E55_Type ;
     rdfs:label "Jewelry" .
+
+<https://aa.perseus.org/id/type/gender/0d248e82c62c9386878327d491c762a002152d42ab2c391a31c44d9f62675ddf> a crm:E55_Type ;
+    rdfs:label "male" .
 
 <https://api.harvardartmuseums.org/period/1525> a crm:E4_Period .
 
@@ -4441,6 +5512,48 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
 <https://aa.perseus.org/id/period/fabab679414e8cdd414741d8208e767c5094075f4e53362333781ffe90aa15a2> a crm:E4_Period ;
     rdfs:label "Classical period"@en .
 
+<https://aa.perseus.org/id/person/18219> a crm:E21_Person ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/culture/92ae5b42b4708693ad9e731c5e35e93b0900ca41ecff524dd1290fad266a8302>,
+        <https://aa.perseus.org/id/type/gender/b23a6a8439c0dde5515893e7c90c1e3233b8616e634470f20dc4928bcf3609bc> .
+
+<https://aa.perseus.org/id/person/20540> a crm:E21_Person ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/culture/17b07ac33e172bfe3ff6b69e8dba76cdb97413cf84c9eb900674a8e7cf5495c4>,
+        <https://aa.perseus.org/id/type/gender/b23a6a8439c0dde5515893e7c90c1e3233b8616e634470f20dc4928bcf3609bc> .
+
+<https://aa.perseus.org/id/person/20953> a crm:E21_Person ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/culture/92ae5b42b4708693ad9e731c5e35e93b0900ca41ecff524dd1290fad266a8302>,
+        <https://aa.perseus.org/id/type/gender/b23a6a8439c0dde5515893e7c90c1e3233b8616e634470f20dc4928bcf3609bc> .
+
+<https://aa.perseus.org/id/person/27335> a crm:E21_Person ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/culture/92ae5b42b4708693ad9e731c5e35e93b0900ca41ecff524dd1290fad266a8302>,
+        <https://aa.perseus.org/id/type/gender/0d248e82c62c9386878327d491c762a002152d42ab2c391a31c44d9f62675ddf> ;
+    owl:sameAs <http://viaf.org/viaf/36825656>,
+        <http://vocab.getty.edu/ulan/500008500>,
+        <https://en.wikipedia.org/wiki/6413765> .
+
+<https://aa.perseus.org/id/person/28999> a crm:E21_Person ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/culture/92ae5b42b4708693ad9e731c5e35e93b0900ca41ecff524dd1290fad266a8302>,
+        <https://aa.perseus.org/id/type/gender/b23a6a8439c0dde5515893e7c90c1e3233b8616e634470f20dc4928bcf3609bc> .
+
+<https://aa.perseus.org/id/person/29006> a crm:E21_Person ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/culture/92ae5b42b4708693ad9e731c5e35e93b0900ca41ecff524dd1290fad266a8302>,
+        <https://aa.perseus.org/id/type/gender/b23a6a8439c0dde5515893e7c90c1e3233b8616e634470f20dc4928bcf3609bc> .
+
+<https://aa.perseus.org/id/person/34782> a crm:E21_Person ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/gender/b23a6a8439c0dde5515893e7c90c1e3233b8616e634470f20dc4928bcf3609bc> .
+
+<https://aa.perseus.org/id/person/35316> a crm:E21_Person ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/culture/92ae5b42b4708693ad9e731c5e35e93b0900ca41ecff524dd1290fad266a8302>,
+        <https://aa.perseus.org/id/type/gender/b23a6a8439c0dde5515893e7c90c1e3233b8616e634470f20dc4928bcf3609bc> .
+
+<https://aa.perseus.org/id/person/35329> a crm:E21_Person ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/culture/92ae5b42b4708693ad9e731c5e35e93b0900ca41ecff524dd1290fad266a8302>,
+        <https://aa.perseus.org/id/type/gender/b23a6a8439c0dde5515893e7c90c1e3233b8616e634470f20dc4928bcf3609bc> .
+
+<https://aa.perseus.org/id/person/35330> a crm:E21_Person ;
+    crm:P2_has_type <https://aa.perseus.org/id/type/culture/92ae5b42b4708693ad9e731c5e35e93b0900ca41ecff524dd1290fad266a8302>,
+        <https://aa.perseus.org/id/type/gender/b23a6a8439c0dde5515893e7c90c1e3233b8616e634470f20dc4928bcf3609bc> .
+
 <https://aa.perseus.org/id/text/1fa3ee69f19688e20e901a0f4d5c815ce135b301d6c209fc7dee692a39c85458> a crm:E33_Linguistic_Object ;
     rdfs:label "Credit line"@en ;
     crm:P190_has_symbolic_content "Harvard Art Museums/Arthur M. Sackler Museum, Ancient Art Acquisition Fund" .
@@ -4455,6 +5568,9 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
 
 <https://aa.perseus.org/id/type/41dbe5087c9c1bdb0ccb748bd4b0069483031a372f355d36afc287153f891fa6> a crm:E55_Type ;
     rdfs:label "Tools and Equipment" .
+
+<https://aa.perseus.org/id/type/role/afae5092b081d5526963f84dc6dcfc836629b7349912bc1e2d61ffa9e3dfad89> a crm:E55_Type ;
+    rdfs:label "Coin Constituent" .
 
 <https://api.harvardartmuseums.org/period/1419> a crm:E4_Period .
 
@@ -4518,7 +5634,16 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
 <https://aa.perseus.org/id/period/a2f2838e18f513892b490e8320890748989654d6ec6a6ce3d01df3176dcc7165> a crm:E4_Period ;
     rdfs:label "Archaic period"@en .
 
+<https://aa.perseus.org/id/type/culture/92ae5b42b4708693ad9e731c5e35e93b0900ca41ecff524dd1290fad266a8302> a crm:E55_Type ;
+    rdfs:label "Greek" .
+
+<https://aa.perseus.org/id/type/role/70b1e8e06785cae451496104850781f33faf6cc8e0777ecd3a9ccaaefb154b2d> a crm:E55_Type ;
+    rdfs:label "Artist" .
+
 <https://api.harvardartmuseums.org/period/928> a crm:E4_Period .
+
+<https://aa.perseus.org/id/type/gender/b23a6a8439c0dde5515893e7c90c1e3233b8616e634470f20dc4928bcf3609bc> a crm:E55_Type ;
+    rdfs:label "unknown" .
 
 <https://aa.perseus.org/id/period/155d949d240fdd0c271223128ce914cd34495bf27f1bf096a5df196e27cc53ea> a crm:E4_Period ;
     rdfs:label "Classical period, Early"@en .
@@ -4555,6 +5680,9 @@ A handwritten note in the 1973 Watkins catalogue written by David Mitten quotes 
 
 <https://aa.perseus.org/id/group/8498174f4e316dd6d39c3e6062325683e64d6861ca492794b209d3fc37852dbe> a crm:E74_Group ;
     rdfs:label "Asian and Mediterranean Art" .
+
+<https://aa.perseus.org/id/type/format/fd824fcedd245e55871c74cb48ebbad02dab9bc4b9370433b609d6022ece7a73> a crm:E55_Type ;
+    rdfs:label "image/jpeg" .
 
 <https://aa.perseus.org/id/type/color> a crm:E55_Type ;
     rdfs:label "Color"@en .

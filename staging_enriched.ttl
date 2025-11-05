@@ -3995,75 +3995,118 @@ below: fragment A""" ;
     stg:renditionNumber "78937" .
 
 <https://aa.perseus.org/staging/person/18219> a stg:Person ;
+    stg:personAlphaSort "Dipylon Master" ;
     stg:personCulture "Greek" ;
+    stg:personDateBegin 0 ;
+    stg:personDateEnd 0 ;
     stg:personDisplayName "Workshop of The Dipylon Master" ;
+    stg:personGender "unknown" ;
     stg:personName "The Dipylon Master" ;
     stg:personRole "Artist" ;
     stg:personid 18219 .
 
 <https://aa.perseus.org/staging/person/20540> a stg:Person ;
+    stg:personAlphaSort "Kherei" ;
     stg:personCulture "Lycian" ;
+    stg:personDateBegin 0 ;
+    stg:personDateEnd 0 ;
     stg:personDisplayName "Kherei" ;
+    stg:personGender "unknown" ;
     stg:personName "Kherei" ;
     stg:personRole "Coin Constituent" ;
     stg:personid 20540 .
 
 <https://aa.perseus.org/staging/person/20953> a stg:Person ;
+    stg:personAlphaSort "Ddenevele" ;
     stg:personCulture "Greek" ;
+    stg:personDateBegin -400 ;
+    stg:personDateEnd -380 ;
     stg:personDisplayDate "r. c. 400 -380 BCE" ;
     stg:personDisplayName "Ddenevele" ;
+    stg:personGender "unknown" ;
     stg:personName "Ddenevele" ;
     stg:personRole "Coin Constituent" ;
     stg:personid 20953 .
 
 <https://aa.perseus.org/staging/person/27335> a stg:Person ;
+    stg:personAlphaSort "Makron" ;
     stg:personCulture "Greek" ;
+    stg:personDateBegin 500 ;
+    stg:personDateEnd 480 ;
     stg:personDisplayDate "active 500 - 480 BCE" ;
     stg:personDisplayName "Attributed to Makron" ;
+    stg:personGender "male" ;
     stg:personName "Makron" ;
     stg:personRole "Artist" ;
-    stg:personid 27335 .
+    stg:personid 27335 ;
+    stg:ulanId <http://vocab.getty.edu/ulan/500008500> ;
+    stg:viafId <http://viaf.org/viaf/36825656> ;
+    stg:wikipediaId <https://en.wikipedia.org/wiki/6413765> .
 
 <https://aa.perseus.org/staging/person/28999> a stg:Person ;
+    stg:personAlphaSort "Achilles Painter" ;
     stg:personCulture "Greek" ;
+    stg:personDateBegin -450 ;
+    stg:personDateEnd -440 ;
     stg:personDisplayDate "active c. 450-440 BCE" ;
     stg:personDisplayName "The Achilles Painter" ;
+    stg:personGender "unknown" ;
     stg:personName "The Achilles Painter" ;
     stg:personRole "Artist" ;
     stg:personid 28999 .
 
 <https://aa.perseus.org/staging/person/29006> a stg:Person ;
+    stg:personAlphaSort "Villa Giulia Painter" ;
     stg:personCulture "Greek" ;
+    stg:personDateBegin -460 ;
+    stg:personDateEnd -450 ;
     stg:personDisplayDate "active c. 460-450 BCE" ;
     stg:personDisplayName "Attributed to The Villa Giulia Painter" ;
+    stg:personGender "unknown" ;
     stg:personName "The Villa Giulia Painter" ;
     stg:personRole "Artist" ;
     stg:personid 29006 .
 
 <https://aa.perseus.org/staging/person/34782> a stg:Person ;
+    stg:personAlphaSort "Summers, H.Y." ;
+    stg:personDateBegin 0 ;
+    stg:personDateEnd 0 ;
     stg:personDisplayName "H.Y. Summers" ;
+    stg:personGender "unknown" ;
     stg:personName "H.Y. Summers" ;
     stg:personRole "Artist" ;
     stg:personid 34782 .
 
 <https://aa.perseus.org/staging/person/35316> a stg:Person ;
+    stg:personAlphaSort "Akestorides Painter" ;
     stg:personCulture "Greek" ;
+    stg:personDateBegin -475 ;
+    stg:personDateEnd -450 ;
     stg:personDisplayDate "active ca. 475 -450 BCE" ;
     stg:personDisplayName "Manner of The Akestorides Painter" ;
+    stg:personGender "unknown" ;
     stg:personName "The Akestorides Painter" ;
     stg:personRole "Artist" ;
     stg:personid 35316 .
 
 <https://aa.perseus.org/staging/person/35329> a stg:Person ;
+    stg:personAlphaSort "Bryn Mawr Painter" ;
     stg:personCulture "Greek" ;
+    stg:personDateBegin 0 ;
+    stg:personDateEnd 0 ;
     stg:personDisplayName "The Bryn Mawr Painter" ;
+    stg:personGender "unknown" ;
     stg:personName "The Bryn Mawr Painter" ;
     stg:personRole "Artist" ;
     stg:personid 35329 .
 
 <https://aa.perseus.org/staging/person/35330> a stg:Person ;
+    stg:personAlphaSort "Telephos Painter" ;
     stg:personCulture "Greek" ;
+    stg:personDateBegin 0 ;
+    stg:personDateEnd 0 ;
     stg:personDisplayName "Telephos Painter" ;
+    stg:personGender "unknown" ;
     stg:personName "Telephos Painter" ;
     stg:personRole "Artist" ;
     stg:personid 35330 .
