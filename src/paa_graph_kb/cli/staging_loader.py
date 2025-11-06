@@ -413,11 +413,19 @@ def publication_to_staging(g: Graph, pub: HAMPublication, source: str = "ham") -
 
 
 def main() -> None:
+    import os
+
+    # Load .env file early
+    from dotenv import load_dotenv
+    load_dotenv()
+
     ap = argparse.ArgumentParser(
-        description="Load HAM objects via the Pydantic client and emit STAGING triples."
+        description="Load HAM objects via the Pydantic client and emit STAGING triples. "
+        "Reads HAM_APIKEY and HAM_API_BASE from .env file by default, "
+        "or override with --apikey and --base arguments."
     )
-    ap.add_argument("--apikey", required=True)
-    ap.add_argument("--base", default="https://api.harvardartmuseums.org")
+    ap.add_argument("--apikey", help="HAM API key (defaults to HAM_APIKEY from .env)")
+    ap.add_argument("--base", help="HAM API base URL (defaults to HAM_API_BASE from .env)")
     ap.add_argument(
         "--params",
         nargs="*",
@@ -443,13 +451,18 @@ def main() -> None:
         else:
             param_dict[p] = "1"
 
-    # HAMClient reads from env vars, so set them temporarily if provided via args
-    import os
-
+    # HAMClient reads from env vars, so set them if provided via args (overriding .env)
     if args.apikey:
         os.environ["HAM_APIKEY"] = args.apikey
     if args.base:
         os.environ["HAM_API_BASE"] = args.base
+
+    # Verify API key is available
+    if not os.environ.get("HAM_APIKEY"):
+        print("❌ Error: HAM_APIKEY not found.")
+        print("   Either set HAM_APIKEY in .env file (copy from dotenv template)")
+        print("   or provide --apikey argument")
+        exit(1)
 
     client = HAMClient()
     g = Graph()

@@ -16,16 +16,35 @@ python validate_shacl.py --data linkedart.ttl --shapes shapes_linkedart.ttl
 ```
 
 ## GraphDB
-- Copy `graphdb/graphdb_env.example` to `graphdb/graphdb_env` and set values.
-- Load staging:
+### Setup
+1. Copy `graphdb_env.example` to `graphdb_env` and configure your GraphDB connection:
+```bash
+cd src/paa_graph_kb/graphdb
+cp graphdb_env.example graphdb_env
+# Edit graphdb_env to set GRAPHDB_BASE, REPOSITORY, etc.
 ```
+
+### Loading Data
+- Load staging (run from repository root):
+```bash
+src/paa_graph_kb/graphdb/load_staging.sh staging.ttl
+```
+Or from the `src/paa_graph_kb` directory:
+```bash
 graphdb/load_staging.sh ../staging.ttl
 ```
-- Apply templates:
-  - For now, open each `*.rq` in GraphDB Workbench and execute against the repository.
-  - Target a **separate named graph** for results, e.g. `<http://aa.perseus.org/graph/linkedart/HAM>`.
+- Apply CONSTRUCT templates to generate Linked Art (run from repository root):
+```bash
+src/paa_graph_kb/graphdb/run_constructs.sh src/paa_graph_kb/templates
+```
+Or from the `src/paa_graph_kb` directory:
+```bash
+graphdb/run_constructs.sh templates
+```
 
-> Note: Automating CONSTRUCT→INSERT via REST requires wrapping each template in an `INSERT { GRAPH <...> { ... } } WHERE { ... }` form. Some templates may need minor rewrites. The `run_constructs.sh` file includes a hint and should be adapted to your deployment.
+This will execute each `*.rq` SPARQL CONSTRUCT query and load the results into the configured `LINKEDART_GRAPH` in GraphDB.
+
+> Note: Alternatively, you can open each `*.rq` in GraphDB Workbench and execute manually against the repository.
 
 ## Design
 - Deterministic IRIs with SHA256 of salient keys.

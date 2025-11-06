@@ -1,0 +1,4 @@
+HAM_APIKEY=my_ham_key
+CONTACT=cwulfman@princeton.edu
+HAM_API_BASE=https://api.harvardartmuseums.org
+OBJ_DIR = data/ham/objects

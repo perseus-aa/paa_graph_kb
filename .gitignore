@@ -180,3 +180,6 @@ cython_debug/
 linkedart.ttl
 staging.ttl
 linkedart_new.ttl
+
+# GraphDB configuration (environment-specific)
+src/paa_graph_kb/graphdb/graphdb_env
