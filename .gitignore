@@ -183,3 +183,6 @@ linkedart_new.ttl
 
 # GraphDB configuration (environment-specific)
 src/paa_graph_kb/graphdb/graphdb_env
+
+# HAM API cache directory
+data/
