@@ -7,15 +7,17 @@
 export
 
 .PHONY: help setup-env setup-graphdb staging linkedart-local validate \
-	graphdb-load-staging graphdb-run-constructs graphdb-all local-all clean
+	graphdb-load-staging graphdb-run-constructs graphdb-load-ontology graphdb-all local-all clean
 
 # Configuration
 PYTHON := python
 STAGING_FILE := staging.ttl
 LINKEDART_FILE := linkedart.ttl
 TEMPLATES_DIR := src/paa_graph_kb/resources/templates
+ONTOLOGIES_DIR := src/paa_graph_kb/resources/ontologies
 SHAPES_FILE := src/paa_graph_kb/shapes/linkedart.ttl
 GRAPHDB_ENV := src/paa_graph_kb/graphdb/graphdb_env
+CIDOC_CRM_FILE := $(ONTOLOGIES_DIR)/CIDOC_CRM_v7.1.3.rdfs
 
 # HAM API parameters (loaded from .env, or override with make staging HAM_APIKEY=your_key)
 # If not set in .env or command line, staging target will show an error
@@ -40,6 +42,7 @@ help:
 	@echo "GraphDB Workflow:"
 	@echo "  make graphdb-load-staging     - Load staging.ttl into GraphDB"
 	@echo "  make graphdb-run-constructs   - Apply CONSTRUCT templates in GraphDB"
+	@echo "  make graphdb-load-ontology    - Load CIDOC-CRM ontology into GraphDB (optional)"
 	@echo "  make graphdb-all              - Run complete GraphDB workflow (load → constructs)"
 	@echo ""
 	@echo "Utilities:"
@@ -131,12 +134,32 @@ graphdb-run-constructs: $(GRAPHDB_ENV)
 	@echo "Running CONSTRUCT templates in GraphDB..."
 	@bash src/paa_graph_kb/graphdb/run_constructs.sh $(TEMPLATES_DIR)
 
+# Load CIDOC-CRM ontology into GraphDB
+graphdb-load-ontology: $(GRAPHDB_ENV)
+	@echo "Loading CIDOC-CRM ontology into GraphDB..."
+	@if [ ! -f "$(CIDOC_CRM_FILE)" ]; then \
+		echo "❌ Error: CIDOC-CRM ontology not found at $(CIDOC_CRM_FILE)"; \
+		echo "   Please download it following instructions in:"; \
+		echo "   $(ONTOLOGIES_DIR)/README.md"; \
+		exit 1; \
+	fi
+	@bash -c 'source $(GRAPHDB_ENV) && \
+		curl -X POST "$$GRAPHDB_BASE/repositories/$$REPOSITORY/statements?context=%3Chttp://www.cidoc-crm.org/cidoc-crm/%3E" \
+		-H "Content-Type: application/rdf+xml" \
+		--data-binary "@$(CIDOC_CRM_FILE)" && \
+		echo "✅ CIDOC-CRM ontology loaded into <http://www.cidoc-crm.org/cidoc-crm/>" || \
+		(echo "❌ Failed to load ontology. Is GraphDB running at $$GRAPHDB_BASE?" && exit 1)'
+
 # Complete GraphDB workflow
 graphdb-all: graphdb-load-staging graphdb-run-constructs
 	@echo ""
 	@echo "✅ GraphDB workflow complete!"
 	@echo "   - Loaded staging data"
 	@echo "   - Applied all CONSTRUCT templates"
+	@echo ""
+	@echo "💡 Tip: To enable OWL inferencing with CIDOC-CRM:"
+	@echo "   1. Run: make graphdb-load-ontology"
+	@echo "   2. Enable reasoning in GraphDB Workbench (Setup → Repositories)"
 
 # Clean generated files
 clean:

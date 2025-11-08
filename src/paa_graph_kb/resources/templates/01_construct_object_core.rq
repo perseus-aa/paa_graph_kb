@@ -4,6 +4,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 CONSTRUCT {
   ?obj a crm:E22_Human-Made_Object ;
+       rdfs:label ?title ;
        crm:P2_has_type ?aat ;
        crm:P1_is_identified_by ?titleNode ;
        crm:P2_has_type ?culture .

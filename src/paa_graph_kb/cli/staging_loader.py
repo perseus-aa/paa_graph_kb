@@ -422,7 +422,8 @@ def main() -> None:
     ap = argparse.ArgumentParser(
         description="Load HAM objects via the Pydantic client and emit STAGING triples. "
         "Reads HAM_APIKEY and HAM_API_BASE from .env file by default, "
-        "or override with --apikey and --base arguments."
+        "or override with --apikey and --base arguments. "
+        "Caches API responses by default to avoid repeated calls."
     )
     ap.add_argument("--apikey", help="HAM API key (defaults to HAM_APIKEY from .env)")
     ap.add_argument("--base", help="HAM API base URL (defaults to HAM_API_BASE from .env)")
@@ -435,6 +436,16 @@ def main() -> None:
     ap.add_argument("--size", type=int, default=100)
     ap.add_argument("--limit", type=int, default=100)
     ap.add_argument("--out", type=Path, required=True)
+    ap.add_argument(
+        "--cache-dir",
+        type=Path,
+        help="Directory for caching API responses (defaults to OBJ_DIR from .env or data/ham/objects)",
+    )
+    ap.add_argument(
+        "--no-cache",
+        action="store_true",
+        help="Disable caching and always fetch fresh data from API",
+    )
     ap.add_argument(
         "--enrich-persons",
         action="store_true",
@@ -464,15 +475,28 @@ def main() -> None:
         print("   or provide --apikey argument")
         exit(1)
 
-    client = HAMClient()
+    # Initialize client with caching options
+    cache_dir_str = str(args.cache_dir) if args.cache_dir else None
+    use_cache = not args.no_cache
+
+    if use_cache:
+        cache_info = cache_dir_str or os.getenv("OBJ_DIR", "data/ham/objects")
+        print(f"📦 Caching enabled: {cache_info}")
+    else:
+        print("🔄 Caching disabled - fetching fresh data")
+
+    client = HAMClient(cache_dir=cache_dir_str, use_cache=use_cache)
     g = Graph()
     g.bind("stg", STG)
     g.bind("exs", EXS)
 
     count = 0
+    print(f"🔍 Fetching objects with params: {param_dict}")
     for rec in client.iter_objects(params=param_dict, size=args.size, limit=args.limit):
         object_to_staging(g, rec, source="ham")
         count += 1
+        if count % 10 == 0:
+            print(f"   Processed {count} objects...")
 
     # Optionally enrich person records with authority identifiers
     if args.enrich_persons:
