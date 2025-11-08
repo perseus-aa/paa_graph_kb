@@ -1,0 +1,54 @@
+PREFIX stg:  <https://aa.perseus.org/staging#>
+PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+# Link persons to production events with roles
+# Maps artist, maker, and other creator relationships from HAM to CIDOC-CRM
+
+CONSTRUCT {
+  # Link production to person
+  ?prod a crm:E12_Production ;
+        crm:P14_carried_out_by ?person ;
+        crm:P108_has_produced ?obj .
+
+  # Person entity
+  ?person a crm:E21_Person .
+
+  # Role assignment (connect person to production via role)
+  ?roleAssignment a crm:PC14_carried_out_by ;
+                  crm:P01_has_domain ?prod ;
+                  crm:P02_has_range ?person ;
+                  crm:P14.1_in_the_role_of ?roleType .
+
+  # Role type
+  ?roleType a crm:E55_Type ;
+            rdfs:label ?role .
+}
+WHERE {
+  # Find objects with associated people
+  ?s a stg:Object ;
+     stg:source ?src ;
+     stg:objectid ?oid ;
+     stg:hasPerson ?personStaging .
+
+  # Person staging node
+  ?personStaging stg:personid ?personid ;
+                 stg:personRole ?role .
+
+  # Object and production URIs
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/thing/", SHA256(CONCAT(?src, ":", STR(?oid))))) AS ?obj )
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/event/", SHA256(CONCAT("prod|", ?src, ":", STR(?oid))))) AS ?prod )
+
+  # Person URI
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/person/", STR(?personid))) AS ?person )
+
+  # Role assignment node (property class pattern for qualified relationship)
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/assignment/", SHA256(CONCAT(?src, ":", STR(?oid), "|person:", STR(?personid), "|role:", LCASE(?role))))) AS ?roleAssignment )
+
+  # Role type URI
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/type/role/", SHA256(LCASE(?role)))) AS ?roleType )
+
+  # Only create links for meaningful roles (filter out empty roles)
+  FILTER(BOUND(?role) && STR(?role) != "")
+}

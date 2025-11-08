@@ -9,6 +9,7 @@ stg:Technique    a rdfs:Class ; rdfs:label "Staging Technique"@en .
 stg:Material     a rdfs:Class ; rdfs:label "Staging Material"@en .
 stg:Appellation  a rdfs:Class ; rdfs:label "Staging Appellation"@en .
 stg:WebResource  a rdfs:Class ; rdfs:label "Staging Web Resource"@en .
+stg:Person       a rdfs:Class ; rdfs:label "Staging Person"@en .
 
 stg:source       a rdfs:Property ; rdfs:label "Source code"@en .
 stg:objectid     a rdfs:Property ; rdfs:label "Object id (source)"@en ; rdfs:range xsd:integer .
@@ -95,3 +96,65 @@ stg:renditionNumber a rdfs:Property ; rdfs:label "Rendition number"@en ;
                       rdfs:comment "Rendition/version identifier"@en .
 stg:imageDate       a rdfs:Property ; rdfs:label "Image date"@en ; rdfs:range xsd:date ;
                       rdfs:comment "Date when the image was created"@en .
+
+# Person/Agent properties
+stg:hasPerson       a rdfs:Property ; rdfs:label "Has person"@en ;
+                      rdfs:comment "Links an object to a person node"@en .
+stg:personid        a rdfs:Property ; rdfs:label "Person ID"@en ; rdfs:range xsd:integer ;
+                      rdfs:comment "HAM person identifier"@en .
+stg:personName      a rdfs:Property ; rdfs:label "Person name"@en ;
+                      rdfs:comment "Person's name"@en .
+stg:personDisplayName a rdfs:Property ; rdfs:label "Person display name"@en ;
+                      rdfs:comment "Formatted name for display"@en .
+stg:personAlphaSort a rdfs:Property ; rdfs:label "Person alpha sort"@en ;
+                      rdfs:comment "Name in sortable format (lastname, firstname)"@en .
+stg:personRole      a rdfs:Property ; rdfs:label "Person role"@en ;
+                      rdfs:comment "Role in relation to object (e.g., Artist, Donor)"@en .
+stg:personCulture   a rdfs:Property ; rdfs:label "Person culture"@en ;
+                      rdfs:comment "Cultural or national origin"@en .
+stg:personGender    a rdfs:Property ; rdfs:label "Person gender"@en .
+stg:personDisplayDate a rdfs:Property ; rdfs:label "Person display date"@en ;
+                      rdfs:comment "Life dates in display format"@en .
+
+# Person date properties
+stg:personDateBegin a rdfs:Property ; rdfs:label "Person date begin"@en ; rdfs:range xsd:integer ;
+                      rdfs:comment "Birth year or earliest active date"@en .
+stg:personDateEnd   a rdfs:Property ; rdfs:label "Person date end"@en ; rdfs:range xsd:integer ;
+                      rdfs:comment "Death year or latest active date"@en .
+stg:personBirthYear a rdfs:Property ; rdfs:label "Person birth year"@en ; rdfs:range xsd:integer .
+stg:personDeathYear a rdfs:Property ; rdfs:label "Person death year"@en ; rdfs:range xsd:integer .
+stg:personBirthPlace a rdfs:Property ; rdfs:label "Person birthplace"@en .
+stg:personDeathPlace a rdfs:Property ; rdfs:label "Person deathplace"@en .
+
+# Authority identifier properties
+stg:lcnafId         a rdfs:Property ; rdfs:label "LCNAF ID"@en ;
+                      rdfs:comment "Library of Congress Name Authority File identifier"@en .
+stg:ulanId          a rdfs:Property ; rdfs:label "ULAN ID"@en ;
+                      rdfs:comment "Getty Union List of Artist Names identifier"@en .
+stg:viafId          a rdfs:Property ; rdfs:label "VIAF ID"@en ;
+                      rdfs:comment "Virtual International Authority File identifier"@en .
+stg:wikidataId      a rdfs:Property ; rdfs:label "Wikidata ID"@en ;
+                      rdfs:comment "Wikidata entity identifier"@en .
+stg:wikipediaId     a rdfs:Property ; rdfs:label "Wikipedia ID"@en ;
+                      rdfs:comment "Wikipedia page identifier"@en .
+
+# Publication/Bibliography properties
+stg:Publication     a rdfs:Class ; rdfs:label "Staging Publication"@en .
+stg:publicationid   a rdfs:Property ; rdfs:label "Publication ID"@en ; rdfs:range xsd:integer ;
+                      rdfs:comment "HAM publication identifier"@en .
+stg:publicationTitle a rdfs:Property ; rdfs:label "Publication title"@en .
+stg:publicationSubtitle a rdfs:Property ; rdfs:label "Publication subtitle"@en .
+stg:publicationCitation a rdfs:Property ; rdfs:label "Publication citation"@en ;
+                      rdfs:comment "Formatted citation string"@en .
+stg:publicationAuthor a rdfs:Property ; rdfs:label "Publication author"@en ;
+                      rdfs:comment "Author name"@en .
+stg:publicationYear a rdfs:Property ; rdfs:label "Publication year"@en ; rdfs:range xsd:integer .
+stg:publisher       a rdfs:Property ; rdfs:label "Publisher"@en .
+stg:isbn            a rdfs:Property ; rdfs:label "ISBN"@en ;
+                      rdfs:comment "International Standard Book Number"@en .
+stg:issn            a rdfs:Property ; rdfs:label "ISSN"@en ;
+                      rdfs:comment "International Standard Serial Number"@en .
+stg:doi             a rdfs:Property ; rdfs:label "DOI"@en ;
+                      rdfs:comment "Digital Object Identifier"@en .
+stg:publicationURL  a rdfs:Property ; rdfs:label "Publication URL"@en ;
+                      rdfs:comment "URL to publication"@en .

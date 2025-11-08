@@ -222,6 +222,9 @@ class HAMObject(BaseModel):
     titles: Optional[List[TitleItem]] = None
     title: Optional[str] = None
 
+    # People (artists, makers, etc.)
+    people: Optional[List[PersonRef]] = None
+
     # See also (e.g., IIIF manifest)
     seeAlso: Optional[List[SeeAlsoItem]] = Field(default=None, alias='seeAlso')
 
@@ -375,19 +378,51 @@ class PlacePage(BaseModel):
     records: List[HAMPlace]
 
 
-class HAMPerson(BaseModel):
-    id: int
+class PersonRef(BaseModel):
+    """Person reference embedded in object records"""
+    personid: int
     name: Optional[str] = None
     displayname: Optional[str] = None
     role: Optional[str] = None
+    displayorder: Optional[int] = None
+    culture: Optional[str] = None
+    displaydate: Optional[str] = None
+    birthplace: Optional[str] = None
+    deathplace: Optional[str] = None
+    model_config = ConfigDict(extra='ignore')
+
+
+class HAMPerson(BaseModel):
+    """Full person record from /person endpoint"""
+    id: int
+    personid: Optional[int] = None
+    name: Optional[str] = None
+    displayname: Optional[str] = None
+    alphasort: Optional[str] = None
+    role: Optional[str] = None
     culture: Optional[str] = None
     gender: Optional[str] = None
+    displaydate: Optional[str] = None
+
+    # Date information
     birthyear: Optional[int] = None
     deathyear: Optional[int] = None
+    datebegin: Optional[int] = None
+    dateend: Optional[int] = None
     born: Optional[str] = None
     died: Optional[str] = None
     birthplace: Optional[str] = None
     deathplace: Optional[str] = None
+
+    # Authority identifiers
+    lcnaf_id: Optional[str] = None
+    ulan_id: Optional[str] = None
+    viaf_id: Optional[str] = None
+    wikidata_id: Optional[str] = None
+    wikipedia_id: Optional[str] = None
+
+    # Metadata
+    objectcount: Optional[int] = None
     url: Optional[HttpUrl] = None
     createdate: Optional[dt.datetime] = None
     lastupdate: Optional[dt.datetime] = None
