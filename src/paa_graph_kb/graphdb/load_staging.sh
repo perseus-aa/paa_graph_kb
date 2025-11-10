@@ -15,8 +15,8 @@ fi
 # URL-encode the context parameter (encode < > as %3C %3E)
 ENCODED_CONTEXT=$(printf '%s' "<$STAGING_GRAPH>" | sed 's/</%3C/g; s/>/%3E/g')
 
-# Upload to GraphDB with timeout
-if curl -s -f --max-time 30 -w "\n" \
+# Upload to GraphDB with timeout (increased for large files)
+if curl -s -f --max-time 120 -w "\n" \
   -X POST "$GRAPHDB_BASE/repositories/$REPOSITORY/statements?context=$ENCODED_CONTEXT" \
   -H "Content-Type: text/turtle" \
   --data-binary "@$STAGING_TTL"; then
