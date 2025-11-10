@@ -16,12 +16,16 @@ fi
 ENCODED_CONTEXT=$(printf '%s' "<$STAGING_GRAPH>" | sed 's/</%3C/g; s/>/%3E/g')
 
 # Upload to GraphDB with timeout (increased for large files)
-if curl -s -f --max-time 120 -w "\n" \
+# Note: GraphDB returns 204 No Content on success, which is valid
+HTTP_CODE=$(curl -s -w "%{http_code}" --max-time 120 -o /dev/null \
   -X POST "$GRAPHDB_BASE/repositories/$REPOSITORY/statements?context=$ENCODED_CONTEXT" \
   -H "Content-Type: text/turtle" \
-  --data-binary "@$STAGING_TTL"; then
-  echo "✅ Loaded staging successfully"
+  --data-binary "@$STAGING_TTL")
+
+if [ "$HTTP_CODE" = "204" ] || [ "$HTTP_CODE" = "200" ]; then
+  echo "✅ Loaded staging successfully (HTTP $HTTP_CODE)"
 else
-  echo "❌ Failed to load staging. Is GraphDB running at $GRAPHDB_BASE?"
+  echo "❌ Failed to load staging. HTTP status: $HTTP_CODE"
+  echo "   Is GraphDB running at $GRAPHDB_BASE?"
   exit 1
 fi
