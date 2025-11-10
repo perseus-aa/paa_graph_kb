@@ -21,10 +21,16 @@ stg:provenance   a rdfs:Property ; rdfs:label "Provenance"@en .
 stg:lang         a rdfs:Property ; rdfs:label "Language tag"@en .
 stg:displayOrder a rdfs:Property ; rdfs:label "Display order"@en ; rdfs:range xsd:integer .
 
+stg:typeLabel    a rdfs:Property ; rdfs:label "Object type label (text)"@en .
 stg:aatType      a rdfs:Property ; rdfs:label "AAT Type IRI"@en .
+
+stg:culture      a rdfs:Property ; rdfs:label "Culture label (text)"@en .
 stg:cultureAAT   a rdfs:Property ; rdfs:label "AAT Culture IRI"@en .
 
+stg:material     a rdfs:Property ; rdfs:label "Material label (text)"@en .
 stg:materialAAT  a rdfs:Property ; rdfs:label "AAT Material IRI"@en .
+
+stg:technique    a rdfs:Property ; rdfs:label "Technique label (text)"@en .
 stg:techniqueAAT a rdfs:Property ; rdfs:label "AAT Technique IRI"@en .
 
 stg:periodId     a rdfs:Property ; rdfs:label "HAM period id"@en ; rdfs:range xsd:integer .

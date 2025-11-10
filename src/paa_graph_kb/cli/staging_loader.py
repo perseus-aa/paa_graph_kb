@@ -41,6 +41,7 @@ def object_to_staging(g: Graph, obj: HAMObject, source: str = "ham") -> None:
 
     # Culture (with AAT mapping)
     if obj.culture:
+        g.add((s, STG.culture, _safe_lang_literal(obj.culture)))
         culture_uri = aat_mappings.get_aat_uri(obj.culture, category="cultures")
         if culture_uri:
             g.add((s, STG.cultureAAT, URIRef(culture_uri)))
@@ -49,24 +50,28 @@ def object_to_staging(g: Graph, obj: HAMObject, source: str = "ham") -> None:
     if obj.worktypes:
         for wt in obj.worktypes:
             if wt.worktype:
+                g.add((s, STG.typeLabel, _safe_lang_literal(wt.worktype)))
                 type_uri = aat_mappings.get_aat_uri(wt.worktype, category="object_types")
                 if type_uri:
                     g.add((s, STG.aatType, URIRef(type_uri)))
 
     # Classification (with AAT mapping)
     if obj.classification:
+        g.add((s, STG.typeLabel, _safe_lang_literal(obj.classification)))
         class_uri = aat_mappings.get_aat_uri(obj.classification, category="classifications")
         if class_uri:
             g.add((s, STG.aatType, URIRef(class_uri)))
 
     # Materials (with AAT mapping)
     if obj.medium:
+        g.add((s, STG.material, _safe_lang_literal(obj.medium)))
         material_uri = aat_mappings.get_aat_uri(obj.medium, category="materials")
         if material_uri:
             g.add((s, STG.materialAAT, URIRef(material_uri)))
 
     # Techniques (with AAT mapping)
     if obj.technique:
+        g.add((s, STG.technique, _safe_lang_literal(obj.technique)))
         technique_uri = aat_mappings.get_aat_uri(obj.technique, category="techniques")
         if technique_uri:
             g.add((s, STG.techniqueAAT, URIRef(technique_uri)))

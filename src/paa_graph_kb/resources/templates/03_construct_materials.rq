@@ -1,11 +1,16 @@
 PREFIX stg:  <https://aa.perseus.org/staging#>
 PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 CONSTRUCT {
   ?obj a crm:E22_Human-Made_Object ;
        crm:P45_consists_of ?mat .
+
+  ?mat rdfs:label ?materialLabel .
 }
 WHERE {
   ?s a stg:Object ; stg:source ?src ; stg:objectid ?oid ; stg:materialAAT ?mat .
   BIND( IRI(CONCAT("https://aa.perseus.org/id/thing/", SHA256(CONCAT(?src, ":", STR(?oid))))) AS ?obj )
+
+  OPTIONAL { ?s stg:material ?materialLabel }
 }

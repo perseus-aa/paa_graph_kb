@@ -12,6 +12,9 @@ CONSTRUCT {
   ?titleNode a crm:E33_E41_Linguistic_Appellation ;
              rdfs:label "Title"@en ;
              crm:P190_has_symbolic_content ?title .
+
+  ?aat rdfs:label ?typeLabel .
+  ?culture rdfs:label ?cultureLabel .
 }
 WHERE {
   ?s a stg:Object ; stg:source ?src ; stg:objectid ?oid .
@@ -19,8 +22,14 @@ WHERE {
   BIND( SHA256(CONCAT(?src, ":", STR(?oid))) AS ?h )
   BIND( IRI(CONCAT("https://aa.perseus.org/id/thing/", ?h)) AS ?obj )
 
-  OPTIONAL { ?s stg:aatType ?aat }
-  OPTIONAL { ?s stg:cultureAAT ?culture }
+  OPTIONAL {
+    ?s stg:aatType ?aat .
+    OPTIONAL { ?s stg:typeLabel ?typeLabel }
+  }
+  OPTIONAL {
+    ?s stg:cultureAAT ?culture .
+    OPTIONAL { ?s stg:culture ?cultureLabel }
+  }
 
   OPTIONAL {
     ?s stg:title ?title .
