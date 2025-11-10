@@ -40,7 +40,7 @@
 | `datebegin` | `stg:datebegin` | 10 | `crm:E52_Time-Span` → `crm:P82a_begin_of_the_begin` | ✅ |
 | `dateend` | `stg:dateend` | 10 | `crm:E52_Time-Span` → `crm:P82b_end_of_the_end` | ✅ |
 | `dated` | `stg:dated` | 10 | `rdfs:label` on timespan | ✅ |
-| `century` | `stg:century` | - | - | 🔍 |
+| `century` | `stg:century` | 10 | `rdfs:label` on timespan | ✅ |
 | `period` | `stg:periodLabel` | 02 | `crm:E4_Period` with `rdfs:label` | ✅ |
 | `periodid` | `stg:periodId` | 02 | Used to generate period URI | ✅ |
 
@@ -176,8 +176,8 @@
 
 | Status | Count | Percentage |
 |--------|-------|------------|
-| ✅ Fully mapped | 70 | 69% |
-| 🔍 In staging, not CRM | 8 | 8% |
+| ✅ Fully mapped | 71 | 70% |
+| 🔍 In staging, not CRM | 7 | 7% |
 | ❌ Not captured | 23 | 23% |
 | **Total HAM fields** | **101** | **100%** |
 
@@ -187,20 +187,19 @@
 1. **`signed`** - Inscriptions are important for classical art (could use `crm:P128_carries` → `crm:E34_Inscription`)
 2. **`state`** - Print/artwork state information
 3. **`edition`** - Edition information for multiples
-4. **`century`** - Additional temporal information currently lost
-5. **`images[].date`** - When photo was taken (useful for condition documentation)
+4. **`images[].date`** - When photo was taken (useful for condition documentation)
 
 ### Medium Priority (Enrichment)
-6. **`verificationlevel`** - Could map to confidence/certainty annotations
-7. **`imagepermissionlevel`** - Rights management (could use `crm:P104_is_subject_to` → `crm:E30_Right`)
-8. **`accesslevel`** - Access restrictions
-9. **Person date ranges** - `datebegin`/`dateend` in staging but not in CRM (active period vs. birth/death)
+5. **`verificationlevel`** - Could map to confidence/certainty annotations
+6. **`imagepermissionlevel`** - Rights management (could use `crm:P104_is_subject_to` → `crm:E30_Right`)
+7. **`accesslevel`** - Access restrictions
+8. **Person date ranges** - `datebegin`/`dateend` in staging but not in CRM (active period vs. birth/death)
 
 ### Low Priority (Display Metadata)
-10. **Display orders** - For images, people (useful for UIs but not semantic)
-11. **Rendition numbers** - Image versions
-12. **Analytics** - Pageviews, counts (operational, not scholarly)
-13. **HAM system metadata** - createdate, lastupdate (provenance of record, not object)
+9. **Display orders** - For images, people (useful for UIs but not semantic)
+10. **Rendition numbers** - Image versions
+11. **Analytics** - Pageviews, counts (operational, not scholarly)
+12. **HAM system metadata** - createdate, lastupdate (provenance of record, not object)
 
 ## Recommendations
 

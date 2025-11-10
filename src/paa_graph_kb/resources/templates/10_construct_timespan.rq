@@ -11,7 +11,8 @@ CONSTRUCT {
   ?timespan a crm:E52_Time-Span ;
             crm:P82a_begin_of_the_begin ?begin ;
             crm:P82b_end_of_the_end ?end ;
-            rdfs:label ?dated .
+            rdfs:label ?dated ;
+            rdfs:label ?century .
 }
 WHERE {
   ?s a stg:Object ; stg:source ?src ; stg:objectid ?oid .
@@ -35,6 +36,7 @@ WHERE {
   }
 
   OPTIONAL { ?s stg:dated ?dated }
+  OPTIONAL { ?s stg:century ?century }
 
-  FILTER(BOUND(?begin) || BOUND(?end) || BOUND(?dated))
+  FILTER(BOUND(?begin) || BOUND(?end) || BOUND(?dated) || BOUND(?century))
 }
