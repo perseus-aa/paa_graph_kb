@@ -11,7 +11,8 @@ CONSTRUCT {
   ?timespan a crm:E52_Time-Span ;
             crm:P82a_begin_of_the_begin ?begin ;
             crm:P82b_end_of_the_end ?end ;
-            rdfs:label ?dated .
+            rdfs:label ?dated ;
+            rdfs:label ?century .
 }
 WHERE {
   ?s a stg:Object ; stg:source ?src ; stg:objectid ?oid .
@@ -21,20 +22,19 @@ WHERE {
 
   OPTIONAL {
     ?s stg:datebegin ?beginRaw .
-    # Convert integer years to xsd:gYear (handle BCE as negative years)
-    BIND(IF(?beginRaw < 0,
-           STRDT(CONCAT("-", STR(xsd:integer(ABS(?beginRaw)))), xsd:gYear),
-           STRDT(STR(?beginRaw), xsd:gYear)) AS ?begin)
+    # Use xsd:integer for year values (GraphDB has issues with negative xsd:gYear)
+    # Negative values represent BCE dates (e.g., -480 = 480 BCE)
+    BIND(STRDT(STR(?beginRaw), xsd:integer) AS ?begin)
   }
 
   OPTIONAL {
     ?s stg:dateend ?endRaw .
-    BIND(IF(?endRaw < 0,
-           STRDT(CONCAT("-", STR(xsd:integer(ABS(?endRaw)))), xsd:gYear),
-           STRDT(STR(?endRaw), xsd:gYear)) AS ?end)
+    # Use xsd:integer for year values (GraphDB has issues with negative xsd:gYear)
+    BIND(STRDT(STR(?endRaw), xsd:integer) AS ?end)
   }
 
   OPTIONAL { ?s stg:dated ?dated }
+  OPTIONAL { ?s stg:century ?century }
 
-  FILTER(BOUND(?begin) || BOUND(?end) || BOUND(?dated))
+  FILTER(BOUND(?begin) || BOUND(?end) || BOUND(?dated) || BOUND(?century))
 }

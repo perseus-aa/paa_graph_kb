@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xml:lang="en" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xml:base="http://www.cidoc-crm.org/cidoc-crm/">
+  <!--
+RDFs Implementation (February 2024) of CIDOC-CRM 7.1.3 Supplementary declarations.
+
+CIDOC-CRM version 7.1.3 defines the below subpropertyOf relations:
+
+- `P168 place is defined by` `subPropertyOf` `P1 is identified by`
+- `P169i spacetime volume is defined by` `subPropertyOf` `P1 is identified by`
+- `P170i time is defined by` `subPropertyOf` `P1 is identified by`
+
+The range of P168, P169i and P170i is `E94 Space Primitive`, `E95 Spacetime Primitive` and `E61 Time Primitive` respectively, which are all subclasses of `E41 Appellation` and interpreted as `rdfs:Literal` in RDFS, i.e. these three properties are datatype properties. However, the P1 property has range E41 Appellation, i.e. this property is an object property. Since OWL 2 distinguishes between object subproperties (https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/#Object_Subproperties), data subproperties (https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/#Data_Subproperties) and annotation subproperties (https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/#Annotation_Subproperties), and also in OWL-DL the subject and object of a subproperty statement must be either both datatype properties or both object properties (see here (https://www.w3.org/TR/owl-ref/#subPropertyOf-def)), we do not include these three subPropertyOf relations in the provided RDFS implementation to avoid inconsistencies when reasoning with OWL 2 and OWL DL. Instead, we provide them in this ‘supplementary’ RDFS file which one can use if such inconsistencies are not expected.
+
+In addition, since in the current practice, the property `rdfs:label` is widely used to denote appellations (see CRM-SIG Issue 394 (http://cidoc-crm.org/Issue/ID-394-solution-for-dualism-of-e41-appellation-and-rdfslabel)), the following `subPropertyOf` relation is also included:
+
+- `rdfs:label` subPropertyOf `P1 is identified by`
+
+Note that according to the RDF Schema 1.1 specification, the domain (or range) of a property does not necessarily need to be 'subClassOf' or 'equal' to the domain (or range) of its superproperties. By including this subproperty relation, one can either directly use `rdfs:label` for providing a non-URI identifier/appellation for an instance of `E1 CRM Entity`, or use `P1 is identified by` for associating an additional URI-identifier with an instance of `E1 CRM Entity`, or use `P1 is identified by` and create an intermediate node (i.e. a URI-identifier for instance of `E41_Appellation`) for providing more detailed information about this appellation.
+-->
+  <rdf:Property rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
+    <rdfs:subPropertyOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/P1_is_identified_by" />
+  </rdf:Property>
+  <rdf:Property rdf:about="P168_place_is_defined_by">
+    <rdfs:subPropertyOf rdf:resource="P1_is_identified_by" />
+  </rdf:Property>
+  <rdf:Property rdf:about="P169i_spacetime_volume_is_defined_by">
+    <rdfs:subPropertyOf rdf:resource="P1_is_identified_by" />
+  </rdf:Property>
+  <rdf:Property rdf:about="P170i_time_is_defined_by">
+    <rdfs:subPropertyOf rdf:resource="P1_is_identified_by" />
+  </rdf:Property>
+</rdf:RDF>

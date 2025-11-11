@@ -10,6 +10,7 @@ PREFIX owl:  <http://www.w3.org/2002/07/owl#>
 CONSTRUCT {
   # Person entity
   ?person a crm:E21_Person ;
+          rdfs:label ?displayName ;
           crm:P1_is_identified_by ?nameNode ;
           crm:P92i_was_brought_into_existence_by ?birth ;
           crm:P93i_was_taken_out_of_existence_by ?death ;
@@ -95,9 +96,8 @@ WHERE {
     ?personStaging stg:personBirthYear ?birthYearRaw .
     BIND( IRI(CONCAT("https://aa.perseus.org/id/event/", SHA256(CONCAT("birth|", STR(?personid))))) AS ?birth )
     BIND( IRI(CONCAT("https://aa.perseus.org/id/timespan/", SHA256(CONCAT("birth|", STR(?personid))))) AS ?birthTimespan )
-    BIND(IF(?birthYearRaw < 0,
-           STRDT(CONCAT("-", STR(xsd:integer(ABS(?birthYearRaw)))), xsd:gYear),
-           STRDT(STR(?birthYearRaw), xsd:gYear)) AS ?birthYear)
+    # Use xsd:integer for year values (GraphDB has issues with negative xsd:gYear)
+    BIND(STRDT(STR(?birthYearRaw), xsd:integer) AS ?birthYear)
     BIND(CONCAT("Birth year: ", STR(?birthYearRaw)) AS ?birthLabel)
   }
 
@@ -112,9 +112,8 @@ WHERE {
     ?personStaging stg:personDeathYear ?deathYearRaw .
     BIND( IRI(CONCAT("https://aa.perseus.org/id/event/", SHA256(CONCAT("death|", STR(?personid))))) AS ?death )
     BIND( IRI(CONCAT("https://aa.perseus.org/id/timespan/", SHA256(CONCAT("death|", STR(?personid))))) AS ?deathTimespan )
-    BIND(IF(?deathYearRaw < 0,
-           STRDT(CONCAT("-", STR(xsd:integer(ABS(?deathYearRaw)))), xsd:gYear),
-           STRDT(STR(?deathYearRaw), xsd:gYear)) AS ?deathYear)
+    # Use xsd:integer for year values (GraphDB has issues with negative xsd:gYear)
+    BIND(STRDT(STR(?deathYearRaw), xsd:integer) AS ?deathYear)
     BIND(CONCAT("Death year: ", STR(?deathYearRaw)) AS ?deathLabel)
   }
 

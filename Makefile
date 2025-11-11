@@ -17,7 +17,9 @@ TEMPLATES_DIR := src/paa_graph_kb/resources/templates
 ONTOLOGIES_DIR := src/paa_graph_kb/resources/ontologies
 SHAPES_FILE := src/paa_graph_kb/shapes/linkedart.ttl
 GRAPHDB_ENV := src/paa_graph_kb/graphdb/graphdb_env
-CIDOC_CRM_FILE := $(ONTOLOGIES_DIR)/CIDOC_CRM_v7.1.3.rdfs
+CIDOC_CRM_FILE := $(ONTOLOGIES_DIR)/CIDOC_CRM_v7.1.3.rdf
+CIDOC_CRM_PC_FILE := $(ONTOLOGIES_DIR)/CIDOC_CRM_v7.1.3_PC.rdf
+CIDOC_CRM_SUPP_FILE := $(ONTOLOGIES_DIR)/CIDOC_CRM_v7.1.3_Supplement.rdf
 
 # HAM API parameters (loaded from .env, or override with make staging HAM_APIKEY=your_key)
 # If not set in .env or command line, staging target will show an error
@@ -134,21 +136,51 @@ graphdb-run-constructs: $(GRAPHDB_ENV)
 	@echo "Running CONSTRUCT templates in GraphDB..."
 	@bash src/paa_graph_kb/graphdb/run_constructs.sh $(TEMPLATES_DIR)
 
-# Load CIDOC-CRM ontology into GraphDB
+# Load CIDOC-CRM ontology into GraphDB (all three files)
 graphdb-load-ontology: $(GRAPHDB_ENV)
-	@echo "Loading CIDOC-CRM ontology into GraphDB..."
+	@echo "Loading CIDOC-CRM v7.1.3 ontology files into GraphDB..."
 	@if [ ! -f "$(CIDOC_CRM_FILE)" ]; then \
-		echo "❌ Error: CIDOC-CRM ontology not found at $(CIDOC_CRM_FILE)"; \
-		echo "   Please download it following instructions in:"; \
-		echo "   $(ONTOLOGIES_DIR)/README.md"; \
+		echo "❌ Error: CIDOC-CRM main ontology not found at $(CIDOC_CRM_FILE)"; \
+		echo "   Please ensure ontology files are present in:"; \
+		echo "   $(ONTOLOGIES_DIR)/"; \
 		exit 1; \
 	fi
+	@if [ ! -f "$(CIDOC_CRM_PC_FILE)" ]; then \
+		echo "❌ Error: CIDOC-CRM Property Classes not found at $(CIDOC_CRM_PC_FILE)"; \
+		exit 1; \
+	fi
+	@if [ ! -f "$(CIDOC_CRM_SUPP_FILE)" ]; then \
+		echo "❌ Error: CIDOC-CRM Supplement not found at $(CIDOC_CRM_SUPP_FILE)"; \
+		exit 1; \
+	fi
+	@echo "Loading 1/3: Main ontology..."
 	@bash -c 'source $(GRAPHDB_ENV) && \
-		curl -X POST "$$GRAPHDB_BASE/repositories/$$REPOSITORY/statements?context=%3Chttp://www.cidoc-crm.org/cidoc-crm/%3E" \
+		curl -s -f -X POST "$$GRAPHDB_BASE/repositories/$$REPOSITORY/statements?context=%3Chttp://www.cidoc-crm.org/cidoc-crm/%3E" \
 		-H "Content-Type: application/rdf+xml" \
 		--data-binary "@$(CIDOC_CRM_FILE)" && \
-		echo "✅ CIDOC-CRM ontology loaded into <http://www.cidoc-crm.org/cidoc-crm/>" || \
-		(echo "❌ Failed to load ontology. Is GraphDB running at $$GRAPHDB_BASE?" && exit 1)'
+		echo "  ✅ Main ontology loaded" || \
+		(echo "  ❌ Failed to load. Is GraphDB running at $$GRAPHDB_BASE?" && exit 1)'
+	@echo "Loading 2/3: Property Classes (PC)..."
+	@bash -c 'source $(GRAPHDB_ENV) && \
+		curl -s -f -X POST "$$GRAPHDB_BASE/repositories/$$REPOSITORY/statements?context=%3Chttp://www.cidoc-crm.org/cidoc-crm/%3E" \
+		-H "Content-Type: application/rdf+xml" \
+		--data-binary "@$(CIDOC_CRM_PC_FILE)" && \
+		echo "  ✅ Property Classes loaded" || \
+		(echo "  ❌ Failed to load PC file" && exit 1)'
+	@echo "Loading 3/3: Supplement (rdfs:label extensions)..."
+	@bash -c 'source $(GRAPHDB_ENV) && \
+		curl -s -f -X POST "$$GRAPHDB_BASE/repositories/$$REPOSITORY/statements?context=%3Chttp://www.cidoc-crm.org/cidoc-crm/%3E" \
+		-H "Content-Type: application/rdf+xml" \
+		--data-binary "@$(CIDOC_CRM_SUPP_FILE)" && \
+		echo "  ✅ Supplement loaded" || \
+		(echo "  ❌ Failed to load Supplement file" && exit 1)'
+	@echo ""
+	@echo "✅ All CIDOC-CRM v7.1.3 files loaded into <http://www.cidoc-crm.org/cidoc-crm/>"
+	@echo ""
+	@echo "💡 Next steps:"
+	@echo "   1. Enable OWL reasoning in GraphDB (Setup → Repositories)"
+	@echo "   2. Set Ruleset to 'OWL-Horst (Optimized)' or 'OWL-Max'"
+	@echo "   3. Save and restart repository"
 
 # Complete GraphDB workflow
 graphdb-all: graphdb-load-staging graphdb-run-constructs

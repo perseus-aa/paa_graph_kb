@@ -9,6 +9,7 @@ PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
 CONSTRUCT {
   # Link production to person
   ?prod a crm:E12_Production ;
+        rdfs:label ?prodLabel ;
         crm:P14_carried_out_by ?person ;
         crm:P108_has_produced ?obj .
 
@@ -39,6 +40,12 @@ WHERE {
   # Object and production URIs
   BIND( IRI(CONCAT("https://aa.perseus.org/id/thing/", SHA256(CONCAT(?src, ":", STR(?oid))))) AS ?obj )
   BIND( IRI(CONCAT("https://aa.perseus.org/id/event/", SHA256(CONCAT("prod|", ?src, ":", STR(?oid))))) AS ?prod )
+
+  # Production label (use object title if available)
+  OPTIONAL { ?s stg:title ?title }
+  BIND( IF(BOUND(?title),
+           CONCAT("Production of ", ?title),
+           CONCAT("Production of object ", STR(?oid))) AS ?prodLabel )
 
   # Person URI
   BIND( IRI(CONCAT("https://aa.perseus.org/id/person/", STR(?personid))) AS ?person )
