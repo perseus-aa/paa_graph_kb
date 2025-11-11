@@ -7,7 +7,8 @@
 export
 
 .PHONY: help setup-env setup-graphdb staging linkedart-local validate \
-	graphdb-load-staging graphdb-run-constructs graphdb-load-ontology graphdb-all local-all clean
+	graphdb-load-staging graphdb-run-constructs graphdb-load-ontology graphdb-all local-all clean \
+	perseus-staging-objects perseus-staging-images perseus-staging-all
 
 # Configuration
 PYTHON := python
@@ -26,6 +27,12 @@ CIDOC_CRM_SUPP_FILE := $(ONTOLOGIES_DIR)/CIDOC_CRM_v7.1.3_Supplement.rdf
 HAM_PARAMS ?= culture=Greek hasimage=1
 HAM_LIMIT ?= 50
 
+# Perseus data files
+PERSEUS_OBJECTS_JSON ?= data/perseus/objects.json
+PERSEUS_IMAGES_JSON ?= data/perseus/images.json
+PERSEUS_OBJECTS_TTL := data/staging/perseus_objects.ttl
+PERSEUS_IMAGES_TTL := data/staging/perseus_images.ttl
+
 # Default target - show help
 help:
 	@echo "PAA Graph Knowledge Base - Available Make Targets"
@@ -40,6 +47,11 @@ help:
 	@echo "  make linkedart-local     - Build linkedart.ttl using local rdflib"
 	@echo "  make validate            - Validate linkedart.ttl with SHACL shapes"
 	@echo "  make local-all           - Run complete local workflow (staging → linkedart → validate)"
+	@echo ""
+	@echo "Perseus Data Integration:"
+	@echo "  make perseus-staging-objects  - Convert Perseus objects JSON to staging RDF"
+	@echo "  make perseus-staging-images   - Convert Perseus images JSON to staging RDF"
+	@echo "  make perseus-staging-all      - Convert both Perseus objects and images"
 	@echo ""
 	@echo "GraphDB Workflow:"
 	@echo "  make graphdb-load-staging     - Load staging.ttl into GraphDB"
@@ -100,6 +112,29 @@ staging:
 		--limit $(HAM_LIMIT) \
 		--out $(STAGING_FILE)
 	@echo "✅ Generated $(STAGING_FILE)"
+
+# Perseus staging targets
+perseus-staging-objects: $(PERSEUS_OBJECTS_JSON)
+	@echo "Converting Perseus objects to staging RDF..."
+	@mkdir -p data/staging
+	$(PYTHON) -m paa_graph_kb.cli.perseus_staging_loader \
+		--objects $(PERSEUS_OBJECTS_JSON) \
+		--out-objects $(PERSEUS_OBJECTS_TTL)
+	@echo "✅ Generated $(PERSEUS_OBJECTS_TTL)"
+
+perseus-staging-images: $(PERSEUS_IMAGES_JSON)
+	@echo "Converting Perseus images to staging RDF..."
+	@mkdir -p data/staging
+	$(PYTHON) -m paa_graph_kb.cli.perseus_staging_loader \
+		--images $(PERSEUS_IMAGES_JSON) \
+		--out-images $(PERSEUS_IMAGES_TTL)
+	@echo "✅ Generated $(PERSEUS_IMAGES_TTL)"
+
+perseus-staging-all: perseus-staging-objects perseus-staging-images
+	@echo ""
+	@echo "✅ Perseus staging complete!"
+	@echo "   - Generated: $(PERSEUS_OBJECTS_TTL)"
+	@echo "   - Generated: $(PERSEUS_IMAGES_TTL)"
 
 # Build Linked Art locally using rdflib
 linkedart-local: $(STAGING_FILE)
