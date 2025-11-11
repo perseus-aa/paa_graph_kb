@@ -10,6 +10,7 @@ PREFIX owl:  <http://www.w3.org/2002/07/owl#>
 CONSTRUCT {
   # Person entity
   ?person a crm:E21_Person ;
+          rdfs:label ?displayName ;
           crm:P1_is_identified_by ?nameNode ;
           crm:P92i_was_brought_into_existence_by ?birth ;
           crm:P93i_was_taken_out_of_existence_by ?death ;
