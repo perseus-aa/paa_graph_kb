@@ -1,0 +1,764 @@
+[
+ {
+   "index": "Indianapolis Museum of Art",
+   "name": "Indianapolis Museum of Art",
+   "entityid": "Q1117704",
+   "uri": "https://www.wikidata.org/wiki/Q1117704"
+ },
+ {
+   "index": "The Detroit Institute of Arts",
+   "name": "Detroit Institute of Arts",
+   "entityid": "Q1201549",
+   "uri": "https://www.wikidata.org/wiki/Q1201549"
+ },
+ {
+   "index": "Williams College Museum of Art",
+   "name": "Williams College Museum of Art",
+   "entityid": "Q12072937",
+   "uri": "https://www.wikidata.org/wiki/Q12072937"
+ },
+ {
+   "index": "University Museum, University of Pennsylvania",
+   "name": "University of Pennsylvania Museum of Archaeology and Anthropology",
+   "entityid": "Q1285902",
+   "uri": "https://www.wikidata.org/wiki/Q1285902"
+ },
+ {
+   "index": "St. Petersburg, State Hermitage Museum",
+   "name": "Hermitage Museum",
+   "entityid": "Q132783",
+   "uri": "https://www.wikidata.org/wiki/Q132783"
+ },
+ {
+   "index": "Joslyn Art Museum",
+   "name": "Joslyn Art Museum",
+   "entityid": "Q1372546",
+   "uri": "https://www.wikidata.org/wiki/Q1372546"
+ },
+ {
+   "index": "North Carolina Museum of Art",
+   "name": "North Carolina Museum of Art",
+   "entityid": "Q1459878",
+   "uri": "https://www.wikidata.org/wiki/Q1459878"
+ },
+ {
+   "index": "Mount Holyoke College Art Museum",
+   "name": "Mount Holyoke College Art Museum",
+   "entityid": "Q14715727",
+   "uri": "https://www.wikidata.org/wiki/Q14715727"
+ },
+ {
+   "index": "Smith College Museum of Art",
+   "name": "Smith College Museum of Art",
+   "entityid": "Q14715853",
+   "uri": "https://www.wikidata.org/wiki/Q14715853"
+ },
+ {
+   "index": "Rome, Museo Nazionale di Villa Giulia",
+   "name": "National Etruscan Museum",
+   "entityid": "Q15055388",
+   "uri": "https://www.wikidata.org/wiki/Q15055388"
+ },
+ {
+   "index": "Warsaw, National Museum",
+   "name": "National Museum in Warsaw",
+   "entityid": "Q153306",
+   "uri": "https://www.wikidata.org/wiki/Q153306"
+ },
+ {
+   "index": "Museum of Fine Arts, Houston",
+   "name": "Museum of Fine Arts, Houston",
+   "entityid": "Q1565911",
+   "uri": "https://www.wikidata.org/wiki/Q1565911"
+ },
+ {
+   "index": "Yale University Art Gallery",
+   "name": "Yale University Art Gallery",
+   "entityid": "Q1568434",
+   "uri": "https://www.wikidata.org/wiki/Q1568434"
+ },
+ {
+   "index": "Wellesley College Art Museum",
+   "name": "Davis Museum and Cultural Center",
+   "entityid": "Q15694044",
+   "uri": "https://www.wikidata.org/wiki/Q15694044"
+ },
+ {
+   "index": "Tarquinia, Museo Nazionale Tarquiniense",
+   "name": "Tarquinia National Museum",
+   "entityid": "Q15961522",
+   "uri": "https://www.wikidata.org/wiki/Q15961522"
+ },
+ {
+   "index": "New York, Metropolitan Museum of Art",
+   "name": "Metropolitan Museum of Art",
+   "entityid": "Q160236",
+   "uri": "https://www.wikidata.org/wiki/Q160236"
+ },
+ {
+   "index": "San Antonio Museum of Art",
+   "name": "San Antonio Museum of Art",
+   "entityid": "Q1647706",
+   "uri": "https://www.wikidata.org/wiki/Q1647706"
+ },
+ {
+   "index": "Stanford, University Museum of Art",
+   "name": "Cantor Arts Center at Stanford University",
+   "entityid": "Q1672708",
+   "uri": "https://www.wikidata.org/wiki/Q1672708"
+ },
+ {
+   "index": "Minneapolis Institute of Arts",
+   "name": "Minneapolis Institute of Art",
+   "entityid": "Q1700481",
+   "uri": "https://www.wikidata.org/wiki/Q1700481"
+ },
+ {
+   "index": "Kelsey Museum of Archaeology, the University of Michigan",
+   "name": "Kelsey Museum of Archaeology",
+   "entityid": "Q1738346",
+   "uri": "https://www.wikidata.org/wiki/Q1738346"
+ },
+ {
+   "index": "Toledo Museum of Art",
+   "name": "Toledo Museum of Art",
+   "entityid": "Q1743116",
+   "uri": "https://www.wikidata.org/wiki/Q1743116"
+ },
+ {
+   "index": "Saint Louis Art Museum",
+   "name": "Saint Louis Art Museum",
+   "entityid": "Q1760539",
+   "uri": "https://www.wikidata.org/wiki/Q1760539"
+ },
+ {
+   "index": "Vatican Museums",
+   "name": "Vatican Museums",
+   "entityid": "Q182955",
+   "uri": "https://www.wikidata.org/wiki/Q182955"
+ },
+ {
+   "index": "Paris, Muse du Louvre",
+   "name": "Louvre Museum",
+   "entityid": "Q19675",
+   "uri": "https://www.wikidata.org/wiki/Q19675"
+ },
+ {
+   "index": "Nelson-Atkins Museum of Art",
+   "name": "The Nelson-Atkins Museum of Art",
+   "entityid": "Q1976985",
+   "uri": "https://www.wikidata.org/wiki/Q1976985"
+ },
+ {
+   "index": "Nelson-Atkins Museum of Art, Kansas City",
+   "name": "The Nelson-Atkins Museum of Art",
+   "entityid": "Q1976985",
+   "uri": "https://www.wikidata.org/wiki/Q1976985"
+ },
+ {
+   "index": "New Orleans Museum of Art",
+   "name": "New Orleans Museum of Art",
+   "entityid": "Q2063082",
+   "uri": "https://www.wikidata.org/wiki/Q2063082"
+ },
+ {
+   "index": "Baltimore, Walters Art Gallery",
+   "name": "Walters Art Museum",
+   "entityid": "Q210081",
+   "uri": "https://www.wikidata.org/wiki/Q210081"
+ },
+ {
+   "index": "Museum of Art, Rhode Island School of Design",
+   "name": "Rhode Island School of Design Museum",
+   "entityid": "Q2148186",
+   "uri": "https://www.wikidata.org/wiki/Q2148186"
+ },
+ {
+   "index": "Bologna, Museo Civico",
+   "name": "Archeological Civic Museum of Bologna",
+   "entityid": "Q2358398",
+   "uri": "https://www.wikidata.org/wiki/Q2358398"
+ },
+ {
+   "index": "Athens, Agora Museum",
+   "name": "Museum of the Ancient Agora",
+   "entityid": "Q2383284",
+   "uri": "https://www.wikidata.org/wiki/Q2383284"
+ },
+ {
+   "index": "Art Institute of Chicago",
+   "name": "Art Institute of Chicago",
+   "entityid": "Q239303",
+   "uri": "https://www.wikidata.org/wiki/Q239303"
+ },
+ {
+   "index": "Princeton University Art Museum",
+   "name": "Princeton University Art Museum",
+   "entityid": "Q2603905",
+   "uri": "https://www.wikidata.org/wiki/Q2603905"
+ },
+ {
+   "index": "Chiusi, Museo Civico",
+   "name": "civic museum \"La Città Sotterranea\"",
+   "entityid": "Q27992909",
+   "uri": "https://www.wikidata.org/wiki/Q27992909"
+ },
+ {
+   "index": "Cincinnati Art Museum",
+   "name": "Cincinnati Art Museum",
+   "entityid": "Q2970522",
+   "uri": "https://www.wikidata.org/wiki/Q2970522"
+ },
+ {
+   "index": "Riggisberg (Bern), Abegg-Stiftung",
+   "name": "collection Abegg foundation",
+   "entityid": "Q318289",
+   "uri": "https://www.wikidata.org/wiki/Q318289"
+ },
+ {
+   "index": "Eleusis Archaeological Museum",
+   "name": "Archaeological Museum of Eleusis",
+   "entityid": "Q3329429",
+   "uri": "https://www.wikidata.org/wiki/Q3329429"
+ },
+ {
+   "index": "Cambridge, Harvard University Art Museums",
+   "name": "Harvard Art Museums",
+   "entityid": "Q3783572",
+   "uri": "https://www.wikidata.org/wiki/Q3783572"
+ },
+ {
+   "index": "Allen Memorial Art Museum",
+   "name": "Allen Memorial Art Museum",
+   "entityid": "Q3816734",
+   "uri": "https://www.wikidata.org/wiki/Q3816734"
+ },
+ {
+   "index": "Ruvo, Museo Jatta",
+   "name": "Museo archeologico nazionale Jatta",
+   "entityid": "Q3867701",
+   "uri": "https://www.wikidata.org/wiki/Q3867701"
+ },
+ {
+   "index": "Virginia Museum of Fine Arts",
+   "name": "Virginia Museum of Fine Arts",
+   "entityid": "Q4013975",
+   "uri": "https://www.wikidata.org/wiki/Q4013975"
+ },
+ {
+   "index": "Wadsworth Atheneum, Hartford",
+   "name": "Wadsworth Atheneum Museum of Art",
+   "entityid": "Q403080",
+   "uri": "https://www.wikidata.org/wiki/Q403080"
+ },
+ {
+   "index": "Eretria, Archaeological Museum",
+   "name": "Archaeological Museum of Eretria",
+   "entityid": "Q42114772",
+   "uri": "https://www.wikidata.org/wiki/Q42114772"
+ },
+ {
+   "index": "Moscow, Pushkin State Museum of Fine Arts",
+   "name": "Pushkin Museum of Fine Arts",
+   "entityid": "Q4872",
+   "uri": "https://www.wikidata.org/wiki/Q4872"
+ },
+ {
+   "index": "Museum of Fine Arts, Boston",
+   "name": "Museum of Fine Arts Boston",
+   "entityid": "Q49133",
+   "uri": "https://www.wikidata.org/wiki/Q49133"
+ },
+ {
+   "index": "Bowdoin College Museum of Art",
+   "name": "Bowdoin College Museum of Art",
+   "entityid": "Q4950759",
+   "uri": "https://www.wikidata.org/wiki/Q4950759"
+ },
+ {
+   "index": "Dayton Art Institute",
+   "name": "Dayton Art Institute",
+   "entityid": "Q597355",
+   "uri": "https://www.wikidata.org/wiki/Q597355"
+ },
+ {
+   "index": "Indiana University Art Museum",
+   "name": "Eskenazi Museum of Art",
+   "entityid": "Q6023573",
+   "uri": "https://www.wikidata.org/wiki/Q6023573"
+ },
+ {
+   "index": "Izmir Archaeological Museum",
+   "name": "İzmir Archaeological Museum",
+   "entityid": "Q6102069",
+   "uri": "https://www.wikidata.org/wiki/Q6102069"
+ },
+ {
+   "index": "Oxford, Ashmolean Museum",
+   "name": "Ashmolean Museum",
+   "entityid": "Q636400",
+   "uri": "https://www.wikidata.org/wiki/Q636400"
+ },
+ {
+   "index": "Istanbul Archaeological Museum",
+   "name": "Istanbul Archaeology Museums",
+   "entityid": "Q636978",
+   "uri": "https://www.wikidata.org/wiki/Q636978"
+ },
+ {
+   "index": "Athens, National Archaeological Museum",
+   "name": "National Archaeological Museum of Athens",
+   "entityid": "Q637187",
+   "uri": "https://www.wikidata.org/wiki/Q637187"
+ },
+ {
+   "index": "Ferrara, Museo Nazionale di Spina",
+   "name": "National Archaeological Museum (Ferrara)",
+   "entityid": "Q637189",
+   "uri": "https://www.wikidata.org/wiki/Q637189"
+ },
+ {
+   "index": "Florence, Museo Archeologico Nazionale",
+   "name": "National Archaeological Museum",
+   "entityid": "Q637237",
+   "uri": "https://www.wikidata.org/wiki/Q637237"
+ },
+ {
+   "index": "Naples, Museo Archeologico Nazionale",
+   "name": "Naples National Archaeological Museum",
+   "entityid": "Q637248",
+   "uri": "https://www.wikidata.org/wiki/Q637248"
+ },
+ {
+   "index": "London, British Museum",
+   "name": "British Museum",
+   "entityid": "Q6373",
+   "uri": "https://www.wikidata.org/wiki/Q6373"
+ },
+ {
+   "index": "Cleveland Museum of Art",
+   "name": "Cleveland Museum of Art",
+   "entityid": "Q657415",
+   "uri": "https://www.wikidata.org/wiki/Q657415"
+ },
+ {
+   "index": "Mead Art Museum, Amherst College",
+   "name": "Mead Art Museum",
+   "entityid": "Q6803132",
+   "uri": "https://www.wikidata.org/wiki/Q6803132"
+ },
+ {
+   "index": "Duke University Museum of Art",
+   "name": "Nasher Museum of Art",
+   "entityid": "Q6966836",
+   "uri": "https://www.wikidata.org/wiki/Q6966836"
+ },
+ {
+   "index": "Munich, Antikensammlungen",
+   "name": "Staatliche Antikensammlungen",
+   "entityid": "Q707981",
+   "uri": "https://www.wikidata.org/wiki/Q707981"
+ },
+ {
+   "index": "Malibu, The J. Paul Getty Museum",
+   "name": "J. Paul Getty Museum",
+   "entityid": "Q731126",
+   "uri": "https://www.wikidata.org/wiki/Q731126"
+ },
+ {
+   "index": "Dallas Museum of Fine Arts",
+   "name": "Dallas Museum of Art",
+   "entityid": "Q745866",
+   "uri": "https://www.wikidata.org/wiki/Q745866"
+ },
+ {
+   "index": "Tampa Museum of Art",
+   "name": "Tampa Museum of Art",
+   "entityid": "Q7681719",
+   "uri": "https://www.wikidata.org/wiki/Q7681719"
+ },
+ {
+   "index": "University of Iowa Museum of Art",
+   "name": "University of Iowa Stanley Museum of Art",
+   "entityid": "Q7895562",
+   "uri": "https://www.wikidata.org/wiki/Q7895562"
+ },
+ {
+   "index": "University Museums, University of Mississippi",
+   "name": "University of Mississippi Museum",
+   "entityid": "Q7895820",
+   "uri": "https://www.wikidata.org/wiki/Q7895820"
+ },
+ {
+   "index": "Budapest, Szepmuveszeti",
+   "name": "Museum of Fine Arts, Budapest",
+   "entityid": "Q840886",
+   "uri": "https://www.wikidata.org/wiki/Q840886"
+ },
+ {
+   "index": "Worcester Art Museum",
+   "name": "Worcester Art Museum",
+   "entityid": "Q847508",
+   "uri": "https://www.wikidata.org/wiki/Q847508"
+ },
+ {
+   "index": "Birmingham Museum of Art",
+   "name": "Birmingham Museum of Art",
+   "entityid": "Q865736",
+   "uri": "https://www.wikidata.org/wiki/Q865736"
+ },
+ {
+   "index": "Vienna, Kunsthistorisches Museum",
+   "name": "Kunsthistorisches Museum",
+   "entityid": "Q95569",
+   "uri": "https://www.wikidata.org/wiki/Q95569"
+ },
+ {
+   "index": "Ackland Art Museum, University of North Carolina, Chapel Hill",
+   "name": "Ackland Art Museum, University of North Carolina, Chapel Hill",
+   "entityid": "collection01",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection01"
+ },
+ {
+   "index": "Ancona, Archeologico Museo Regionale delle Marche",
+   "name": "Ancona, Archeologico Museo Regionale delle Marche",
+   "entityid": "collection02",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection02"
+ },
+ {
+   "index": "Anonymous Collection",
+   "name": "Anonymous Collection",
+   "entityid": "collection03",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection03"
+ },
+ {
+   "index": "Archer M. Huntington Art Gallery, University of Texas at Austin",
+   "name": "Archer M. Huntington Art Gallery, University of Texas at Austin",
+   "entityid": "collection04",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection04"
+ },
+ {
+   "index": "Arezzo, Museo Civico",
+   "name": "Arezzo, Museo Civico",
+   "entityid": "collection05",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection05"
+ },
+ {
+   "index": "Athens, Fethiye Djami",
+   "name": "Athens, Fethiye Djami",
+   "entityid": "collection06",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection06"
+ },
+ {
+   "index": "Basel, H.A. Cahn Collection",
+   "name": "Basel, H.A. Cahn Collection",
+   "entityid": "collection07",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection07"
+ },
+ {
+   "index": "Beloit College, Wright Museum of Art",
+   "name": "Beloit College, Wright Museum of Art",
+   "entityid": "collection08",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection08"
+ },
+ {
+   "index": "Berlin, Antikenmuseen",
+   "name": "Berlin, Antikenmuseen",
+   "entityid": "collection09",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection09"
+ },
+ {
+   "index": "Brussels, Muses Royaux de Cinquantenaire",
+   "name": "Brussels, Muses Royaux de Cinquantenaire",
+   "entityid": "collection10",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection10"
+ },
+ {
+   "index": "Collection of Costas Lemonopoulos, St. Petersburg",
+   "name": "Collection of Costas Lemonopoulos, St. Petersburg",
+   "entityid": "collection11",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection11"
+ },
+ {
+   "index": "Collection of Dr. Warren Gilson",
+   "name": "Collection of Dr. Warren Gilson",
+   "entityid": "collection12",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection12"
+ },
+ {
+   "index": "Collection of Emily D. B. Vermeule",
+   "name": "Collection of Emily D. B. Vermeule",
+   "entityid": "collection13",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection13"
+ },
+ {
+   "index": "Collection of Gay H. Cone, St. Louis",
+   "name": "Collection of Gay H. Cone, St. Louis",
+   "entityid": "collection14",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection14"
+ },
+ {
+   "index": "Collection of Gilbert M. Denman, Jr., San Antonio",
+   "name": "Collection of Gilbert M. Denman, Jr., San Antonio",
+   "entityid": "collection15",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection15"
+ },
+ {
+   "index": "Collection of Mr. and Mrs. Arthur J. Frank",
+   "name": "Collection of Mr. and Mrs. Arthur J. Frank",
+   "entityid": "collection16",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection16"
+ },
+ {
+   "index": "Collection of Mr. and Mrs. Arthur Q. Davis, New Orleans",
+   "name": "Collection of Mr. and Mrs. Arthur Q. Davis, New Orleans",
+   "entityid": "collection17",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection17"
+ },
+ {
+   "index": "Collection of Mr. and Mrs. Cedric G. Boulter",
+   "name": "Collection of Mr. and Mrs. Cedric G. Boulter",
+   "entityid": "collection18",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection18"
+ },
+ {
+   "index": "Collection of Mr. and Mrs. Cornelius C. Vermeule",
+   "name": "Collection of Mr. and Mrs. Cornelius C. Vermeule",
+   "entityid": "collection19",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection19"
+ },
+ {
+   "index": "Collection of Mr. and Mrs. Edward L. Diefenthal, Metairie, Louisiana",
+   "name": "Collection of Mr. and Mrs. Edward L. Diefenthal, Metairie, Louisiana",
+   "entityid": "collection20",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection20"
+ },
+ {
+   "index": "Collection of Mr. and Mrs. Jakob Rosenberg",
+   "name": "Collection of Mr. and Mrs. Jakob Rosenberg",
+   "entityid": "collection21",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection21"
+ },
+ {
+   "index": "Collection of Mrs. Nathan Polmer, New Orleans",
+   "name": "Collection of Mrs. Nathan Polmer, New Orleans",
+   "entityid": "collection22",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection22"
+ },
+ {
+   "index": "Collection of Norbert Schimmel",
+   "name": "Collection of Norbert Schimmel",
+   "entityid": "collection23",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection23"
+ },
+ {
+   "index": "Collection of Tulane University",
+   "name": "Collection of Tulane University",
+   "entityid": "collection24",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection24"
+ },
+ {
+   "index": "Collection of the Cummer Museum of Art and Gardens",
+   "name": "Collection of the Cummer Museum of Art and Gardens",
+   "entityid": "collection25",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection25"
+ },
+ {
+   "index": "David and Alfred Smart Gallery, University of Chicago",
+   "name": "David and Alfred Smart Gallery, University of Chicago",
+   "entityid": "collection26",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection26"
+ },
+ {
+   "index": "Eichenzell, Museum Schloss Fasanerie (Hessische Haussstiftung)",
+   "name": "Eichenzell, Museum Schloss Fasanerie (Hessische Haussstiftung)",
+   "entityid": "collection27",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection27"
+ },
+ {
+   "index": "Elvehjem Museum of Art, University of Wisconsin-Madison",
+   "name": "Elvehjem Museum of Art, University of Wisconsin-Madison",
+   "entityid": "collection28",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection28"
+ },
+ {
+   "index": "Empries, Museo Arqueolgico",
+   "name": "Empries, Museo Arqueolgico",
+   "entityid": "collection29",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection29"
+ },
+ {
+   "index": "Hamburg, Museum fr Kunst und Gewerbe",
+   "name": "Hamburg, Museum fr Kunst und Gewerbe",
+   "entityid": "collection30",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection30"
+ },
+ {
+   "index": "John and Mabel Ringling Museum of Art, Sarasota",
+   "name": "John and Mabel Ringling Museum of Art, Sarasota",
+   "entityid": "collection31",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection31"
+ },
+ {
+   "index": "Johns Hopkins University Museum, Baltimore",
+   "name": "Johns Hopkins University Museum, Baltimore",
+   "entityid": "collection32",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection32"
+ },
+ {
+   "index": "Karlsruhe, Badisches Landesmuseum",
+   "name": "Karlsruhe, Badisches Landesmuseum",
+   "entityid": "collection33",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection33"
+ },
+ {
+   "index": "Krannert Art Museum, University of Illinois",
+   "name": "Krannert Art Museum, University of Illinois",
+   "entityid": "collection34",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection34"
+ },
+ {
+   "index": "Lecce, Museo Provinciale Castromediano",
+   "name": "Lecce, Museo Provinciale Castromediano",
+   "entityid": "collection35",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection35"
+ },
+ {
+   "index": "Leuven, Katholieke Universiteit, Didaktisch Museum, Archeologie",
+   "name": "Leuven, Katholieke Universiteit, Didaktisch Museum, Archeologie",
+   "entityid": "collection36",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection36"
+ },
+ {
+   "index": "London, Britsh Museum",
+   "name": "London, Britsh Museum",
+   "entityid": "collection37",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection37"
+ },
+ {
+   "index": "Madrid, Museo Arqueolgico Nacional",
+   "name": "Madrid, Museo Arqueolgico Nacional",
+   "entityid": "collection38",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection38"
+ },
+ {
+   "index": "Mainz University",
+   "name": "Mainz University",
+   "entityid": "collection39",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection39"
+ },
+ {
+   "index": "Mannheim, Reissmuseum",
+   "name": "Mannheim, Reissmuseum",
+   "entityid": "collection40",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection40"
+ },
+ {
+   "index": "Martin von Wagner Museum, University of Wrzburg",
+   "name": "Martin von Wagner Museum, University of Wrzburg",
+   "entityid": "collection41",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection41"
+ },
+ {
+   "index": "Milwaukee Public Museum",
+   "name": "Milwaukee Public Museum",
+   "entityid": "collection42",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection42"
+ },
+ {
+   "index": "Museum of Art and Archaeology, Univ. of Missouri-Columbia",
+   "name": "Museum of Art and Archaeology, Univ. of Missouri-Columbia",
+   "entityid": "collection43",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection43"
+ },
+ {
+   "index": "Once Naples, Hamilton Collection",
+   "name": "Once Naples, Hamilton Collection",
+   "entityid": "collection44",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection44"
+ },
+ {
+   "index": "Palermo, Museo Nazionale",
+   "name": "Palermo, Museo Nazionale",
+   "entityid": "collection45",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection45"
+ },
+ {
+   "index": "Paris, Bibliothque Nationale, Cabinet des Mdailles",
+   "name": "Paris, Bibliothque Nationale, Cabinet des Mdailles",
+   "entityid": "collection46",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection46"
+ },
+ {
+   "index": "Private Collection, New Orleans",
+   "name": "Private Collection, New Orleans",
+   "entityid": "collection47",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection47"
+ },
+ {
+   "index": "Putnam Museum",
+   "name": "Putnam Museum",
+   "entityid": "collection48",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection48"
+ },
+ {
+   "index": "Tbingen University",
+   "name": "Tubingen University",
+   "entityid": "collection49",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection49"
+ },
+ {
+   "index": "The Lowe Art Museum, University of Miami",
+   "name": "The Lowe Art Museum, University of Miami",
+   "entityid": "collection50",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection50"
+ },
+ {
+   "index": "The Trustees of Dartmouth College",
+   "name": "The Trustees of Dartmouth College",
+   "entityid": "collection51",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection51"
+ },
+ {
+   "index": "The Trustees of the Dewing Numismatic Foundation",
+   "name": "The Trustees of the Dewing Numismatic Foundation",
+   "entityid": "collection52",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection52"
+ },
+ {
+   "index": "The University Museum, University of Arkansas",
+   "name": "The University Museum, University of Arkansas",
+   "entityid": "collection53",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection53"
+ },
+ {
+   "index": "Ullastret (Gerona) Museum",
+   "name": "Ullastret (Gerona) Museum",
+   "entityid": "collection54",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection54"
+ },
+ {
+   "index": "University Art Museum, University of Minnesota",
+   "name": "University Art Museum, University of Minnesota",
+   "entityid": "collection55",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection55"
+ },
+ {
+   "index": "University of Reading",
+   "name": "University of Reading",
+   "entityid": "collection56",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection56"
+ },
+ {
+   "index": "Verona, Museo Archeologico al Teatro romano (Museo Civico)",
+   "name": "Verona, Museo Archeologico al Teatro romano (Museo Civico)",
+   "entityid": "collection57",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection57"
+ },
+ {
+   "index": "Washington University Gallery of Art",
+   "name": "Washington University Gallery of Art",
+   "entityid": "collection58",
+   "uri": "http://perseus.tufts.edu/ns/entities/collection58"
+ }
+]
