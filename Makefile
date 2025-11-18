@@ -8,7 +8,7 @@ export
 
 .PHONY: help setup-env setup-graphdb staging linkedart-local validate \
 	graphdb-load-staging graphdb-run-constructs graphdb-load-ontology graphdb-all local-all clean \
-	perseus-staging-objects perseus-staging-images perseus-staging-all
+	perseus-staging-objects perseus-staging-images perseus-staging-all entity-resolution
 
 # Configuration
 PYTHON := python
@@ -32,6 +32,7 @@ PERSEUS_OBJECTS_JSON ?= data/perseus/objects.json
 PERSEUS_IMAGES_JSON ?= data/perseus/images.json
 PERSEUS_OBJECTS_TTL := data/staging/perseus_objects.ttl
 PERSEUS_IMAGES_TTL := data/staging/perseus_images.ttl
+ENTITY_EQUIVALENCES := entity_equivalences.ttl
 
 # Default target - show help
 help:
@@ -52,6 +53,7 @@ help:
 	@echo "  make perseus-staging-objects  - Convert Perseus objects JSON to staging RDF"
 	@echo "  make perseus-staging-images   - Convert Perseus images JSON to staging RDF"
 	@echo "  make perseus-staging-all      - Convert both Perseus objects and images"
+	@echo "  make entity-resolution        - Link Perseus and HAM objects via owl:sameAs"
 	@echo ""
 	@echo "GraphDB Workflow:"
 	@echo "  make graphdb-load-staging     - Load staging.ttl into GraphDB"
@@ -135,6 +137,17 @@ perseus-staging-all: perseus-staging-objects perseus-staging-images
 	@echo "✅ Perseus staging complete!"
 	@echo "   - Generated: $(PERSEUS_OBJECTS_TTL)"
 	@echo "   - Generated: $(PERSEUS_IMAGES_TTL)"
+
+# Entity resolution - Link Perseus and HAM objects
+entity-resolution: $(PERSEUS_OBJECTS_TTL) $(STAGING_FILE)
+	@echo "🔗 Running entity resolution..."
+	$(PYTHON) -m paa_graph_kb.cli.entity_resolution \
+		--perseus-staging $(PERSEUS_OBJECTS_TTL) \
+		--ham-staging $(STAGING_FILE) \
+		--out $(ENTITY_EQUIVALENCES)
+	@echo ""
+	@echo "✅ Entity resolution complete!"
+	@echo "   Output: $(ENTITY_EQUIVALENCES)"
 
 # Build Linked Art locally using rdflib
 linkedart-local: $(STAGING_FILE)
