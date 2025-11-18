@@ -1,0 +1,55 @@
+PREFIX stg:  <https://aa.perseus.org/staging#>
+PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+# Transform Perseus iconographic and descriptive content
+# Handles decoration descriptions, summaries, and condition notes
+
+CONSTRUCT {
+  ?obj a crm:E22_Human-Made_Object ;
+       crm:P67i_is_referred_to_by ?decorationNode ;
+       crm:P67i_is_referred_to_by ?summaryNode ;
+       crm:P67i_is_referred_to_by ?conditionNode .
+
+  # Decoration/iconographic description
+  ?decorationNode a crm:E33_Linguistic_Object ;
+                  rdfs:label "Iconographic description"@en ;
+                  crm:P190_has_symbolic_content ?decoration ;
+                  crm:P2_has_type <http://vocab.getty.edu/aat/300435430> . # iconography (literary subject)
+
+  # Summary description
+  ?summaryNode a crm:E33_Linguistic_Object ;
+               rdfs:label "Summary"@en ;
+               crm:P190_has_symbolic_content ?summary ;
+               crm:P2_has_type <http://vocab.getty.edu/aat/300080102> . # description (activity)
+
+  # Condition report
+  ?conditionNode a crm:E33_Linguistic_Object ;
+                 rdfs:label "Condition"@en ;
+                 crm:P190_has_symbolic_content ?condition ;
+                 crm:P2_has_type <http://vocab.getty.edu/aat/300435429> . # condition report
+}
+WHERE {
+  ?s a stg:PerseusObject ; stg:source ?src ; stg:perseusId ?perseusId .
+
+  BIND( SHA256(CONCAT(?src, ":", ?perseusId)) AS ?h )
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/thing/", ?h)) AS ?obj )
+
+  # Decoration/iconographic description (often very detailed)
+  OPTIONAL {
+    ?s stg:decorationDescription ?decoration .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/text/", SHA256(CONCAT("decoration|", LCASE(STR(?decoration)))))) AS ?decorationNode )
+  }
+
+  # Summary description
+  OPTIONAL {
+    ?s stg:summary ?summary .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/text/", SHA256(CONCAT("summary|", LCASE(STR(?summary)))))) AS ?summaryNode )
+  }
+
+  # Condition
+  OPTIONAL {
+    ?s stg:condition ?condition .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/text/", SHA256(CONCAT("condition|", LCASE(STR(?condition)))))) AS ?conditionNode )
+  }
+}

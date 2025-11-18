@@ -1,0 +1,76 @@
+PREFIX stg:  <https://aa.perseus.org/staging#>
+PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+# Transform Perseus objects to CIDOC-CRM E22_Human-Made_Object
+# Handles Perseus-specific identifiers and core properties
+
+CONSTRUCT {
+  ?obj a crm:E22_Human-Made_Object ;
+       rdfs:label ?summary ;
+       crm:P1_is_identified_by ?perseusIdNode ;
+       crm:P1_is_identified_by ?accessionNode ;
+       crm:P1_is_identified_by ?beazleyNode ;
+       crm:P2_has_type ?objectTypeNode ;
+       crm:P49_has_former_or_current_keeper ?institutionNode .
+
+  # Perseus ID as identifier
+  ?perseusIdNode a crm:E42_Identifier ;
+                 rdfs:label "Perseus ID"@en ;
+                 crm:P190_has_symbolic_content ?perseusId .
+
+  # Accession number (extracted from Perseus name field)
+  ?accessionNode a crm:E42_Identifier ;
+                 rdfs:label "Accession number"@en ;
+                 crm:P190_has_symbolic_content ?accNum .
+
+  # Beazley Archive number (key identifier for Greek vases)
+  ?beazleyNode a crm:E42_Identifier ;
+               rdfs:label "Beazley number"@en ;
+               crm:P190_has_symbolic_content ?beazley .
+
+  # Object type classification
+  ?objectTypeNode a crm:E55_Type ;
+                  rdfs:label ?objectType .
+
+  # Institution/keeper
+  ?institutionNode a crm:E74_Group ;
+                   rdfs:label ?institution .
+}
+WHERE {
+  ?s a stg:PerseusObject ; stg:source ?src ; stg:perseusId ?perseusId .
+
+  # Generate deterministic IRI for the object based on source + perseus ID
+  BIND( SHA256(CONCAT(?src, ":", ?perseusId)) AS ?h )
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/thing/", ?h)) AS ?obj )
+
+  # Perseus ID identifier
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/identifier/", SHA256(CONCAT("perseus|", ?perseusId)))) AS ?perseusIdNode )
+
+  # Summary as rdfs:label
+  OPTIONAL { ?s stg:summary ?summary }
+
+  # Accession number (extracted from name field)
+  OPTIONAL {
+    ?s stg:accessionNumber ?accNum .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/identifier/", SHA256(CONCAT("acc|", LCASE(STR(?accNum)))))) AS ?accessionNode )
+  }
+
+  # Beazley Archive number
+  OPTIONAL {
+    ?s stg:beazleyNumber ?beazley .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/identifier/", SHA256(CONCAT("beazley|", LCASE(STR(?beazley)))))) AS ?beazleyNode )
+  }
+
+  # Object type
+  OPTIONAL {
+    ?s stg:objectType ?objectType .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/type/", SHA256(CONCAT("objtype|", LCASE(STR(?objectType)))))) AS ?objectTypeNode )
+  }
+
+  # Institution
+  OPTIONAL {
+    ?s stg:institution ?institution .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/group/", SHA256(CONCAT("inst|", LCASE(STR(?institution)))))) AS ?institutionNode )
+  }
+}

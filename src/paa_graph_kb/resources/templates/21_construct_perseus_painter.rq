@@ -1,0 +1,50 @@
+PREFIX stg:  <https://aa.perseus.org/staging#>
+PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+# Transform Perseus painter attributions
+# Handles painter names and attribution qualifiers (attributed to, manner of, etc.)
+
+CONSTRUCT {
+  ?obj a crm:E22_Human-Made_Object ;
+       crm:P108i_was_produced_by ?production .
+
+  ?production a crm:E12_Production ;
+              rdfs:label ?productionLabel ;
+              crm:P14_carried_out_by ?painterNode ;
+              crm:P67i_is_referred_to_by ?attributionNote .
+
+  # Painter as E21_Person
+  ?painterNode a crm:E21_Person ;
+               rdfs:label ?painter .
+
+  # Attribution qualifier as linguistic note
+  ?attributionNote a crm:E33_Linguistic_Object ;
+                   rdfs:label "Attribution qualifier"@en ;
+                   crm:P190_has_symbolic_content ?painterMod ;
+                   crm:P2_has_type <http://vocab.getty.edu/aat/300056109> . # attribution qualifier
+}
+WHERE {
+  ?s a stg:PerseusObject ; stg:source ?src ; stg:perseusId ?perseusId .
+
+  BIND( SHA256(CONCAT(?src, ":", ?perseusId)) AS ?h )
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/thing/", ?h)) AS ?obj )
+
+  # Only create production event if painter exists
+  OPTIONAL {
+    ?s stg:painter ?painter .
+
+    # Create production event
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/event/prod|", ?src, ":", ?perseusId)) AS ?production )
+    BIND( CONCAT("Production of ", COALESCE(?painter, "unknown artist")) AS ?productionLabel )
+
+    # Create painter node with deterministic IRI
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/person/", SHA256(CONCAT("painter|", LCASE(STR(?painter)))))) AS ?painterNode )
+
+    # Attribution modifier/qualifier (e.g., "attributed to", "manner of", "near")
+    OPTIONAL {
+      ?s stg:painterModifier ?painterMod .
+      BIND( IRI(CONCAT("https://aa.perseus.org/id/text/", SHA256(CONCAT("paintmod|", LCASE(STR(?painterMod)))))) AS ?attributionNote )
+    }
+  }
+}

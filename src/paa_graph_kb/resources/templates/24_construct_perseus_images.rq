@@ -1,0 +1,64 @@
+PREFIX stg:  <https://aa.perseus.org/staging#>
+PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX la:   <https://linked.art/ns/terms/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+
+# Transform Perseus images to CIDOC-CRM with IIIF support
+# Handles Perseus Digital Library IIIF image services
+
+CONSTRUCT {
+  # Visual item representing the digital image
+  ?visualItem a crm:E36_Visual_Item ;
+              rdfs:label ?caption ;
+              crm:P1_is_identified_by ?imageIdNode ;
+              crm:P1_is_identified_by ?archiveNumNode ;
+              la:digitally_shown_by ?iiifService ;
+              dcterms:creator ?credits .
+
+  # Image ID identifier
+  ?imageIdNode a crm:E42_Identifier ;
+               rdfs:label "Perseus image ID"@en ;
+               crm:P190_has_symbolic_content ?imageId .
+
+  # Archive number identifier
+  ?archiveNumNode a crm:E42_Identifier ;
+                  rdfs:label "Archive number"@en ;
+                  crm:P190_has_symbolic_content ?archiveNum .
+
+  # IIIF Image Service
+  ?iiifService a crm:E38_Image ;
+               rdfs:label ?imageName ;
+               dcterms:format "application/ld+json" ;
+               dcterms:conformsTo <http://iiif.io/api/image> .
+}
+WHERE {
+  ?s a stg:PerseusImage ; stg:source ?src ; stg:imageId ?imageId .
+
+  # Generate deterministic IRI for the visual item
+  BIND( SHA256(CONCAT(?src, ":image:", ?imageId)) AS ?h )
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/visual/", ?h)) AS ?visualItem )
+
+  # Image ID identifier
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/identifier/", SHA256(CONCAT("imgid|", ?imageId)))) AS ?imageIdNode )
+
+  # Caption as label
+  OPTIONAL { ?s stg:caption ?caption }
+
+  # Image name
+  OPTIONAL { ?s stg:imageName ?imageName }
+
+  # Archive number
+  OPTIONAL {
+    ?s stg:archiveNumber ?archiveNum .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/identifier/", SHA256(CONCAT("archive|", LCASE(STR(?archiveNum)))))) AS ?archiveNumNode )
+  }
+
+  # Credits/attribution
+  OPTIONAL { ?s stg:credits ?credits }
+
+  # IIIF Image Service URL
+  OPTIONAL {
+    ?s stg:iiifImageService ?iiifService
+  }
+}

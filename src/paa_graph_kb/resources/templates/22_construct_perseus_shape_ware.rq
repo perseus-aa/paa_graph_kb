@@ -1,0 +1,40 @@
+PREFIX stg:  <https://aa.perseus.org/staging#>
+PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+# Transform Perseus ceramic shape and ware classifications
+# Handles shape (amphora, kylix, etc.) and ware type (Attic black-figure, etc.)
+
+CONSTRUCT {
+  ?obj a crm:E22_Human-Made_Object ;
+       crm:P2_has_type ?shapeNode ;
+       crm:P2_has_type ?wareNode .
+
+  # Shape classification (e.g., amphora, kylix, krater)
+  ?shapeNode a crm:E55_Type ;
+             rdfs:label ?shape ;
+             crm:P2_has_type <http://vocab.getty.edu/aat/300266639> . # vessel forms
+
+  # Ware type (e.g., Attic black-figure, Corinthian)
+  ?wareNode a crm:E55_Type ;
+            rdfs:label ?ware ;
+            crm:P2_has_type <http://vocab.getty.edu/aat/300010662> . # ceramic ware
+}
+WHERE {
+  ?s a stg:PerseusObject ; stg:source ?src ; stg:perseusId ?perseusId .
+
+  BIND( SHA256(CONCAT(?src, ":", ?perseusId)) AS ?h )
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/thing/", ?h)) AS ?obj )
+
+  # Shape (important for ceramics)
+  OPTIONAL {
+    ?s stg:shape ?shape .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/type/", SHA256(CONCAT("shape|", LCASE(STR(?shape)))))) AS ?shapeNode )
+  }
+
+  # Ware type (ceramic production technique/style)
+  OPTIONAL {
+    ?s stg:ware ?ware .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/type/", SHA256(CONCAT("ware|", LCASE(STR(?ware)))))) AS ?wareNode )
+  }
+}

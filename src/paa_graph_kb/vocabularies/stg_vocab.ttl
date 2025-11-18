@@ -164,3 +164,91 @@ stg:doi             a rdfs:Property ; rdfs:label "DOI"@en ;
                       rdfs:comment "Digital Object Identifier"@en .
 stg:publicationURL  a rdfs:Property ; rdfs:label "Publication URL"@en ;
                       rdfs:comment "URL to publication"@en .
+
+# ========================================
+# Perseus Digital Library Properties
+# ========================================
+
+# Perseus Classes
+stg:PerseusObject   a rdfs:Class ; rdfs:label "Perseus Object"@en ;
+                      rdfs:comment "Object from Perseus Digital Library"@en .
+stg:PerseusImage    a rdfs:Class ; rdfs:label "Perseus Image"@en ;
+                      rdfs:comment "Image from Perseus Digital Library"@en .
+
+# Perseus Core Identifiers
+stg:perseusId       a rdfs:Property ; rdfs:label "Perseus ID"@en ;
+                      rdfs:comment "Perseus Digital Library identifier"@en .
+stg:perseusName     a rdfs:Property ; rdfs:label "Perseus name"@en ;
+                      rdfs:comment "Full name field from Perseus (e.g., 'Harvard 1960.250')"@en .
+stg:perseusVersion  a rdfs:Property ; rdfs:label "Perseus version"@en ;
+                      rdfs:comment "Perseus data version/quality indicator"@en .
+
+# Perseus General Properties
+stg:objectType      a rdfs:Property ; rdfs:label "Object type"@en ;
+                      rdfs:comment "Type of object (Building, Vase, Sculpture, etc.)"@en .
+stg:location        a rdfs:Property ; rdfs:label "Location"@en ;
+                      rdfs:comment "Current location or repository"@en .
+stg:summary         a rdfs:Property ; rdfs:label "Summary"@en ;
+                      rdfs:comment "Brief summary or description of the object"@en .
+stg:institution     a rdfs:Property ; rdfs:label "Institution"@en ;
+                      rdfs:comment "Institution or museum name"@en .
+stg:accessionNumber a rdfs:Property ; rdfs:label "Accession number"@en ;
+                      rdfs:comment "Museum accession or catalog number"@en .
+stg:collection      a rdfs:Property ; rdfs:label "Collection"@en ;
+                      rdfs:comment "Collection name or identifier"@en .
+stg:condition       a rdfs:Property ; rdfs:label "Condition"@en ;
+                      rdfs:comment "Physical condition of the object"@en .
+
+# Perseus Geographic Properties
+stg:region          a rdfs:Property ; rdfs:label "Region"@en ;
+                      rdfs:comment "Geographic region (e.g., 'Attica', 'Saronic Gulf')"@en .
+stg:context         a rdfs:Property ; rdfs:label "Context"@en ;
+                      rdfs:comment "Archaeological or geographic context"@en .
+
+# Perseus Dating Properties
+stg:startModifier   a rdfs:Property ; rdfs:label "Start date modifier"@en ;
+                      rdfs:comment "Modifier for start date (e.g., 'ca.', 'before', 'after')"@en .
+stg:endModifier     a rdfs:Property ; rdfs:label "End date modifier"@en ;
+                      rdfs:comment "Modifier for end date (e.g., 'ca.', 'before', 'after')"@en .
+stg:dateForSort     a rdfs:Property ; rdfs:label "Date for sort"@en ; rdfs:range xsd:integer ;
+                      rdfs:comment "Numeric date value for chronological ordering"@en .
+stg:unitaryDate     a rdfs:Property ; rdfs:label "Unitary date"@en ; rdfs:range xsd:integer ;
+                      rdfs:comment "Single date value (when object has one date, not a range)"@en .
+stg:unitaryModifier a rdfs:Property ; rdfs:label "Unitary date modifier"@en ;
+                      rdfs:comment "Modifier for unitary date (e.g., 'ca.', 'before', 'after')"@en .
+
+# Perseus Descriptive Properties
+stg:decorationDescription a rdfs:Property ; rdfs:label "Decoration description"@en ;
+                      rdfs:comment "Detailed iconographic or decorative description"@en .
+stg:shape           a rdfs:Property ; rdfs:label "Shape"@en ;
+                      rdfs:comment "Shape of object, especially for ceramics (e.g., 'amphora', 'kylix')"@en .
+stg:ware            a rdfs:Property ; rdfs:label "Ware"@en ;
+                      rdfs:comment "Ceramic ware type (e.g., 'Attic black-figure')"@en .
+
+# Perseus Attribution Properties
+stg:painter         a rdfs:Property ; rdfs:label "Painter"@en ;
+                      rdfs:comment "Attribution to painter or artist"@en .
+stg:painterModifier a rdfs:Property ; rdfs:label "Painter modifier"@en ;
+                      rdfs:comment "Attribution qualifier (e.g., 'attributed to', 'manner of', 'near')"@en .
+stg:beazleyNumber   a rdfs:Property ; rdfs:label "Beazley number"@en ;
+                      rdfs:comment "Beazley Archive identifier for Greek vases"@en .
+
+# Perseus Provenance Properties
+stg:enteredBy       a rdfs:Property ; rdfs:label "Entered by"@en ;
+                      rdfs:comment "Person or entity who entered the data"@en .
+stg:sourcesUsed     a rdfs:Property ; rdfs:label "Sources used"@en ;
+                      rdfs:comment "Bibliographic sources and references (may contain TEI markup)"@en .
+
+# Perseus Image Properties
+stg:imageId         a rdfs:Property ; rdfs:label "Image ID"@en ;
+                      rdfs:comment "Perseus image identifier"@en .
+stg:archiveNumber   a rdfs:Property ; rdfs:label "Archive number"@en ;
+                      rdfs:comment "Archive or repository number for image"@en .
+stg:imageName       a rdfs:Property ; rdfs:label "Image name"@en ;
+                      rdfs:comment "Name or title of the image"@en .
+stg:caption         a rdfs:Property ; rdfs:label "Caption"@en ;
+                      rdfs:comment "Image caption or description"@en .
+stg:credits         a rdfs:Property ; rdfs:label "Credits"@en ;
+                      rdfs:comment "Image credits, attribution, or copyright information"@en .
+stg:iiifImageService a rdfs:Property ; rdfs:label "IIIF Image Service"@en ;
+                      rdfs:comment "IIIF Image API service base URL"@en .
