@@ -6,7 +6,7 @@
 -include .env
 export
 
-.PHONY: help setup-env setup-graphdb staging linkedart-local validate \
+.PHONY: help setup setup-env setup-graphdb staging linkedart-local validate \
 	graphdb-load-ham-staging graphdb-run-constructs graphdb-load-ontology local-all clean \
 	perseus-staging-objects perseus-staging-images perseus-staging-all entity-resolution \
 	graphdb-load-perseus-staging graphdb-load-perseus-linkedart graphdb-load-equivalences \
@@ -42,6 +42,7 @@ help:
 	@echo "=================================================="
 	@echo ""
 	@echo "Setup:"
+	@echo "  make setup               - Install package with PDM (run after cloning)"
 	@echo "  make setup-env           - Copy dotenv template to .env (edit with your HAM API key)"
 	@echo "  make setup-graphdb       - Copy graphdb_env.example to graphdb_env (edit manually after)"
 	@echo ""
@@ -84,6 +85,12 @@ help:
 	@echo "  make staging HAM_LIMIT=200                  # Override default limit"
 	@echo "  make staging HAM_APIKEY=key HAM_LIMIT=100   # Override .env settings"
 	@echo ""
+
+# Install package in editable mode using PDM
+setup:
+	@echo "Installing paa_graph_kb package with PDM..."
+	pdm install
+	@echo "✅ Package installed. You can now run make targets."
 
 # Setup .env file from template
 setup-env:
