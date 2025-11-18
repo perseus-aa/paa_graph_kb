@@ -1,0 +1,50 @@
+# Demonstrate data enrichment through entity resolution
+# This query shows how matched objects (via owl:sameAs) combine data from both sources
+# Each source contributes different metadata, creating a richer picture
+#
+# Expected pattern for matched objects:
+#   - Perseus: painter attribution, decoration description, Beazley number, shape/ware
+#   - HAM: detailed provenance, exhibition history, conservation notes, classifications
+#
+# This demonstrates the VALUE of entity resolution and owl:sameAs reasoning
+
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT ?object ?label
+       (COUNT(DISTINCT ?prop) AS ?totalProperties)
+       (GROUP_CONCAT(DISTINCT ?graphSource; separator=", ") AS ?dataSources)
+WHERE {
+  # Find objects that have owl:sameAs equivalences (matched objects)
+  {
+    SELECT DISTINCT ?object WHERE {
+      GRAPH <http://aa.perseus.org/graph/equivalences> {
+        ?object owl:sameAs ?other .
+      }
+    }
+  }
+
+  # Get all properties for the object across all graphs
+  # OWL reasoning means the object can access properties from its equivalent
+  GRAPH ?graph {
+    ?object ?prop ?value .
+  }
+
+  # Get label if available
+  OPTIONAL {
+    ?object rdfs:label ?label .
+  }
+
+  # Track which graphs contribute data
+  BIND(
+    IF(CONTAINS(STR(?graph), "Perseus"), "Perseus",
+    IF(CONTAINS(STR(?graph), "HAM"), "HAM",
+    IF(CONTAINS(STR(?graph), "equivalences"), "equivalences",
+    "Other"))) AS ?graphSource
+  )
+}
+GROUP BY ?object ?label
+HAVING (COUNT(DISTINCT ?prop) > 5)
+ORDER BY DESC(?totalProperties)
+LIMIT 20

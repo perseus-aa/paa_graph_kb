@@ -1,0 +1,37 @@
+# Search for objects with specific iconographic subjects or decoration descriptions
+# This query searches across linguistic objects (notes, descriptions) attached to vases
+# Particularly useful for Perseus data which has detailed decoration descriptions
+#
+# Usage: Change the FILTER to search for subjects like:
+#   - "symposium", "komos" (drinking scenes)
+#   - "athena", "herakles", "dionysus" (deities and heroes)
+#   - "warrior", "chariot" (scenes)
+#   - "sphinx", "siren" (mythical creatures)
+
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?object ?objectLabel ?description ?source
+WHERE {
+  GRAPH ?graph {
+    ?object a crm:E22_Human-Made_Object ;
+            crm:P67i_is_referred_to_by ?note .
+
+    ?note a crm:E33_Linguistic_Object ;
+          crm:P190_has_symbolic_content ?description .
+
+    OPTIONAL { ?object rdfs:label ?objectLabel }
+  }
+
+  # Search for iconographic subject (change "symposium" to search for other subjects)
+  FILTER(CONTAINS(LCASE(?description), "symposium"))
+
+  # Determine source collection
+  BIND(
+    IF(CONTAINS(STR(?graph), "Perseus"), "Perseus",
+    IF(CONTAINS(STR(?graph), "HAM"), "HAM",
+    "Other")) AS ?source
+  )
+}
+ORDER BY ?source ?objectLabel
+LIMIT 50

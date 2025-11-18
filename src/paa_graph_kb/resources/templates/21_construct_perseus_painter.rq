@@ -25,26 +25,24 @@ CONSTRUCT {
                    crm:P2_has_type <http://vocab.getty.edu/aat/300056109> . # attribution qualifier
 }
 WHERE {
-  ?s a stg:PerseusObject ; stg:source ?src ; stg:perseusId ?perseusId .
+  ?s a stg:PerseusObject ;
+     stg:source ?src ;
+     stg:perseusId ?perseusId ;
+     stg:painter ?painter .  # Require painter (not OPTIONAL)
 
-  BIND( SHA256(CONCAT(?src, ":", ?perseusId)) AS ?h )
+  BIND( SHA256(CONCAT(STR(?src), ":", STR(?perseusId))) AS ?h )
   BIND( IRI(CONCAT("https://aa.perseus.org/id/thing/", ?h)) AS ?obj )
 
-  # Only create production event if painter exists
+  # Create production event (use SHA256 for valid URI)
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/event/", SHA256(CONCAT("prod-", STR(?src), "-", STR(?perseusId))))) AS ?production )
+  BIND( CONCAT("Production of ", ?painter) AS ?productionLabel )
+
+  # Create painter node with deterministic IRI
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/person/", SHA256(CONCAT("painter-", LCASE(STR(?painter)))))) AS ?painterNode )
+
+  # Attribution modifier/qualifier (e.g., "attributed to", "manner of", "near")
   OPTIONAL {
-    ?s stg:painter ?painter .
-
-    # Create production event
-    BIND( IRI(CONCAT("https://aa.perseus.org/id/event/prod|", ?src, ":", ?perseusId)) AS ?production )
-    BIND( CONCAT("Production of ", COALESCE(?painter, "unknown artist")) AS ?productionLabel )
-
-    # Create painter node with deterministic IRI
-    BIND( IRI(CONCAT("https://aa.perseus.org/id/person/", SHA256(CONCAT("painter|", LCASE(STR(?painter)))))) AS ?painterNode )
-
-    # Attribution modifier/qualifier (e.g., "attributed to", "manner of", "near")
-    OPTIONAL {
-      ?s stg:painterModifier ?painterMod .
-      BIND( IRI(CONCAT("https://aa.perseus.org/id/text/", SHA256(CONCAT("paintmod|", LCASE(STR(?painterMod)))))) AS ?attributionNote )
-    }
+    ?s stg:painterModifier ?painterMod .
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/text/", SHA256(CONCAT("paintmod-", LCASE(STR(?painterMod)))))) AS ?attributionNote )
   }
 }

@@ -1,0 +1,38 @@
+# Find all objects attributed to a specific painter across HAM and Perseus collections
+# This query leverages owl:sameAs reasoning to combine data from both sources
+#
+# Usage: Search for painter names like "Berlin Painter", "Exekias", "Douris", etc.
+# The query shows how entity resolution enables cross-collection research
+
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT DISTINCT ?object ?objectLabel ?painter ?painterLabel ?source ?graphName
+WHERE {
+  # Find production events with painters
+  GRAPH ?graph {
+    ?object a crm:E22_Human-Made_Object ;
+            crm:P108i_was_produced_by ?production .
+
+    ?production crm:P14_carried_out_by ?painter .
+    ?painter rdfs:label ?painterLabel .
+
+    OPTIONAL { ?object rdfs:label ?objectLabel }
+  }
+
+  # Filter for specific painter (change this value to search for different painters)
+  # Examples: "Berlin Painter", "Exekias", "Douris", "Euphronios"
+  FILTER(CONTAINS(LCASE(?painterLabel), "berlin"))
+
+  # Determine source collection
+  BIND(
+    IF(CONTAINS(STR(?graph), "Perseus"), "Perseus",
+    IF(CONTAINS(STR(?graph), "HAM"), "HAM",
+    "Other")) AS ?source
+  )
+
+  # Get graph name for provenance
+  BIND(STR(?graph) AS ?graphName)
+}
+ORDER BY ?source ?objectLabel

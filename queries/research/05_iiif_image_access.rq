@@ -1,0 +1,46 @@
+# Get IIIF image service URLs for objects
+# This query enables side-by-side image comparison and building image viewers
+# IIIF (International Image Interoperability Framework) provides standardized image access
+#
+# Use cases:
+#   - Build custom image viewers comparing Perseus and HAM images of same object
+#   - Deep zoom into high-resolution images
+#   - Download specific image regions or sizes
+#   - Create image annotations
+#
+# IIIF Image API format: {scheme}://{server}{/prefix}/{identifier}/{region}/{size}/{rotation}/{quality}.{format}
+
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX la: <https://linked.art/ns/terms/>
+
+SELECT DISTINCT ?object ?objectLabel ?image ?iiifService ?imageLabel
+WHERE {
+  # Find objects with visual items (images)
+  GRAPH ?objGraph {
+    ?object a crm:E22_Human-Made_Object .
+    OPTIONAL { ?object rdfs:label ?objectLabel }
+  }
+
+  # Find associated images
+  GRAPH ?imgGraph {
+    ?image a crm:E36_Visual_Item ;
+           crm:P138i_has_representation ?digitalObject .
+
+    OPTIONAL { ?image rdfs:label ?imageLabel }
+
+    # Get IIIF service URL if available
+    OPTIONAL {
+      ?digitalObject la:digitally_shown_by ?iiifService .
+      FILTER(CONTAINS(STR(?iiifService), "iiif"))
+    }
+  }
+
+  # Connect object to image (may need to traverse through owl:sameAs)
+  FILTER(
+    STRSTARTS(STR(?image), REPLACE(STR(?object), "thing", "visual")) ||
+    CONTAINS(STR(?image), STRAFTER(STR(?object), "thing/"))
+  )
+}
+ORDER BY ?objectLabel ?imageLabel
+LIMIT 50

@@ -1,0 +1,38 @@
+# Find objects by ceramic shape and ware type
+# This query is particularly useful for Greek vase scholarship
+# Combines shape and ware information from object type classifications
+#
+# Usage: Modify FILTER values to search for:
+#   Shapes: "amphora", "kylix", "krater", "hydria", "lekythos", "oinochoe"
+#   Wares: "black-figure", "red-figure", "white-ground", "geometric"
+
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?object ?objectLabel ?typeLabel ?source
+WHERE {
+  GRAPH ?graph {
+    ?object a crm:E22_Human-Made_Object ;
+            crm:P2_has_type ?type .
+
+    ?type rdfs:label ?typeLabel .
+
+    OPTIONAL { ?object rdfs:label ?objectLabel }
+  }
+
+  # Filter for specific shape or ware
+  # Change these to search for different shapes/wares
+  FILTER(
+    CONTAINS(LCASE(?typeLabel), "amphora") ||
+    CONTAINS(LCASE(?typeLabel), "black-figure")
+  )
+
+  # Determine source collection
+  BIND(
+    IF(CONTAINS(STR(?graph), "Perseus"), "Perseus",
+    IF(CONTAINS(STR(?graph), "HAM"), "HAM",
+    "Other")) AS ?source
+  )
+}
+ORDER BY ?source ?typeLabel ?objectLabel
+LIMIT 100
