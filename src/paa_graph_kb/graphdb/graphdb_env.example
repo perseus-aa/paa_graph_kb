@@ -1,5 +1,15 @@
 # Copy to graphdb_env and fill in values
 GRAPHDB_BASE=http://localhost:7200
 REPOSITORY=demo
+
+# HAM graphs
 STAGING_GRAPH=http://aa.perseus.org/graph/staging/HAM
 LINKEDART_GRAPH=http://aa.perseus.org/graph/linkedart/HAM
+
+# Perseus graphs
+PERSEUS_STAGING_GRAPH=http://aa.perseus.org/graph/staging/Perseus
+PERSEUS_LINKEDART_GRAPH=http://aa.perseus.org/graph/linkedart/Perseus
+PERSEUS_IMAGES_GRAPH=http://aa.perseus.org/graph/images/Perseus
+
+# Entity resolution graph
+EQUIVALENCES_GRAPH=http://aa.perseus.org/graph/equivalences

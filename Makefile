@@ -8,7 +8,8 @@ export
 
 .PHONY: help setup-env setup-graphdb staging linkedart-local validate \
 	graphdb-load-staging graphdb-run-constructs graphdb-load-ontology graphdb-all local-all clean \
-	perseus-staging-objects perseus-staging-images perseus-staging-all entity-resolution
+	perseus-staging-objects perseus-staging-images perseus-staging-all entity-resolution \
+	graphdb-load-perseus-staging graphdb-load-perseus-linkedart graphdb-load-equivalences graphdb-load-all-perseus
 
 # Configuration
 PYTHON := python
@@ -55,10 +56,17 @@ help:
 	@echo "  make perseus-staging-all      - Convert both Perseus objects and images"
 	@echo "  make entity-resolution        - Link Perseus and HAM objects via owl:sameAs"
 	@echo ""
-	@echo "GraphDB Workflow:"
-	@echo "  make graphdb-load-staging     - Load staging.ttl into GraphDB"
+	@echo "GraphDB Workflow (HAM):"
+	@echo "  make graphdb-load-staging     - Load HAM staging.ttl into GraphDB"
 	@echo "  make graphdb-run-constructs   - Apply CONSTRUCT templates in GraphDB"
 	@echo "  make graphdb-load-ontology    - Load CIDOC-CRM ontology into GraphDB (optional)"
+	@echo "  make graphdb-all              - Run complete HAM GraphDB workflow"
+	@echo ""
+	@echo "GraphDB Workflow (Perseus):"
+	@echo "  make graphdb-load-perseus-staging    - Load Perseus staging data (objects + images)"
+	@echo "  make graphdb-load-perseus-linkedart  - Load Perseus CRM data (objects + images)"
+	@echo "  make graphdb-load-equivalences       - Load entity equivalences (owl:sameAs)"
+	@echo "  make graphdb-load-all-perseus        - Load all Perseus data + equivalences"
 	@echo "  make graphdb-all              - Run complete GraphDB workflow (load → constructs)"
 	@echo ""
 	@echo "Utilities:"
@@ -230,16 +238,68 @@ graphdb-load-ontology: $(GRAPHDB_ENV)
 	@echo "   2. Set Ruleset to 'OWL-Horst (Optimized)' or 'OWL-Max'"
 	@echo "   3. Save and restart repository"
 
-# Complete GraphDB workflow
+# Complete GraphDB workflow (HAM only)
 graphdb-all: graphdb-load-staging graphdb-run-constructs
 	@echo ""
-	@echo "✅ GraphDB workflow complete!"
+	@echo "✅ GraphDB workflow complete (HAM)!"
 	@echo "   - Loaded staging data"
 	@echo "   - Applied all CONSTRUCT templates"
 	@echo ""
 	@echo "💡 Tip: To enable OWL inferencing with CIDOC-CRM:"
 	@echo "   1. Run: make graphdb-load-ontology"
 	@echo "   2. Enable reasoning in GraphDB Workbench (Setup → Repositories)"
+
+# Load Perseus staging data to GraphDB
+graphdb-load-perseus-staging: $(PERSEUS_OBJECTS_TTL) $(PERSEUS_IMAGES_TTL) $(GRAPHDB_ENV)
+	@echo "📦 Loading Perseus staging data to GraphDB..."
+	@bash -c 'source $(GRAPHDB_ENV) && \
+		src/paa_graph_kb/graphdb/load_to_graph.sh $(PERSEUS_OBJECTS_TTL) "$$PERSEUS_STAGING_GRAPH"'
+	@bash -c 'source $(GRAPHDB_ENV) && \
+		src/paa_graph_kb/graphdb/load_to_graph.sh $(PERSEUS_IMAGES_TTL) "$$PERSEUS_IMAGES_GRAPH"'
+	@echo "✅ Perseus staging data loaded"
+
+# Load Perseus CRM (Linked Art) data to GraphDB
+graphdb-load-perseus-linkedart: $(GRAPHDB_ENV)
+	@echo "📦 Loading Perseus CRM data to GraphDB..."
+	@if [ ! -f "perseus_linkedart.ttl" ]; then \
+		echo "⚠️  perseus_linkedart.ttl not found. Generating..."; \
+		$(PYTHON) -m paa_graph_kb.cli.run_constructs \
+			--staging $(PERSEUS_OBJECTS_TTL) \
+			--templates $(TEMPLATES_DIR) \
+			--out perseus_linkedart.ttl; \
+	fi
+	@if [ ! -f "perseus_images_linkedart.ttl" ]; then \
+		echo "⚠️  perseus_images_linkedart.ttl not found. Generating..."; \
+		$(PYTHON) -m paa_graph_kb.cli.run_constructs \
+			--staging $(PERSEUS_IMAGES_TTL) \
+			--templates $(TEMPLATES_DIR) \
+			--out perseus_images_linkedart.ttl; \
+	fi
+	@bash -c 'source $(GRAPHDB_ENV) && \
+		src/paa_graph_kb/graphdb/load_to_graph.sh perseus_linkedart.ttl "$$PERSEUS_LINKEDART_GRAPH"'
+	@bash -c 'source $(GRAPHDB_ENV) && \
+		src/paa_graph_kb/graphdb/load_to_graph.sh perseus_images_linkedart.ttl "$$PERSEUS_IMAGES_GRAPH"'
+	@echo "✅ Perseus CRM data loaded"
+
+# Load entity equivalences to GraphDB
+graphdb-load-equivalences: $(ENTITY_EQUIVALENCES) $(GRAPHDB_ENV)
+	@echo "🔗 Loading entity equivalences to GraphDB..."
+	@bash -c 'source $(GRAPHDB_ENV) && \
+		src/paa_graph_kb/graphdb/load_to_graph.sh $(ENTITY_EQUIVALENCES) "$$EQUIVALENCES_GRAPH"'
+	@echo "✅ Entity equivalences loaded"
+
+# Load all Perseus data to GraphDB
+graphdb-load-all-perseus: graphdb-load-perseus-staging graphdb-load-perseus-linkedart graphdb-load-equivalences
+	@echo ""
+	@echo "✅ All Perseus data loaded to GraphDB!"
+	@echo "   - Perseus staging (objects + images)"
+	@echo "   - Perseus CRM (Linked Art)"
+	@echo "   - Entity equivalences (owl:sameAs)"
+	@echo ""
+	@echo "💡 Query across datasets using:"
+	@echo "   SELECT * WHERE {"
+	@echo "     GRAPH ?g { ?s ?p ?o }"
+	@echo "   }"
 
 # Clean generated files
 clean:

@@ -1,57 +1,142 @@
-# CONSTRUCT Starter Kit — GraphDB Notes
+# GraphDB Integration — HAM & Perseus Data
+
+This directory contains scripts and configuration for loading data into GraphDB,
+organizing data into named graphs for HAM, Perseus, and entity equivalences.
 
 ## Quick start (local dev with rdflib)
 1) Generate staging from HAM:
-```
-python staging_loader.py --apikey YOUR_KEY --params culture=Greek hasimage=1 --limit 50 --out staging.ttl
+```bash
+make staging HAM_APIKEY=your_key
 ```
 2) Build Linked Art:
-```
-python run_constructs.py --staging staging.ttl --templates . --out linkedart.ttl
+```bash
+make linkedart-local
 ```
 3) Validate:
-```
-pip install pyshacl
-python validate_shacl.py --data linkedart.ttl --shapes shapes_linkedart.ttl
-```
-
-## GraphDB
-### Setup
-1. Copy `graphdb_env.example` to `graphdb_env` and configure your GraphDB connection:
 ```bash
-cd src/paa_graph_kb/graphdb
-cp graphdb_env.example graphdb_env
-# Edit graphdb_env to set GRAPHDB_BASE, REPOSITORY, etc.
+make validate
 ```
 
-### Loading Data
-- Load staging (run from repository root):
+## GraphDB Setup
+
+### 1. Configure GraphDB Connection
 ```bash
-src/paa_graph_kb/graphdb/load_staging.sh staging.ttl
+# Already configured if you've run make setup-graphdb
+# Otherwise, copy the example:
+cp src/paa_graph_kb/graphdb/graphdb_env.example src/paa_graph_kb/graphdb/graphdb_env
+# Edit graphdb_env to set GRAPHDB_BASE, REPOSITORY
 ```
-Or from the `src/paa_graph_kb` directory:
+
+### 2. Named Graphs Organization
+
+Data is loaded into separate named graphs for clarity and querying:
+
+```
+HAM Data:
+  http://aa.perseus.org/graph/staging/HAM         - HAM staging data
+  http://aa.perseus.org/graph/linkedart/HAM       - HAM CRM (Linked Art)
+
+Perseus Data:
+  http://aa.perseus.org/graph/staging/Perseus     - Perseus staging objects
+  http://aa.perseus.org/graph/images/Perseus      - Perseus staging images
+  http://aa.perseus.org/graph/linkedart/Perseus   - Perseus CRM (Linked Art)
+
+Entity Resolution:
+  http://aa.perseus.org/graph/equivalences        - owl:sameAs statements
+```
+
+## Loading Data to GraphDB
+
+### Option 1: Using Makefile (Recommended)
+
+**Load HAM data:**
 ```bash
-graphdb/load_staging.sh ../staging.ttl
+make graphdb-all                    # Load HAM staging + run constructs
 ```
-- Apply CONSTRUCT templates to generate Linked Art (run from repository root):
+
+**Load Perseus data:**
 ```bash
-src/paa_graph_kb/graphdb/run_constructs.sh src/paa_graph_kb/templates
+make graphdb-load-all-perseus       # Load all Perseus data + equivalences
 ```
-Or from the `src/paa_graph_kb` directory:
+
+**Individual Perseus targets:**
 ```bash
-graphdb/run_constructs.sh templates
+make graphdb-load-perseus-staging   # Objects + images staging
+make graphdb-load-perseus-linkedart # Perseus CRM data
+make graphdb-load-equivalences      # Entity links (owl:sameAs)
 ```
 
-This will execute each `*.rq` SPARQL CONSTRUCT query and load the results into the configured `LINKEDART_GRAPH` in GraphDB.
+### Option 2: Manual Loading
 
-> Note: Alternatively, you can open each `*.rq` in GraphDB Workbench and execute manually against the repository.
+**Load any TTL file to a named graph:**
+```bash
+src/paa_graph_kb/graphdb/load_to_graph.sh <file.ttl> <graph-uri>
+```
 
-## Design
-- Deterministic IRIs with SHA256 of salient keys.
-- No blank nodes for appellations/notes (mint by value).
-- Period/place prefer HAM authority IRIs when present.
+**Example:**
+```bash
+src/paa_graph_kb/graphdb/load_to_graph.sh \
+  data/staging/perseus_objects.ttl \
+  "http://aa.perseus.org/graph/staging/Perseus"
+```
 
-## Next steps
-- Add more templates (measurements, exhibitions, agents).
-- Add reconciliation step for external AAT/Geonames alignment.
-- Add SHACL shapes for material/technique constraints and IIIF.
+## Querying Multi-Source Data
+
+### Query across all graphs:
+```sparql
+SELECT ?g (COUNT(*) AS ?count)
+WHERE {
+  GRAPH ?g { ?s ?p ?o }
+}
+GROUP BY ?g
+ORDER BY ?g
+```
+
+### Find linked entities (using owl:sameAs):
+```sparql
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT ?perseus ?ham
+WHERE {
+  GRAPH <http://aa.perseus.org/graph/equivalences> {
+    ?perseus owl:sameAs ?ham .
+    FILTER(CONTAINS(STR(?perseus), "perseus"))
+  }
+}
+LIMIT 10
+```
+
+### Get combined data for a matched object:
+```sparql
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?obj ?label ?source ?graph
+WHERE {
+  # Find equivalence
+  GRAPH <http://aa.perseus.org/graph/equivalences> {
+    ?perseus_obj owl:sameAs ?ham_obj .
+  }
+
+  # Get data from both sources
+  VALUES ?obj { ?perseus_obj ?ham_obj }
+  GRAPH ?graph {
+    ?obj rdfs:label ?label .
+  }
+
+  BIND(IF(CONTAINS(STR(?graph), "Perseus"), "Perseus", "HAM") AS ?source)
+}
+LIMIT 20
+```
+
+## Design Principles
+- Deterministic IRIs with SHA256 of salient keys
+- No blank nodes for appellations/notes (mint by value)
+- Multi-graph organization for source separation
+- Entity resolution via owl:sameAs
+
+## Next Steps
+- Enable OWL reasoning to leverage owl:sameAs inferences
+- Add reconciliation for external AAT/Geonames alignment
+- Expand entity resolution to other institutions (Boston, Cleveland, etc.)
