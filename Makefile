@@ -14,8 +14,6 @@ export
 
 # Configuration
 PYTHON := python
-STAGING_FILE := staging.ttl
-LINKEDART_FILE := linkedart.ttl
 TEMPLATES_DIR := src/paa_graph_kb/resources/templates
 ONTOLOGIES_DIR := src/paa_graph_kb/resources/ontologies
 SHAPES_FILE := src/paa_graph_kb/shapes/linkedart.ttl
@@ -24,17 +22,35 @@ CIDOC_CRM_FILE := $(ONTOLOGIES_DIR)/CIDOC_CRM_v7.1.3.rdf
 CIDOC_CRM_PC_FILE := $(ONTOLOGIES_DIR)/CIDOC_CRM_v7.1.3_PC.rdf
 CIDOC_CRM_SUPP_FILE := $(ONTOLOGIES_DIR)/CIDOC_CRM_v7.1.3_Supplement.rdf
 
+# Data directories
+DATA_DIR := data
+STAGING_DIR := $(DATA_DIR)/staging
+LINKEDART_DIR := $(DATA_DIR)/linkedart
+EQUIVALENCES_DIR := $(DATA_DIR)/equivalences
+
+# HAM data files
+HAM_STAGING := $(STAGING_DIR)/ham_staging.ttl
+HAM_LINKEDART := $(LINKEDART_DIR)/ham_linkedart.ttl
+
+# Perseus data files
+PERSEUS_OBJECTS_JSON ?= $(DATA_DIR)/perseus/objects.json
+PERSEUS_IMAGES_JSON ?= $(DATA_DIR)/perseus/images.json
+PERSEUS_OBJECTS_TTL := $(STAGING_DIR)/perseus_objects.ttl
+PERSEUS_IMAGES_TTL := $(STAGING_DIR)/perseus_images.ttl
+PERSEUS_LINKEDART := $(LINKEDART_DIR)/perseus_linkedart.ttl
+PERSEUS_IMAGES_LINKEDART := $(LINKEDART_DIR)/perseus_images_linkedart.ttl
+
+# Entity resolution
+ENTITY_EQUIVALENCES := $(EQUIVALENCES_DIR)/entity_equivalences.ttl
+
+# Legacy aliases for backwards compatibility
+STAGING_FILE := $(HAM_STAGING)
+LINKEDART_FILE := $(HAM_LINKEDART)
+
 # HAM API parameters (loaded from .env, or override with make staging HAM_APIKEY=your_key)
 # If not set in .env or command line, staging target will show an error
 HAM_PARAMS ?= culture=Greek hasimage=1
 HAM_LIMIT ?= 50
-
-# Perseus data files
-PERSEUS_OBJECTS_JSON ?= data/perseus/objects.json
-PERSEUS_IMAGES_JSON ?= data/perseus/images.json
-PERSEUS_OBJECTS_TTL := data/staging/perseus_objects.ttl
-PERSEUS_IMAGES_TTL := data/staging/perseus_images.ttl
-ENTITY_EQUIVALENCES := entity_equivalences.ttl
 
 # Default target - show help
 help:
@@ -114,10 +130,13 @@ setup-graphdb:
 		echo "⚠️  Please edit $(GRAPHDB_ENV) to configure your GraphDB connection."; \
 	fi
 
-# Generate staging.ttl from HAM API
+# Generate HAM staging data from HAM API
 # Reads HAM_APIKEY from .env by default, or override with HAM_APIKEY=key on command line
-staging:
-	@echo "Generating staging data from HAM API..."
+staging: $(HAM_STAGING)
+
+$(HAM_STAGING):
+	@echo "Generating HAM staging data from API..."
+	@mkdir -p $(STAGING_DIR)
 	@if [ ! -f ".env" ] && [ -z "$(HAM_APIKEY)" ]; then \
 		echo "⚠️  No .env file found and HAM_APIKEY not provided."; \
 		echo "   Run: make setup-env"; \
@@ -128,8 +147,8 @@ staging:
 		$(if $(HAM_APIKEY),--apikey $(HAM_APIKEY),) \
 		--params $(HAM_PARAMS) \
 		--limit $(HAM_LIMIT) \
-		--out $(STAGING_FILE)
-	@echo "✅ Generated $(STAGING_FILE)"
+		--out $(HAM_STAGING)
+	@echo "✅ Generated $(HAM_STAGING)"
 
 # Perseus staging targets
 perseus-staging-objects: $(PERSEUS_OBJECTS_JSON)
@@ -156,11 +175,12 @@ perseus-staging-all: perseus-staging-objects perseus-staging-images
 
 # Entity resolution - Link Perseus and HAM objects
 # Entity resolution - creates entity_equivalences.ttl
-$(ENTITY_EQUIVALENCES): $(PERSEUS_OBJECTS_TTL) $(STAGING_FILE)
+$(ENTITY_EQUIVALENCES): $(PERSEUS_OBJECTS_TTL) $(HAM_STAGING)
 	@echo "🔗 Running entity resolution..."
+	@mkdir -p $(EQUIVALENCES_DIR)
 	$(PYTHON) -m paa_graph_kb.cli.entity_resolution \
 		--perseus-staging $(PERSEUS_OBJECTS_TTL) \
-		--ham-staging $(STAGING_FILE) \
+		--ham-staging $(HAM_STAGING) \
 		--out $(ENTITY_EQUIVALENCES)
 	@echo ""
 	@echo "✅ Entity resolution complete!"
@@ -170,13 +190,16 @@ $(ENTITY_EQUIVALENCES): $(PERSEUS_OBJECTS_TTL) $(STAGING_FILE)
 entity-resolution: $(ENTITY_EQUIVALENCES)
 
 # Build Linked Art locally using rdflib
-linkedart-local: $(STAGING_FILE)
-	@echo "Building Linked Art from staging using rdflib..."
+linkedart-local: $(HAM_LINKEDART)
+
+$(HAM_LINKEDART): $(HAM_STAGING)
+	@echo "Building HAM Linked Art from staging using rdflib..."
+	@mkdir -p $(LINKEDART_DIR)
 	$(PYTHON) -m paa_graph_kb.run_constructs \
-		--staging $(STAGING_FILE) \
+		--staging $(HAM_STAGING) \
 		--templates $(TEMPLATES_DIR) \
-		--out $(LINKEDART_FILE)
-	@echo "✅ Generated $(LINKEDART_FILE)"
+		--out $(HAM_LINKEDART)
+	@echo "✅ Generated $(HAM_LINKEDART)"
 
 # Validate Linked Art with SHACL
 validate: $(LINKEDART_FILE)
@@ -269,27 +292,32 @@ graphdb-load-perseus-staging: $(PERSEUS_OBJECTS_TTL) $(PERSEUS_IMAGES_TTL) $(GRA
 	@echo "✅ Perseus staging data loaded"
 
 # Load Perseus CRM (Linked Art) data to GraphDB
-graphdb-load-perseus-linkedart: $(GRAPHDB_ENV)
+graphdb-load-perseus-linkedart: $(PERSEUS_LINKEDART) $(PERSEUS_IMAGES_LINKEDART) $(GRAPHDB_ENV)
 	@echo "📦 Loading Perseus CRM data to GraphDB..."
-	@if [ ! -f "perseus_linkedart.ttl" ]; then \
-		echo "⚠️  perseus_linkedart.ttl not found. Generating..."; \
-		$(PYTHON) -m paa_graph_kb.cli.run_constructs \
-			--staging $(PERSEUS_OBJECTS_TTL) \
-			--templates $(TEMPLATES_DIR) \
-			--out perseus_linkedart.ttl; \
-	fi
-	@if [ ! -f "perseus_images_linkedart.ttl" ]; then \
-		echo "⚠️  perseus_images_linkedart.ttl not found. Generating..."; \
-		$(PYTHON) -m paa_graph_kb.cli.run_constructs \
-			--staging $(PERSEUS_IMAGES_TTL) \
-			--templates $(TEMPLATES_DIR) \
-			--out perseus_images_linkedart.ttl; \
-	fi
 	@bash -c 'source $(GRAPHDB_ENV) && \
-		src/paa_graph_kb/graphdb/load_to_graph.sh perseus_linkedart.ttl "$$PERSEUS_LINKEDART_GRAPH"'
+		src/paa_graph_kb/graphdb/load_to_graph.sh $(PERSEUS_LINKEDART) "$$PERSEUS_LINKEDART_GRAPH"'
 	@bash -c 'source $(GRAPHDB_ENV) && \
-		src/paa_graph_kb/graphdb/load_to_graph.sh perseus_images_linkedart.ttl "$$PERSEUS_IMAGES_GRAPH"'
+		src/paa_graph_kb/graphdb/load_to_graph.sh $(PERSEUS_IMAGES_LINKEDART) "$$PERSEUS_IMAGES_GRAPH"'
 	@echo "✅ Perseus CRM data loaded"
+
+# Generate Perseus Linked Art (automatic dependency)
+$(PERSEUS_LINKEDART): $(PERSEUS_OBJECTS_TTL)
+	@echo "Building Perseus Linked Art from staging..."
+	@mkdir -p $(LINKEDART_DIR)
+	$(PYTHON) -m paa_graph_kb.cli.run_constructs \
+		--staging $(PERSEUS_OBJECTS_TTL) \
+		--templates $(TEMPLATES_DIR) \
+		--out $(PERSEUS_LINKEDART)
+	@echo "✅ Generated $(PERSEUS_LINKEDART)"
+
+$(PERSEUS_IMAGES_LINKEDART): $(PERSEUS_IMAGES_TTL)
+	@echo "Building Perseus images Linked Art from staging..."
+	@mkdir -p $(LINKEDART_DIR)
+	$(PYTHON) -m paa_graph_kb.cli.run_constructs \
+		--staging $(PERSEUS_IMAGES_TTL) \
+		--templates $(TEMPLATES_DIR) \
+		--out $(PERSEUS_IMAGES_LINKEDART)
+	@echo "✅ Generated $(PERSEUS_IMAGES_LINKEDART)"
 
 # Load entity equivalences to GraphDB
 graphdb-load-equivalences: $(ENTITY_EQUIVALENCES) $(GRAPHDB_ENV)
@@ -326,21 +354,9 @@ graphdb-all: graphdb-ham-all graphdb-perseus-all
 
 # Clean generated files
 clean:
-	@echo "Cleaning generated files..."
-	@rm -f $(STAGING_FILE) $(LINKEDART_FILE) linkedart_new.ttl
-	@echo "✅ Cleaned: $(STAGING_FILE) $(LINKEDART_FILE) linkedart_new.ttl"
-
-# Ensure staging file exists
-$(STAGING_FILE):
-	@echo "❌ Error: $(STAGING_FILE) not found."
-	@echo "Run: make staging HAM_APIKEY=your_key"
-	@exit 1
-
-# Ensure linkedart file exists
-$(LINKEDART_FILE):
-	@echo "❌ Error: $(LINKEDART_FILE) not found."
-	@echo "Run: make linkedart-local"
-	@exit 1
+	@echo "Cleaning generated data files..."
+	@rm -rf $(STAGING_DIR) $(LINKEDART_DIR) $(EQUIVALENCES_DIR)
+	@echo "✅ Cleaned data directories"
 
 # Ensure GraphDB config exists
 $(GRAPHDB_ENV):
