@@ -2,9 +2,31 @@ PREFIX stg:  <https://aa.perseus.org/staging#>
 PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+PREFIX aat:  <http://vocab.getty.edu/aat/>
+PREFIX owl:  <http://www.w3.org/2002/07/owl#>
 
-# Link persons to production events with roles
-# Maps artist, maker, and other creator relationships from HAM to CIDOC-CRM
+# ============================================================================
+# Template 17: Person Production Relationships with AAT Role Classification
+# ============================================================================
+#
+# Links persons to production events with qualified roles.
+# Maps artist, maker, author, donor, and other agent relationships to CIDOC-CRM.
+#
+# Key Features:
+# - Uses PC14_carried_out_by (property class) for qualified relationships
+# - Maps roles to Getty AAT URIs for standardized classification
+# - Supports attribution qualifiers (attributed to, workshop of, after, etc.)
+# - Links role types via owl:sameAs to AAT concepts
+#
+# Role Mapping Examples:
+# - Artist → aat:300025103
+# - Author → aat:300025492
+# - Donor → aat:300025234
+# - Attributed to → aat:300404285
+# - Workshop of → aat:300404274
+# - After → aat:300404387
+#
+# ============================================================================
 
 CONSTRUCT {
   # Link production to person
@@ -22,9 +44,14 @@ CONSTRUCT {
                   crm:P02_has_range ?person ;
                   crm:P14.1_in_the_role_of ?roleType .
 
-  # Role type
+  # Role type with AAT classification
   ?roleType a crm:E55_Type ;
-            rdfs:label ?role .
+            rdfs:label ?role ;
+            owl:sameAs ?aatRole .
+
+  # AAT role concept
+  ?aatRole a crm:E55_Type ;
+           rdfs:label ?aatLabel .
 }
 WHERE {
   # Find objects with associated people
@@ -38,24 +65,51 @@ WHERE {
                  stg:personRole ?role .
 
   # Object and production URIs
-  BIND( IRI(CONCAT("https://aa.perseus.org/id/thing/", SHA256(CONCAT(?src, ":", STR(?oid))))) AS ?obj )
-  BIND( IRI(CONCAT("https://aa.perseus.org/id/event/", SHA256(CONCAT("prod|", ?src, ":", STR(?oid))))) AS ?prod )
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/thing/", SHA256(CONCAT(STR(?src), ":", STR(?oid))))) AS ?obj )
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/event/", SHA256(CONCAT("prod|", STR(?src), ":", STR(?oid))))) AS ?prod )
 
   # Production label (use object title if available)
   OPTIONAL { ?s stg:title ?title }
   BIND( IF(BOUND(?title),
-           CONCAT("Production of ", ?title),
+           CONCAT("Production of ", STR(?title)),
            CONCAT("Production of object ", STR(?oid))) AS ?prodLabel )
 
   # Person URI
   BIND( IRI(CONCAT("https://aa.perseus.org/id/person/", STR(?personid))) AS ?person )
 
   # Role assignment node (property class pattern for qualified relationship)
-  BIND( IRI(CONCAT("https://aa.perseus.org/id/assignment/", SHA256(CONCAT(?src, ":", STR(?oid), "|person:", STR(?personid), "|role:", LCASE(?role))))) AS ?roleAssignment )
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/assignment/",
+                   SHA256(CONCAT(STR(?src), ":", STR(?oid), "|person:", STR(?personid), "|role:", LCASE(STR(?role)))))) AS ?roleAssignment )
 
   # Role type URI
-  BIND( IRI(CONCAT("https://aa.perseus.org/id/type/role/", SHA256(LCASE(?role)))) AS ?roleType )
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/type/role/", SHA256(LCASE(STR(?role))))) AS ?roleType )
+
+  # Normalize role for matching (lowercase, trim)
+  BIND(LCASE(STR(?role)) AS ?roleNorm)
+
+  # Map role to AAT URI with simple cascading checks
+  # Priority: specific roles first, then general roles, then default
+  BIND(
+    IF(CONTAINS(?roleNorm, "artist"), aat:300025103,
+    IF(CONTAINS(?roleNorm, "author"), aat:300025492,
+    IF(CONTAINS(?roleNorm, "maker"), aat:300386167,
+    IF(CONTAINS(?roleNorm, "constituent"), aat:300025103,
+    IF(CONTAINS(?roleNorm, "attributed"), aat:300404285,
+    IF(CONTAINS(?roleNorm, "workshop"), aat:300404274,
+    IF(CONTAINS(?roleNorm, "donor"), aat:300025234,
+    IF(CONTAINS(?roleNorm, "owner"), aat:300025234,
+    aat:300386174
+  )))))))) AS ?aatRole)
+
+  # Simple label for AAT role
+  BIND(
+    IF(CONTAINS(?roleNorm, "artist"), "artist",
+    IF(CONTAINS(?roleNorm, "author"), "author",
+    IF(CONTAINS(?roleNorm, "attributed"), "attributed to",
+    IF(CONTAINS(?roleNorm, "workshop"), "workshop of",
+    IF(CONTAINS(?roleNorm, "donor"), "donor",
+    "creator"))))) AS ?aatLabel)
 
   # Only create links for meaningful roles (filter out empty roles)
-  FILTER(BOUND(?role) && STR(?role) != "")
+  FILTER(BOUND(?role) && STRLEN(STR(?role)) > 0)
 }
