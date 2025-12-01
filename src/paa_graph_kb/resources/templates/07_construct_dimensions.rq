@@ -1,17 +1,65 @@
 PREFIX stg:  <https://aa.perseus.org/staging#>
 PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX aat:  <http://vocab.getty.edu/aat/>
+
+# ============================================================================
+# Template 07: Construct Dimensions (Measurements)
+# ============================================================================
+#
+# Creates E54_Dimension nodes from HAM dimension statements.
+#
+# Current Implementation:
+# - HAM provides dimensions as free-text strings (e.g., "H. 27.7 cm (10 7/8 in.)")
+# - Creates a dimension statement with P190_has_symbolic_content
+# - Classifies as AAT "dimension" type
+#
+# Future Enhancement:
+# When structured dimension data becomes available, this template can be extended to:
+# - Parse individual dimensions (height, width, depth, diameter, weight)
+# - Create separate E54_Dimension nodes for each measurement type
+# - Add P90_has_value for numeric values
+# - Add P91_has_unit for measurement units (cm, in, g, kg)
+# - Add P2_has_type for dimension types (height: aat:300055644, width: aat:300055647, etc.)
+#
+# Example Linked Art pattern for structured dimensions:
+#   ?obj crm:P43_has_dimension ?heightDim .
+#   ?heightDim a crm:E54_Dimension ;
+#              crm:P2_has_type aat:300055644 ;  # height
+#              crm:P90_has_value "27.7"^^xsd:decimal ;
+#              crm:P91_has_unit aat:300379098 . # centimeters
+#
+# ============================================================================
 
 CONSTRUCT {
   ?obj a crm:E22_Human-Made_Object ;
        crm:P43_has_dimension ?dimNode .
 
   ?dimNode a crm:E54_Dimension ;
-           rdfs:label "Dimensions"@en ;
+           rdfs:label ?dimLabel ;
+           crm:P2_has_type aat:300055642 ;  # dimensions (AAT: physical attributes)
            crm:P190_has_symbolic_content ?dims .
+
+  aat:300055642 a crm:E55_Type ;
+                rdfs:label "dimensions"@en .
 }
 WHERE {
-  ?s a stg:Object ; stg:source ?src ; stg:objectid ?oid ; stg:dimensions ?dims .
-  BIND( IRI(CONCAT("https://aa.perseus.org/id/thing/", SHA256(CONCAT(?src, ":", STR(?oid))))) AS ?obj )
-  BIND( IRI(CONCAT("https://aa.perseus.org/id/dimension/", SHA256(CONCAT("dims|", LCASE(STR(?dims)))))) AS ?dimNode )
+  ?s a stg:Object ;
+     stg:source ?src ;
+     stg:objectid ?oid ;
+     stg:dimensions ?dims .
+
+  FILTER(STRLEN(STR(?dims)) > 0)
+
+  # Generate deterministic IRIs
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/thing/",
+                   SHA256(CONCAT(STR(?src), ":", STR(?oid))))) AS ?obj )
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/dimension/",
+                   SHA256(CONCAT(STR(?src), ":", STR(?oid), "|dims")))) AS ?dimNode )
+
+  # Create label from first 50 chars of dimension text
+  BIND( IF(STRLEN(STR(?dims)) > 50,
+           CONCAT(SUBSTR(STR(?dims), 1, 47), "..."),
+           STR(?dims)) AS ?dimLabelStr )
+  BIND( STRLANG(?dimLabelStr, "en") AS ?dimLabel )
 }

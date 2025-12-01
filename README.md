@@ -110,8 +110,10 @@ make clean
 - Deterministic IRIs with SHA256 of salient keys.
 - No blank nodes for appellations/notes (mint by value).
 - Period/place prefer HAM authority IRIs when present.
+- Enhanced dimension template with AAT typing and Linked Art patterns.
 
 ## Next steps
-- Add more templates (measurements, exhibitions, agents).
+- Add more templates (exhibitions, agents).
+- Enhance measurements template to parse structured dimensions when available.
 - Add reconciliation step for external AAT/Geonames alignment.
 - Add SHACL shapes for material/technique constraints and IIIF.

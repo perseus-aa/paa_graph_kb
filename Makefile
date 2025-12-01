@@ -155,7 +155,8 @@ perseus-staging-all: perseus-staging-objects perseus-staging-images
 	@echo "   - Generated: $(PERSEUS_IMAGES_TTL)"
 
 # Entity resolution - Link Perseus and HAM objects
-entity-resolution: $(PERSEUS_OBJECTS_TTL) $(STAGING_FILE)
+# Entity resolution - creates entity_equivalences.ttl
+$(ENTITY_EQUIVALENCES): $(PERSEUS_OBJECTS_TTL) $(STAGING_FILE)
 	@echo "🔗 Running entity resolution..."
 	$(PYTHON) -m paa_graph_kb.cli.entity_resolution \
 		--perseus-staging $(PERSEUS_OBJECTS_TTL) \
@@ -164,6 +165,9 @@ entity-resolution: $(PERSEUS_OBJECTS_TTL) $(STAGING_FILE)
 	@echo ""
 	@echo "✅ Entity resolution complete!"
 	@echo "   Output: $(ENTITY_EQUIVALENCES)"
+
+# Convenience alias for entity resolution
+entity-resolution: $(ENTITY_EQUIVALENCES)
 
 # Build Linked Art locally using rdflib
 linkedart-local: $(STAGING_FILE)
