@@ -112,10 +112,16 @@ make clean
 - Period/place prefer HAM authority IRIs when present.
 - Enhanced dimension template with AAT typing and Linked Art patterns.
 - Agent roles classified with Getty AAT URIs (artist, author, donor, etc.).
+- CIDOC-CRM ontology loaded in GraphDB for OWL-Horst inferencing (~5M inferred triples).
+- Getty AAT reconciliation mappings created for techniques (31) and object classifications (29).
 
 ## Next steps
+- **Integrate AAT mappings into templates** (techniques and classifications) - IN PROGRESS
+- Add IIIF manifest generation for images.
 - Add more templates (exhibitions, organizations/groups).
 - Enhance measurements template to parse structured dimensions when available.
-- Add reconciliation step for external AAT/Geonames alignment.
 - Add SHACL shapes for material/technique constraints and IIIF.
 - Extend agent support for E74_Group when organization data becomes available.
+
+## Session Documentation
+See `docs/SESSION_*.md` files for detailed session notes and context restoration.

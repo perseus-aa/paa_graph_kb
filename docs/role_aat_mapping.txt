@@ -1,0 +1,49 @@
+# Common Role to AAT URI Mappings
+# Artist roles
+artist: aat:300025103
+artists: aat:300025103
+maker: aat:300386167
+makers: aat:300386167
+creator: aat:300386174
+creators: aat:300386174
+
+# Attribution qualifiers
+attributed to: aat:300404285
+attributed: aat:300404285
+workshop of: aat:300404274
+workshop: aat:300404274
+after: aat:300404387
+circle of: aat:300404278
+follower of: aat:300404283
+school of: aat:300404279
+style of: aat:300404289
+manner of: aat:300404322
+studio of: aat:300404275
+
+# Other creative roles
+author: aat:300025492
+authors: aat:300025492
+designer: aat:300025190
+designers: aat:300025190
+engraver: aat:300239410
+engravers: aat:300239410
+printer: aat:300025574
+printers: aat:300025574
+publisher: aat:300025574
+publishers: aat:300025574
+sitter: aat:300025475
+sitters: aat:300025475
+
+# Ownership/custody roles
+donor: aat:300025234
+donors: aat:300025234
+collector: aat:300025234
+collectors: aat:300025234
+owner: aat:300025234
+owners: aat:300025234
+former owner: aat:300203630
+seller: aat:300025234
+
+# Constituent roles
+constituent: aat:300025103
+coin constituent: aat:300025103
