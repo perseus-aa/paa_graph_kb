@@ -5,7 +5,7 @@ description = "Tool for building CRM graph for Perseus-AA"
 authors = [
     {name = "Cliff Wulfman", email = "cwulfman@princeton.edu"},
 ]
-dependencies = ["rdflib>=7.4.0", "pyshacl>=0.30.1", "python-dotenv>=1.2.1", "requests>=2.32.5", "pydantic>=2.12.3"]
+dependencies = ["rdflib>=7.4.0", "pyshacl>=0.30.1", "python-dotenv>=1.2.1", "requests>=2.32.5", "pydantic>=2.12.3", "rich>=13.7.1", "typer>=0.20.0", "SPARQLWrapper>=2.0.0"]
 requires-python = ">=3.12"
 readme = "README.md"
 license = {text = "MIT"}
@@ -33,6 +33,7 @@ includes = [
 paa-run-constructs = "paa_graph_kb.cli.run_constructs:main"
 paa-staging-loader = "paa_graph_kb.cli.staging_loader:main"
 paa-validate-shacl = "paa_graph_kb.cli.validate_shacl:main"
+paa-browse-kb = "paa_graph_kb.cli.browse_kb:app"
 
 [tool.pdm.scripts]
 test = "pytest"
