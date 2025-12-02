@@ -1,18 +1,65 @@
 PREFIX stg:  <https://aa.perseus.org/staging#>
 PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl:  <http://www.w3.org/2002/07/owl#>
+PREFIX aat:  <http://vocab.getty.edu/aat/>
 
 CONSTRUCT {
   ?prod a crm:E12_Production ;
         crm:P108_has_produced ?obj ;
         crm:P32_used_general_technique ?tech .
 
-  ?tech rdfs:label ?techniqueLabel .
+  ?tech rdfs:label ?techniqueLabel ;
+        a crm:E55_Type ;
+        owl:sameAs ?aatURI .
+
+  ?aatURI a crm:E55_Type ;
+          rdfs:label ?techniqueLabel .
 }
 WHERE {
-  ?s a stg:Object ; stg:source ?src ; stg:objectid ?oid ; stg:techniqueAAT ?tech .
+  ?s a stg:Object ; stg:source ?src ; stg:objectid ?oid ; stg:technique ?techniqueLabel .
+
   BIND( IRI(CONCAT("https://aa.perseus.org/id/thing/", SHA256(CONCAT(?src, ":", STR(?oid))))) AS ?obj )
   BIND( IRI(CONCAT("https://aa.perseus.org/id/event/", SHA256(CONCAT("prod|", ?src, ":", STR(?oid))))) AS ?prod )
 
-  OPTIONAL { ?s stg:technique ?techniqueLabel }
+  # Generate a local URI for the technique based on the label
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/type/", SHA256(CONCAT("tech|", LCASE(STR(?techniqueLabel)))))) AS ?tech )
+
+  BIND(LCASE(STR(?techniqueLabel)) AS ?lookupKey)
+  OPTIONAL {
+    VALUES (?val ?aatURI) {
+        ("black-figure" aat:300020098)
+        ("red-figure" aat:300020201)
+        ("white ground" aat:300020360)
+        ("white-ground" aat:300020360)
+        ("wheel-made" aat:300053143)
+        ("mold-made" aat:300053137)
+        ("molded" aat:300053137)
+        ("black glaze" aat:300014910)
+        ("unglazed" aat:300379230)
+        ("underglazed, painted" aat:300379231)
+        ("redware" aat:300010797)
+        ("struck" aat:300053851)
+        ("cast" aat:300053104)
+        ("cast, lost-wax process" aat:300053113)
+        ("cast and hammered" aat:300053104)
+        ("hammered" aat:300053854)
+        ("stamped" aat:300053864)
+        ("repoussé" aat:300053676)
+        ("engraving" aat:300053225)
+        ("intaglio" aat:300053225)
+        ("carved" aat:300053149)
+        ("relief" aat:300047230)
+        ("painted" aat:300054216)
+        ("embroidery" aat:300264024)
+        ("core-formed glass" aat:300053932)
+        ("free-blown glass" aat:300053932)
+        ("handmade" aat:300138675)
+        ("mixed technique" aat:300054285)
+        ("stucco" aat:300014922)
+        ("albumen silver print" aat:300127121)
+        ("platinum print" aat:300127104)
+    }
+    FILTER(?lookupKey = ?val)
+  }
 }

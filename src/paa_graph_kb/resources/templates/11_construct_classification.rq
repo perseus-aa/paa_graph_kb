@@ -1,6 +1,8 @@
 PREFIX stg:  <https://aa.perseus.org/staging#>
 PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl:  <http://www.w3.org/2002/07/owl#>
+PREFIX aat:  <http://vocab.getty.edu/aat/>
 
 CONSTRUCT {
   ?obj a crm:E22_Human-Made_Object ;
@@ -8,7 +10,11 @@ CONSTRUCT {
        crm:P2_has_type ?styleNode .
 
   ?classNode a crm:E55_Type ;
-             rdfs:label ?classification .
+             rdfs:label ?classification ;
+             owl:sameAs ?classAAT .
+             
+  ?classAAT a crm:E55_Type ;
+            rdfs:label ?classification .
 
   ?styleNode a crm:E55_Type ;
              rdfs:label ?style .
@@ -20,6 +26,50 @@ WHERE {
   OPTIONAL {
     ?s stg:classification ?classification .
     BIND( IRI(CONCAT("https://aa.perseus.org/id/type/", SHA256(CONCAT("class|", LCASE(STR(?classification)))))) AS ?classNode )
+    
+    BIND(LCASE(STR(?classification)) AS ?classKey)
+    OPTIONAL {
+        VALUES (?cVal ?classAAT) {
+            ("coins" aat:300037222)
+            ("vessels" aat:300193015)
+            ("sculpture" aat:300047090)
+            ("fragments" aat:300117130)
+            ("jewelry" aat:300209286)
+            ("gems" aat:300011172)
+            ("cameos" aat:300123526)
+            ("amulets" aat:300266585)
+            ("lighting devices" aat:300037592)
+            ("mirrors" aat:300037682)
+            ("tools and equipment" aat:300024841)
+            ("artists' tools" aat:300024841)
+            ("textile arts" aat:300014063)
+            ("furnishings" aat:300037680)
+            ("architectural elements" aat:300000885)
+            ("armor" aat:300036745)
+            ("weapons and ammunition" aat:300036926)
+            ("inscriptions" aat:300028702)
+            ("material specimens" aat:300028877)
+            ("measuring devices" aat:300024841)
+            ("seals" aat:300028877)
+            ("tablets" aat:300028879)
+            ("ostraca" aat:300028879)
+            ("vases" aat:300132254)
+            ("statues" aat:300047600)
+            ("statuettes" aat:300312262)
+            ("reliefs" aat:300047230)
+            ("figurines" aat:300189808)
+            ("medals and medallions" aat:300046025)
+            ("mosaics" aat:300015342)
+            ("paintings" aat:300033618)
+            ("photographs" aat:300046300)
+            ("plaques" aat:300247097)
+            ("prints" aat:300041273)
+            ("riding equipment" aat:300208279)
+            ("ritual implements" aat:300404591)
+            ("unidentified" aat:300404126)
+        }
+        FILTER(?classKey = ?cVal)
+    }
   }
 
   OPTIONAL {
