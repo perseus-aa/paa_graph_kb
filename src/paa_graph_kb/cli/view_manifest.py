@@ -120,54 +120,65 @@ def generate_mirador_html(url: Optional[str], data: Optional[dict]) -> str:
     """
     
     if data:
-        # Embed the JSON data
+        # Embed the JSON data safely using a hidden script tag
+        # This avoids python string formatting issues with the JSON content
         json_str = json.dumps(data)
-        # Use %s formatting to avoid f-string brace conflicts with JS code
-        config_script = """
-        var manifestData = %s;
-        var mirador = Mirador.viewer({
+        
+        html = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Mirador Viewer - PAA Graph KB</title>
+    <style>
+        body {{ margin: 0; padding: 0; overflow: hidden; }}
+        #mirador {{ position: absolute; top: 0; bottom: 0; left: 0; right: 0; }}
+    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <script src="https://unpkg.com/mirador@latest/dist/mirador.min.js"></script>
+</head>
+<body>
+    <div id="mirador"></div>
+    
+    <!-- Embed Manifest Data Safely -->
+    <script id="manifest-data" type="application/json">
+        {json_str}
+    </script>
+
+    <script type="text/javascript">
+        // Read the JSON data from the script tag
+        var manifestData = JSON.parse(document.getElementById('manifest-data').textContent);
+        
+        var mirador = Mirador.viewer({{
           "id": "mirador",
           "windows": [
-            {
+            {{
               "manifestId": "local-manifest",
               "view": "single" 
-            }
+            }}
           ],
           "catalog": [
-            {
+            {{
               "manifestId": "local-manifest",
               "manifest": manifestData
-            }
+            }}
           ],
-          "window": {
+          "window": {{
             "allowClose": false,
             "allowFullscreen": true,
             "sideBarOpen": true,
             "defaultSideBarPanel": 'info'
-          },
-          "workspace": {
+          }},
+          "workspace": {{
             "showZoomControls": true
-          }
-        });
-        """ % json_str
+          }}
+        }});
+    </script>
+</body>
+</html>"""
     else:
         # Use URL
-        config_script = """
-        var mirador = Mirador.viewer({
-          "id": "mirador",
-          "windows": [
-            {
-              "manifestId": "%s"
-            }
-          ],
-          "window": {
-            "allowClose": false,
-            "allowFullscreen": true
-          }
-        });
-        """ % url
-
-    html = f"""<!DOCTYPE html>
+        html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -183,10 +194,22 @@ def generate_mirador_html(url: Optional[str], data: Optional[dict]) -> str:
 <body>
     <div id="mirador"></div>
     <script type="text/javascript">
-        {config_script}
+        var mirador = Mirador.viewer({{
+          "id": "mirador",
+          "windows": [
+            {{
+              "manifestId": "{url}"
+            }}
+          ],
+          "window": {{
+            "allowClose": false,
+            "allowFullscreen": true
+          }}
+        }});
     </script>
 </body>
 </html>"""
+
     return html
 
 if __name__ == "__main__":
