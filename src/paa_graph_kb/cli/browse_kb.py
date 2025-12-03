@@ -93,8 +93,7 @@ def search_terms(
     results = get_sparql_results(query)
 
     table = Table(title=f"Search Results for '[bold magenta]{term}[/bold magenta]'")
-    table.add_column("Label", style="cyan", no_wrap=True)
-    table.add_column("Type", style="magenta", no_wrap=True)
+    table.add_column("Label", style="cyan", no_wrap=False)
     table.add_column("Internal URI", style="green", no_wrap=False)
     table.add_column("External URI(s)", style="blue", no_wrap=False)
     
@@ -105,12 +104,10 @@ def search_terms(
     for res in results:
         label = res["label"]["value"]
         entity_uri = res["entity"]["value"]
-        entity_type = res.get("entityTypeSample", {}).get("value", "Unknown")
         external_uris = res.get("externalUris", {}).get("value", "")
 
         table.add_row(
             label,
-            entity_type,
             Text(entity_uri, style="link " + entity_uri),
             Text(external_uris.replace("\\n", "\n"), style="link " + external_uris) if external_uris else ""
         )
