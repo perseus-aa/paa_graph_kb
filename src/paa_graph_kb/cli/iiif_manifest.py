@@ -85,12 +85,13 @@ def generate_manifest(
 
     # 2. Get Images
     # Covers both HAM (via DigitalObject) and Perseus (via VisualItem) paths
+    # Prioritizes la:access_point (real URL) over service node URI (which might be a local proxy)
     images_query = f"""
     PREFIX la: <https://linked.art/ns/terms/>
     PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
     
-    SELECT DISTINCT ?imageLabel ?iiifService ?width ?height WHERE {{
+    SELECT DISTINCT ?imageLabel ?iiifService ?accessPoint ?width ?height WHERE {{
       BIND(<{object_uri}> AS ?obj)
       
       {{
@@ -98,6 +99,7 @@ def generate_manifest(
         ?obj la:digitally_shown_by ?digitalObj .
         ?digitalObj a la:DigitalObject ;
                     la:digitally_available_via ?iiifService .
+        OPTIONAL {{ ?iiifService la:access_point ?accessPoint }}
         OPTIONAL {{ ?digitalObj crm:P43_has_dimension [ crm:P2_has_type <http://vocab.getty.edu/aat/300055647> ; crm:P90_has_value ?width ] }}
         OPTIONAL {{ ?digitalObj crm:P43_has_dimension [ crm:P2_has_type <http://vocab.getty.edu/aat/300055644> ; crm:P90_has_value ?height ] }}
         OPTIONAL {{ ?digitalObj rdfs:label ?imageLabel }}
@@ -107,6 +109,7 @@ def generate_manifest(
         # Perseus Style (Object -> VisualItem -> Service)
         ?obj la:digitally_shown_by ?visualItem .
         ?visualItem la:digitally_shown_by ?iiifService .
+        OPTIONAL {{ ?iiifService la:access_point ?accessPoint }}
         OPTIONAL {{ ?visualItem rdfs:label ?imageLabel }}
         # Dimensions typically missing for Perseus in graph
       }}
@@ -132,7 +135,12 @@ def generate_manifest(
         manifest["summary"] = { "en": [obj_desc] }
 
     for i, res in enumerate(image_results):
-        service_url = res["iiifService"]["value"]
+        # Use access_point if available, otherwise fallback to the service node URI
+        # This handles cases where the service node is a local proxy (HAM) vs direct URL (Perseus)
+        service_url = res.get("accessPoint", {}).get("value")
+        if not service_url:
+            service_url = res["iiifService"]["value"]
+
         label = res.get("imageLabel", {}).get("value", f"Image {i+1}")
         
         width = int(res["width"]["value"]) if "width" in res else None
