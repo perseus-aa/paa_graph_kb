@@ -1,0 +1,23 @@
+PREFIX stg: <https://aa.perseus.org/staging#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX la: <https://linked.art/ns/terms/>
+
+CONSTRUCT {
+  ?obj la:digitally_shown_by ?visualItem .
+}
+WHERE {
+  # Match Staging Nodes
+  ?stgObj a stg:PerseusObject ;
+          stg:source ?src ;
+          stg:perseusId ?objId ;
+          stg:perseusName ?commonName .
+          
+  ?stgImg a stg:PerseusImage ;
+          stg:source ?src ;
+          stg:imageId ?imgId ;
+          stg:imageName ?commonName .
+
+  # Reconstruct Canonical URIs
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/thing/", SHA256(CONCAT(?src, ":", ?objId)))) AS ?obj )
+  BIND( IRI(CONCAT("https://aa.perseus.org/id/visual/", SHA256(CONCAT(?src, ":image:", ?imgId)))) AS ?visualItem )
+}
