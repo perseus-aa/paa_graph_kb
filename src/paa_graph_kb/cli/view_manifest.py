@@ -5,25 +5,30 @@ from pathlib import Path
 import json
 from rich.console import Console
 import os
+import http.server
+import socketserver
+import webbrowser
+import socket
 
 app = typer.Typer(help="Generate an HTML viewer for a IIIF Manifest.")
 console = Console()
 
 class ViewerType(str, Enum):
     MIRADOR = "mirador"
-    # CLOVER = "clover" # Keeping it simple with Mirador for now as it supports inline JSON easily
 
 @app.command()
 def main(
     manifest_path: Annotated[str, typer.Argument(help="Path to a local manifest file (JSON) or a URL.")],
     output: Annotated[Path, typer.Option("--output", "-o", help="Output HTML file path.")] = Path("manifest_view.html"),
     viewer: Annotated[ViewerType, typer.Option("--viewer", "-v", help="Viewer to use.")] = ViewerType.MIRADOR,
+    serve: Annotated[bool, typer.Option("--serve", "-s", help="Start a local web server and open in browser.")] = False,
+    port: Annotated[int, typer.Option("--port", "-p", help="Port for local web server.")] = 8000,
 ):
     """
     Generates a self-contained HTML file to view a IIIF manifest.
     
-    If a local file path is provided, the manifest content is embedded directly into the HTML,
-    allowing it to be opened locally without CORS issues.
+    If a local file path is provided, the manifest content is embedded directly into the HTML.
+    Use --serve to bypass browser security restrictions on local files.
     """
     
     manifest_data = None
@@ -61,66 +66,106 @@ def main(
         
         abs_path = output.resolve()
         console.log(f"[green]Success:[/green] Viewer generated at: {abs_path}")
-        console.log(f"You can open this file in your browser: file://{abs_path}")
+        
+        if serve:
+            serve_and_open(abs_path, port)
+        else:
+            console.log(f"You can open this file in your browser: file://{abs_path}")
+            console.log("[yellow]Note:[/yellow] If images fail to load, try running with --serve")
         
     except Exception as e:
         console.log(f"[bold red]Error:[/bold red] Failed to write output file: {e}")
         raise typer.Exit(code=1)
 
 
+def serve_and_open(file_path: Path, port: int):
+    """Starts a local server and opens the file."""
+    # Change to the directory containing the file
+    directory = file_path.parent
+    filename = file_path.name
+    os.chdir(directory)
+    
+    # Find a free port if the default is taken
+    while is_port_in_use(port):
+        console.log(f"[yellow]Port {port} is in use, trying {port + 1}...[/yellow]")
+        port += 1
+
+    url = f"http://localhost:{port}/{filename}"
+    
+    class QuietHandler(http.server.SimpleHTTPRequestHandler):
+        def log_message(self, format, *args):
+            pass # Suppress request logging to keep console clean
+
+    console.log(f"[green]Starting local server at {url}[/green]")
+    console.log("Press Ctrl+C to stop.")
+    
+    # Open browser shortly after server start
+    webbrowser.open(url)
+    
+    try:
+        with socketserver.TCPServer(("", port), QuietHandler) as httpd:
+            httpd.allow_reuse_address = True
+            httpd.serve_forever()
+    except KeyboardInterrupt:
+        console.log("\nStopping server.")
+
+
+def is_port_in_use(port: int) -> bool:
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        return s.connect_ex(('localhost', port)) == 0
+
 def generate_mirador_html(url: Optional[str], data: Optional[dict]) -> str:
     """
     Generates HTML for Mirador 3.
     """
     
-    # Mirador Configuration
-    # If we have local data, we inject it into the catalog.
-    # If we have a URL, we just point to it.
-    
-    config_script = ""
-    
     if data:
         # Embed the JSON data
         json_str = json.dumps(data)
-        config_script = f"""
-        var manifestData = {json_str};
-        var mirador = Mirador.viewer({{
+        # Use %s formatting to avoid f-string brace conflicts with JS code
+        config_script = """
+        var manifestData = %s;
+        var mirador = Mirador.viewer({
           "id": "mirador",
           "windows": [
-            {{
+            {
               "manifestId": "local-manifest",
               "view": "single" 
-            }}
+            }
           ],
           "catalog": [
-            {{
+            {
               "manifestId": "local-manifest",
               "manifest": manifestData
-            }}
+            }
           ],
-          "window": {{
+          "window": {
             "allowClose": false,
             "allowFullscreen": true,
-            "sideBarOpen": true
-          }}
-        }});
-        """
+            "sideBarOpen": true,
+            "defaultSideBarPanel": 'info'
+          },
+          "workspace": {
+            "showZoomControls": true
+          }
+        });
+        """ % json_str
     else:
         # Use URL
-        config_script = f"""
-        var mirador = Mirador.viewer({{
+        config_script = """
+        var mirador = Mirador.viewer({
           "id": "mirador",
           "windows": [
-            {{
-              "manifestId": "{url}"
-            }}
+            {
+              "manifestId": "%s"
+            }
           ],
-          "window": {{
+          "window": {
             "allowClose": false,
             "allowFullscreen": true
-          }}
-        }});
-        """
+          }
+        });
+        """ % url
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
