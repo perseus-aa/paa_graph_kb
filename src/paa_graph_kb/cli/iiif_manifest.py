@@ -44,10 +44,11 @@ def get_sparql_results(query: str):
         raise typer.Exit(code=1)
 
 def fetch_iiif_info(service_url: str) -> Dict[str, Any]:
-    """Fetch dimensions from IIIF info.json if missing."""
+    """Fetch info.json to get dimensions and version."""
     info_url = f"{service_url}/info.json"
     try:
-        response = requests.get(info_url, timeout=5)
+        # Follow redirects
+        response = requests.get(info_url, timeout=5, allow_redirects=True)
         if response.status_code == 200:
             return response.json()
     except Exception as e:
@@ -146,12 +147,22 @@ def generate_manifest(
         width = int(res["width"]["value"]) if "width" in res else None
         height = int(res["height"]["value"]) if "height" in res else None
         
-        if (width is None or height is None) and fetch_dims:
-            console.log(f"Fetching dimensions for {label}...")
+        # Default service type (assume V3 unless detected otherwise)
+        service_type = "ImageService3"
+        
+        if fetch_dims:
+            console.log(f"Fetching info for {label}...")
             info = fetch_iiif_info(service_url)
             if info:
-                width = info.get("width")
-                height = info.get("height")
+                if width is None: width = info.get("width")
+                if height is None: height = info.get("height")
+                
+                # Detect Version
+                context = info.get("@context", "")
+                if "image/2" in context:
+                    service_type = "ImageService2"
+                elif "image/3" in context:
+                    service_type = "ImageService3"
         
         # Fallback defaults if still missing (required for valid canvas)
         if width is None: width = 1000
@@ -185,7 +196,7 @@ def generate_manifest(
                                 "service": [
                                     {
                                         "id": service_url,
-                                        "type": "ImageService3",
+                                        "type": service_type,
                                         "profile": "level1"
                                     }
                                 ],
