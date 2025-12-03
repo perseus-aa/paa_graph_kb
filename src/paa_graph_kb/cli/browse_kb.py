@@ -6,10 +6,18 @@ from rich.table import Table
 from rich.text import Text
 from SPARQLWrapper import SPARQLWrapper, JSON
 import os
-import re # Import regex module
+import re
+import json
+from enum import Enum
 
 app = typer.Typer(help="Browse the Perseus-AA Graph Knowledge Base.")
 console = Console()
+
+class OutputFormat(str, Enum):
+    TABLE = "table"
+    URI = "uri"
+    JSON = "json"
+    CSV = "csv"
 
 # --- Custom environment loader for graphdb_env ---
 def load_graphdb_env():
@@ -59,12 +67,14 @@ def get_sparql_results(query: str):
 
 @app.command(name="search", help="Search for terms in the knowledge base.")
 def search_terms(
-    term: Annotated[str, typer.Argument(help="The term to search for.")]
+    term: Annotated[str, typer.Argument(help="The term to search for.")],
+    output: Annotated[OutputFormat, typer.Option("--output", "-o", help="Output format.")] = OutputFormat.TABLE
 ):
     """
     Search for terms across different vocabularies and entities in the knowledge base.
     """
-    console.print(f"Searching for '[bold magenta]{term}[/bold magenta]'...")
+    if output == OutputFormat.TABLE:
+        console.print(f"Searching for '[bold magenta]{term}[/bold magenta]'...")
 
     query = f"""
     PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
@@ -93,27 +103,50 @@ def search_terms(
     
     results = get_sparql_results(query)
 
-    table = Table(title=f"Search Results for '[bold magenta]{term}[/bold magenta]'")
-    table.add_column("Label", style="cyan", no_wrap=False)
-    table.add_column("Internal URI", style="green", no_wrap=False)
-    table.add_column("External URI(s)", style="blue", no_wrap=False)
-    
     if not results:
-        console.print(f"No results found for '[bold magenta]{term}[/bold magenta]'.")
+        if output == OutputFormat.TABLE:
+            console.print(f"No results found for '[bold magenta]{term}[/bold magenta]'.")
         return
 
-    for res in results:
-        label = res["label"]["value"]
-        entity_uri = res["entity"]["value"]
-        external_uris = res.get("externalUris", {}).get("value", "")
+    if output == OutputFormat.TABLE:
+        table = Table(title=f"Search Results for '[bold magenta]{term}[/bold magenta]'")
+        table.add_column("Label", style="cyan", no_wrap=False)
+        table.add_column("Internal URI", style="green", no_wrap=False)
+        table.add_column("External URI(s)", style="blue", no_wrap=False)
+        
+        for res in results:
+            label = res["label"]["value"]
+            entity_uri = res["entity"]["value"]
+            external_uris = res.get("externalUris", {}).get("value", "")
 
-        table.add_row(
-            label,
-            Text(entity_uri, style="link " + entity_uri),
-            Text(external_uris.replace("\\n", "\n"), style="link " + external_uris) if external_uris else ""
-        )
+            table.add_row(
+                label,
+                Text(entity_uri, style="link " + entity_uri),
+                Text(external_uris.replace("\\n", "\n"), style="link " + external_uris) if external_uris else ""
+            )
+        console.print(table)
     
-    console.print(table)
+    elif output == OutputFormat.URI:
+        for res in results:
+            print(res["entity"]["value"])
+
+    elif output == OutputFormat.JSON:
+        json_results = []
+        for res in results:
+            json_results.append({
+                "label": res["label"]["value"],
+                "uri": res["entity"]["value"],
+                "external_uris": res.get("externalUris", {}).get("value", "").split("\n") if res.get("externalUris", {}).get("value") else []
+            })
+        print(json.dumps(json_results, indent=2))
+
+    elif output == OutputFormat.CSV:
+        print("Label,Internal URI,External URIs")
+        for res in results:
+            label = res["label"]["value"].replace('"', '""')
+            uri = res["entity"]["value"]
+            ext = res.get("externalUris", {}).get("value", "").replace("\n", ";")
+            print(f'"{label}","{uri}","{ext}"')
 
 
 @app.command(name="list", help="List terms from specific vocabularies.")
