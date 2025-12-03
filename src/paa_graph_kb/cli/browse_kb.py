@@ -1,3 +1,4 @@
+from operator import countOf
 import typer
 from typing import Annotated
 from rich.console import Console
@@ -127,9 +128,9 @@ def list_vocab(
 
     where_clause = ""
     if vocabulary.lower() == "techniques":
-        where_clause = "{ ?prod crm:P32_used_general_technique ?termUri . }"
+        where_clause = "{ ?subj crm:P32_used_general_technique ?termUri . }"
     elif vocabulary.lower() == "classifications":
-        where_clause = "{ ?obj crm:P2_has_type ?termUri . }"
+        where_clause = "{ ?subj crm:P2_has_type ?termUri . }"
     else:
         console.print(f"[bold red]ERROR:[/bold red] Unknown vocabulary: '[bold magenta]{vocabulary}[/bold magenta]'. Please choose 'techniques' or 'classifications'.")
         raise typer.Exit(code=1)
@@ -139,14 +140,13 @@ def list_vocab(
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
     PREFIX owl: <http://www.w3.org/2002/07/owl#>
 
-    SELECT DISTINCT ?termUri ?label (GROUP_CONCAT(?externalUri; SEPARATOR="\\n") AS ?externalUris)
+    SELECT DISTINCT ?label (COUNT (DISTINCT ?subj) as ?count)
     WHERE {{
       ?termUri a crm:E55_Type ;
                rdfs:label ?label .
       
       {where_clause}
-      
-      OPTIONAL {{ ?termUri owl:sameAs ?externalUri . }}
+
     }}
     GROUP BY ?termUri ?label
     ORDER BY ?label
@@ -157,22 +157,19 @@ def list_vocab(
 
     table = Table(title=f"'{vocabulary.capitalize()}' Terms")
     table.add_column("Label", style="cyan", no_wrap=True)
-    table.add_column("Internal URI", style="green", no_wrap=False)
-    table.add_column("External URI(s)", style="blue", no_wrap=False)
+    table.add_column("Count", style="green", no_wrap=True)
 
     if not results:
         console.print(f"No terms found for '[bold magenta]{vocabulary}[/bold magenta]'.")
         return
 
     for res in results:
-        label = res["label"]["value"]
-        term_uri = res["termUri"]["value"]
-        external_uris = res.get("externalUris", {}).get("value", "")
+        label: str = res["label"]["value"]
+        count: str = res["count"]["value"]
 
         table.add_row(
             label,
-            Text(term_uri, style="link " + term_uri),
-            Text(external_uris.replace("\\n", "\n"), style="link " + external_uris) if external_uris else ""
+            count
         )
     
     console.print(table)
