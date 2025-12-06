@@ -1,6 +1,7 @@
 PREFIX stg:  <https://aa.perseus.org/staging#>
 PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 # Transform Perseus bibliographic references and sources
 # Handles sources_used field which may contain TEI markup
@@ -12,7 +13,8 @@ CONSTRUCT {
   # Bibliographic references
   ?sourcesNode a crm:E33_Linguistic_Object ;
                rdfs:label "Bibliographic references"@en ;
-               crm:P190_has_symbolic_content ?sources ;
+               crm:P190_has_symbolic_content ?cleanSources ;
+               rdf:value ?sourcesHTML ;
                crm:P2_has_type <http://vocab.getty.edu/aat/300026497> . # bibliography
 }
 WHERE {
@@ -22,8 +24,18 @@ WHERE {
   BIND( IRI(CONCAT("https://aa.perseus.org/id/thing/", ?h)) AS ?obj )
 
   # Sources/bibliography (may contain TEI markup)
-  OPTIONAL {
+  # We expect both stg:sourcesUsed and stg:sourcesUsedClean to be present if sources exist
+  
     ?s stg:sourcesUsed ?sources .
-    BIND( IRI(CONCAT("https://aa.perseus.org/id/text/", SHA256(CONCAT("sources|", LCASE(STR(?sources)))))) AS ?sourcesNode )
-  }
+    OPTIONAL { ?s stg:sourcesUsedClean ?cleanRaw . }
+    
+    # Use clean text if available, otherwise fall back to raw
+    BIND( COALESCE(?cleanRaw, ?sources) AS ?cleanSources )
+    
+    # Bind raw source as rdf:HTML
+    BIND( STRDT(STR(?sources), rdf:HTML) AS ?sourcesHTML )
+
+    # Stable URI for sources based on object hash
+    BIND( IRI(CONCAT("https://aa.perseus.org/id/text/", SHA256(CONCAT("sources|https://aa.perseus.org/id/thing/", ?h)))) AS ?sourcesNode )
+  
 }

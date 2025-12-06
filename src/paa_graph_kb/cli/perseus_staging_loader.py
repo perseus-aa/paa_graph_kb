@@ -136,6 +136,9 @@ def perseus_object_to_staging(g: Graph, obj: dict[str, Any], source: str = "pers
     sources_used = obj.get("sources_used")
     if sources_used:
         g.add((s, STG.sourcesUsed, Literal(sources_used)))
+        # Create a clean version for display/search
+        clean_sources = re.sub(r'<[^>]+>', '', sources_used)
+        g.add((s, STG.sourcesUsedClean, Literal(clean_sources)))
 
     # Dimensions - may contain HTML tags
     dimensions = obj.get("dimensions")
