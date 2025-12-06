@@ -1,35 +1,49 @@
-# Quick Start for Next Session
+# Context Restoration for Next Session
 
-## TL;DR - Where We Left Off
+**Project:** PAA Graph Knowledge Base
+**Date:** 2025-12-06
+**State:** Feature Complete (Data Loading & Reconciliation)
 
-✅ **Completed:**
-- AAT Reconciliation verified.
-- **Fixed Perseus Image Linking:** New template `25_link_perseus_images.rq` links Objects to Images via name matching.
-- **Created IIIF Generator:** `src/paa_graph_kb/cli/iiif_manifest.py` generates valid IIIF v3 manifests.
+## Core State
+- **Perseus Data:**
+    - Staging: `data/staging/perseus_objects.ttl` (Regenerated with `stg:sourcesUsedClean`).
+    - Linked Art: `data/perseus/perseus_linked_art.ttl` (138k triples).
+    - **Key Feature:** Dual-mode text (Clean/Raw) for bibliographies implemented.
+- **Getty Data:**
+    - Cache: `data/getty/objects/*.json` (Dates padded to 4 digits).
+    - Bundle: `data/staging/getty_bundle.json`.
+    - Links: `data/reconciliation/perseus_getty_links.ttl` (120 links).
+- **HAM Data:**
+    - Cache: `data/ham/objects/*.json`.
+    - Staging: `data/staging/ham_staging.ttl`.
+    - Linked Art: `data/ham/ham_linked_art.ttl` (634k triples).
+    - Links: `data/reconciliation/perseus_ham_links.ttl` (118 links).
 
-## Quick Restore
+## Environment
+- **Scripts:** Utility scripts moved to `src/paa_graph_kb/utils/`.
+- **Makefile:** Updated with `graphdb-load-getty`, `getty-bundle`, `graphdb-all`.
+- **Demo Queries:** `queries/demos/` contains 4 verification queries.
 
+## Critical "Gotchas" & Decisions
+1.  **BC Dates:** Getty JSON-LD contains negative years (e.g. `-0500-01-01`). Python's `datetime` (and `rdflib`) logs warnings/errors.
+    - *Resolution:* We padded years to 4 digits in cache (`fix_getty_dates.py`). We suppress warnings in loader scripts. Data is valid XSD, just not Python-friendly.
+2.  **Bibliography:** `23_construct_perseus_sources.rq` maps `stg:sourcesUsedClean` to `P190` (display) and `stg:sourcesUsed` to `rdf:value` (curation).
+3.  **Construct Logic:** `23_construct_perseus_sources.rq` has `OPTIONAL` block removed to workaround `rdflib` binding scoping issues.
+
+## Immediate Action Items
+1.  **Run Full Load:** Execute `make graphdb-all` to load everything into a fresh GraphDB repository.
+2.  **Verify Loading:** Run queries in `queries/demos/` against the live GraphDB instance.
+3.  **Curation UI:** Begin planning the UI for editing the `rdf:HTML` values in bibliographies.
+
+## Quick Start
+To resume work:
 ```bash
-# 1. Ensure GraphDB is running
-curl http://localhost:7200/repositories
+# 1. Activate environment
+source .venv/bin/activate
 
-# 2. (Optional) Re-run constructs if data is stale
-make graphdb-run-constructs
+# 2. Load all data (if GraphDB is running)
+make graphdb-all
+
+# 3. Run demo query against local file (sanity check)
+python -m paa_graph_kb.cli.test_graph_coexistence # (Note: this script was deleted during cleanup, recreate or use SPARQL)
 ```
-
-## Using the IIIF Tool
-
-```bash
-# Generate a manifest for a known object URI
-# (Use browse_kb to find URIs)
-python -m paa_graph_kb.cli.browse_kb search "red-figure"
-
-# Generate
-python -m paa_graph_kb.cli.iiif_manifest <URI_FROM_ABOVE> -o manifest.json
-```
-
-## Next Goals
-
-1. **Test HAM Manifests:** Verify the tool works for Harvard Art Museums objects too.
-2. **Batch Generation:** Consider generating static manifests for the whole collection.
-3. **Viewer:** Maybe set up a simple HTML page with Mirador/UV to view these manifests.
