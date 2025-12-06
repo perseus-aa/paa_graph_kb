@@ -1,0 +1,19 @@
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX aat: <http://vocab.getty.edu/aat/>
+
+# Demonstrate the Iconographic Enrichment.
+# Retrieves Perseus objects that have detailed iconographic descriptions.
+# These are classified with AAT:300435430 (Iconographic descriptions).
+
+SELECT ?obj ?title ?iconography
+WHERE {
+  ?obj a crm:E22_Human-Made_Object ;
+       rdfs:label ?title .
+
+  # Look for the specific iconographic description note
+  ?obj crm:P67i_is_referred_to_by ?note .
+  ?note crm:P2_has_type aat:300435430 ;
+        crm:P190_has_symbolic_content ?iconography .
+}
+LIMIT 10

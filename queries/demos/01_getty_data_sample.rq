@@ -1,0 +1,39 @@
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX la: <https://linked.art/ns/terms/>
+PREFIX aat: <http://vocab.getty.edu/aat/>
+
+# Retrieve sample data directly from the Getty graph.
+# This queries objects that have the Getty URI pattern (https://data.getty.edu/...)
+# showing that the native Linked Art JSON-LD was successfully loaded.
+
+SELECT ?gettyObj ?label ?dimension_text ?material
+WHERE {
+  # Filter for Getty URIs
+  ?gettyObj a crm:E22_Human-Made_Object .
+  FILTER(STRSTARTS(STR(?gettyObj), "https://data.getty.edu/"))
+
+  # Get Label
+  ?gettyObj rdfs:label ?label .
+
+  # Get Dimensions (Physical)
+  OPTIONAL {
+    ?gettyObj crm:P43_has_dimension ?dim .
+    ?dim crm:P90_has_value ?val ;
+         crm:P91_has_unit ?unit ;
+         crm:P2_has_type ?dimType .
+    
+    ?dimType rdfs:label ?dimTypeLabel .
+    ?unit rdfs:label ?unitLabel .
+    
+    BIND(CONCAT(?dimTypeLabel, ": ", STR(?val), " ", ?unitLabel) AS ?dimension_text)
+  }
+
+  # Get Material (Textual Description)
+  OPTIONAL {
+    ?gettyObj crm:P67i_is_referred_to_by ?matNote .
+    ?matNote crm:P2_has_type aat:300435429 ;
+             crm:P190_has_symbolic_content ?material .
+  }
+}
+LIMIT 10

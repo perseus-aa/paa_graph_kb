@@ -1,0 +1,28 @@
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX aat: <http://vocab.getty.edu/aat/>
+
+# Demonstrate the Bibliography Enrichment and Curation Workflow.
+# Retrieves Linguistic Objects classified as "bibliography" (AAT:300026497).
+# Shows both the "Clean" text (for display) and the "Raw" HTML/TEI (for curation/editing).
+
+SELECT ?obj ?biblioNote ?cleanText ?rawMarkup
+WHERE {
+  ?obj a crm:E22_Human-Made_Object ;
+       crm:P67i_is_referred_to_by ?biblioNote .
+
+  # Filter for Bibliography type
+  ?biblioNote crm:P2_has_type aat:300026497 .
+
+  # Get the clean text (mapped to P190)
+  OPTIONAL { 
+    ?biblioNote crm:P190_has_symbolic_content ?cleanText .
+  }
+
+  # Get the raw markup (mapped to rdf:value as rdf:HTML)
+  OPTIONAL {
+    ?biblioNote rdf:value ?rawMarkup .
+  }
+}
+LIMIT 10

@@ -1,0 +1,40 @@
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+# Demonstrate the integration of Perseus and Getty datasets.
+# Links Perseus objects to their Getty equivalents via owl:sameAs.
+# Retrieves the Perseus-curated label and the Getty-curated dimensions and IIIF manifest.
+
+SELECT DISTINCT ?perseusObj ?perseusLabel ?gettyObj ?gettyDimensions ?iiifManifest
+WHERE {
+  # Link Perseus object to Getty object
+  ?perseusObj owl:sameAs ?gettyObj .
+  
+  # Ensure we are looking at the right direction (Perseus -> Getty)
+  FILTER(STRSTARTS(STR(?perseusObj), "https://aa.perseus.org/"))
+  FILTER(STRSTARTS(STR(?gettyObj), "https://data.getty.edu/"))
+
+  # Get Perseus Label
+  ?perseusObj rdfs:label ?perseusLabel .
+
+  # Get Getty Dimensions (Formatted)
+  OPTIONAL {
+    ?gettyObj crm:P43_has_dimension ?dim .
+    ?dim crm:P90_has_value ?val ;
+         crm:P91_has_unit/rdfs:label ?unitLabel ;
+         crm:P2_has_type/rdfs:label ?dimTypeLabel .
+    BIND(CONCAT(?dimTypeLabel, ": ", STR(?val), " ", ?unitLabel) AS ?gettyDimensions)
+  }
+
+  # Get Getty IIIF Manifest (via subject_of)
+  OPTIONAL {
+    ?gettyObj crm:P129i_is_subject_of ?iiifManifest .
+    # Use Getty local thesaurus type for IIIF Manifest or generic IIIF presentation API conformance
+    { ?iiifManifest crm:P2_has_type <https://data.getty.edu/local/thesaurus/iiif-manifest> }
+    UNION
+    { ?iiifManifest crm:P72_has_language <http://iiif.io/api/presentation> } 
+    # Note: P72 is often used for conforms_to in some mappings, checking explicit type is safer
+  }
+}
+LIMIT 10
