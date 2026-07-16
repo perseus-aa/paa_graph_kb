@@ -1,0 +1,107 @@
+#+TITLE: Perseus Art & Archaeology: Curation Workflow Architecture
+#+AUTHOR: PAA Knowledge Base Team
+#+DATE: 2025-12-06
+#+OPTIONS: toc:t num:t
+
+* Problem Statement
+The Perseus Art & Archaeology (PAA) dataset contains rich scholarly information—specifically iconographic descriptions and bibliographic references—that is currently trapped in unstructured, legacy formats.
+
+- **Legacy Format:** Data is stored as monolithic "blobs" of text mixed with obsolete HTML/TEI markup (e.g., =<P><bibl>Beazley 1963</bibl>...</P>=).
+- **Lack of Connectivity:** Citations are string literals, not links. They do not connect to authoritative bibliographic entities or external digital editions (HathiTrust, Internet Archive).
+- **Maintenance Debt:** Editing a description currently requires modifying the core object record, risking data integrity.
+- **Missed Opportunity:** The lack of structured data prevents "Rich Hypertext" experiences, where users can seamlessly navigate from an object to its scholarly sources and parallel examples.
+
+* Vision: The Graph-Centric Knowledge Base
+We propose transitioning from a **Document-Centric** model (editing text blobs) to a **Graph-Centric** model based on **Web Annotations (W3C)**.
+
+In this model, scholarly commentary is a distinct layer of "Annotations" that float on top of the stable Object Nodes.
+
+**Goals:**
+1.  **Decomposition:** Explode monolithic text blobs into distinct, addressable entities.
+2.  **Resolution:** Link text strings to authoritative Entities (Books, People, Concepts).
+3.  **Enrichment:** Connect citations to live URLs (Digital Editions).
+4.  **Sustainability:** Enable distributed curation by Librarians, Students, and AI Agents.
+
+* Architecture & Data Model
+
+** 1. The Web Annotation Model (OA) 
+We will use the W3C Web Annotation Ontology (=oa:=) to structure all curation data.
+
+*** A. The Iconographic Annotation
+Replaces the legacy "Description" field.
+- **Type:** =oa:Annotation=
+- **Motivation:** =oa:describing=
+- **Target:** The Perseus Object URI (e.g., =https://aa.perseus.org/id/thing/UUID=)
+- **Body:**
+  - *Content:* Clean, semantic text (Markdown/Text).
+  - *Format:* =text/markdown= or =text/plain=.
+- **Provenance:** Created by (Agent), Created at (Time).
+
+*** B. The Bibliographic Annotation
+Replaces the legacy "Bibliography" field.
+- **Type:** =oa:Annotation=
+- **Motivation:** =oa:referencing=
+- **Target:** The Perseus Object URI
+- **Body:** A reference to a **Bibliographic Entity**.
+
+*** C. The Bibliographic Entity (The "Rich Link")
+Instead of a string, the annotation body points to a node representing the Work.
+- **Type:** =crm:E33_Linguistic_Object= (The Book/Article)
+- **Properties:**
+  - =dcterms:title=
+  - =dcterms:creator=
+  - =dcterms:date=
+  - =crm:P1_is_identified_by= $\to$ =crm:E42_Identifier= (The URL to HathiTrust/IA).
+
+** 2. Storage: Two-Way Sync
+To ensure data safety and version control, the "System of Record" is the file system, not just the database.
+
+- **File System:** Each Annotation is serialized as a distinct Turtle (=.ttl=) file in =data/annotations/=.
+- **GraphDB:** Acts as the *Index*. When files change, they are reloaded into the graph for querying.
+- **Benefit:** We can use Git for version control of the scholarly knowledge.
+
+* Curation Workflows
+
+** Workflow 1: The "Splitter" (Decomposition)
+*Objective:* Break legacy HTML blobs into distinct atomic units.
+1.  **Input:** Legacy =stg:sourcesUsed= (HTML blob).
+2.  **Process (AI/Heuristic):** Parse text to identify individual citations vs. descriptive notes.
+3.  **Review:** Curator (Student/Librarian) reviews the split.
+4.  **Output:** $N$ new Web Annotation files; Legacy blob marked "Deprecated."
+
+** Workflow 2: The "Resolver" (Authority Linking)
+*Objective:* Turn citation strings into graph links.
+1.  **Input:** A citation string (e.g., "Beazley, ABV, p. 23").
+2.  **Process:**
+    - Search local Authority Graph (is "ABV" known?).
+    - Search External APIs (WorldCat, CrossRef).
+3.  **Action:** User selects the matching Work.
+4.  **Enrichment:** User adds specific URL (e.g., HathiTrust page link) if available.
+
+** Workflow 3: The "Editor" (Content Cleanup)
+*Objective:* Clean up prose and tag entities.
+1.  **Input:** Raw Iconographic text.
+2.  **Process:**
+    - Strip obsolete tags (=<hi>=, =<P>=).
+    - Apply semantic markup (Markdown).
+    - **Entity Tagging:** Highlight keywords (e.g., "Chiton", "Herakles") and link to AAT/Internal authorities.
+
+* Technical Implementation Plan
+
+** Phase 1: Prototype (Current)
+- Scripting to "Explode" sample blobs.
+- Defining the RDF shapes for Annotations.
+
+** Phase 2: The Curation Backend
+- **Framework:** FastAPI (Python).
+- **Role:** Bridge between UI, File System, and GraphDB.
+- **Endpoints:**
+  - =GET /object/{id}/annotations=: Retrieve all notes for an object.
+  - =POST /annotation=: Save a new/edited annotation (writes to disk + GraphDB).
+
+** Phase 3: The Curation UI
+- **Framework:** React.
+- **Components:**
+  - **Workspace:** A "To-Do" list of dirty records.
+  - **Splitter View:** Left = Raw Text, Right = List of proposed citations.
+  - **Resolver Widget:** Autocomplete for Book Titles/Authors.
