@@ -1,0 +1,116 @@
+#+TITLE: PAA Graph KB Agenda
+#+SUBTITLE: Tracked tasks — see docs/forum.org for design rationale
+#+STARTUP: overview logdrawer
+#+FILETAGS: :paa:
+#+TODO: TODO ACTIVE | DONE
+
+See =.claude/collaboration-protocol.org= for how this file relates to
+=docs/forum.org=. Most tasks here need no forum link at all — only add
+one when a real design decision preceded the task. =CUSTOM_ID= prefix
+marks the track: =track-a/=, =track-b/=, =process/=.
+
+* Process
+
+** TODO Review forum.org with Claude Chat
+SCHEDULED: <2026-08-06 Thu +2w>
+:PROPERTIES:
+:CUSTOM_ID: process/forum-review
+:END:
+Read forum entries since the last review, across both tracks. Flag
+anything that should move to Decision, anything stale enough to
+archive (=org-archive-subtree=), anything needing a Review section
+before being considered settled. Feeds the Greg report below.
+
+Completion criterion: a Review section or timestamped note actually
+exists in the forum from this pass — not just "I looked it over."
+
+** TODO Prepare report for Greg
+:PROPERTIES:
+:CUSTOM_ID: process/greg-report
+:DEPENDS: process/forum-review
+:END:
+Depends on the forum review above: the report should be written from
+a reviewed record, not an unreviewed one.
+
+* Track A — Harvesting
+
+** ACTIVE Met harvester
+:PROPERTIES:
+:CUSTOM_ID: track-a/met-client
+:ASSIGNEES: Giulia, Claude Code
+:END:
+Giulia's onboarding project: build a =met_client= parallel to
+=ham_client=/=getty_client=. Met's API is not native Linked Art (unlike
+Getty), so this is expected to follow the =ham_client= pattern —
+Pydantic models + staging loader — rather than Getty's more direct
+path. Design/implementation details to be filled in as the work
+starts; not pre-specified here so as not to front-run Giulia's own
+design choices.
+
+** TODO Rank and verify next harvester candidates
+:PROPERTIES:
+:CUSTOM_ID: track-a/next-harvester-priority
+:ASSIGNEES: Cliff, Claude Chat
+:SOURCE: chat/2026-07-23
+:END:
+See
+[[file:docs/forum.org::#track-a/next-harvester-priority][docs/forum.org]]
+for the Research. Object-count analysis of =data/perseus/objects.json=
+ranks British Museum, MFA Boston, Louvre, and Berlin Antikensammlungen
+above Met by volume; British Museum looks like the strongest
+technical fit (SPARQL/Linked-Data endpoint, CIDOC-CRM-native). MFA
+Boston is the largest by far but no public collections API was found
+in a first pass — needs confirming before it's scheduled as a
+harvester task at all. Louvre and Berlin need their own API-status
+checks. Arthur S. Dewing Collection is a Tufts-internal numismatic
+collection, not an external-museum harvester problem — track
+separately if it needs tracking at all.
+
+Completion criterion: confirmed API status (or lack thereof) for
+British Museum, Louvre, Berlin Antikensammlungen, and MFA Boston;
+Decision recorded in the linked forum entry on which 2-3 come after
+Met.
+
+* Track B — Annotation / Curation
+
+** TODO Pilot citation-resolution cascade against real Perseus bibliography data
+:PROPERTIES:
+:CUSTOM_ID: track-b/citation-resolution-pilot
+:ASSIGNEES: Claude Code
+:SOURCE: chat/2026-07-23
+:DEPENDS: track-b/citation-resolution-approach
+:END:
+First-pass shape check done (Claude Chat, 2026-07-23) — see
+[[file:docs/citation-resolution/track_b_sample_findings.org]]. Confirmed
+the cascade shape fits: 8,510 of 12,746 =<bibl>= citations collapse to
+1,682 unique author-year keys; the rest are mostly ~15-20 standard
+abbreviations (CVA, BMCRE, LIMC, RIC, &c.). Remaining for this task,
+now a Claude Code job (real parsing + resolution, not a quick script):
+See
+[[file:docs/forum.org::#track-b/citation-resolution-approach][docs/forum.org]]
+for the Research (NVS's tiered resolution cascade as a model, and why
+the December =prototype_biblio_splitter.py= regex approach is likely
+too fragile for the real corpus). Before committing to any parser
+architecture or building FastAPI infrastructure (Phase 2 of
+=curation_architecture_analysis.md=), pull a real sample of
+=sources_used=/=other_bibliography= blobs from
+=data/perseus/objects.json= and check whether a Tier 0/1-style cascade
+(match against Perseus's own reconciled data first, then known
+classical-archaeology reference abbreviations — Beazley's ABV/ARV,
+CVA, LIMC — via general/period knowledge) actually resolves a useful
+fraction, the way it did for NVS's bare-citation names.
+
+Completion criterion: a Research write-up (in the linked forum entry
+or a =docs/= report it points to) showing Tier coverage against a real
+sample, informing a Decision on whether/how to proceed to Phase 2.
+
+** TODO Reassess Phase 2 (FastAPI backend) start date
+:PROPERTIES:
+:CUSTOM_ID: track-b/phase2-start
+:ASSIGNEES: Cliff
+:DEPENDS: track-b/citation-resolution-pilot
+:END:
+=PROJECT_STATUS_2026-07-16.md= named Phase 2 as the "logical pickup
+point." Holding that decision open pending the citation-resolution
+pilot above — building the backend around an unvalidated splitting
+heuristic risks the same false start NVS avoided by piloting first.

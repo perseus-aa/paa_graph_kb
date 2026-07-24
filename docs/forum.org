@@ -1,0 +1,170 @@
+#+TITLE: PAA Graph KB Forum
+#+SUBTITLE: Deliberative record — design, research, decisions
+#+STARTUP: overview logdrawer
+#+FILETAGS: :paa:
+
+See =.claude/collaboration-protocol.org= for how this file is used.
+Implementation detail (fix counts, file names, function-level
+walkthroughs) belongs in code or =docs/= reports, not here — link to
+it instead. Tasks belong in =agenda.org=, cross-linked by =CUSTOM_ID=.
+=CUSTOM_ID= prefix marks the track: =track-a/=, =track-b/=, =process/=.
+
+* Discussions
+
+** Establishing the collaboration protocol
+:PROPERTIES:
+:CUSTOM_ID: process/collaboration-protocol-adoption
+:ASSIGNEES: Cliff, Claude Chat
+:SOURCE: chat/2026-07-23
+:DISPOSITION: adopt
+:END:
+
+PAA had no =forum.org=/=agenda.org=/=CLAUDE.md= — it predates the
+convention developed for the Hypervariorum (NVS) project. With
+Giulia joining and two parallel tracks (harvesting, annotation) now
+active, the coordination gap was worth closing rather than letting
+each track develop its own ad hoc habits.
+
+**** Research
+[2026-07-23] Adapted Hypervariorum's =.claude/collaboration-protocol.org=,
+=.claude/guidelines.org=, and =CLAUDE.md= directly, with two structural
+changes: a second human participant (Giulia, with real but
+Track-A-scoped decision authority), and a shared coordination pair
+covering two parallel tracks rather than one thread, distinguished
+by =CUSTOM_ID= prefix (=track-a/=, =track-b/=, =process/=) instead of
+forked into separate files. Kept the existing =docs/= directory name
+rather than introducing NVS's =doc/=, since =PROJECT_CONTEXT.md= and
+the =SESSION_YYYY-MM-DD.md= notes already establish that convention
+here.
+
+**** Decision
+[2026-07-23] Adopt. =CLAUDE.md=, =.claude/collaboration-protocol.org=,
+=.claude/guidelines.org=, =agenda.org=, and this file created. Existing
+=docs/SESSION_*.md= notes and =PROJECT_CONTEXT.md= left as-is
+(historical record); new design/decision material goes here going
+forward.
+
+** Track A: prioritizing next harvester after Met
+:PROPERTIES:
+:CUSTOM_ID: track-a/next-harvester-priority
+:ASSIGNEES: Cliff, Claude Chat
+:SOURCE: chat/2026-07-23
+:DISPOSITION: defer
+:END:
+
+Before this session, "the next 2-3 collections after Met" was an
+open, unranked question.
+
+**** Research
+[2026-07-23] Counted =collection= field frequency across the 5,859
+records in =data/perseus/objects.json= (5,236 tagged). Top sources by
+object count: Museum of Fine Arts Boston (1,588), Athens National
+Archaeological Museum (569), Arthur S. Dewing Collection (452),
+British Museum (279), Acropolis Museum (188), Louvre (182), Berlin
+Antikensammlungen (130) — Getty (124) and HAM (123) already done for
+scale reference — Met itself is only 66.
+
+Checked API availability for the top candidates: British Museum has
+a genuine SPARQL/Linked Data endpoint
+(=collection.britishmuseum.org=) over a CIDOC-CRM-native database —
+arguably an even more natural fit than Getty. MFA Boston, despite
+being the largest source by a wide margin, has no public collections
+API found in a first search pass — only research guides and a
+description of ~500,000 total holdings; would need a different
+approach (data-sharing agreement, or ruling it out) rather than a
+standard harvester. Louvre and Berlin Antikensammlungen have had
+public APIs historically but weren't verified current in this pass.
+Athens National Archaeological Museum (Greek state collection) is
+likely the hardest of the group. Arthur S. Dewing Collection is
+Tufts' own numismatic collection, not an external museum — a
+different kind of task, not a "harvester."
+
+So: Met is a reasonable *pedagogical* choice for Giulia's onboarding
+(well-documented API, HAM-shaped normalization work) but is not the
+volume-maximizing choice — if the goal after Met is graph coverage,
+British Museum is the strongest technical candidate found so far.
+
+**** Decision
+[to be recorded] — pending API-status verification for Louvre,
+Berlin Antikensammlungen, and MFA Boston (see
+[[file:../agenda.org::#track-a/next-harvester-priority][agenda.org]]).
+
+** Track B: citation-resolution approach — lessons from NVS's cascade
+:PROPERTIES:
+:CUSTOM_ID: track-b/citation-resolution-approach
+:ASSIGNEES: Cliff, Claude Chat
+:SOURCE: chat/2026-07-23
+:DISPOSITION: defer
+:END:
+
+Revisiting the December 2025 =prototype_biblio_splitter.py= (Phase 1
+of =curation_architecture_analysis.md=) in light of how the NVS/
+Hypervariorum project approached a structurally similar problem
+(resolving bare citation names in Furness's variorum commentary).
+
+**** Research
+[2026-07-23] The PAA prototype splits legacy =<bibl>= blobs on
+semicolons and regexes for a =<bibl>work</bibl>, scope= pattern per
+chunk, storing the work title as a plain string literal
+(=crm:P67_refers_to=) with no actual entity resolution — the code's
+own comments note the authority lookup is stubbed out, not
+implemented. It has only ever been run against one hand-picked
+sample blob, never the real corpus.
+
+NVS tried the equivalent naive approach first (parse the bibliography
+directly into structured citations) and abandoned it: real commentary
+citations vary not just in locator form but in syntactic role, and
+role isn't recoverable from adjacent punctuation — genuinely needs
+period/domain knowledge, not pattern matching. What replaced it: a
+tiered resolution cascade — Tier 0 resolves against data already
+parsed locally (their own bibliography extraction); Tier 1 resolves
+via general period knowledge for well-known reference works excluded
+from the local bibliography by convention; Tiers 2-3 disambiguate by
+single- vs. multiple-entry elimination; Tiers 4-5 are embedded/
+genuinely-uncertain cases routed to the human, not guessed. Result:
+~90% resolved at Tiers 0-3, leaving a small bounded pile for Cliff's
+actual attention. They also kept citation *identification* ("who is
+this referencing" — mostly recognition) explicitly separate from
+argument-relation classification ("how does this note relate to that
+one" — real interpretive judgment, no gold labels yet), and declined
+to build a trained classifier before doing the judgment work by hand
+first to generate labels. Full detail:
+=/Users/wulfmanc/repos/gh/PerseusDLCode/nvs/doc/citation-resolution/=
+in the Hypervariorum repo.
+
+Perseus's classical-archaeology bibliography (Beazley's ABV/ARV, CVA,
+LIMC, etc.) is plausibly an even more tractable Tier 0/1 case than
+NVS's 19th-century commentator surnames — it's a smaller, more
+standardized abbreviation vocabulary. Proposed cascade shape: Tier 0
+against Perseus's own reconciled data; Tier 1 against well-known
+classical-archaeology reference abbreviations via general knowledge;
+Tier 2/3 by elimination; Tier 4/5 flagged for Cliff/Giulia. Also worth
+checking early whether Perseus citations hit the same full-text-
+verification wall NVS did (OCR quality on old typography, HathiTrust
+fetch-blocking) before assuming HathiTrust linking "just works" in
+the curation UI design.
+
+[2026-07-23, addendum] Corpus-wide shape check confirms the cascade
+is worth piloting. Of 12,746 =<bibl>= spans across the corpus, 8,510
+are =Author Year= citations collapsing to only 1,682 unique keys
+(top keys repeat hundreds of times; 53% of unique keys are
+singletons) — same compression NVS found. The remaining 4,236 are
+overwhelmingly a small, closed set of standard classical-archaeology
+abbreviations (CVA, BMCRE, LIMC, RIC, PECS, ABV, ARV2, &c.),
+resolvable the same way the existing AAT manual-mapping files
+(=data/reconciliation/*.txt=) already handle techniques and
+classifications. Also found: the December prototype's sample blob
+wasn't representative — most real citations are single, cleanly-
+tagged =Author Year, locator= spans, easier than the sample
+suggested, but real counter-examples exist too (a =<bibl>= bundling
+multiple volume/entry locators; plain-text journal citations with no
+=<bibl>= wrapper at all) that the prototype never exercised. Full
+detail:
+[[file:citation-resolution/track_b_sample_findings.org][docs/citation-resolution/track_b_sample_findings.org]].
+
+**** Decision
+[to be recorded] — pending the actual resolution pilot (build the
+abbreviation lookup + the 1,682-key author-year table, size the long
+tail precisely) — see
+[[file:../agenda.org::#track-b/citation-resolution-pilot][agenda.org]],
+before committing to Phase 2 (FastAPI backend).

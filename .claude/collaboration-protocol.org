@@ -1,0 +1,257 @@
+# -*- lexical-binding: t; -*-
+#+TITLE: Collaboration Protocol
+#+SUBTITLE: Cliff + Giulia + Claude Chat + Claude Code
+#+DATE: [2026-07-23 Thu]
+
+* Overview
+
+This document defines how Cliff, Giulia, Claude Chat, and Claude Code
+work together on the Perseus Art & Archaeology (PAA) Graph Knowledge
+Base project, using two org-mode files as the coordination medium.
+Adapted from the protocol developed for the Hypervariorum project,
+with two changes: a second human participant, and two parallel
+workstreams (Track A, museum harvesting; Track B, commentary
+annotation) sharing one coordination pair rather than one thread.
+
+** Participants and Roles
+
+- Cliff :: Project lead and decision-maker. Reviews proposals, sets
+  dispositions, writes Decisions. Holds final say project-wide,
+  and specifically on anything touching shared infrastructure used
+  by both tracks (GraphDB schema, CIDOC-CRM/Linked Art templates,
+  AAT reconciliation conventions, deterministic-URI scheme).
+
+- Giulia Taurino :: CS graduate student researcher, onboarding onto
+  the project via the Met harvester (Track A). Proposes design and
+  research within Track A, works with Claude Code on implementation.
+  Expected to take on real decision-making within Track A specifics
+  as she comes up to speed — Cliff's sign-off remains required where
+  a Track A decision would affect shared infrastructure or Track B.
+
+- Claude Chat :: Research, design, and review, across both tracks.
+  Explores tradeoffs, drafts design documents, thinks through
+  harvester architecture and annotation/citation-resolution
+  strategy. Has direct read/write access to =docs/forum.org= and
+  =agenda.org= via Filesystem tools, scoped to those files (and
+  other =docs/= content) rather than the whole repository.
+
+- Claude Code :: Implementation and codebase analysis. Lives in the
+  repo. Performs code review, testing, and implementation. Writes
+  Analysis and Implementation sections grounded in actual code.
+
+** Key Principle: Cliff Decides
+
+No participant other than Cliff commits the project to a direction.
+Claude Chat and Giulia propose; Claude Code implements; Cliff
+approves, modifies, or rejects. Within Track A, Giulia's proposals
+carry real weight and she may settle small, track-local questions
+herself — but the org files are still the decision record, and
+anything crossing into shared infrastructure routes through Cliff
+the same as a Claude Chat proposal would.
+
+** Two Tracks, One Record
+
+Track A (harvesting/normalization) and Track B (commentary/
+annotation) run in parallel but share =docs/forum.org= and
+=agenda.org= rather than forking into separate files — the shared
+infrastructure (GraphDB, URI scheme, AAT reconciliation) is real
+enough that keeping one record matters more than keeping the tracks
+visually separate. Distinguish them instead by =CUSTOM_ID= prefix
+(=track-a/=, =track-b/=, =process/= for cross-cutting items) and, where
+useful, an org tag (=:trackA:=, =:trackB:=) so either can be filtered
+independently.
+
+* Two Files, Two Jobs
+
+** =docs/forum.org= — deliberation
+
+A place for the exchange of ideas: design questions, research
+findings, decisions, and their rationale. Not a task queue. An item
+here does not need a TODO keyword, a due date, or a completion
+state — its value is as a record of *why*, preserved even after the
+matter is settled. Lives under the existing =docs/= directory (not a
+new =doc/=), alongside =PROJECT_CONTEXT.md=, =project_background.org=,
+and the session notes already there.
+
+Keep implementation detail *out* of this file. Fix counts, corpus
+file names, function-level walkthroughs, and test results belong in
+code comments, docstrings, commit messages, or =docs/= reports next
+to the code they describe — with at most a one-line pointer from the
+forum entry ("see =src/paa_graph_kb/utils/getty_reconciliation.py=,
+commit abc123").
+
+** =agenda.org= — tasks
+
+Lives at the repo root, next to =pyproject.toml= and the =Makefile=,
+where Claude Code will naturally find it. Ordinary org TODO
+workflow: keywords, =SCHEDULED=/=DEADLINE=, priorities, done states.
+Every item here should have a clear completion criterion. Most tasks
+(bug fixes, tests, refactors) need no forum entry at all — only link
+back to =forum.org= when a real design decision preceded the task.
+
+** Cross-linking
+
+Both files use =CUSTOM_ID= as a stable slug; org's file-link syntax
+addresses it directly from either direction:
+
+#+begin_example
+[[file:docs/forum.org::#track-a/next-harvester-priority]]
+[[file:agenda.org::#track-b/citation-resolution-pilot]]
+#+end_example
+
+A forum entry that spawned tasks lists links forward to them. An
+agenda item that came out of a real decision links back to the
+forum entry. Reserve this for tasks with actual deliberation behind
+them.
+
+* Structure of a Forum Item
+
+The basic unit is an org headline, not necessarily actionable.
+
+#+begin_example
+,*** Short description of the item
+:PROPERTIES:
+:CUSTOM_ID: track-a/short-slug
+:ASSIGNEES: Cliff, Giulia, Claude Chat, Claude Code
+:SOURCE: chat/2026-07-23
+:DISPOSITION: adopt
+:END:
+Brief statement of the problem, question, or goal.
+
+,**** Research
+Background research, options analysis, design reasoning. Prose,
+not instructions. Answers "what should we do and why?"
+
+,**** Analysis
+What the code actually does, grounded in the repo. Answers "what
+does the code say and what would change?"
+
+,**** Decision
+[2026-07-23] Cliff's call. Short is fine.
+
+,**** Review
+Design conformance check, written after implementation, before the
+matter is considered settled. Ends with an explicit disposition.
+#+end_example
+
+Not every item needs every section. A settled research question may
+have only Research + Decision. A pure reference note may have only
+the headline and a paragraph. Timestamp only the Decision line as a
+matter of course; timestamp others when the date itself matters.
+
+** Properties
+
+| Property    | Purpose                          | Values                                              |
+|-------------+-----------------------------------+------------------------------------------------------|
+| CUSTOM_ID   | Stable cross-reference slug        | =track-a/short-slug=, =track-b/short-slug=, =process/slug= |
+| ASSIGNEES   | Who owns the next action           | =Cliff=, =Giulia=, =Claude Code=, =Claude Chat=       |
+| SOURCE      | Where the item originated          | =chat/YYYY-MM-DD=, =adhoc=                            |
+| DISPOSITION | Outcome of the Decision            | =adopt=, =defer=, =document=, =wontfix=               |
+
+* Bloat Control
+
+** Volume: archive on close
+
+Once a forum item reaches a terminal state — Decision recorded,
+nothing further expected — archive it with =org-archive-subtree= to
+=docs/forum.org_archive=. Still in git, still searchable, just out of
+the file you read day to day. Do this as part of closing out a
+thread, not as a periodic cleanup chore.
+
+** Density: pointers, not reports
+
+Covered above. If a forum entry starts accumulating file names, line
+counts, or per-corpus results, that content should move to code or a
+=docs/= report, leaving a pointer behind.
+
+** Periodic review
+
+Tied to Cliff's periodic reporting to Greg Crane. A repeating
+scheduled task in =agenda.org= drives it:
+
+#+begin_example
+,** TODO Review forum.org with Claude Chat
+SCHEDULED: <2026-08-06 Thu +2w>
+:PROPERTIES:
+:CUSTOM_ID: process/forum-review
+:END:
+Read entries since the last review, across both tracks. Flag
+anything that should move to Decision, anything stale enough to
+archive, anything needing a Review section before being settled.
+Feeds the Greg report.
+
+,** TODO Prepare report for Greg
+:PROPERTIES:
+:CUSTOM_ID: process/greg-report
+:DEPENDS: process/forum-review
+:END:
+#+end_example
+
+The repeater means the review reappears on the agenda without
+depending on memory. Completion criterion for the review task: a
+Review section or a timestamped note actually exists in the forum
+from this pass — "I looked it over" with no trace behind it does
+not count as done.
+
+* Workflow Patterns
+
+** Research flows to Implementation
+
+1. Claude Chat (or Giulia, for Track A) writes a Research section in
+   =docs/forum.org=
+2. Cliff writes the Decision (or Giulia does, for a Track-A-local
+   matter that doesn't touch shared infrastructure)
+3. Cliff/Giulia (or Claude Chat) creates linked task(s) in
+   =agenda.org=
+4. Claude Code implements, writes Analysis/Implementation, closes
+   the task
+
+** Cliff or Giulia brings a question
+
+1. Problem statement opened as a forum item
+2. Assigned participant(s) fill in Research/Analysis
+3. Cliff (or Giulia, within Track A's scope) decides
+4. If actionable, spin off task(s) into =agenda.org=
+
+** Review-gated decisions (shared infrastructure especially)
+
+For anything touching GraphDB schema, CIDOC-CRM/Linked Art
+templates, the URI scheme, or AAT reconciliation conventions —
+i.e., anything both tracks depend on:
+
+1. Claude Code implements on a feature branch, writes Implementation
+2. Claude Chat reads the branch directly (Filesystem access) and
+   writes a Review section in the linked forum entry
+3. Cliff reads the Review, decides whether to merge or request
+   changes
+
+* Git Conventions
+
+Implementation work happens on a feature branch, never directly on
+=main=. Branch names follow =feature/CUSTOM_ID-short-description=.
+Claude Code checks for an existing branch (=git branch -a=) before
+assuming it needs to create one.
+
+Coordination-file changes (=agenda.org=, =docs/forum.org=,
+=.claude/guidelines.org=) commit directly to =main=, not on feature
+branches. They're the continuous cross-task record, not a
+deliverable of any one task — and with two humans and two tracks
+potentially touching these files independently, tying their history
+to a branch that gets merged and deleted would be a worse mismatch
+here than it was for a single-thread project. In practice: commit
+coordination-file edits to =main= first, merge the feature branch
+afterward.
+
+* What This Protocol Does Not Cover
+
+- *Automatic syncing*: no tooling pushes changes between
+  participants; each edits the files directly, in place.
+- *Access control*: all participants can read and write both files.
+  The discipline is social, not technical. Unlike Hypervariorum
+  (sole researcher), this project now has two humans who can edit
+  concurrently — worth watching for real conflicts in practice, and
+  revisiting this section if they turn out to matter more than
+  expected.
+- *Long-term memory*: Claude Chat's memory across sessions is
+  imperfect. Anything that needs to persist belongs in the files,
+  not assumed to survive in chat history.

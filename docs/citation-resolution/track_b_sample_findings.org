@@ -1,0 +1,102 @@
+#+title: Track B: First-Pass Citation Shape in sources_used / other_bibliography
+#+date: <2026-07-23 Thu>
+#+description: Quick corpus-wide scan to check whether an NVS-style
+#+description: tiered resolution cascade fits Perseus's bibliography
+#+description: citations, before committing to a parser architecture.
+
+* Method
+
+Extracted every =<bibl>...</bibl>= span from =sources_used= and
+=other_bibliography= across all 5,859 objects in
+=data/perseus/objects.json= (4,260 objects have one or both fields
+populated). Classified each span as author-year-shaped
+(=Author(s) Year[a-z]?(-YY)?...=) or not, and tallied unique keys.
+Script used ad hoc, not committed — worth formalizing if this
+approach is adopted (see agenda.org task).
+
+* Findings
+
+** Author-year citations collapse hard
+
+12,746 total =<bibl>= spans. 8,510 (67%) match a simple
+=Author Year= pattern at the start of the span. Those 8,510
+occurrences reduce to only **1,682 unique keys** — a ~5:1
+compression. Distribution is heavily skewed: top keys repeat
+dozens to hundreds of times (=Svoronos 1903-12= ×390, =Karouzou
+1968= ×269, =Stewart 1990= ×208, =Cohen 1880-1892= ×198,
+=Brouskari 1974= ×180...), while 890 of the 1,682 keys (53%) occur
+only once.
+
+This is the same shape as NVS's bare-citation-name finding: the
+real resolution cost is bounded by the *unique-key* count, not the
+occurrence count. Resolving each of the 1,682 keys once (ideally
+against a real bibliography, external or hand-built) would cover
+8,510 of 12,746 citations without touching the long tail
+individually.
+
+** Non-author-year citations are a small, closed abbreviation vocabulary
+
+The remaining 4,236 spans are overwhelmingly standard classical-
+archaeology reference-work abbreviations, not free text:
+
+| Abbreviation | Count | Likely referent (unconfirmed, general knowledge) |
+|---------------+-------+----------------------------------------------------|
+| CVA           |   429 | Corpus Vasorum Antiquorum                           |
+| BMCRE         |   380 | British Museum Catalogue of Roman Empire Coins      |
+| LIMC          |   323 | Lexicon Iconographicum Mythologiae Classicae        |
+| RIC           |   164 | Roman Imperial Coinage                              |
+| PECS          |   148 | Princeton Encyclopedia of Classical Sites           |
+| BMCRR         |    93 | British Museum Catalogue of Roman Republic Coins    |
+| RRC           |    88 | Roman Republican Coinage (Crawford)                 |
+| ARV2          |    37 | Beazley, Attic Red-figure Vase-painters, 2nd ed.     |
+| FR            |    33 | Furtwängler-Reichhold                               |
+| EAA           |    31 | Enciclopedia dell'Arte Antica                       |
+| BMC           |    23 | British Museum Catalogue (generic/series)           |
+| ABV           |    18 | Beazley, Attic Black-figure Vase-painters            |
+| JHS           |    13 | Journal of Hellenic Studies                         |
+| Add2 / Para   | 32/19 | Beazley Addenda²/Paralipomena                        |
+
+A double-check against the existing manual-mapping convention
+(=data/reconciliation/techniques_aat_manual.txt=,
+=classifications_aat_manual.txt=) suggests the same approach — a
+small hand-curated =bibliography_abbreviations_manual.txt= —
+would likely resolve the bulk of these at near-zero ongoing cost,
+same as AAT reconciliation did for techniques/classifications.
+
+** Genuine long tail exists, but looks bounded
+
+A residual "OTHER" bucket (multi-author =&= citations like
+"Robertson & Frantz 1975", full journal-article citations with
+quoted titles, series abbreviations like =FdDelph=) didn't match
+either pattern cleanly in this quick pass. Not sized precisely here
+— worth a proper count before the pilot, but nothing in a first
+look suggests it's larger than NVS's Tier 4/5 pile proportionally.
+
+* Comparison to the December prototype's assumption
+
+=prototype_biblio_splitter.py='s sample blob (Beazley/Boardman/CVA,
+semicolon-delimited) is not representative of the modal case — most
+real =<bibl>= spans are single, cleanly-tagged =Author Year, locator=
+citations, which is actually *easier* to parse reliably than the
+sample suggested. The semicolon-split assumption mostly holds for
+multi-citation notes but breaks on cases like the =LIMC= example
+found in sampling (one =<bibl>= tag bundling several volume/entry
+locators internally) and on untagged plain-text citations (journal
+articles cited without =<bibl>= wrapping at all) — both real, both
+seen in this sample, neither exercised by the original prototype.
+
+* Proposed cascade (mirrors NVS's tier structure)
+
+1. *Abbreviation tier* — match against a small hand-built lookup
+   (~15-20 entries covers the bulk shown above), same pattern as
+   existing AAT manual-mapping files.
+2. *Author-year tier* — build a canonical table of the 1,682 unique
+   keys, resolved once each; match all 8,510 occurrences against it.
+3. *Long tail* — whatever doesn't cleanly match either tier, sized
+   properly and routed to Cliff/Giulia rather than guessed.
+
+Not yet done: actually resolving any of tier 1/2's entries to real
+bibliographic records, or sizing the long tail precisely. This is
+a shape check, not a resolution pass — see
+[[file:../../agenda.org::#track-b/citation-resolution-pilot][agenda.org]]
+for the follow-on task.

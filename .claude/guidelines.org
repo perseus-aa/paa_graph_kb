@@ -1,0 +1,57 @@
+#+title: Guidelines for Claude and other AI Agents
+#+date: <2026-07-23 Thu>
+
+* Overview
+
+Project-specific technical conventions for the PAA Graph Knowledge
+Base, supplementing the general coding-discipline principles in
+=CLAUDE.md= (imported automatically alongside this file). This file
+is about *what* conventions to follow; =CLAUDE.md= is about *how* to
+approach any task carefully; =.claude/collaboration-protocol.org= is
+about how Cliff, Giulia, Claude Chat, and Claude Code coordinate
+across sessions and tracks.
+
+* Programming
+
+- Python, targeting >=3.12 per =pyproject.toml=; use a current stable
+  release rather than an older one absent a stated reason.
+- Dependency management is =pdm=. Add/remove dependencies with =pdm
+  add=/=pdm remove= so =pyproject.toml= and =pdm.lock= update together —
+  don't hand-edit the dependency list.
+- Lint with =ruff=, type-check with =mypy=, both already configured in
+  =pyproject.toml= (=pdm run lint=, =pdm run typecheck=).
+- Use a feature branch per task
+  (=feature/CUSTOM_ID-short-description=); never commit
+  implementation work directly to =main=. Full convention, including
+  the Review-gated pattern for shared-infrastructure work, is in
+  =.claude/collaboration-protocol.org= (Git Conventions).
+
+* Data Modeling (both tracks)
+
+These conventions are already established in the codebase
+(=PROJECT_CONTEXT.md=, =docs/HAM_CIDOC_CRM_MAPPING.md=) but are worth
+stating here explicitly for a new contributor:
+
+- Deterministic IRIs via SHA256 hashing of =source:objectid= (or of
+  normalized literal text, for notes/appellations) — no blank nodes
+  for anything that needs to be stably referenced.
+- CIDOC-CRM v7.1.3 as the underlying ontology; Linked Art as the
+  application profile on top of it. Load the ontology into GraphDB
+  for OWL-Horst inferencing (see =docs/GRAPHDB_INFERENCING.md=) rather
+  than asserting inverse properties or superclass memberships by
+  hand.
+- New museum sources follow the staging → SPARQL CONSTRUCT →
+  SHACL-validate → GraphDB pipeline documented in
+  =PROJECT_CONTEXT.md=, not a one-off transformation path.
+- AAT is the reconciliation vocabulary for techniques, materials,
+  classifications, and roles. Check =data/reconciliation/= for
+  existing manual mappings before adding new ones or re-deriving
+  from scratch.
+
+* Documentation
+
+- Prefer Emacs org mode for new project documentation, including
+  design notes and session records — this repo is transitioning from
+  the earlier =SESSION_YYYY-MM-DD.md= convention (kept as-is,
+  historical) to the =docs/forum.org=/=agenda.org= pair described in
+  =.claude/collaboration-protocol.org=.

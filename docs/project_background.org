@@ -1,0 +1,117 @@
+#+TITLE: Perseus Art & Archaeology: Origins and Vision
+#+AUTHOR: Cliff Wulfman
+#+STATUS: Draft — reviewed collaboratively with Claude, 2026-07-23. Corrections welcome.
+
+* Where this came from
+
+The Perseus Art & Archaeology (PAA) collection has a long migration history. Cliff has
+begun writing part of this history up as a paper, with input from Greg Crane; this
+section is a working summary, not a substitute for that fuller account.
+
+1. *HyperCard era.* The original PAA materials were deployed as a HyperCard stack, with
+   links out to images distributed on CD-ROM — high-resolution (for the time) color
+   photographs of vases, coins, and other artifacts that Perseus itself commissioned or
+   licensed, offered to a broad public audience well before museums had meaningful
+   collections online.
+2. *XML/SQL era.* The metadata was later exported into an omnibus XML schema and loaded
+   into a SQL database; the images moved to a web-accessible image server. This
+   architecture stayed in production for roughly two decades. [fn:dates]
+3. *Retirement and CollectionBuilder stopgap.* Tufts required the SQL-backed system be
+   retired for security reasons. [fn:dates] As a stop-gap, Cliff built a static site with
+   [[https://collectionbuilder.github.io/][CollectionBuilder]] (a static-site generator
+   built on Jekyll), deployed via GitHub Pages in 2025 — repo:
+   [[https://github.com/perseus-aa/perseus-aa.github.io][perseus-aa/perseus-aa.github.io]].
+   The site's data is generated from a large CSV, itself produced from an AirTable base.
+   Images were converted to pyramidal TIFFs and put behind a Cantaloupe IIIF Image
+   server on a Tufts host. This is the architecture currently live.
+
+* What the quick port exposed
+
+Doing the migration fast, without redesigning anything, surfaced two problems that had
+been latent for years:
+
+*The images.* In the decades since Perseus's CD-ROM images were cutting-edge, museums
+have digitized and published their own collections online, with metadata that is
+typically better maintained than what Perseus captured at the time. Perseus's own images
+were always a /selection/ from each museum's holdings, not the full collection. IIIF now
+makes it possible to reference museum-hosted images directly and comprehensively, rather
+than maintaining Perseus's own copies of a subset.
+
+*The metadata.* Perseus's object metadata is a hybrid of two very different kinds of
+content:
+- Conventional museum-object metadata: dimensions, condition, provenance, accession
+  information, and so on.
+- Scholarly commentary and notes — drawn from secondary literature or composed by
+  Perseus's own editors — describing iconography, attribution, and bibliography. These
+  fields are a mix of HTML, TEI XML, and plain text, and *have never been systematically
+  edited* since they were first entered. (Analysis in December 2025 found 99.7% of
+  Perseus bibliography fields contain raw markup.)
+
+* The two-track vision
+
+These two problems define two parallel workstreams:
+
+** Track A — Harvest and normalize museum metadata
+
+Build harvesters for the museums and collections whose objects Perseus already has
+records for (Harvard Art Museums and Getty done; the Met is next, with Giulia Taurino
+leading it), normalize each source into a common Linked Art / CIDOC-CRM representation,
+and load the result into a GraphDB knowledge graph queryable via SPARQL. This is the
+architecture documented in =PROJECT_CONTEXT.md=: Pydantic models → staging graph →
+SPARQL CONSTRUCT templates → SHACL validation → GraphDB.
+
+** Track B — Extract and annotate the commentary
+
+Treat the legacy HTML/TEI/plain-text commentary and bibliography fields as raw material
+to be decomposed via NLP into discrete, addressable annotations (W3C Web Annotation
+model — =oa:Annotation=), rather than edited in place. Where possible, citations should
+resolve to authoritative bibliographic entities and link out to actual digital
+representations of the cited scholarship (HathiTrust, Internet Archive, etc.). This is
+the design sketched in =curation_architecture_analysis.md= (Splitter / Resolver / Editor
+workflows).
+
+* Why these are one project, not two
+
+The connection is methodological as much as architectural: Track B draws directly on
+lessons from the New Variorum Shakespeare (NVS) annotation work — turning citation
+strings embedded in legacy scholarly prose into structured links to editions and
+authorities. The same resolution logic (does this citation already correspond to a
+known entity? can we link it to a digital surrogate of the actual source?) applies
+whether the prose in question is a Variorum textual note or a Perseus vase description.
+/(This parallel is Claude's inference from the project description — worth sharpening or
+qualifying based on what actually transfers from NVS practice versus what's different
+about Perseus's commentary and its provenance.)/
+
+Practically, the two tracks also share infrastructure: the same GraphDB instance,
+deterministic URI scheme, AAT-based vocabulary reconciliation, and CIDOC-CRM backbone.
+Museum harvesting gives the annotations something stable to attach to (object nodes);
+annotation extraction gives the harvested objects the scholarly depth that raw museum
+API data doesn't include.
+
+* Where things stand (as of July 2026)
+
+- *Track A:* HAM and Getty harvesters complete and reconciled; Met harvester about to
+  start (Giulia).
+- *Track B:* Design complete (=curation_architecture_analysis.md=), Phase 1 prototype
+  splitter built; FastAPI backend (Phase 2) and React UI (Phase 3) not yet started.
+
+See =docs/INDEX.md= for the session-by-session implementation log, and
+=PROJECT_CONTEXT.md= for the technical architecture of Track A's pipeline.
+
+* Open questions
+
+- Firm dates for the SQL system's retirement and the CollectionBuilder site's launch.
+- Name (if any) of the original omnibus XML schema, for the historical record.
+- How this document should relate to Cliff's in-progress history paper (co-authored
+  with input from Greg Crane) — this section may eventually just point to that paper
+  rather than duplicate it.
+- Whether Track B's entity-tagging step (linking terms like "Herakles" to AAT concepts)
+  should also draw on ULAN/TGN, given the person/place mappings already used for HAM's
+  agent data.
+
+* Footnotes
+
+[fn:dates] Exact dates to be confirmed — the SQL-backed system's retirement and the
+CollectionBuilder site's initial deployment both need firmer dates than "a couple/few
+years ago" / "2025." Worth checking against the CollectionBuilder repo's git history
+if/when it's accessible, or against Cliff's in-progress history paper.
