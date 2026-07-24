@@ -262,7 +262,27 @@ Three concrete habits, for all three participants alike:
 - *Sync before you edit.* Before opening =agenda.org= or
   =docs/forum.org=, check =git status= / =git log= against =dev= — merged? behind? Cheap to check, expensive to discover after the fact. This applies whether the edit is Cliff typing in Emacs, Claude Code about to branch for a new task, or Claude Chat about to call an edit tool.
 - *Land a task's substance and its bookkeeping together.* Don't split "the actual work" and "marking it DONE / recording the Analysis section" across two commits on two different branches. If a task's implementation lives on a feature branch, its DONE-marking and Analysis section go on that same branch, merged to =dev= together — not written directly to =dev= while the branch that did the work sits unmerged.
-- *Stay additive, not editorial, in the coordination files.* New headline, new dated addendum, new paragraph appended after existing content — not rewriting or restructuring another participant's existing text. This is most of why the actual conflict on 2026-07-24 was a two-line, obviously-resolvable one despite the branch divergence behind it: both sides had added text after the same paragraph rather than editing each other's prose. Keep doing that even when the underlying branch hygiene slips.
+- *Stay additive, not editorial, in the coordination files.* New
+  headline, new dated addendum, new paragraph appended after
+  existing content — not rewriting or restructuring another
+  participant's existing text. This is most of why the actual
+  conflict on 2026-07-24 was a two-line, obviously-resolvable one
+  despite the branch divergence behind it: both sides had added text
+  after the same paragraph rather than editing each other's prose.
+  Keep doing that even when the underlying branch hygiene slips.
+- *Push promptly, especially once more than one clone is active.*
+  With one person working from one clone, local commits sitting
+  unpushed for a while is a minor risk (single point of failure, not
+  a coordination problem). Once Giulia is actively pulling =dev=, that
+  changes: a coordination-file commit (Decision, new task) that
+  exists only locally means someone else could read a stale state and
+  duplicate or conflict with work already decided. From that point,
+  push =agenda.org=/=docs/forum.org= commits on =dev= promptly, not
+  batched — implementation work on feature branches is lower-stakes
+  to leave unpushed, since it's isolated by definition. Claude Code
+  should push after completing a task's coordination-file commit as
+  part of finishing the task, not leave it for Cliff to remember
+  afterward.
 
 None of this replaces the sync-before-edit habit with tooling — see
 "What This Protocol Does Not Cover" below on why that discipline
